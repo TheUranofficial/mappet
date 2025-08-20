@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "mappet",
+  "version": "${version}",
+  "name": "Mappet",
+  "description": "Adventure map toolset mod",
+  "authors": [
+    "TheUran"
+  ],
+  "contact": {
+    "homepage": "https://github.com/TheUranofficial",
+    "sources": "https://github.com/mchorse/bbs-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/mappet/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.theuran.mappet.Mappet"
+    ],
+    "client": [
+      "com.theuran.mappet.client.MappetClient"
+    ]
+  },
+  "mixins": [
+    "mappet.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.17.2",
+    "minecraft": "~1.20.4",
+    "java": ">=17",
+    "fabric-api": "*",
+    "bbs": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
