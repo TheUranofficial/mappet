@@ -23,7 +23,11 @@
     ]
   },
   "mixins": [
-    "mappet.mixins.json"
+    "mappet.mixins.json",
+    {
+      "config": "mappet.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends": {
     "fabricloader": ">=0.17.2",

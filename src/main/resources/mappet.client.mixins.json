@@ -2,11 +2,9 @@
   "required": true,
   "package": "com.theuran.mappet.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "InternalAssetSourcePackMixin"
-  ],
-  "accessors": [
-    "InternalDuctTapeMixin"
+  "client": [
+    "L10nMixin",
+    "BBSModClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

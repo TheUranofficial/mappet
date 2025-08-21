@@ -1,10 +1,9 @@
 package com.theuran.mappet.client;
 
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
-import mchorse.bbs_mod.BBSMod;
-import mchorse.bbs_mod.BBSModClient;
+import mchorse.bbs_mod.BBSSettings;
 import mchorse.bbs_mod.l10n.L10n;
-import mchorse.bbs_mod.resources.Link;
 import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -13,8 +12,6 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
-
-import java.util.Collections;
 
 public class MappetClient implements ClientModInitializer {
     private static UIMappetDashboard dashboard;
@@ -30,18 +27,21 @@ public class MappetClient implements ClientModInitializer {
         return dashboard;
     }
 
+    public static L10n getL10n() {
+        return l10n;
+    }
+
     @Override
     public void onInitializeClient() {
         l10n = new L10n();
-        l10n.register((lang) -> Collections.singletonList(Link.assets("strings/" + lang + ".json")));
-        l10n.reload();
+        l10n.registerOne((lang) -> Mappet.link("lang/" + lang + ".json"));
+        l10n.reload(BBSSettings.language.get(), Mappet.getProvider());
 
         keyDashboard = this.createKey("dashboard", GLFW.GLFW_KEY_EQUAL);
 
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             while (keyDashboard.wasPressed()) {
                 UIScreen.open(getDashboard());
-                client.player.sendMessage(Text.of(l10n.getStrings().toString()));
             }
         });
     }
