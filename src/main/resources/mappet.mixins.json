@@ -3,10 +3,6 @@
   "package": "com.theuran.mappet.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "InternalAssetSourcePackMixin"
-  ],
-  "accessors": [
-    "InternalDuctTapeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
