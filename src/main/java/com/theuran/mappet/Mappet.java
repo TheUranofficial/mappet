@@ -31,7 +31,7 @@ public class Mappet implements ModInitializer {
         provider = new AssetProvider();
         provider.register(new MappetInternalAssetsPack());
 
-        BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
+        //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
                     worldFolder = new File(server.getSavePath(WorldSavePath.ROOT).toFile(), Mappet.MOD_ID);

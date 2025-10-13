@@ -6,7 +6,10 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import mchorse.bbs_mod.data.types.MapType;
+import com.theuran.mappet.api.states.IStatesProvider;
+import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.utils.BooleanUtils;
+import mchorse.bbs_mod.data.types.BaseType;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
@@ -30,14 +33,34 @@ public class MappetCommands {
         LiteralArgumentBuilder<ServerCommandSource> states = CommandManager.literal("states");
         LiteralArgumentBuilder<ServerCommandSource> set = CommandManager.literal("set");
         LiteralArgumentBuilder<ServerCommandSource> get = CommandManager.literal("get");
-        LiteralArgumentBuilder<ServerCommandSource> server = CommandManager.literal("server");
+        LiteralArgumentBuilder<ServerCommandSource> server = CommandManager.literal("~");
 
         RequiredArgumentBuilder<ServerCommandSource, EntitySelector> player = CommandManager.argument("player", EntityArgumentType.player());
         RequiredArgumentBuilder<ServerCommandSource, String> setKey = CommandManager.argument("key", StringArgumentType.word());
         RequiredArgumentBuilder<ServerCommandSource, String> getKey = CommandManager.argument("key", StringArgumentType.word());
         RequiredArgumentBuilder<ServerCommandSource, String> value = CommandManager.argument("value", StringArgumentType.string());
 
-        //What the heck I write
+        //bruh
+        setKey.suggests((context, builder) -> {
+            States statesInstance = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
+
+            for (String key : statesInstance.keys()) {
+                builder.suggest(key);
+            }
+
+            return builder.buildFuture();
+        });
+
+        getKey.suggests((context, builder) -> {
+            States statesInstance = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
+
+            for (String key : statesInstance.keys()) {
+                builder.suggest(key);
+            }
+
+            return builder.buildFuture();
+        });
+
         states.then(
                 player.then(
                         set.then(
@@ -52,15 +75,9 @@ public class MappetCommands {
                 )
         ).then(
                 server.then(
-                        set.then(
-                                setKey.then(
-                                        value.executes(MappetCommands::statesSetCommand)
-                                )
-                        )
+                        set
                 ).then(
-                        get.then(
-                                getKey.executes(MappetCommands::statesGetCommand)
-                        )
+                        get
                 )
         );
 
@@ -70,9 +87,10 @@ public class MappetCommands {
     private static int statesGetCommand(CommandContext<ServerCommandSource> context) {
         context.getSource().sendFeedback(() -> {
             try {
-                MapType states = context.getInput().contains("server") ? Mappet.getStates().getValues() : Mappet.getStates().getEntityStates(EntityArgumentType.getPlayer(context, "player"));
+                States states = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
+                BaseType value = states.get(StringArgumentType.getString(context, "key"));
 
-                return Text.literal("Value is: %s".formatted(states.get(StringArgumentType.getString(context, "key"))));
+                return Text.literal("Value is: %s".formatted(value));
             } catch (CommandSyntaxException e) {
                 throw new RuntimeException(e);
             }
@@ -84,13 +102,17 @@ public class MappetCommands {
     private static int statesSetCommand(CommandContext<ServerCommandSource> context) {
         try {
             String value = StringArgumentType.getString(context, "value");
-            MapType states = context.getInput().contains("server") ? Mappet.getStates().getValues() : Mappet.getStates().getEntityStates(EntityArgumentType.getPlayer(context, "player"));
+            States states = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
             String key =  StringArgumentType.getString(context, "key");
 
             try {
-                Mappet.getStates().setNumber(states, key, Double.parseDouble(value));
+                states.setNumber(key, Double.parseDouble(value));
             } catch (NumberFormatException e) {
-                Mappet.getStates().setString(states, key, value);
+                if (BooleanUtils.isBoolean(value)) {
+                    states.setBoolean(key, Boolean.parseBoolean(value));
+                } else {
+                    states.setString(key, value);
+                }
             }
         } catch (CommandSyntaxException e) {
             throw new RuntimeException(e);

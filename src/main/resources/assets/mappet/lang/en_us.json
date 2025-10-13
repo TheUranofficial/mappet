@@ -1,4 +1,6 @@
 {
   "mappet.config.title": "Mappet",
-  "mappet.config.general.title": "General"
+  "mappet.config.general.title": "General",
+  "mappet.server.settings.title": "Server settings",
+  "mappet.server.settings.states.pick": "Pick target"
 }

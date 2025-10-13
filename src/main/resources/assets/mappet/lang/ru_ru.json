@@ -1,4 +1,6 @@
 {
   "mappet.config.title": "Маппет",
-  "mappet.config.general.title": "Общая"
+  "mappet.config.general.title": "Общее",
+  "mappet.server.settings.title": "Настройки сервера",
+  "mappet.server.settings.states.pick": "Выберите цель"
 }
