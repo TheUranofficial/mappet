@@ -1,11 +1,11 @@
 package com.theuran.mappet;
 
 import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.network.MappetServerNetwork;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;
 import mchorse.bbs_mod.resources.Link;
-import mchorse.bbs_mod.ui.utils.icons.Icons;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -47,7 +47,11 @@ public class Mappet implements ModInitializer {
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
             worldFolder = null;
             states = null;
+
+            MappetServerNetwork.reset();
         });
+
+        MappetServerNetwork.setup();
 
         CommandRegistrationCallback.EVENT.register(MappetCommands::register);
     }

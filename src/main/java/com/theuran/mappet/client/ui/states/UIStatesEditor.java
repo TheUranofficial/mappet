@@ -1,13 +1,12 @@
 package com.theuran.mappet.client.ui.states;
 
-import mchorse.bbs_mod.data.types.MapType;
-import mchorse.bbs_mod.ui.framework.UIContext;
+import com.theuran.mappet.api.states.States;
 import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
 
 import java.util.Comparator;
 
 public class UIStatesEditor extends UIScrollView {
-    private MapType states;
+    private States states;
 
     public UIStatesEditor() {
         super();
@@ -15,11 +14,11 @@ public class UIStatesEditor extends UIScrollView {
         this.column(5).vertical().stretch().scroll().padding(10);
     }
 
-    public MapType getStates() {
+    public States getStates() {
         return this.states;
     }
 
-    public UIStatesEditor setStates(MapType states) {
+    public UIStatesEditor setStates(States states) {
         this.states = states;
 
         this.removeAll();
@@ -47,26 +46,16 @@ public class UIStatesEditor extends UIScrollView {
         int index = this.states.size() + 1;
         String key = "state_" + index;
 
-        while (this.states.elements.containsKey(key)) {
+        while (this.states.has(key)) {
             index += 1;
             key = "state_" + index;
         }
 
-        this.states.putDouble(key, 0);
+        this.states.setNumber(key, 0);
         this.add(new UIState(key, this.states));
 
         this.sortElements();
 
         this.getParentContainer().resize();
-    }
-
-    @Override
-    public void render(UIContext context) {
-        super.render(context);
-
-        if (this.states != null && this.states.isEmpty()) {
-            int w = this.area.getW() / 2;
-            int x = this.area.mx(w);
-        }
     }
 }

@@ -1,12 +1,15 @@
 package com.theuran.mappet.api.states;
 
+import com.theuran.mappet.Mappet;
 import mchorse.bbs_mod.data.DataStorageUtils;
 import mchorse.bbs_mod.data.DataToString;
 import mchorse.bbs_mod.data.IMapSerializable;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.utils.IOUtils;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.server.MinecraftServer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -74,8 +77,24 @@ public class States implements IMapSerializable {
         return this.values.get(key);
     }
 
+    public void set(String key, BaseType value) {
+        this.values.put(key, value);
+    }
+
     public Set<String> keys() {
         return this.values.keys();
+    }
+
+    public int size() {
+        return this.values.size();
+    }
+
+    public boolean has(String key) {
+        return this.values.elements.containsKey(key);
+    }
+
+    public void remove(String key) {
+        this.values.remove(key);
     }
 
     public void save() {
@@ -105,5 +124,17 @@ public class States implements IMapSerializable {
 
     public NbtElement toNbt() {
         return DataStorageUtils.toNbt(this.toData());
+    }
+
+    public static States getStates(MinecraftServer server, String target) {
+        if (target.equals("~"))
+            return Mappet.getStates();
+
+        PlayerEntity player = server.getPlayerManager().getPlayer(target);
+
+        if (player instanceof IStatesProvider provider)
+            return provider.getStates();
+
+        return null;
     }
 }

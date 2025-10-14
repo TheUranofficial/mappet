@@ -1,7 +1,10 @@
 package com.theuran.mappet.client.ui.panels;
 
-import com.theuran.mappet.Mappet;
+import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.states.UIStatesEditor;
+import com.theuran.mappet.network.MappetClientNetwork;
+import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.dashboard.panels.UIDashboardPanel;
@@ -62,13 +65,46 @@ public class UIServerSettings extends UIDashboardPanel {
             targets.add(player.getGameProfile().getName());
         }
 
-        UIStringOverlayPanel overlayPanel = new UIStringOverlayPanel(IKey.constant("mappet.server.settings.states.pick"), false, targets, (target) -> {
+        UIStringOverlayPanel overlayPanel = new UIStringOverlayPanel(UIMappetKeys.SERVER_SETTINGS_STATES_PICK, false, targets, (target) -> {
             if (target.isEmpty())
                 return;
 
-            System.out.println(Mappet.getStates().getValues());
+            this.save();
+
+            MappetClientNetwork.sendStatesRequest(target);
         });
 
         UIOverlay.addOverlay(this.getContext(), overlayPanel.set(this.lastTarget), 0.4f, 0.6f);
+    }
+
+    public void fillStates(String target, MapType data) {
+        States states = new States();
+
+        this.statesTitle.label = target.equals("~") ? UIMappetKeys.SERVER_SETTINGS_STATES_TITLE : UIMappetKeys.SERVER_SETTINGS_STATES_PLAYER_TITLE.format(target);
+        states.fromData(data);
+        this.statesEditor.setStates(states);
+        this.lastTarget = target;
+    }
+
+    public void save() {
+        if (this.statesEditor.getStates() != null) {
+            MappetClientNetwork.sendStates(this.lastTarget, this.statesEditor.getStates());
+        }
+    }
+
+    @Override
+    public void appear() {
+        MappetClientNetwork.sendStatesRequest(this.lastTarget);
+    }
+
+    @Override
+    public void close() {
+        this.save();
+        this.statesEditor.setStates(null);
+    }
+
+    @Override
+    public void disappear() {
+        this.save();
     }
 }
