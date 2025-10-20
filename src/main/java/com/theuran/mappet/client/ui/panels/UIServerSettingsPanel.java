@@ -14,13 +14,16 @@ import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIStringOverlayPanel;
 import mchorse.bbs_mod.ui.framework.elements.utils.UILabel;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UIServerSettings extends UIDashboardPanel {
+@Environment(EnvType.CLIENT)
+public class UIServerSettingsPanel extends UIDashboardPanel {
     public UIElement states;
 
     public UIStatesEditor statesEditor;
@@ -33,7 +36,7 @@ public class UIServerSettings extends UIDashboardPanel {
 
     private String lastTarget = "~";
 
-    public UIServerSettings(UIDashboard dashboard) {
+    public UIServerSettingsPanel(UIDashboard dashboard) {
         super(dashboard);
 
         this.states = new UIElement();

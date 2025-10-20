@@ -2,9 +2,12 @@ package com.theuran.mappet.client.ui.states;
 
 import com.theuran.mappet.api.states.States;
 import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.Comparator;
 
+@Environment(EnvType.CLIENT)
 public class UIStatesEditor extends UIScrollView {
     private States states;
 

@@ -4,5 +4,7 @@
   "mappet.server.settings.title": "Server settings",
   "mappet.server.settings.states.title": "Server states",
   "mappet.server.settings.states.player.title": "%s`s states",
-  "mappet.server.settings.states.pick": "Pick target"
+  "mappet.server.settings.states.pick": "Pick target",
+  "mappet.hud.scene.title": "HUD Scenes",
+  "mappet.hud.scene.ortho": "Orthographic"
 }

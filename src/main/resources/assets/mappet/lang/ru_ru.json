@@ -4,5 +4,7 @@
   "mappet.server.settings.title": "Настройки сервера",
   "mappet.server.settings.states.title": "Состояния сервера",
   "mappet.server.settings.states.player.title": "Состояния %s",
-  "mappet.server.settings.states.pick": "Выберите цель"
+  "mappet.server.settings.states.pick": "Выберите цель",
+  "mappet.hud.scene.title": "HUD Сцены",
+  "mappet.hud.scene.ortho": "Орфографический"
 }

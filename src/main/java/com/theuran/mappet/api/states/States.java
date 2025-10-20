@@ -16,8 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 
-//Sorry mchorse but ima lazy for understanding basemanager
-//TODO: Rewrite this into basemanager extender
 public class States implements IMapSerializable {
     private MapType values = new MapType();
 
