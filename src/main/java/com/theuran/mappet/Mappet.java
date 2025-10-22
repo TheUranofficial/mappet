@@ -28,6 +28,7 @@ public class Mappet implements ModInitializer {
     private static File settingsFolder;
     private static File assetsFolder;
     private static File worldFolder;
+    private static File mappetFolder;
 
     private static AssetProvider provider;
 
@@ -47,17 +48,19 @@ public class Mappet implements ModInitializer {
         provider = new AssetProvider();
         provider.register(new MappetInternalAssetsPack());
 
-        huds = new HUDManager(() -> new File(worldFolder, "mappet/huds"));
+        huds = new HUDManager(() -> new File(mappetFolder, "huds"));
 
-        scripts = new ScriptManager(() -> new File(worldFolder, "mappet/scripts"));
+        scripts = new ScriptManager(() -> new File(mappetFolder, "scripts"));
 
         //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             worldFolder = server.getSavePath(WorldSavePath.ROOT).toFile();
-            worldFolder.mkdirs();
+            mappetFolder = new File(worldFolder, "mappet");
 
-            states = new States(new File(worldFolder, "mappet/states.json"));
+            mappetFolder.mkdirs();
+
+            states = new States(new File(mappetFolder, "states.json"));
             states.load();
         });
 

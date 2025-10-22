@@ -8,9 +8,9 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 public class ScriptWorld {
-    private World world;
+    private ServerWorld world;
 
-    public ScriptWorld(World world) {
+    public ScriptWorld(ServerWorld world) {
         this.world = world;
     }
 
@@ -29,6 +29,6 @@ public class ScriptWorld {
     }
 
     public ScriptEntity<?> getEntity(String uuid) {
-        return ScriptEntity.create(((ServerWorld) this.world).getEntity(UUID.fromString(uuid)));
+        return ScriptEntity.create(this.world.getEntity(UUID.fromString(uuid)));
     }
 }

@@ -1,6 +1,9 @@
 package com.theuran.mappet.api.scripts.code;
 
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +12,10 @@ public class ScriptEvent {
     private final String script;
     private final String function;
 
-    private final ScriptEntity subject;
-    private final ScriptEntity object;
-    private final ScriptWorld world;
-    private final ScriptServer server;
+    public final ScriptEntity subject;
+    public final ScriptEntity object;
+    public final ScriptWorld world;
+    public final ScriptServer server;
 
     private Map<String, Object> values = new HashMap<>();
 
@@ -24,6 +27,17 @@ public class ScriptEvent {
         this.object = object;
         this.world = world;
         this.server = server;
+    }
+
+    public static ScriptEvent create(String script, String function, Entity subject, Entity object, ServerWorld world, MinecraftServer server) {
+        return new ScriptEvent(
+                script,
+                function,
+                ScriptEntity.create(subject),
+                ScriptEntity.create(object),
+                world == null ? null : new ScriptWorld(world),
+                server == null ? null : new ScriptServer(server)
+        );
     }
 
     public String getScript() {
@@ -56,5 +70,11 @@ public class ScriptEvent {
 
     public Object get(String key) {
         return this.values.get(key);
+    }
+
+    public void send(String message) {
+        if (this.server != null) {
+            this.server.send(message);
+        }
     }
 }
