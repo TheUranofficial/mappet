@@ -4,14 +4,13 @@ import com.theuran.mappet.Mappet;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.NetworkState;
 
 import java.lang.reflect.InvocationTargetException;
 
 public abstract class AbstractDispatcher {
     public abstract void register();
 
-    protected <T extends AbstractPacket, A extends NetworkState.PacketHandler> void registerPacket(Class<T> packetClass, Class<A> packetHandler, EnvType envType) {
+    protected <T extends AbstractPacket, A extends PacketHandler> void registerPacket(Class<T> packetClass, Class<A> packetHandler, EnvType envType) {
         try {
             T packet = packetClass.getConstructor().newInstance();
 

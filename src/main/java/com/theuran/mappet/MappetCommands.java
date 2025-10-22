@@ -56,9 +56,9 @@ public class MappetCommands {
                         ServerCommandSource source = context.getSource();
                         String scriptName = StringArgumentType.getString(context, "name");
 
-                        ScriptEvent properties = ScriptEvent.create("~", "", source.getEntity(), null, source.getWorld(), source.getServer());
+                        ScriptEvent properties = ScriptEvent.create(scriptName, "", source.getEntity(), null, source.getWorld(), source.getServer());
 
-                        Mappet.getScripts().runScript(scriptName, properties);
+                        Mappet.getScripts().runScript(properties);
                         return 1;
                     })
                 )

@@ -2,6 +2,8 @@ package com.theuran.mappet.network;
 
 import com.theuran.mappet.network.basic.AbstractDispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
+import com.theuran.mappet.network.packets.server.RunScriptC2SPacket;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
@@ -12,7 +14,7 @@ public class Dispatcher {
     private static final AbstractDispatcher DISPATCHER = new AbstractDispatcher() {
         @Override
         public void register() {
-
+            registerPacket(RunScriptC2SPacket.class, RunScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
         }
     };
 
