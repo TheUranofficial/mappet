@@ -6,6 +6,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.theuran.mappet.api.scripts.Properties;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.api.states.States;
@@ -39,7 +40,9 @@ public class MappetCommands {
                             ServerCommandSource source = context.getSource();
                             String code = StringArgumentType.getString(context, "code");
 
-                            source.sendFeedback(() -> Text.literal(Mappet.getScripts().evalCode(code)), false);
+                            Properties properties = Properties.create("~", "", source.getEntity(), null, source.getWorld(), source.getServer());
+
+                            Mappet.getScripts().evalCode(code, properties);
 
                             return 1;
                         }
@@ -54,7 +57,9 @@ public class MappetCommands {
                         ServerCommandSource source = context.getSource();
                         String scriptName = StringArgumentType.getString(context, "name");
 
-                        source.sendFeedback(() -> Text.literal(Mappet.getScripts().evalScript(scriptName)), false);
+                        Properties properties = Properties.create("~", "", source.getEntity(), null, source.getWorld(), source.getServer());
+
+                        Mappet.getScripts().runScript(scriptName, properties);
                         return 1;
                     })
                 )

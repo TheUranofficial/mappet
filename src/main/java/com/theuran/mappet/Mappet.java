@@ -5,6 +5,7 @@ import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetServerNetwork;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
@@ -36,6 +37,8 @@ public class Mappet implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        Dispatcher.register();
+
         settingsFolder = BBSMod.getGamePath("config/mappet/settings");
         settingsFolder.mkdirs();
         assetsFolder = BBSMod.getGamePath("config/mappet/assets");

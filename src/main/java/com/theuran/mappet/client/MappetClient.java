@@ -2,6 +2,7 @@ package com.theuran.mappet.client;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
+import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetClientNetwork;
 import mchorse.bbs_mod.BBSSettings;
 import mchorse.bbs_mod.l10n.L10n;
@@ -37,6 +38,8 @@ public class MappetClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        Dispatcher.register();
+
         l10n = new L10n();
         l10n.registerOne((lang) -> Mappet.link("lang/" + lang + ".json"));
         l10n.reload(BBSSettings.language.get(), Mappet.getProvider());
