@@ -39,11 +39,24 @@ public class MappetCommands {
                             ServerCommandSource source = context.getSource();
                             String code = StringArgumentType.getString(context, "code");
 
-                            source.sendFeedback(() -> Text.literal(new ScriptManager().evalCode(code)), false);
+                            source.sendFeedback(() -> Text.literal(Mappet.getScripts().evalCode(code)), false);
 
                             return 1;
                         }
                     )
+                )
+        );
+
+        mappet.then(CommandManager.literal("script")
+                .requires(hasPermissions)
+                .then(CommandManager.argument("name", StringArgumentType.greedyString())
+                    .executes(context -> {
+                        ServerCommandSource source = context.getSource();
+                        String scriptName = StringArgumentType.getString(context, "name");
+
+                        source.sendFeedback(() -> Text.literal(Mappet.getScripts().evalScript(scriptName)), false);
+                        return 1;
+                    })
                 )
         );
     }

@@ -15,7 +15,7 @@ public class HUDManager extends BaseManager<HUDScene> {
     }
 
     @Override
-    protected HUDScene createData(String id, MapType mapType) {
+    public HUDScene createData(String id, MapType mapType) {
         HUDScene scene = new HUDScene();
 
         if (mapType != null) {

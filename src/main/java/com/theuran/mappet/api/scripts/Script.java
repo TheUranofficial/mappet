@@ -1,23 +1,21 @@
 package com.theuran.mappet.api.scripts;
 
-public class Script {
-    private String name;
-    private String content;
+import mchorse.bbs_mod.settings.values.ValueGroup;
+import mchorse.bbs_mod.settings.values.ValueString;
 
-    public Script(String name, String content) {
-        this.name = name;
-        this.content = content;
-    }
+public class Script extends ValueGroup {
+    private final ValueString content = new ValueString("content", "");
 
-    public String getName() {
-        return this.name;
+    public Script() {
+        super("");
+        this.add(content);
     }
 
     public String getContent() {
-        return this.content;
+        return this.content.get();
     }
 
-    public void eval() {
-
+    public void setContent(String content) {
+        this.content.set(content);
     }
 }
