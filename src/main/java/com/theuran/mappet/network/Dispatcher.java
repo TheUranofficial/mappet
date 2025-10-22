@@ -18,12 +18,14 @@ public class Dispatcher {
 
     public static void sendTo(AbstractPacket packet, ServerPlayerEntity player) {
         PacketByteBuf buf = packet.buf;
+
         packet.toBytes(buf);
         ServerPlayNetworking.send(player, packet.getId(), buf);
     }
 
     public static void sendToAll(AbstractPacket packet, MinecraftServer server) {
         PacketByteBuf buf = packet.buf;
+
         packet.toBytes(buf);
 
         for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
@@ -33,6 +35,7 @@ public class Dispatcher {
 
     public static void sendToServer(AbstractPacket packet) {
         PacketByteBuf buf = packet.buf;
+
         packet.toBytes(buf);
         ClientPlayNetworking.send(packet.getId(), buf);
     }

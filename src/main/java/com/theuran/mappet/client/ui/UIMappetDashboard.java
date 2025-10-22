@@ -1,6 +1,7 @@
 package com.theuran.mappet.client.ui;
 
 import com.theuran.mappet.client.ui.panels.UIHUDScenePanel;
+import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.client.ui.panels.UIServerSettingsPanel;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
@@ -13,6 +14,7 @@ public class UIMappetDashboard extends UIDashboard {
     protected void registerPanels() {
         this.getPanels().registerPanel(new UIServerSettingsPanel(this), UIMappetKeys.SERVER_SETTINGS_TITLE, Icons.GEAR);
         this.getPanels().registerPanel(new UIHUDScenePanel(this), UIMappetKeys.HUD_SCENE_TITLE, Icons.POSE);
+        this.getPanels().registerPanel(new UIScriptPanel(this), UIMappetKeys.SCRIPTS_TITLE, Icons.PROPERTIES);
 
         this.setPanel(this.getPanel(UIServerSettingsPanel.class));
     }

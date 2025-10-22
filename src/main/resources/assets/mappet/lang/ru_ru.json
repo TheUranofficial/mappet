@@ -6,5 +6,7 @@
   "mappet.server.settings.states.player.title": "Состояния %s",
   "mappet.server.settings.states.pick": "Выберите цель",
   "mappet.hud.scene.title": "HUD Сцены",
-  "mappet.hud.scene.ortho": "Орфографический"
+  "mappet.hud.scene.ortho": "Орфографический",
+  "mappet.scripts.title": "Скрипты",
+  "mappet.scripts.run": "Запустить скрипт"
 }

@@ -13,4 +13,6 @@ public class UIMappetKeys {
     public static final IKey SERVER_SETTINGS_STATES_PICK = L10n.lang("mappet.server.settings.states.pick");
     public static final IKey HUD_SCENE_TITLE = L10n.lang("mappet.hud.scene.title");
     public static final IKey HUD_SCENE_ORTHO = L10n.lang("mappet.hud.scene.ortho");
+    public static final IKey SCRIPTS_TITLE = L10n.lang("mappet.scripts.title");
+    public static final IKey SCRIPTS_RUN = L10n.lang("mappet.scripts.run");
 }

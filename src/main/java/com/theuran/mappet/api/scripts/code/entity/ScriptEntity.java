@@ -11,7 +11,7 @@ public class ScriptEntity<T extends Entity> {
         if (entity instanceof PlayerEntity) {
             return new ScriptPlayer((ServerPlayerEntity) entity);
         } else if (entity != null) {
-            return new ScriptEntity<Entity>(entity);
+            return new ScriptEntity<>(entity);
         }
 
         return null;

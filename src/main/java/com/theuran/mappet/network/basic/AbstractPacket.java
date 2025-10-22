@@ -13,6 +13,6 @@ public abstract class AbstractPacket {
     public abstract void fromBytes(PacketByteBuf buf);
 
     public Identifier getId() {
-        return Mappet.id(this.getClass().getName().toLowerCase());
+        return Mappet.id(this.getClass().getSimpleName().toLowerCase());
     }
 }
