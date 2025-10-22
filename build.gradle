@@ -35,10 +35,11 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    include modApi("dev.latvian.mods:rhino-fabric:${project.rhino_version}")
-
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation  "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
+
+    implementation "org.graalvm.polyglot:polyglot:${js_version}"
+    implementation "org.graalvm.polyglot:js-community:${js_version}"
 }
 
 processResources {

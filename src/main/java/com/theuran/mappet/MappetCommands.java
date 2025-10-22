@@ -6,6 +6,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.utils.BooleanUtils;
@@ -25,8 +26,26 @@ public class MappetCommands {
         LiteralArgumentBuilder<ServerCommandSource> mappet = CommandManager.literal(Mappet.MOD_ID).requires((source) -> true);
 
         registerStatesCommands(mappet, environment, hasPermissions);
+        registerScriptCommands(mappet, environment, hasPermissions);
 
         dispatcher.register(mappet);
+    }
+
+    private static void registerScriptCommands(LiteralArgumentBuilder<ServerCommandSource> mappet, CommandManager.RegistrationEnvironment environment, Predicate<ServerCommandSource> hasPermissions) {
+        mappet.then(CommandManager.literal("eval")
+                .requires(hasPermissions)
+                .then(CommandManager.argument("code", StringArgumentType.greedyString())
+                        .executes(context -> {
+                            ServerCommandSource source = context.getSource();
+                            String code = StringArgumentType.getString(context, "code");
+
+                            source.sendFeedback(() -> Text.literal(new ScriptManager().evalCode(code)), false);
+
+                            return 1;
+                        }
+                    )
+                )
+        );
     }
 
     private static void registerStatesCommands(LiteralArgumentBuilder<ServerCommandSource> mappet, CommandManager.RegistrationEnvironment environment, Predicate<ServerCommandSource> hasPermissions) {

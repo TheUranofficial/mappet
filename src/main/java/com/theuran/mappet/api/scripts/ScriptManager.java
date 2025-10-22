@@ -1,24 +1,36 @@
 package com.theuran.mappet.api.scripts;
 
-import mchorse.bbs_mod.data.types.MapType;
-import mchorse.bbs_mod.utils.manager.BaseManager;
 
-import java.io.File;
-import java.util.function.Supplier;
+import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.HostAccess;
 
-public class ScriptManager extends BaseManager<Script> {
-    public ScriptManager(Supplier<File> folder) {
-        super(folder);
+import java.util.ArrayList;
+import java.util.List;
+
+public class ScriptManager {
+    List<Script> scripts = new ArrayList<>();
+
+    public ScriptManager() {
+
     }
 
-    @Override
-    protected Script createData(String s, MapType mapType) {
-        Script script = new Script();
-
-        if (mapType != null) {
-            script.fromData(mapType);
+    public Script getScript(String name) {
+        for (Script script : this.scripts) {
+            if (script.getName().equals(name)) {
+                return script;
+            }
         }
 
-        return script;
+        return null;
+    }
+
+    public String evalCode(String content) {
+        try (Context context = Context.newBuilder("js")
+                .option("js.ecmascript-version", "2023")
+                .allowHostAccess(HostAccess.ALL)
+                .build()) {
+
+            return context.eval("js", content).toString();
+        }
     }
 }
