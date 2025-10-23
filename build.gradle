@@ -39,7 +39,7 @@ dependencies {
     modImplementation  "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
 
     implementation "org.graalvm.polyglot:polyglot:${js_version}"
-    implementation "org.graalvm.polyglot:js-community:${js_version}"
+    implementation "org.graalvm.js:js-language:${js_version}"
 }
 
 processResources {

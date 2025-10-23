@@ -1,6 +1,7 @@
 package com.theuran.mappet.api.scripts;
 
 
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptFactory;
 import mchorse.bbs_mod.data.types.MapType;
@@ -8,6 +9,7 @@ import mchorse.bbs_mod.utils.manager.BaseManager;
 import mchorse.bbs_mod.utils.manager.storage.JSONLikeStorage;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.HostAccess;
+import org.graalvm.polyglot.PolyglotException;
 import org.graalvm.polyglot.Value;
 
 import java.io.File;
@@ -16,12 +18,6 @@ import java.util.function.Supplier;
 public class ScriptManager extends BaseManager<Script> {
     public ScriptManager(Supplier<File> folder) {
         super(folder);
-
-        Context.newBuilder("js")
-                .option("js.ecmascript-version", "2023")
-                .option("engine.WarnInterpreterOnly", "false")
-                .allowHostAccess(HostAccess.ALL)
-                .build().initialize("js");
 
         this.storage = new JSONLikeStorage().json();
     }

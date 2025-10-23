@@ -17,6 +17,7 @@ import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
+import org.graalvm.polyglot.PolyglotException;
 
 import java.util.function.Predicate;
 
@@ -41,7 +42,15 @@ public class MappetCommands {
 
                             ScriptEvent properties = ScriptEvent.create("~", "", source.getEntity(), null, source.getWorld(), source.getServer());
 
-                            Mappet.getScripts().evalCode(code, properties);
+                            try {
+                                Mappet.getScripts().evalCode(code, properties);
+                            } catch (PolyglotException e) {
+                                String message = e.getLocalizedMessage();
+                                String line = "Line: " + e.getSourceLocation().getStartLine();
+                                String column = "Column: " + (e.getSourceLocation().getStartColumn()-1);
+
+                                source.sendFeedback(() -> Text.of(message+"\n"+line+"\n"+column), false);
+                            }
 
                             return 1;
                         }
