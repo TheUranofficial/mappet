@@ -1,13 +1,16 @@
 package com.theuran.mappet.api.scripts;
 
+import com.caoccao.javet.exceptions.JavetException;
+import com.caoccao.javet.interop.V8Host;
+import com.caoccao.javet.interop.V8Runtime;
+import com.caoccao.javet.values.V8Value;
+import com.caoccao.javet.values.reference.V8ValueFunction;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptFactory;
+import com.theuran.mappet.utils.ScriptUtils;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.utils.manager.BaseManager;
 import mchorse.bbs_mod.utils.manager.storage.JSONLikeStorage;
-import org.graalvm.polyglot.Context;
-import org.graalvm.polyglot.HostAccess;
-import org.graalvm.polyglot.Value;
 
 import java.io.File;
 import java.util.function.Supplier;
@@ -19,37 +22,36 @@ public class ScriptManager extends BaseManager<Script> {
         this.storage = new JSONLikeStorage().json();
     }
 
-    public String runScript(ScriptEvent properties) {
-        return evalCode(this.load(properties.getScript()).getContent(), properties);
+    public String eval(String content, ScriptEvent properties) throws JavetException {
+        V8Runtime runtime = ScriptUtils.createRuntime();
+
+        runtime.getGlobalObject().set("mappet", new ScriptFactory());
+        runtime.getGlobalObject().set("event", properties);
+
+        V8Value value = runtime.getExecutor(content).execute();
+
+        if (value != null)
+            value.close();
+
+        return value == null ? "null" : value.toString();
     }
 
-    public String evalCode(String content, ScriptEvent properties) {
-        try (Context context = Context.newBuilder("js")
-                .option("engine.WarnInterpreterOnly", "false")
-                .allowHostAccess(HostAccess.ALL)
-                .build()) {
+    public String execute(ScriptEvent properties) throws JavetException {
+        Script script = this.getScript(properties.getScript());
 
-            String functionName = properties.getFunction();
+        return script == null ? "null" : script.execute(properties);
+    }
 
-            if (functionName.isEmpty()) {
-                functionName = "main";
-            }
+    public Script getScript(String id) {
+        Script script = this.load(id);
 
-            Value bindings = context.getBindings("js");
-
-            bindings.putMember("mappet", new ScriptFactory());
-            bindings.putMember("event", properties);
-
-            String out = context.eval("js", content).toString();
-
-            Value function = bindings.getMember(functionName);
-
-            if (function != null && function.canExecute()) {
-                return function.execute(properties).toString();
-            }
-
-            return out;
+        try {
+            script.initialize();
+        } catch (JavetException e) {
+            throw new RuntimeException(e);
         }
+
+        return script;
     }
 
     @Override

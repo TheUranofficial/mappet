@@ -14,7 +14,7 @@ public class Dispatcher {
     private static final AbstractDispatcher DISPATCHER = new AbstractDispatcher() {
         @Override
         public void register() {
-            registerPacket(RunScriptC2SPacket.class, RunScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(RunScriptC2SPacket.class, RunScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
         }
     };
 

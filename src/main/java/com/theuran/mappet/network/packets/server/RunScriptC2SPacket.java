@@ -1,5 +1,6 @@
 package com.theuran.mappet.network.packets.server;
 
+import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.network.basic.AbstractPacket;
@@ -9,6 +10,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 public class RunScriptC2SPacket extends AbstractPacket {
     private String script;
@@ -36,7 +38,13 @@ public class RunScriptC2SPacket extends AbstractPacket {
     public static class ServerHandler implements ServerPacketHandler<RunScriptC2SPacket> {
         @Override
         public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, RunScriptC2SPacket packet) {
-            Mappet.getScripts().runScript(ScriptEvent.create(packet.script, packet.function, player, null, player.getServerWorld(), server));
+            try {
+                Mappet.getScripts().execute(ScriptEvent.create(packet.script, packet.function, player, null, player.getServerWorld(), server));
+            } catch (JavetException e) {
+                String message = e.getLocalizedMessage();
+
+                player.sendMessage(Text.of(message), false);
+            }
         }
     }
 }

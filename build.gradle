@@ -38,9 +38,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
 
-    include implementation("org.graalvm.polyglot:polyglot:${js_version}")
-    include implementation("org.graalvm.js:js-language:${js_version}")
-    include implementation("org.graalvm.truffle:truffle-runtime:${js_version}")
+    include implementation("com.caoccao.javet:javet:${javet_version}")
+    include implementation("com.caoccao.javet:javet-v8-windows-x86_64:${javet_version}")
 }
 
 processResources {
@@ -60,8 +59,4 @@ java {
 
 	sourceCompatibility = JavaVersion.VERSION_17
 	targetCompatibility = JavaVersion.VERSION_17
-}
-
-loom {
-
 }
