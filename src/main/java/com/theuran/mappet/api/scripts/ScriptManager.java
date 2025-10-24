@@ -1,7 +1,7 @@
 package com.theuran.mappet.api.scripts;
 
 
-import com.theuran.mappet.Mappet;
+import com.oracle.truffle.js.scriptengine.GraalJSScriptEngine;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptFactory;
 import mchorse.bbs_mod.data.types.MapType;
@@ -9,7 +9,6 @@ import mchorse.bbs_mod.utils.manager.BaseManager;
 import mchorse.bbs_mod.utils.manager.storage.JSONLikeStorage;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.HostAccess;
-import org.graalvm.polyglot.PolyglotException;
 import org.graalvm.polyglot.Value;
 
 import java.io.File;
@@ -28,7 +27,6 @@ public class ScriptManager extends BaseManager<Script> {
 
     public String evalCode(String content, ScriptEvent properties) {
         try (Context context = Context.newBuilder("js")
-                .option("js.ecmascript-version", "2023")
                 .option("engine.WarnInterpreterOnly", "false")
                 .allowHostAccess(HostAccess.ALL)
                 .build()) {

@@ -2,7 +2,6 @@ package com.theuran.mappet;
 
 import com.mojang.logging.LogUtils;
 import com.theuran.mappet.api.huds.HUDManager;
-import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.network.Dispatcher;
