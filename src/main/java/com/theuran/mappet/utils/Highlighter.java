@@ -16,8 +16,5 @@ public class Highlighter extends BaseSyntaxHighlighter {
         this.identifierKeywords = new HashSet<>(Arrays.asList("uran", "llama"));
         this.special = new HashSet<>(Arrays.asList("this", "arguments"));
         this.typeKeyswords = new HashSet<>(Arrays.asList("true", "false", "null", "undefined"));
-        SyntaxStyle syntaxStyle = new SyntaxStyle();
-
-        this.setStyle(syntaxStyle);
     }
 }
