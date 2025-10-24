@@ -1,7 +1,5 @@
 package com.theuran.mappet.api.scripts;
 
-
-import com.oracle.truffle.js.scriptengine.GraalJSScriptEngine;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptFactory;
 import mchorse.bbs_mod.data.types.MapType;

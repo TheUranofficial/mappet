@@ -1,6 +1,6 @@
 package com.theuran.mappet.api.huds;
 
-import mchorse.bbs_mod.settings.values.ValueList;
+import mchorse.bbs_mod.settings.values.core.ValueList;
 
 public class HUDMorphList extends ValueList<HUDMorph> {
     public HUDMorphList(String id) {

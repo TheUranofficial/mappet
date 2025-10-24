@@ -1,5 +1,4 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
 	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
@@ -39,29 +38,9 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
 
-    implementation("org.graalvm.polyglot:polyglot:${js_version}")
-    implementation("org.graalvm.js:js-scriptengine:${js_version}")
-    implementation("org.graalvm.sdk:graal-sdk:${js_version}")
-    implementation("org.graalvm.truffle:truffle-api:${js_version}")
-    implementation("org.graalvm.js:js:${js_version}")
-
-    shadow("org.graalvm.polyglot:polyglot:${js_version}")
-    shadow("org.graalvm.js:js-scriptengine:${js_version}")
-    shadow("org.graalvm.sdk:graal-sdk:${js_version}")
-    shadow("org.graalvm.truffle:truffle-api:${js_version}")
-    shadow("org.graalvm.js:js:${js_version}")
-}
-
-tasks{
-    shadowJar {
-        archiveBaseName.set("mappet")
-        archiveClassifier.set("all")
-        manifest {
-            attributes("Main-Class" : "com.theuran.mappet.Mappet")
-        }
-        mergeServiceFiles()
-        configurations = [project.configurations.shadow]
-    }
+    include implementation("org.graalvm.polyglot:polyglot:${js_version}")
+    include implementation("org.graalvm.js:js-language:${js_version}")
+    include implementation("org.graalvm.truffle:truffle-runtime:${js_version}")
 }
 
 processResources {

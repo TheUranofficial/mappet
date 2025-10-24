@@ -1,8 +1,8 @@
 package com.theuran.mappet.api.scripts;
 
-import mchorse.bbs_mod.settings.values.ValueBoolean;
-import mchorse.bbs_mod.settings.values.ValueGroup;
-import mchorse.bbs_mod.settings.values.ValueString;
+import mchorse.bbs_mod.settings.values.core.ValueGroup;
+import mchorse.bbs_mod.settings.values.core.ValueString;
+import mchorse.bbs_mod.settings.values.numeric.ValueBoolean;
 
 public class Script extends ValueGroup {
     private final ValueString content = new ValueString("content", "");

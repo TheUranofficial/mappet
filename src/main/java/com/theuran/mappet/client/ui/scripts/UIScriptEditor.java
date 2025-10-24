@@ -1,4 +1,4 @@
-package com.theuran.mappet.client.ui.elements;
+package com.theuran.mappet.client.ui.scripts;
 
 import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;

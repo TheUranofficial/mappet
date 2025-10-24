@@ -1,6 +1,6 @@
 package com.theuran.mappet.api.huds;
 
-import mchorse.bbs_mod.settings.values.ValueGroup;
+import mchorse.bbs_mod.settings.values.core.ValueGroup;
 
 public class HUDScene extends ValueGroup {
     private HUDMorphList morphs = new HUDMorphList("morphs");

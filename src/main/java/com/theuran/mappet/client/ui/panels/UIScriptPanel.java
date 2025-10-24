@@ -3,7 +3,7 @@ package com.theuran.mappet.client.ui.panels;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
-import com.theuran.mappet.client.ui.elements.UIScriptEditor;
+import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptC2SPacket;
 import com.theuran.mappet.utils.Highlighter;
