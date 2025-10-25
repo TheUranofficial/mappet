@@ -18,6 +18,7 @@ public class ScriptUtils {
             runtime.setConverter(converter);
 
             runtime.getGlobalObject().set("Java", new JavaUtils(runtime));
+            runtime.setV8ModuleResolver(new ModuleResolver());
 
             return runtime;
         } catch (JavetException e) {

@@ -30,7 +30,7 @@ public class Script extends ValueGroup {
 
             this.runtime.getGlobalObject().set("mappet", new ScriptFactory());
 
-            IV8Executable executable = this.runtime.getExecutor(this.content.toString()).compileV8Script();
+            IV8Executable executable = this.runtime.getExecutor(this.content.toString()).setResourceName(this.getId()).compileV8Module();
 
             executable.executeVoid();
         }
