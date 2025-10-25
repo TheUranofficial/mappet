@@ -39,6 +39,7 @@ public class RunScriptC2SPacket extends AbstractPacket {
         @Override
         public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, RunScriptC2SPacket packet) {
             try {
+                Mappet.getScripts().setLoadScript(packet.script);
                 Mappet.getScripts().execute(ScriptEvent.create(packet.script, packet.function, player, null, player.getServerWorld(), server));
             } catch (JavetException e) {
                 String message = e.getLocalizedMessage();

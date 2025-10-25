@@ -3,6 +3,7 @@ package com.theuran.mappet.api.scripts;
 import com.caoccao.javet.exceptions.JavetException;
 import com.caoccao.javet.interop.IV8Executable;
 import com.caoccao.javet.interop.V8Runtime;
+import com.caoccao.javet.interop.executors.IV8Executor;
 import com.caoccao.javet.values.V8Value;
 import com.caoccao.javet.values.reference.V8ValueFunction;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
@@ -22,29 +23,30 @@ public class Script extends ValueGroup {
         super("");
         this.add(this.content);
         this.add(this.isServer);
+
+        this.initialize();
     }
 
-    public void initialize() throws JavetException {
-        if (this.runtime == null) {
-            this.runtime = ScriptUtils.createRuntime();
-
-            this.runtime.getGlobalObject().set("mappet", new ScriptFactory());
-
-            IV8Executable executable = this.runtime.getExecutor(this.content.toString()).setResourceName(this.getId()).compileV8Module();
-
-            executable.executeVoid();
-        }
+    private void initialize() {
+        this.runtime = ScriptUtils.createRuntime();
     }
 
     public String execute(ScriptEvent properties) throws JavetException {
-        String functionName = properties.getFunction();
+        this.runtime.getGlobalObject().set("event", properties);
 
-        if (functionName.isEmpty()) {
-            functionName = "main";
+        IV8Executor executable = this.runtime.getExecutor(this.content.toString()).setResourceName(this.getId());
+
+        executable.compileV8Module();
+        executable.compileV8Script();
+
+        executable.executeVoid();
+
+        V8Value result = null;
+
+        if (!properties.getFunction().isEmpty()) {
+            V8ValueFunction function = this.runtime.getGlobalObject().get(properties.getFunction());
+            result = function.callObject(null, properties);
         }
-
-        V8ValueFunction function = this.runtime.getGlobalObject().get(functionName);
-        V8Value result = function.callObject(null, properties);
 
         return result == null ? "null" : result.toString();
     }

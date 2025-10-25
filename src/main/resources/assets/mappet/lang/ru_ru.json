@@ -8,5 +8,6 @@
   "mappet.hud.scene.title": "HUD Сцены",
   "mappet.hud.scene.ortho": "Орфографический",
   "mappet.scripts.title": "Скрипты",
-  "mappet.scripts.run": "Запустить скрипт"
+  "mappet.scripts.run": "Запустить скрипт",
+  "mappet.logger.title": "Логгер"
 }

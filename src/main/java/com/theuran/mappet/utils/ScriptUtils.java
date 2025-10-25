@@ -4,6 +4,7 @@ import com.caoccao.javet.exceptions.JavetException;
 import com.caoccao.javet.interop.V8Host;
 import com.caoccao.javet.interop.V8Runtime;
 import com.caoccao.javet.interop.converters.JavetProxyConverter;
+import com.theuran.mappet.api.scripts.code.ScriptFactory;
 
 public class ScriptUtils {
     public static V8Runtime createRuntime() {
@@ -19,6 +20,7 @@ public class ScriptUtils {
 
             runtime.getGlobalObject().set("Java", new JavaUtils(runtime));
             runtime.setV8ModuleResolver(new ModuleResolver());
+            runtime.getGlobalObject().set("mappet", new ScriptFactory());
 
             return runtime;
         } catch (JavetException e) {

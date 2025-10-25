@@ -3,6 +3,7 @@ package com.theuran.mappet;
 import com.mojang.logging.LogUtils;
 import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
+import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetServerNetwork;
@@ -34,6 +35,7 @@ public class Mappet implements ModInitializer {
     private static States states;
     private static HUDManager huds;
     private static ScriptManager scripts;
+    private static LoggerManager logger;
 
     @Override
     public void onInitialize() {
@@ -50,6 +52,7 @@ public class Mappet implements ModInitializer {
         huds = new HUDManager(() -> new File(mappetFolder, "huds"));
 
         scripts = new ScriptManager(() -> new File(mappetFolder, "scripts"));
+        logger = new LoggerManager();
 
         //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 
@@ -113,5 +116,9 @@ public class Mappet implements ModInitializer {
 
     public static ScriptManager getScripts() {
         return scripts;
+    }
+
+    public static LoggerManager getLogger() {
+        return logger;
     }
 }
