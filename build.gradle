@@ -38,6 +38,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
 
+    implementation("com.github.javaparser:javaparser-core:3.25.5")
+
     include implementation("com.caoccao.javet:javet:${javet_version}")
     include implementation("com.caoccao.javet:javet-v8-windows-x86_64:${javet_version}")
 }

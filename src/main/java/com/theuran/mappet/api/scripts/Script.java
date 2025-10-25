@@ -1,23 +1,27 @@
 package com.theuran.mappet.api.scripts;
 
 import com.caoccao.javet.exceptions.JavetException;
-import com.caoccao.javet.interop.IV8Executable;
 import com.caoccao.javet.interop.V8Runtime;
 import com.caoccao.javet.interop.executors.IV8Executor;
 import com.caoccao.javet.values.V8Value;
+import com.caoccao.javet.values.reference.V8Script;
 import com.caoccao.javet.values.reference.V8ValueFunction;
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
-import com.theuran.mappet.api.scripts.code.ScriptFactory;
+import com.theuran.mappet.api.scripts.logger.LogType;
 import com.theuran.mappet.utils.ScriptUtils;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import mchorse.bbs_mod.settings.values.numeric.ValueBoolean;
+
+import java.util.Date;
 
 public class Script extends ValueGroup {
     private final ValueString content = new ValueString("content", "");
     private final ValueBoolean isServer = new ValueBoolean("isServer", true);
 
     private V8Runtime runtime;
+    private V8Script script;
 
     public Script() {
         super("");
@@ -32,23 +36,32 @@ public class Script extends ValueGroup {
     }
 
     public String execute(ScriptEvent properties) throws JavetException {
-        this.runtime.getGlobalObject().set("event", properties);
+        try {
+            this.runtime.getGlobalObject().set("event", properties);
+            if (script == null) {
+                IV8Executor executable = this.runtime.getExecutor(this.content.toString()).setResourceName(this.getId());
 
-        IV8Executor executable = this.runtime.getExecutor(this.content.toString()).setResourceName(this.getId());
+                executable.compileV8Module();
+                script = executable.compileV8Script();
 
-        executable.compileV8Module();
-        executable.compileV8Script();
+                executable.executeVoid();
+            }
 
-        executable.executeVoid();
+            script.executeVoid();
 
-        V8Value result = null;
+            V8Value result = null;
 
-        if (!properties.getFunction().isEmpty()) {
-            V8ValueFunction function = this.runtime.getGlobalObject().get(properties.getFunction());
-            result = function.callObject(null, properties);
+            if (this.runtime.getGlobalObject().has("main")) {
+                V8ValueFunction function = this.runtime.getGlobalObject().get(properties.getFunction());
+                result = function.call(null, properties);
+                function.close();
+            }
+
+            return result == null ? "null" : result.toString();
+        } catch (JavetException e) {
+            Mappet.getLogger().addLog(LogType.ERROR, properties.getScript(), e);
+            throw e;
         }
-
-        return result == null ? "null" : result.toString();
     }
 
     public String getContent() {
