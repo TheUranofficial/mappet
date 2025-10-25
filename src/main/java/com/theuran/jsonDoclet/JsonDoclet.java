@@ -246,13 +246,13 @@ public class JsonDoclet {
     public static void main(String[] args) {
         generateDocs(
                 List.of(
-                        "com/mappet/api/scripts/code/ScriptEvent.java",
-                        "com/mappet/api/scripts/code/ScriptFactory.java",
-                        "com/mappet/api/scripts/code/ScriptServer.java",
-                        "com/mappet/api/scripts/code/ScriptVector.java",
-                        "com/mappet/api/scripts/code/ScriptWorld.java",
-                        "com/mappet/api/scripts/code/entity/ScriptEntity.java",
-                        "com/mappet/api/scripts/code/entity/ScriptPlayer.java"
+                        "com/theuran/mappet/api/scripts/code/ScriptEvent.java",
+                        "com/theuran/mappet/api/scripts/code/ScriptFactory.java",
+                        "com/theuran/mappet/api/scripts/code/ScriptServer.java",
+                        "com/theuran/mappet/api/scripts/code/ScriptVector.java",
+                        "com/theuran/mappet/api/scripts/code/ScriptWorld.java",
+                        "com/theuran/mappet/api/scripts/code/entity/ScriptEntity.java",
+                        "com/theuran/mappet/api/scripts/code/entity/ScriptPlayer.java"
                 ),
                 List.of(
                 )
