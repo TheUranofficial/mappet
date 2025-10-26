@@ -1,10 +1,10 @@
 package com.theuran.mappet.api.scripts.logger;
 
 public class Log {
-    LogType type;
-    String time;
-    String source;
-    String message;
+    private LogType type;
+    private String time;
+    private String source;
+    private String message;
 
     public Log(LogType type, String time, String source, String message) {
         this.type = type;
