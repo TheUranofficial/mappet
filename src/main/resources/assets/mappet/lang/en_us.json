@@ -3,10 +3,12 @@
   "mappet.config.general.title": "General",
   "mappet.states.title": "States",
   "mappet.states.add": "Add state",
+  "mappet.states.add.group": "Add group",
   "mappet.states.search": "Search state",
   "mappet.hud.scene.title": "HUD Scenes",
   "mappet.hud.scene.ortho": "Orthographic",
   "mappet.scripts.title": "Scripts",
   "mappet.scripts.run": "Run script",
-  "mappet.logger.title": "Logger"
+  "mappet.logger.title": "Logger",
+  "mappet.ui.builder.title": "UI Builder"
 }

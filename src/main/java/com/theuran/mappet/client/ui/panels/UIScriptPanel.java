@@ -66,18 +66,18 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         }
     }
 
+    @Override
+    public void fillDefaultData(Script data) {
+        data.setContent("function main(c) {\n    \n}");
+    }
+
     private void updateButtons() {
-        this.run.setVisible(this.data != null && this.content.isVisible());
+        this.run.setEnabled(this.data != null && this.content.isVisible());
     }
 
     @Override
     public void forceSave() {
         this.data.setContent(this.content.getText());
-
-        if (this.data != null) {
-            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText()));
-        }
-
         super.forceSave();
     }
 

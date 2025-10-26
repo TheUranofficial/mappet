@@ -8,6 +8,7 @@ import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetServerNetwork;
 import com.theuran.mappet.network.packets.server.HandshakePacket;
@@ -40,6 +41,7 @@ public class Mappet implements ModInitializer {
     private static States states;
     private static HUDManager huds;
     private static ScriptManager scripts;
+    private static UIManager uis;
     private static LoggerManager logger;
     private static EventManager events;
     private static ExecutableManager executables;
@@ -131,6 +133,10 @@ public class Mappet implements ModInitializer {
 
     public static ScriptManager getScripts() {
         return scripts;
+    }
+
+    public static UIManager getUIs() {
+        return uis;
     }
 
     public static LoggerManager getLogger() {
