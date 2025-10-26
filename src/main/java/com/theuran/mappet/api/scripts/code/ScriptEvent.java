@@ -2,6 +2,7 @@ package com.theuran.mappet.api.scripts.code;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
+import com.theuran.mappet.api.scripts.user.IScriptEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;

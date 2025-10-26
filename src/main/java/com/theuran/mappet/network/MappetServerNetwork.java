@@ -12,7 +12,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.core.jmx.Server;
 
 public class MappetServerNetwork extends ServerNetwork {
     public static final Identifier CLIENT_STATES = new Identifier(Mappet.MOD_ID, "c1");

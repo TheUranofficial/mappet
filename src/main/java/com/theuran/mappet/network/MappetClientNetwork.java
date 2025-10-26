@@ -2,7 +2,6 @@ package com.theuran.mappet.network;
 
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.client.MappetClient;
-import com.theuran.mappet.client.ui.panels.UIServerSettingsPanel;
 import mchorse.bbs_mod.data.DataStorageUtils;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.network.ClientNetwork;
@@ -34,7 +33,7 @@ public class MappetClientNetwork extends ClientNetwork {
         states.fromData(data);
 
         client.execute(() -> {
-            MappetClient.getDashboard().getPanel(UIServerSettingsPanel.class).fillStates(target, data);
+            //MappetClient.getDashboard().getPanel(UIServerSettingsPanel.class).fillStates(target, data);
         });
     }
 

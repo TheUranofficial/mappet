@@ -1,9 +1,10 @@
 package com.theuran.mappet.api.scripts.code;
 
+import com.theuran.mappet.api.scripts.user.IScriptVector;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class ScriptVector {
+public class ScriptVector implements IScriptVector {
     public double x;
     public double y;
     public double z;
@@ -26,13 +27,6 @@ public class ScriptVector {
         this.z = blockPos.getZ();
     }
 
-    /**
-     * Adds another vector to this vector
-     *
-     * <pre>{@code
-     * mappet.vector(434, 34, 443).add(mappet.vector(22, 232, 232));
-     * }</pre>
-     */
     public ScriptVector add(ScriptVector other) {
         return new ScriptVector(
                 this.x + other.x,
@@ -41,13 +35,6 @@ public class ScriptVector {
         );
     }
 
-    /**
-     * Subtracts another vector from this vector
-     *
-     * <pre>{@code
-     * mappet.vector(434, 34, 443).subtract(mappet.vector(22, 232, 232));
-     * }</pre>
-     */
     public ScriptVector subtract(ScriptVector other) {
         return new ScriptVector(
                 this.x - other.x,
@@ -56,13 +43,6 @@ public class ScriptVector {
         );
     }
 
-    /**
-     * Multiplies this vector by a scalar value
-     *
-     * <pre>{@code
-     * mappet.vector(434, 34, 443).multiply(2);
-     * }</pre>
-     */
     public ScriptVector multiply(double scalar) {
         return new ScriptVector(
                 this.x * scalar,
@@ -79,16 +59,10 @@ public class ScriptVector {
         );
     }
 
-    /**
-     * Calculates the length of this vector
-     */
     public double length() {
         return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
     }
 
-    /**
-     * Returns a normalized version of this vector
-     */
     public ScriptVector normalize() {
         double length = this.length();
         return new ScriptVector(
@@ -97,30 +71,18 @@ public class ScriptVector {
                 this.z / length);
     }
 
-    /**
-     * Converts this vector to a BlockPos object
-     */
     public BlockPos toBlockPos() {
         return new BlockPos((int) this.x, (int) this.y, (int) this.z);
     }
 
-    /**
-     * Converts this vector to a Vec3d object
-     */
     public Vec3d toVec3d() {
         return new Vec3d(this.x, this.y, this.z);
     }
 
-    /**
-     * Returns a string representation of this vector
-     */
     public String toString() {
         return "("+x+", "+y+", "+z+")";
     }
 
-    /**
-     * Returns a string representation of this vector as an array
-     */
     public String toArrayString() {
         return "[" + this.x + ", " + this.y + ", " + this.z + "]";
     }

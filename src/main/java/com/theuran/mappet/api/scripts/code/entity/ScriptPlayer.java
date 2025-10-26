@@ -1,16 +1,15 @@
 package com.theuran.mappet.api.scripts.code.entity;
 
+import com.theuran.mappet.api.scripts.user.entity.IScriptPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
+public class ScriptPlayer extends ScriptEntity<PlayerEntity> implements IScriptPlayer {
     public ScriptPlayer(ServerPlayerEntity entity) {
         super(entity);
     }
 
-    /**
-     * Returns the Minecraft player entity associated with this script player
-     */
-    public ServerPlayerEntity getMinecraftPlayer() {
+    public PlayerEntity getMinecraftPlayer() {
         return this.entity;
     }
 }

@@ -42,7 +42,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     private void runScript(UIIcon icon) {
         this.save();
 
-        Dispatcher.sendToServer(new RunScriptC2SPacket(this.data.getId(), "main", this.content.getText()));
+        Dispatcher.sendToServer(new RunScriptC2SPacket(this.data.getId(), "main", this.data.getContent()));
     }
 
     @Override
