@@ -59,8 +59,9 @@ public class Mappet implements ModInitializer {
         provider.register(new MappetInternalAssetsPack());
 
         huds = new HUDManager(() -> new File(mappetFolder, "huds"));
-
         scripts = new ScriptManager(() -> new File(mappetFolder, "scripts"));
+        uis = new UIManager(() -> new File(mappetFolder, "uis"));
+
         logger = new LoggerManager();
         events = new EventManager();
         executables = new ExecutableManager();

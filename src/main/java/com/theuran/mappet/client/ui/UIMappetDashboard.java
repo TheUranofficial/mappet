@@ -1,5 +1,6 @@
 package com.theuran.mappet.client.ui;
 
+import com.theuran.mappet.client.ui.panels.UIBuilderPanel;
 import com.theuran.mappet.client.ui.panels.UIHUDScenePanel;
 import com.theuran.mappet.client.ui.panels.UILoggerPanel;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
@@ -30,10 +31,10 @@ public class UIMappetDashboard extends UIDashboard {
 
     @Override
     protected void registerPanels() {
-        //this.getPanels().registerPanel(new UIServerSettingsPanel(this), UIMappetKeys.SERVER_SETTINGS_TITLE, Icons.GEAR);
         this.getPanels().registerPanel(new UIHUDScenePanel(this), UIMappetKeys.HUD_SCENE_TITLE, Icons.POSE);
         this.getPanels().registerPanel(new UIScriptPanel(this), UIMappetKeys.SCRIPTS_TITLE, Icons.PROPERTIES);
         this.getPanels().registerPanel(new UILoggerPanel(this), UIMappetKeys.LOGGER_TITLE, Icons.CROPS);
+        this.getPanels().registerPanel(new UIBuilderPanel(this), UIMappetKeys.UI_BUILDER_TITLE, Icons.MAZE);
 
         this.setPanel(this.getPanel(UILoggerPanel.class));
     }
