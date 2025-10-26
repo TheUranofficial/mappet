@@ -61,7 +61,7 @@ tasks.register("scriptingJavadocsJson", Exec) {
             "-docletpath", "./run/jsonDoclet.jar",
             "-sourcepath", "./src/main/java",
             "-classpath", sourceSets.main.compileClasspath.asPath,
-            "-subpackages", "com.theuran.mappet.api.scripts.user"
+            "-subpackages", "com.theuran.mappet.api.scripts.code"
 
     doLast {
         file("src/main/resources/assets/mappet/docs.json").setText(file("docs.json").text);

@@ -47,9 +47,6 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
     @Override
     public void close() {
-        if (this.data != null) {
-            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText()));
-        }
         super.close();
     }
 
@@ -76,6 +73,11 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     @Override
     public void forceSave() {
         this.data.setContent(this.content.getText());
+
+        if (this.data != null) {
+            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText()));
+        }
+
         super.forceSave();
     }
 

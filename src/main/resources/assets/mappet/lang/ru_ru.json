@@ -1,10 +1,9 @@
 {
   "mappet.config.title": "Маппет",
   "mappet.config.general.title": "Общее",
-  "mappet.server.settings.title": "Настройки сервера",
-  "mappet.server.settings.states.title": "Состояния сервера",
-  "mappet.server.settings.states.player.title": "Состояния %s",
-  "mappet.server.settings.states.pick": "Выберите цель",
+  "mappet.states.title": "Состояния",
+  "mappet.states.add": "Добавить состояние",
+  "mappet.states.search": "Найти состояние",
   "mappet.hud.scene.title": "HUD Сцены",
   "mappet.hud.scene.ortho": "Орфографический",
   "mappet.scripts.title": "Скрипты",

@@ -19,7 +19,7 @@ public class EventManager {
             this.registerEvent(eventType);
         }
 
-        this.addTriggerToEvent(EventType.PLAYER_USE_BLOCK, new ScriptTrigger("lox", "main"));
+        //this.addTriggerToEvent(EventType.PLAYER_USE_BLOCK, new ScriptTrigger("lox", "main"));
     }
 
     public void event(EventType eventType, ScriptEvent scriptEvent) {

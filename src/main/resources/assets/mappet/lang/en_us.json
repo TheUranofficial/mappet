@@ -1,10 +1,9 @@
 {
   "mappet.config.title": "Mappet",
   "mappet.config.general.title": "General",
-  "mappet.server.settings.title": "Server settings",
-  "mappet.server.settings.states.title": "Server states",
-  "mappet.server.settings.states.player.title": "%s`s states",
-  "mappet.server.settings.states.pick": "Pick target",
+  "mappet.states.title": "States",
+  "mappet.states.add": "Add state",
+  "mappet.states.search": "Search state",
   "mappet.hud.scene.title": "HUD Scenes",
   "mappet.hud.scene.ortho": "Orthographic",
   "mappet.scripts.title": "Scripts",

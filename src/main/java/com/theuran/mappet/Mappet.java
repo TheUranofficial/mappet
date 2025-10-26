@@ -18,8 +18,6 @@ import mchorse.bbs_mod.resources.Link;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.server.ServerTask;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.WorldSavePath;
@@ -43,6 +41,8 @@ public class Mappet implements ModInitializer {
     private static HUDManager huds;
     private static ScriptManager scripts;
     private static LoggerManager logger;
+    private static EventManager events;
+    private static ExecutableManager executables;
 
     @Override
     public void onInitialize() {
