@@ -1,6 +1,9 @@
 package com.theuran.mappet;
 
 import com.mojang.logging.LogUtils;
+import com.theuran.mappet.api.events.EventHandler;
+import com.theuran.mappet.api.events.EventManager;
+import com.theuran.mappet.api.executables.ExecutableManager;
 import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.scripts.logger.LoggerManager;
@@ -14,6 +17,8 @@ import mchorse.bbs_mod.resources.Link;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.server.ServerTask;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.WorldSavePath;
 import org.slf4j.Logger;
@@ -35,7 +40,9 @@ public class Mappet implements ModInitializer {
     private static States states;
     private static HUDManager huds;
     private static ScriptManager scripts;
+    private static EventManager events;
     private static LoggerManager logger;
+    private static ExecutableManager executables;
 
     @Override
     public void onInitialize() {
@@ -53,6 +60,10 @@ public class Mappet implements ModInitializer {
 
         scripts = new ScriptManager(() -> new File(mappetFolder, "scripts"));
         logger = new LoggerManager();
+        events = new EventManager();
+        executables = new ExecutableManager();
+
+        EventHandler.init();
 
         //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 
@@ -120,5 +131,13 @@ public class Mappet implements ModInitializer {
 
     public static LoggerManager getLogger() {
         return logger;
+    }
+
+    public static EventManager getEvents() {
+        return events;
+    }
+
+    public static ExecutableManager getExecutables() {
+        return executables;
     }
 }

@@ -1,16 +1,18 @@
 package com.theuran.mappet.api.scripts.code;
 
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ScriptEvent {
-    private final String script;
-    private final String function;
+    private String script;
+    private String function;
 
     public final ScriptEntity subject;
     public final ScriptEntity object;
@@ -18,6 +20,8 @@ public class ScriptEvent {
     public final ScriptServer server;
 
     private Map<String, Object> values = new HashMap<>();
+
+    private ActionResult resultType = ActionResult.SUCCESS;
 
     public ScriptEvent(String script, String function, ScriptEntity<?> subject, ScriptEntity<?> object, ScriptWorld world, ScriptServer server) {
         this.script = script;
@@ -38,6 +42,18 @@ public class ScriptEvent {
                 world == null ? null : new ScriptWorld(world),
                 server == null ? null : new ScriptServer(server)
         );
+    }
+
+    public static ScriptEvent create(Entity subject, Entity object, ServerWorld world, MinecraftServer server) {
+        return create("", "", subject, object, world, server);
+    }
+
+    public void setScript(String script) {
+        this.script = script;
+    }
+
+    public void setFunction(String function) {
+        this.function = function;
     }
 
     public String getScript() {
@@ -64,11 +80,19 @@ public class ScriptEvent {
         return this.server;
     }
 
-    public void set(String key, Object value) {
+    public Map<String, Object> getValues() {
+        return this.values;
+    }
+
+    public void setValues(Map<String, Object> values) {
+        this.values = values;
+    }
+
+    public void setValue(String key, Object value) {
         this.values.put(key, value);
     }
 
-    public Object get(String key) {
+    public Object getValue(String key) {
         return this.values.get(key);
     }
 
@@ -76,5 +100,37 @@ public class ScriptEvent {
         if (this.server != null) {
             this.server.send(message);
         }
+    }
+
+    public ActionResult getResultType() {
+        return this.resultType;
+    }
+
+    public void scheduleScript(String script, String function, int ticks) {
+        Mappet.getExecutables().addExecutable(ticks, script, function, this);
+    }
+
+    public void setResultType(ActionResult resultType) {
+        this.resultType = resultType;
+    }
+
+    public void success() {
+        this.resultType = ActionResult.SUCCESS;
+    }
+
+    public void consume() {
+        this.resultType = ActionResult.CONSUME;
+    }
+
+    public void consumePartial() {
+        this.resultType = ActionResult.CONSUME_PARTIAL;
+    }
+
+    public void pass() {
+        this.resultType = ActionResult.PASS;
+    }
+
+    public void fail() {
+        this.resultType = ActionResult.FAIL;
     }
 }
