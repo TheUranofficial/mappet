@@ -17,6 +17,7 @@ public abstract class AbstractDispatcher {
 
             if (envType == EnvType.CLIENT) {
                 ClientPacketHandler<T> clientHandler = (ClientPacketHandler<T>) packetHandler.getConstructor().newInstance();
+
                 ClientPlayNetworking.registerGlobalReceiver(packet.getId(), ((client, handler, buf, responseSender) -> {
                     packet.fromBytes(buf);
 
@@ -24,6 +25,7 @@ public abstract class AbstractDispatcher {
                 }));
             } else {
                 ServerPacketHandler<T> serverHandler = (ServerPacketHandler<T>) packetHandler.getConstructor().newInstance();
+
                 ServerPlayNetworking.registerGlobalReceiver(packet.getId(), ((server, player, handler, buf, responseSender) -> {
                     packet.fromBytes(buf);
 

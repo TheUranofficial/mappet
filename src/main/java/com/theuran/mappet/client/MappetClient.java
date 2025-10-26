@@ -54,7 +54,7 @@ public class MappetClient implements ClientModInitializer {
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             dashboard = null;
 
-            MappetClientNetwork.resetHandshake();
+            Dispatcher.isMappetModOnServer = false;
         });
 
         MappetClientNetwork.setup();

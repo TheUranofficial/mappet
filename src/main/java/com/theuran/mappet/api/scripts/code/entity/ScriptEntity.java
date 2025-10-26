@@ -1,10 +1,11 @@
 package com.theuran.mappet.api.scripts.code.entity;
 
+import com.theuran.mappet.api.scripts.user.entity.IScriptEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class ScriptEntity<T extends Entity> {
+public class ScriptEntity <T extends Entity> implements IScriptEntity {
     protected T entity;
 
     public static ScriptEntity<?> create(Entity entity) {

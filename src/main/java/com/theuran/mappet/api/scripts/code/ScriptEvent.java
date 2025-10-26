@@ -1,6 +1,7 @@
 package com.theuran.mappet.api.scripts.code;
 
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
+import com.theuran.mappet.api.scripts.user.IScriptEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
@@ -8,7 +9,7 @@ import net.minecraft.server.world.ServerWorld;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ScriptEvent {
+public class ScriptEvent implements IScriptEvent {
     private final String script;
     private final String function;
 

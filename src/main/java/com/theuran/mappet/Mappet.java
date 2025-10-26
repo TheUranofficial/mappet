@@ -7,6 +7,7 @@ import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetServerNetwork;
+import com.theuran.mappet.network.packets.server.HandshakePacket;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;
@@ -14,6 +15,7 @@ import mchorse.bbs_mod.resources.Link;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.WorldSavePath;
 import org.slf4j.Logger;
@@ -75,6 +77,10 @@ public class Mappet implements ModInitializer {
             states = null;
 
             MappetServerNetwork.reset();
+        });
+
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            Dispatcher.sendTo(new HandshakePacket(), handler.getPlayer());
         });
 
         MappetServerNetwork.setup();

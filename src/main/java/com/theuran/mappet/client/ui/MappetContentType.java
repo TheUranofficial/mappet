@@ -1,23 +1,42 @@
 package com.theuran.mappet.client.ui;
 
 import com.theuran.mappet.Mappet;
+import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.huds.HUDScene;
 import com.theuran.mappet.api.scripts.Script;
+import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.client.ui.panels.UIHUDScenePanel;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.utils.repos.HUDRepository;
+import com.theuran.mappet.utils.repos.ScriptRepository;
 import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.utils.repos.FolderManagerRepository;
 import mchorse.bbs_mod.utils.repos.IRepository;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 
-//TODO: Make a enough repositories
+import java.io.File;
+
 @Environment(EnvType.CLIENT)
 public class MappetContentType {
-    private static final IRepository<HUDScene> HUD_REPOSITORY = new FolderManagerRepository<>(Mappet.getHuds());
-    private static final IRepository<Script> SCRIPTS_REPOSITORY = new FolderManagerRepository<>(Mappet.getScripts());
+    public static final ContentType HUDS = new ContentType("huds", MappetContentType::getHudRepository, dashboard -> dashboard.getPanel(UIHUDScenePanel.class));
+    public static final ContentType SCRIPTS = new ContentType("scripts", MappetContentType::getScriptRepository, dashboard -> dashboard.getPanel(UIScriptPanel.class));
 
-    public static final ContentType HUDS = new ContentType("huds", () -> HUD_REPOSITORY, dashboard -> dashboard.getPanel(UIHUDScenePanel.class));
+    private static IRepository<Script> getScriptRepository() {
+        if (MinecraftClient.getInstance().isIntegratedServerRunning()) {
+            return new FolderManagerRepository<>(Mappet.getScripts());
+        } else {
+            return Dispatcher.isMappetModOnServer ? new ScriptRepository() : new FolderManagerRepository<>(new ScriptManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/scripts")));
+        }
+    }
 
-    public static final ContentType SCRIPTS = new ContentType("scripts", () -> SCRIPTS_REPOSITORY, dashboard -> dashboard.getPanel(UIScriptPanel.class));
+    private static IRepository<HUDScene> getHudRepository() {
+        if (MinecraftClient.getInstance().isIntegratedServerRunning()) {
+            return new FolderManagerRepository<>(Mappet.getHuds());
+        } else {
+            return Dispatcher.isMappetModOnServer ? new HUDRepository() : new FolderManagerRepository<>(new HUDManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/huds")));
+        }
+    }
 }

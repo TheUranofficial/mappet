@@ -22,12 +22,6 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
-    maven {
-        url "https://maven.latvian.dev/releases"
-        content {
-            includeGroup "dev.latvian.mods"
-        }
-    }
 }
 
 dependencies {
@@ -38,10 +32,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
 
-    implementation("com.github.javaparser:javaparser-core:3.25.5")
-
-    include implementation("com.caoccao.javet:javet:${javet_version}")
-    include implementation("com.caoccao.javet:javet-v8-windows-x86_64:${javet_version}")
+    include modImplementation("com.caoccao.javet:javet:${javet_version}")
+    include modImplementation("com.caoccao.javet:javet-v8-windows-x86_64:${javet_version}")
 }
 
 processResources {
@@ -68,7 +60,12 @@ tasks.register("scriptingJavadocsJson", Exec) {
     args "-doclet", "com.theuran.doclets.JsonDoclet",
             "-docletpath", "./run/jsonDoclet.jar",
             "-sourcepath", "./src/main/java",
-            "-subpackages", "com.theuran.mappet.api.scripts.code"
+            "-classpath", sourceSets.main.compileClasspath.asPath,
+            "-subpackages", "com.theuran.mappet.api.scripts.user"
+
+    doLast {
+        file("src/main/resources/assets/mappet/docs.json").setText(file("docs.json").text);
+    }
 }
 
-//tasks.processResources.dependsOn("scriptingJavadocsJson")
+tasks.processResources.dependsOn("scriptingJavadocsJson")
