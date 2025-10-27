@@ -18,6 +18,7 @@ import mchorse.bbs_mod.utils.Direction;
 
 public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     private final UIIcon run;
+    private final UIIcon side;
     private final UITextEditor content;
 
     public UIScriptPanel(UIDashboard dashboard) {
@@ -32,9 +33,13 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.run = new UIIcon(Icons.PLAY, this::runScript);
         this.run.tooltip(UIMappetKeys.SCRIPTS_RUN, Direction.LEFT);
 
+        this.side = new UIIcon(Icons.ACTION, this::changeSide);
+        this.side.tooltip(UIMappetKeys.SCRIPTS_SIDE, Direction.LEFT);
+
         this.editor.add(this.content);
 
         this.iconBar.add(this.run);
+        this.iconBar.add(this.side);
 
         this.fill(null);
     }
@@ -43,6 +48,10 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.save();
 
         Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
+    }
+
+    private void changeSide(UIIcon icon) {
+        this.data.setServer(!this.data.isServer());
     }
 
     @Override
@@ -88,7 +97,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
     private void saveScript() {
         if (this.data != null) {
-            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText()));
+            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText(), this.data.isServer()));
         }
     }
 

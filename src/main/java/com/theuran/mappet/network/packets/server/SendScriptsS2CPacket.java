@@ -24,6 +24,10 @@ public class SendScriptsS2CPacket extends AbstractPacket {
         this.scripts.addAll(List.of(scripts));
     }
 
+    public SendScriptsS2CPacket(List<Script> scripts) {
+        this.scripts.addAll(scripts);
+    }
+
     @Override
     public void toBytes(PacketByteBuf buf) {
         buf.writeCollection(this.scripts, MappetByteBuffer::writeScript);

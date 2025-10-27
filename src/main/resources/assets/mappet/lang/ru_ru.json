@@ -9,6 +9,7 @@
   "mappet.hud.scene.ortho": "Орфографический",
   "mappet.scripts.title": "Скрипты",
   "mappet.scripts.run": "Запустить скрипт",
+  "mappet.scripts.side": "Сменить сторону",
   "mappet.logger.title": "Логгер",
   "mappet.ui.builder.title": "UI Билдер",
   "mappet.ui.builder.elementpanel.title": "Панель элементов",

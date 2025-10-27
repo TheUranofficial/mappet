@@ -9,6 +9,7 @@
   "mappet.hud.scene.ortho": "Orthographic",
   "mappet.scripts.title": "Scripts",
   "mappet.scripts.run": "Run script",
+  "mappet.scripts.side": "Change Side",
   "mappet.logger.title": "Logger",
   "mappet.ui.builder.title": "UI Builder",
   "mappet.ui.builder.elementpanel.title": "Elements panel",

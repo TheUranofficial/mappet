@@ -78,6 +78,8 @@ public class Mappet implements ModInitializer {
 
             states = new States(new File(mappetFolder, "states.json"));
             states.load();
+
+            scripts.initialize();
         });
 
         ServerLifecycleEvents.BEFORE_SAVE.register((server, flush, force) -> {
@@ -93,6 +95,7 @@ public class Mappet implements ModInitializer {
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             Dispatcher.sendTo(new HandshakeS2CPacket(), handler.getPlayer());
+            Mappet.getScripts().sendClientScripts(handler.getPlayer());
         });
 
         MappetServerNetwork.setup();
