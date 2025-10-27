@@ -2,14 +2,27 @@ package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.states.IStatesProvider;
+import com.theuran.mappet.utils.ValueType;
 import mchorse.bbs_mod.data.types.BaseType;
-import mchorse.bbs_mod.data.types.MapType;
+import mchorse.bbs_mod.settings.values.core.ValueString;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class StateTrigger extends Trigger {
-    private String key;
-    private BaseType baseType;
+    public ValueString key = new ValueString("key", "");
+    public ValueType baseType = new ValueType("baseType", null);
+
+    public StateTrigger() {
+        this.add(this.key);
+        this.add(this.baseType);
+    }
+
+    public StateTrigger(String key, BaseType baseType) {
+        this();
+        this.key.set(key);
+        this.baseType.set(baseType);
+    }
+
     @Override
     public void execute(ScriptEvent scriptEvent) {
         Entity entity = scriptEvent.getSubject().getMinecraftEntity();
@@ -17,24 +30,12 @@ public class StateTrigger extends Trigger {
         if (entity instanceof ServerPlayerEntity player) {
             IStatesProvider playerStates = (IStatesProvider) player;
 
-            playerStates.getStates().set(this.key, this.baseType);
+            playerStates.getStates().set(this.key.get(), this.baseType.get());
         }
     }
 
     @Override
-    public String getId() {
-        return "State";
-    }
-
-    @Override
-    public void toData(MapType mapType) {
-        mapType.putString("key", this.key);
-        mapType.put("baseType", this.baseType);
-    }
-
-    @Override
-    public void fromData(MapType entries) {
-        this.key = entries.getString("key");
-        this.baseType = entries.get("baseType");
+    public String getTriggerId() {
+        return "state";
     }
 }

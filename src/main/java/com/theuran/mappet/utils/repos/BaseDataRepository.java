@@ -26,6 +26,8 @@ public abstract class BaseDataRepository <T extends ValueGroup> implements IRepo
         });
     }
 
+    public abstract String getId();
+
     @Override
     public void save(String id, MapType data) {
         MapType map = new MapType();

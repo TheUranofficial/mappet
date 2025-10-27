@@ -21,17 +21,15 @@ import java.util.Map;
 public class NpcEntity extends LivingEntity implements IEntityFormProvider {
     private MCEntity entity = new MCEntity(this);
     private Form form;
-    private Map<EquipmentSlot, ItemStack> equipment = new HashMap();
+    private Map<EquipmentSlot, ItemStack> equipment = new HashMap<>();
 
     public static DefaultAttributeContainer.Builder createNpcAttributes() {
-        return LivingEntity.createLivingAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, (double)1.0F).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1).add(EntityAttributes.GENERIC_ATTACK_SPEED).add(EntityAttributes.GENERIC_LUCK);
+        return LivingEntity.createLivingAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1).add(EntityAttributes.GENERIC_ATTACK_SPEED).add(EntityAttributes.GENERIC_LUCK);
     }
 
     public NpcEntity(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
-
-
 
     public MCEntity getEntity() {
         return this.entity;
@@ -66,7 +64,7 @@ public class NpcEntity extends LivingEntity implements IEntityFormProvider {
     public boolean shouldRender(double distance) {
         double d = this.getBoundingBox().getAverageSideLength();
         if (Double.isNaN(d)) {
-            d = (double)1.0F;
+            d = 1.0;
         }
 
         return distance < d * (double)256.0F * d * (double)256.0F;
@@ -77,7 +75,7 @@ public class NpcEntity extends LivingEntity implements IEntityFormProvider {
     }
 
     public ItemStack getEquippedStack(EquipmentSlot slot) {
-        return (ItemStack)this.equipment.getOrDefault(slot, ItemStack.EMPTY);
+        return this.equipment.getOrDefault(slot, ItemStack.EMPTY);
     }
 
     public void equipStack(EquipmentSlot slot, ItemStack stack) {

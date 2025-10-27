@@ -18,4 +18,9 @@ public class UIRepository extends BaseDataRepository<UI> {
 
         return ui;
     }
+
+    @Override
+    public String getId() {
+        return "ui";
+    }
 }

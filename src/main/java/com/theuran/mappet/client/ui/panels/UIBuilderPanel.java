@@ -3,14 +3,11 @@ package com.theuran.mappet.client.ui.panels;
 import com.theuran.mappet.api.ui.UI;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
-import com.theuran.mappet.client.ui.uibilder.ElementsOverlayPanel;
-import mchorse.bbs_mod.l10n.L10n;
+import com.theuran.mappet.client.ui.builder.UIElementsOverlayPanel;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.ContentType;
-import mchorse.bbs_mod.ui.UIKeys;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.dashboard.panels.UIDataDashboardPanel;
-import mchorse.bbs_mod.ui.film.utils.undo.UIUndoHistoryOverlay;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
@@ -19,17 +16,14 @@ import net.fabricmc.api.Environment;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
-
-import static com.theuran.mappet.client.ui.UIMappetKeys.*;
 
 @Environment(EnvType.CLIENT)
 public class UIBuilderPanel extends UIDataDashboardPanel<UI> {
-    private final UIIcon addIcon;
-    private final UIIcon scriptIcon;
-    private UIIcon modulesPicker;
+    public UIIcon addIcon;
+    public UIIcon scriptIcon;
+    public UIIcon modulesPicker;
 
-    public static List<String> UInames = Arrays.asList(
+    public static List<String> names = Arrays.asList(
             "Button",
             "Icon",
             "Label",
@@ -44,27 +38,24 @@ public class UIBuilderPanel extends UIDataDashboardPanel<UI> {
 
         this.overlay.namesList.setFileIcon(Icons.MAZE);
 
-        //Сюда регистер всяких ui элементов
+        this.modulesPicker = new UIIcon(Icons.SERVER, this::openElements);
+        this.modulesPicker.tooltip(UIMappetKeys.UI_BUILDER_ELEMENT_PANEL);
 
-        this.modulesPicker = new UIIcon(Icons.SERVER, this :: openElements);
-        this.modulesPicker.tooltip(ElementPanel);
-        this.iconBar.add(this.modulesPicker);
-
-        this.addIcon = new UIIcon(Icons.ADD, this :: addElement);
-        this.addIcon.tooltip(ElementAdd);
-        this.iconBar.add(this.addIcon);
+        this.addIcon = new UIIcon(Icons.ADD, this::addElement);
+        this.addIcon.tooltip(UIMappetKeys.UI_BUILDER_ELEMENT_ADD);
 
         this.scriptIcon = new UIIcon(Icons.PROPERTIES, this :: openUIScript);
-        this.iconBar.add(this.scriptIcon);
-        this.scriptIcon.tooltip(UIScript);
+        this.scriptIcon.tooltip(UIMappetKeys.UI_BUILDER_SCRIPT);
 
-        this.addIcon.context((cont) -> {
-            for (Object name : UInames) {
-                cont.action(Icons.BLOCK, IKey.raw(String.valueOf(name)), () -> {
+        this.addIcon.context((menu) -> {
+            for (String name : names) {
+                menu.action(Icons.BLOCK, IKey.constant(name), () -> {
                     //тут будут взаимодействия (добавлению UI элементов)
                 });
             }
         });
+
+        this.iconBar.add(this.modulesPicker, this.addIcon, this.scriptIcon);
 
         this.fill(null);
     }
@@ -76,7 +67,7 @@ public class UIBuilderPanel extends UIDataDashboardPanel<UI> {
     }
 
     private void openElements(UIIcon uiIcon) {
-        UIOverlay.addOverlayRight(this.getContext(), new ElementsOverlayPanel(), 200, 1);
+        UIOverlay.addOverlayRight(this.getContext(), new UIElementsOverlayPanel(), 200, 1);
     }
 
     @Override
@@ -85,8 +76,11 @@ public class UIBuilderPanel extends UIDataDashboardPanel<UI> {
     }
 
     @Override
-    protected void fillData(UI ui) {
-        //Обновление даты
+    protected void fillData(UI data) {
+        //Бро тебе стоит познакомиться получше со всей этой темой
+        this.modulesPicker.setEnabled(data != null);
+        this.addIcon.setEnabled(data != null);
+        this.scriptIcon.setEnabled(data != null);
     }
 
     @Override

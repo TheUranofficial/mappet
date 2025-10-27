@@ -5,6 +5,7 @@
   "mappet.states.add": "Добавить состояние",
   "mappet.states.add.group": "Добавить группу",
   "mappet.states.search": "Найти состояние",
+  "mappet.states.refresh": "Сменить тип",
   "mappet.hud.scene.title": "HUD Сцены",
   "mappet.hud.scene.ortho": "Орфографический",
   "mappet.scripts.title": "Скрипты",

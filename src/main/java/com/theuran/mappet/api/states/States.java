@@ -1,32 +1,25 @@
 package com.theuran.mappet.api.states;
 
 import com.theuran.mappet.Mappet;
-import mchorse.bbs_mod.data.DataStorageUtils;
-import mchorse.bbs_mod.data.DataToString;
-import mchorse.bbs_mod.data.IMapSerializable;
+import com.theuran.mappet.utils.BaseFileManager;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
-import mchorse.bbs_mod.utils.IOUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.MinecraftServer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Set;
+import java.util.function.Supplier;
 
-public class States implements IMapSerializable {
+public class States extends BaseFileManager {
     private MapType values = new MapType();
 
-    private final File file;
-
-    public States(File file) {
-        this.file = file;
+    public States(Supplier<File> file) {
+        super(file);
     }
 
     public States() {
-        this.file = null;
+        super(() -> null);
     }
 
     @Override
@@ -93,35 +86,6 @@ public class States implements IMapSerializable {
 
     public void remove(String key) {
         this.values.remove(key);
-    }
-
-    public void save() {
-        try {
-            if (this.file != null)
-                IOUtils.writeText(this.file, DataToString.toString(this.toData(), true));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void load() {
-        try {
-            if (this.file != null && this.file.exists()) {
-                this.fromData(DataToString.mapFromString(IOUtils.readText(this.file)));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void fromNbt(NbtElement element) {
-        MapType map = (MapType) DataStorageUtils.fromNbt(element);
-
-        this.fromData(map);
-    }
-
-    public NbtElement toNbt() {
-        return DataStorageUtils.toNbt(this.toData());
     }
 
     public static States getStates(MinecraftServer server, String target) {

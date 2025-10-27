@@ -18,4 +18,9 @@ public class ScriptRepository extends BaseDataRepository<Script> {
 
         return script;
     }
+
+    @Override
+    public String getId() {
+        return "script";
+    }
 }

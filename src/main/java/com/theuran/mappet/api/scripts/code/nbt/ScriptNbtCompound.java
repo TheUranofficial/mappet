@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ScriptNbtCompound implements Nbt{
+public class ScriptNbtCompound implements Nbt {
     private NbtCompound nbt;
 
     public ScriptNbtCompound(NbtCompound nbt) {

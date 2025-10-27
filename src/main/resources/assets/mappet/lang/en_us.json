@@ -5,6 +5,7 @@
   "mappet.states.add": "Add state",
   "mappet.states.add.group": "Add group",
   "mappet.states.search": "Search state",
+  "mappet.states.refresh": "Change type",
   "mappet.hud.scene.title": "HUD Scenes",
   "mappet.hud.scene.ortho": "Orthographic",
   "mappet.scripts.title": "Scripts",
@@ -12,7 +13,7 @@
   "mappet.scripts.side": "Change Side",
   "mappet.logger.title": "Logger",
   "mappet.ui.builder.title": "UI Builder",
-  "mappet.ui.builder.elementpanel.title": "Elements panel",
-  "mappet.ui.builder.elementadd.tooltip": "Add element",
+  "mappet.ui.builder.element.panel.title": "Elements panel",
+  "mappet.ui.builder.element.add.tooltip": "Add element",
   "mappet.ui.script.tooltip": "UI script editor"
 }

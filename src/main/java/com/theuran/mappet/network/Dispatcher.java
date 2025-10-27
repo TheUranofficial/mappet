@@ -2,10 +2,7 @@ package com.theuran.mappet.network;
 
 import com.theuran.mappet.network.basic.AbstractDispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
-import com.theuran.mappet.network.packets.server.HandshakeS2CPacket;
-import com.theuran.mappet.network.packets.server.RunScriptPacket;
-import com.theuran.mappet.network.packets.server.SaveScriptC2SPacket;
-import com.theuran.mappet.network.packets.server.SendScriptsS2CPacket;
+import com.theuran.mappet.network.packets.server.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -31,7 +28,8 @@ public class Dispatcher {
             //COMMON
             this.registerPacket(RunScriptPacket.class, RunScriptPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(RunScriptPacket.class, RunScriptPacket.ClientHandler.class, EnvType.CLIENT);
-
+            this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ClientHandler.class, EnvType.CLIENT);
         }
     };
 

@@ -18,4 +18,9 @@ public class HUDRepository extends BaseDataRepository<HUDScene> {
 
         return scene;
     }
+
+    @Override
+    public String getId() {
+        return "hud";
+    }
 }

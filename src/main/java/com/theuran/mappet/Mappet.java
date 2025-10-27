@@ -3,11 +3,13 @@ package com.theuran.mappet;
 import com.mojang.logging.LogUtils;
 import com.theuran.mappet.api.events.EventHandler;
 import com.theuran.mappet.api.events.EventManager;
+import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.executables.ExecutableManager;
 import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetServerNetwork;
@@ -16,6 +18,7 @@ import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;
 import mchorse.bbs_mod.resources.Link;
+import mchorse.bbs_mod.utils.factory.MapFactory;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -33,7 +36,6 @@ public class Mappet implements ModInitializer {
 
     private static File settingsFolder;
     private static File assetsFolder;
-    private static File worldFolder;
     private static File mappetFolder;
 
     private static AssetProvider provider;
@@ -45,6 +47,8 @@ public class Mappet implements ModInitializer {
     private static LoggerManager logger;
     private static EventManager events;
     private static ExecutableManager executables;
+
+    private static MapFactory<Trigger, Void> eventTriggers;
 
     @Override
     public void onInitialize() {
@@ -61,35 +65,40 @@ public class Mappet implements ModInitializer {
         huds = new HUDManager(() -> new File(mappetFolder, "huds"));
         scripts = new ScriptManager(() -> new File(mappetFolder, "scripts"));
         uis = new UIManager(() -> new File(mappetFolder, "uis"));
-
+        states = new States(() -> new File(mappetFolder, "states.json"));
+        events = new EventManager(() -> new File(mappetFolder, "events.json"));
         logger = new LoggerManager();
-        events = new EventManager();
         executables = new ExecutableManager();
+
+        eventTriggers = new MapFactory<>();
+        eventTriggers
+                .register(link("command"), CommandTrigger.class)
+                .register(link("item"), ItemTrigger.class)
+                .register(link("script"), ScriptTrigger.class)
+                .register(link("sound"), ScriptTrigger.class)
+                .register(link("state"), StateTrigger.class);
 
         EventHandler.init();
 
         //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            worldFolder = server.getSavePath(WorldSavePath.ROOT).toFile();
-            mappetFolder = new File(worldFolder, "mappet");
+            mappetFolder = new File(server.getSavePath(WorldSavePath.ROOT).toFile(), "mappet");
 
             mappetFolder.mkdirs();
 
-            states = new States(new File(mappetFolder, "states.json"));
             states.load();
+            events.load();
 
             scripts.initialize();
         });
 
         ServerLifecycleEvents.BEFORE_SAVE.register((server, flush, force) -> {
             states.save();
+            events.save();
         });
 
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
-            worldFolder = null;
-            states = null;
-
             MappetServerNetwork.reset();
         });
 
@@ -127,10 +136,6 @@ public class Mappet implements ModInitializer {
         return settingsFolder;
     }
 
-    public static File getWorldFolder() {
-        return worldFolder;
-    }
-
     public static HUDManager getHuds() {
         return huds;
     }
@@ -153,5 +158,9 @@ public class Mappet implements ModInitializer {
 
     public static ExecutableManager getExecutables() {
         return executables;
+    }
+
+    public static MapFactory<Trigger, Void> getEventTriggers() {
+        return eventTriggers;
     }
 }

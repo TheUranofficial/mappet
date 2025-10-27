@@ -55,13 +55,6 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     }
 
     @Override
-    public void close() {
-        this.saveScript();
-
-        super.close();
-    }
-
-    @Override
     public ContentType getType() {
         return MappetContentType.SCRIPTS;
     }
