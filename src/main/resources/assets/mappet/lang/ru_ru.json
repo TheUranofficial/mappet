@@ -10,5 +10,8 @@
   "mappet.scripts.title": "Скрипты",
   "mappet.scripts.run": "Запустить скрипт",
   "mappet.logger.title": "Логгер",
-  "mappet.ui.builder.title": "UI Билдер"
+  "mappet.ui.builder.title": "UI Билдер",
+  "mappet.ui.builder.elementpanel.title": "Панель элементов",
+  "mappet.ui.builder.elementadd.tooltip": "Добавить элемент",
+  "mappet.ui.script.tooltip": "Редактор UI скрипта"
 }

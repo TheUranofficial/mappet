@@ -17,4 +17,7 @@ public class UIMappetKeys {
     public static final IKey LOGGER_TITLE = L10n.lang("mappet.logger.title");
     public static final IKey SCRIPTS_RUN = L10n.lang("mappet.scripts.run");
     public static final IKey UI_BUILDER_TITLE = L10n.lang("mappet.ui.builder.title");
+    public static final IKey ElementPanel = L10n.lang("mappet.ui.builder.elementpanel.title");
+    public static final IKey ElementAdd = L10n.lang("mappet.ui.builder.elementadd.tooltip");
+    public static final IKey UIScript = L10n.lang("mappet.ui.script.tooltip");
 }
