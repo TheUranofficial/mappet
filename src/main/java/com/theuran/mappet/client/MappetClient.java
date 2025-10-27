@@ -51,6 +51,7 @@ public class MappetClient implements ClientModInitializer {
                 UIScreen.open(MappetClient.getDashboard());
             }
         });
+
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             dashboard = null;
 

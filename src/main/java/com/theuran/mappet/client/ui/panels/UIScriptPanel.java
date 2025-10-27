@@ -68,6 +68,11 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         }
     }
 
+    @Override
+    public void fillDefaultData(Script data) {
+        data.setContent("function main(c) {\n    \n}");
+    }
+
     private void updateButtons() {
         this.run.setVisible(this.data != null && this.content.isVisible());
     }
