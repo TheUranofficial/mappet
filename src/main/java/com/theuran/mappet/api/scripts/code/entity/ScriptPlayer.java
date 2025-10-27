@@ -4,7 +4,6 @@ import com.theuran.mappet.api.scripts.code.mappet.MappetStates;
 import com.theuran.mappet.api.scripts.code.bbs.ScriptForm;
 import com.theuran.mappet.api.scripts.user.entity.IScriptPlayer;
 import com.theuran.mappet.api.states.IStatesProvider;
-import net.minecraft.entity.player.PlayerEntity;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
 import mchorse.bbs_mod.forms.FormUtils;

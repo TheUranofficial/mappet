@@ -10,6 +10,7 @@ public class ClientScriptOptions {
     public ClientScriptOptions() {
         options = MinecraftClient.getInstance().options;
     }
+
     public String getArm() {
         return options.getMainArm().getValue().name();
     }

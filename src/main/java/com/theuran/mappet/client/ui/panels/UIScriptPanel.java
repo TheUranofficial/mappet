@@ -33,7 +33,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.run = new UIIcon(Icons.PLAY, this::runScript);
         this.run.tooltip(UIMappetKeys.SCRIPTS_RUN, Direction.LEFT);
 
-        this.side = new UIIcon(Icons.ACTION, this::changeSide);
+        this.side = new UIIcon(Icons.PROCESSOR, this::changeSide);
         this.side.tooltip(UIMappetKeys.SCRIPTS_SIDE, Direction.LEFT);
 
         this.editor.add(this.content);
@@ -52,6 +52,8 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
     private void changeSide(UIIcon icon) {
         this.data.setServer(!this.data.isServer());
+
+        this.side.both(this.data.isServer() ? Icons.PROCESSOR : Icons.MORE);
     }
 
     @Override
@@ -76,7 +78,12 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     }
 
     private void updateButtons() {
-        this.run.setVisible(this.data != null && this.content.isVisible());
+        if (this.data != null) {
+            this.run.setVisible(this.content.isVisible());
+            this.side.setVisible(this.data.isServer());
+
+            this.side.both(this.data.isServer() ? Icons.PROCESSOR : Icons.MORE);
+        }
     }
 
     @Override

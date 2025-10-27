@@ -15,7 +15,7 @@ import java.util.List;
  * ScriptBlockState represents the state of a block in the Minecraft world, including its properties, characteristics, and behavior parameters.
  *
  * <pre>{@code
- * c.getServer().send(Mappet.createBlockState(\"minecraft:dirt\").getId(), false)
+ * c.getServer().send(mappet.createBlockState(\"minecraft:dirt\").getId(), false)
  * }</pre>
  */
 public class ScriptBlockState {
@@ -23,8 +23,7 @@ public class ScriptBlockState {
 
     private BlockState blockState;
 
-    public static ScriptBlockState create(BlockState blockState)
-    {
+    public static ScriptBlockState create(BlockState blockState) {
         if (blockState == AIR || blockState == null) {
             return new ScriptBlockState(AIR);
         }
