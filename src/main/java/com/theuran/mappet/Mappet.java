@@ -11,7 +11,7 @@ import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetServerNetwork;
-import com.theuran.mappet.network.packets.server.HandshakePacket;
+import com.theuran.mappet.network.packets.server.HandshakeS2CPacket;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;
@@ -92,7 +92,7 @@ public class Mappet implements ModInitializer {
         });
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-            Dispatcher.sendTo(new HandshakePacket(), handler.getPlayer());
+            Dispatcher.sendTo(new HandshakeS2CPacket(), handler.getPlayer());
         });
 
         MappetServerNetwork.setup();

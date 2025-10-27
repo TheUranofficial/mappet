@@ -10,8 +10,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 
-public class HandshakePacket extends AbstractPacket {
-    public HandshakePacket() {}
+public class HandshakeS2CPacket extends AbstractPacket {
+    public HandshakeS2CPacket() {}
 
     @Override
     public void toBytes(PacketByteBuf buf) {}
@@ -19,10 +19,10 @@ public class HandshakePacket extends AbstractPacket {
     @Override
     public void fromBytes(PacketByteBuf buf) {}
 
-    public static class ClientHandler implements ClientPacketHandler<HandshakePacket> {
+    public static class ClientHandler implements ClientPacketHandler<HandshakeS2CPacket> {
         @Environment(EnvType.CLIENT)
         @Override
-        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, HandshakePacket packet) {
+        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, HandshakeS2CPacket packet) {
             Dispatcher.isMappetModOnServer = true;
         }
     }

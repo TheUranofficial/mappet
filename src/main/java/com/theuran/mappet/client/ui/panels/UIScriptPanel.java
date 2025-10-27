@@ -5,7 +5,7 @@ import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.RunScriptC2SPacket;
+import com.theuran.mappet.network.packets.server.RunScriptPacket;
 import com.theuran.mappet.network.packets.server.SaveScriptC2SPacket;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.ContentType;
@@ -42,7 +42,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     private void runScript(UIIcon icon) {
         this.save();
 
-        Dispatcher.sendToServer(new RunScriptC2SPacket(this.data.getId(), "main", this.data.getContent()));
+        Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
     }
 
     @Override

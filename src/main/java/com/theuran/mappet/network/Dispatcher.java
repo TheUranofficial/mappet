@@ -2,9 +2,10 @@ package com.theuran.mappet.network;
 
 import com.theuran.mappet.network.basic.AbstractDispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
-import com.theuran.mappet.network.packets.server.HandshakePacket;
-import com.theuran.mappet.network.packets.server.RunScriptC2SPacket;
+import com.theuran.mappet.network.packets.server.HandshakeS2CPacket;
+import com.theuran.mappet.network.packets.server.RunScriptPacket;
 import com.theuran.mappet.network.packets.server.SaveScriptC2SPacket;
+import com.theuran.mappet.network.packets.server.SendScriptsS2CPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -20,9 +21,17 @@ public class Dispatcher {
     private static final AbstractDispatcher DISPATCHER = new AbstractDispatcher() {
         @Override
         public void register() {
-            this.registerPacket(RunScriptC2SPacket.class, RunScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
+            //SERVER
             this.registerPacket(SaveScriptC2SPacket.class, SaveScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(HandshakePacket.class, HandshakePacket.ClientHandler.class, EnvType.CLIENT);
+
+            //CLIENT
+            this.registerPacket(HandshakeS2CPacket.class, HandshakeS2CPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(SendScriptsS2CPacket.class, SendScriptsS2CPacket.ClientHandler.class, EnvType.CLIENT);
+
+            //COMMON
+            this.registerPacket(RunScriptPacket.class, RunScriptPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(RunScriptPacket.class, RunScriptPacket.ClientHandler.class, EnvType.CLIENT);
+
         }
     };
 

@@ -1,5 +1,6 @@
 package com.theuran.mappet.api.scripts.code;
 
+import com.theuran.mappet.api.scripts.code.block.ScriptBlockState;
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
 import com.theuran.mappet.api.scripts.user.IScriptWorld;
 import net.minecraft.server.world.ServerWorld;

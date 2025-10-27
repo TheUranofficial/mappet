@@ -1,6 +1,7 @@
 package com.theuran.mappet.client;
 
 import com.theuran.mappet.Mappet;
+import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetClientNetwork;
@@ -25,6 +26,8 @@ public class MappetClient implements ClientModInitializer {
 
     private static L10n l10n;
 
+    private static ClientScriptManager scripts;
+
     public static UIMappetDashboard getDashboard() {
         if (dashboard == null)
             dashboard = new UIMappetDashboard();
@@ -46,6 +49,8 @@ public class MappetClient implements ClientModInitializer {
 
         keyDashboard = this.createKey("dashboard", GLFW.GLFW_KEY_EQUAL);
 
+        scripts = new ClientScriptManager();
+
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             while (keyDashboard.wasPressed()) {
                 UIScreen.open(MappetClient.getDashboard());
@@ -63,5 +68,9 @@ public class MappetClient implements ClientModInitializer {
 
     public KeyBinding createKey(String id, int key) {
         return KeyBindingHelper.registerKeyBinding(new KeyBinding("key.mappet." + id, InputUtil.Type.KEYSYM, key, "category.mappet.main"));
+    }
+
+    public static ClientScriptManager getScripts() {
+        return scripts;
     }
 }
