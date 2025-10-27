@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.event.player.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
@@ -71,7 +72,7 @@ public class EventHandler {
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
-            scriptEvent.setValue("hand", hand.name());
+            scriptEvent.setValue("hand", modifyHand(hand));
             scriptEvent.setValue("blockPos", new ScriptVector(blockPos));
             scriptEvent.setValue("direction", direction.getName());
 
@@ -86,7 +87,7 @@ public class EventHandler {
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, entity, (ServerWorld) world, player.getServer());
 
-            scriptEvent.setValue("hand", hand.name());
+            scriptEvent.setValue("hand", modifyHand(hand));
 
             Mappet.getEvents().event(EventType.PLAYER_ATTACK_ENTITY, scriptEvent);
 
@@ -99,9 +100,9 @@ public class EventHandler {
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
-            scriptEvent.setValue("hand", hand.name());
+            scriptEvent.setValue("hand", modifyHand(hand));
             scriptEvent.setValue("blockPos", new ScriptVector(blockHitResult.getBlockPos()));
-            scriptEvent.setValue("direction", blockHitResult.getSide().getName());
+            scriptEvent.setValue("direction", blockHitResult.getSide().getName().toLowerCase());
 
             Mappet.getEvents().event(EventType.PLAYER_USE_BLOCK, scriptEvent);
 
@@ -114,7 +115,7 @@ public class EventHandler {
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
-            scriptEvent.setValue("hand", hand.name());
+            scriptEvent.setValue("hand", modifyHand(hand));
 
             Mappet.getEvents().event(EventType.PLAYER_USE_ENTITY, scriptEvent);
 
@@ -129,7 +130,7 @@ public class EventHandler {
 
             ItemStack stack = player.getStackInHand(hand);
 
-            scriptEvent.setValue("hand", hand.name());
+            scriptEvent.setValue("hand", modifyHand(hand));
             scriptEvent.setValue("item", stack);
 
             Mappet.getEvents().event(EventType.PLAYER_USE_ITEM, scriptEvent);
@@ -142,5 +143,9 @@ public class EventHandler {
                 case PASS -> TypedActionResult.pass(stack);
             };
         });
+    }
+
+    private static String modifyHand(Hand hand) {
+        return hand.name().replace("_HAND", "").toLowerCase();
     }
 }

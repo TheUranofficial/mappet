@@ -14,10 +14,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class MappetServerNetwork extends ServerNetwork {
-    public static final Identifier CLIENT_STATES = new Identifier(Mappet.MOD_ID, "c1");
+    public static final Identifier CLIENT_STATES = Mappet.id("c1");
 
-    public static final Identifier SERVER_REQUEST_STATES = new Identifier(Mappet.MOD_ID, "s1");
-    public static final Identifier SERVER_STATES = new Identifier(Mappet.MOD_ID, "s2");
+    public static final Identifier SERVER_REQUEST_STATES = Mappet.id("s1");
+    public static final Identifier SERVER_STATES = Mappet.id("s2");
 
     private static ServerPacketCrusher crusher = new ServerPacketCrusher();
 
