@@ -44,8 +44,6 @@ public class Script extends ValueGroup {
 
                 executable.compileV8Module();
                 script = executable.compileV8Script();
-
-                executable.executeVoid();
             }
 
             script.executeVoid();
