@@ -17,9 +17,9 @@ import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
 
 public class UIScriptPanel extends UIDataDashboardPanel<Script> {
-    private final UIIcon run;
-    private final UIIcon side;
-    private final UITextEditor content;
+    public UIIcon run;
+    public UIIcon side;
+    public UITextEditor content;
 
     public UIScriptPanel(UIDashboard dashboard) {
         super(dashboard);
@@ -47,7 +47,9 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     private void runScript(UIIcon icon) {
         this.save();
 
-        Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
+        if (data != null) {
+            Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
+        }
     }
 
     private void changeSide(UIIcon icon) {

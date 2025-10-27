@@ -1,6 +1,8 @@
 {
   "mappet.config.title": "Маппет",
   "mappet.config.general.title": "Общее",
+  "mappet.key.dashboard": "Открыть панель",
+  "mappet.key.runScript": "Запустить скрипт",
   "mappet.states.title": "Состояния",
   "mappet.states.add": "Добавить состояние",
   "mappet.states.add.group": "Добавить группу",

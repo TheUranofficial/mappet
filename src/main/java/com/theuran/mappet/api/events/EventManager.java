@@ -2,7 +2,6 @@ package com.theuran.mappet.api.events;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
-import com.theuran.mappet.api.triggers.ScriptTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.utils.BaseFileManager;
 import mchorse.bbs_mod.data.types.BaseType;
@@ -70,7 +69,6 @@ public class EventManager extends BaseFileManager {
 
             data.put(id, triggerList);
         });
-        System.out.println(data);
     }
 
     @Override

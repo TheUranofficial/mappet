@@ -1,6 +1,8 @@
 {
   "mappet.config.title": "Mappet",
   "mappet.config.general.title": "General",
+  "mappet.key.dashboard": "Open dashboard",
+  "mappet.key.runScript": "Run script",
   "mappet.states.title": "States",
   "mappet.states.add": "Add state",
   "mappet.states.add.group": "Add group",
