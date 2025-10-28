@@ -94,7 +94,7 @@ public class MappetCommands {
 
         //bruh
         setKey.suggests((context, builder) -> {
-            States statesInstance = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
+            States statesInstance = context.getInput().contains("~") ? Mappet.getStates().get() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
 
             for (String key : statesInstance.keys()) {
                 builder.suggest(key);
@@ -104,7 +104,7 @@ public class MappetCommands {
         });
 
         getKey.suggests((context, builder) -> {
-            States statesInstance = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
+            States statesInstance = context.getInput().contains("~") ? Mappet.getStates().get() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
 
             for (String key : statesInstance.keys()) {
                 builder.suggest(key);
@@ -139,7 +139,7 @@ public class MappetCommands {
     private static int statesGetCommand(CommandContext<ServerCommandSource> context) {
         context.getSource().sendFeedback(() -> {
             try {
-                States states = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
+                States states = context.getInput().contains("~") ? Mappet.getStates().get() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
                 BaseType value = states.get(StringArgumentType.getString(context, "key"));
 
                 return Text.literal("Value is: %s".formatted(value));
@@ -154,7 +154,7 @@ public class MappetCommands {
     private static int statesSetCommand(CommandContext<ServerCommandSource> context) {
         try {
             String value = StringArgumentType.getString(context, "value");
-            States states = context.getInput().contains("~") ? Mappet.getStates() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
+            States states = context.getInput().contains("~") ? Mappet.getStates().get() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
             String key =  StringArgumentType.getString(context, "key");
 
             try {

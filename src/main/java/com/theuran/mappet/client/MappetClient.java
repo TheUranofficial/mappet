@@ -6,7 +6,6 @@ import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.MappetClientNetwork;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
 import mchorse.bbs_mod.BBSSettings;
 import mchorse.bbs_mod.l10n.L10n;
@@ -74,8 +73,6 @@ public class MappetClient implements ClientModInitializer {
 
             Dispatcher.isMappetModOnServer = false;
         });
-
-        MappetClientNetwork.setup();
     }
 
     public KeyBinding createKey(String id, int key) {

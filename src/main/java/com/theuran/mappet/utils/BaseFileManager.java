@@ -1,18 +1,13 @@
 package com.theuran.mappet.utils;
 
-import mchorse.bbs_mod.data.DataStorageUtils;
 import mchorse.bbs_mod.data.DataToString;
 import mchorse.bbs_mod.data.IMapSerializable;
 import mchorse.bbs_mod.data.types.MapType;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.function.Supplier;
 
-public abstract class BaseFileManager implements IMapSerializable, INBTSerializable {
+public abstract class BaseFileManager implements IMapSerializable {
     private Supplier<File> file;
 
     public BaseFileManager(Supplier<File> file) {
@@ -49,15 +44,5 @@ public abstract class BaseFileManager implements IMapSerializable, INBTSerializa
             e.printStackTrace();
             return false;
         }
-    }
-
-    @Override
-    public void fromNbt(NbtElement nbt) {
-        this.fromData((DataStorageUtils.fromNbt(nbt).asMap()));
-    }
-
-    @Override
-    public NbtElement toNbt() {
-        return DataStorageUtils.toNbt(this.toData());
     }
 }

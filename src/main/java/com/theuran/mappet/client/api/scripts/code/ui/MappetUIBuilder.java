@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MappetUIBuilder {
-    List<UIElement> elements = new ArrayList<>();
+    public List<UIElement> elements = new ArrayList<>();
 
     public MappetUIBuilder() {
 

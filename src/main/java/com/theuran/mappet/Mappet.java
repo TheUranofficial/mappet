@@ -8,11 +8,10 @@ import com.theuran.mappet.api.executables.ExecutableManager;
 import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.scripts.logger.LoggerManager;
-import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.api.states.StatesManager;
 import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.MappetServerNetwork;
 import com.theuran.mappet.network.packets.server.HandshakeS2CPacket;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
@@ -40,7 +39,7 @@ public class Mappet implements ModInitializer {
 
     private static AssetProvider provider;
 
-    private static States states;
+    private static StatesManager states;
     private static HUDManager huds;
     private static ScriptManager scripts;
     private static UIManager uis;
@@ -65,7 +64,7 @@ public class Mappet implements ModInitializer {
         huds = new HUDManager(() -> new File(mappetFolder, "huds"));
         scripts = new ScriptManager(() -> new File(mappetFolder, "scripts"));
         uis = new UIManager(() -> new File(mappetFolder, "uis"));
-        states = new States(() -> new File(mappetFolder, "states.json"));
+        states = new StatesManager(() -> new File(mappetFolder, "states.json"));
         events = new EventManager(() -> new File(mappetFolder, "events.json"));
         logger = new LoggerManager();
         executables = new ExecutableManager();
@@ -98,10 +97,6 @@ public class Mappet implements ModInitializer {
             events.save();
         });
 
-        ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
-            MappetServerNetwork.reset();
-        });
-
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             Dispatcher.sendTo(new HandshakeS2CPacket(), handler.getPlayer());
             Mappet.getScripts().sendClientScripts(handler.getPlayer());
@@ -112,8 +107,6 @@ public class Mappet implements ModInitializer {
 
             Mappet.getEvents().addTriggerToEvent(EventType.PLAYER_USE_BLOCK, scriptTrigger);
         });
-
-        MappetServerNetwork.setup();
 
         CommandRegistrationCallback.EVENT.register(MappetCommands::register);
     }
@@ -130,7 +123,7 @@ public class Mappet implements ModInitializer {
         return provider;
     }
 
-    public static States getStates() {
+    public static StatesManager getStates() {
         return states;
     }
 

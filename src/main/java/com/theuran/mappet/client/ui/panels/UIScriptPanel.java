@@ -80,12 +80,9 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     }
 
     private void updateButtons() {
-        if (this.data != null) {
-            this.run.setVisible(this.content.isVisible());
-            this.side.setVisible(this.data.isServer());
-
-            this.side.both(this.data.isServer() ? Icons.PROCESSOR : Icons.MORE);
-        }
+        this.side.setEnabled(this.data != null && this.data.isServer());
+        this.side.both(this.data != null && this.data.isServer() ? Icons.PROCESSOR : Icons.MORE);
+        this.run.setEnabled(this.data != null);
     }
 
     @Override

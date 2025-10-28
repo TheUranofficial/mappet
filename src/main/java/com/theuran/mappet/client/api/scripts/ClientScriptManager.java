@@ -2,16 +2,14 @@ package com.theuran.mappet.client.api.scripts;
 
 import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.api.scripts.Script;
-import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ClientScriptManager {
-    Map<String, Script> scripts = new HashMap<>();
+    public Map<String, Script> scripts = new HashMap<>();
 
     public void addScripts(List<Script> scripts) {
         for (Script script : scripts) {

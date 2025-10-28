@@ -1,38 +1,15 @@
 package com.theuran.mappet.api.states;
 
-import com.theuran.mappet.Mappet;
-import com.theuran.mappet.utils.BaseFileManager;
+import com.theuran.mappet.utils.INBTSerializable;
+import mchorse.bbs_mod.data.DataStorageUtils;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.nbt.NbtElement;
 
-import java.io.File;
 import java.util.Set;
-import java.util.function.Supplier;
 
-public class States extends BaseFileManager {
-    private MapType values = new MapType();
-
-    public States(Supplier<File> file) {
-        super(file);
-    }
-
-    public States() {
-        super(() -> null);
-    }
-
-    @Override
-    public void toData(MapType map) {
-        map.combine(this.values);
-    }
-
-    @Override
-    public void fromData(MapType entries) {
-        this.values = entries;
-    }
-
-    //Server states
+public class States implements INBTSerializable {
+    public MapType values = new MapType();
 
     public void setNumber(String id, double value) {
         if (Double.isNaN(value)) return;
@@ -60,10 +37,6 @@ public class States extends BaseFileManager {
         return this.values.getBool(id);
     }
 
-    public MapType getValues() {
-        return this.values;
-    }
-
     public BaseType get(String key) {
         return this.values.get(key);
     }
@@ -88,15 +61,13 @@ public class States extends BaseFileManager {
         this.values.remove(key);
     }
 
-    public static States getStates(MinecraftServer server, String target) {
-        if (target.equals("~"))
-            return Mappet.getStates();
+    @Override
+    public void fromNbt(NbtElement nbt) {
+        this.values = DataStorageUtils.fromNbt(nbt).asMap();
+    }
 
-        PlayerEntity player = server.getPlayerManager().getPlayer(target);
-
-        if (player instanceof IStatesProvider provider)
-            return provider.getStates();
-
-        return null;
+    @Override
+    public NbtElement toNbt() {
+        return DataStorageUtils.toNbt(this.values);
     }
 }

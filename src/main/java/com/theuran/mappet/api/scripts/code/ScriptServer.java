@@ -21,6 +21,6 @@ public class ScriptServer {
     }
 
     public MappetStates getStates() {
-        return new MappetStates(Mappet.getStates());
+        return new MappetStates(Mappet.getStates().get());
     }
 }

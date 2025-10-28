@@ -5,7 +5,7 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.util.Arm;
 
 public class ClientScriptOptions {
-    GameOptions options;
+    public GameOptions options;
 
     public ClientScriptOptions() {
         options = MinecraftClient.getInstance().options;
