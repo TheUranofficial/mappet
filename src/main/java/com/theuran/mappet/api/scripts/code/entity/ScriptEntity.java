@@ -15,7 +15,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-public class ScriptEntity <T extends Entity> implements IScriptEntity {
+public class ScriptEntity <T extends Entity> {
     protected T entity;
 
     public static ScriptEntity<?> create(Entity entity) {

@@ -2,6 +2,7 @@ package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.states.IStatesProvider;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.utils.ValueType;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.settings.values.core.ValueString;
@@ -32,6 +33,11 @@ public class StateTrigger extends Trigger {
 
             playerStates.getStates().set(this.key.get(), this.baseType.get());
         }
+    }
+
+    @Override
+    public void execute(ClientScriptEvent scriptEvent) {
+
     }
 
     @Override

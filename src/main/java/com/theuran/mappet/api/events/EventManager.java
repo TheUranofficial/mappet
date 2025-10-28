@@ -38,8 +38,12 @@ public class EventManager extends BaseFileManager {
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
-                trigger.execute(scriptEvent);
-                trigger.resetDelay();
+                if (trigger.isServer()) {
+                    trigger.execute(scriptEvent);
+                    trigger.resetDelay();
+                } else {
+
+                }
             } else {
                 trigger.delay();
             }

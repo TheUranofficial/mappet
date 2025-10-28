@@ -1,6 +1,7 @@
 package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import net.minecraft.entity.Entity;
@@ -29,6 +30,11 @@ public class ItemTrigger extends Trigger {
         if (entity instanceof ServerPlayerEntity player) {
             player.giveItemStack(Registries.ITEM.get(new Identifier(this.itemId.get())).getDefaultStack());
         }
+    }
+
+    @Override
+    public void execute(ClientScriptEvent scriptEvent) {
+
     }
 
     @Override

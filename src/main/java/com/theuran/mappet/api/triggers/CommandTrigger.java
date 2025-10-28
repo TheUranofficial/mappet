@@ -1,7 +1,9 @@
 package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import mchorse.bbs_mod.settings.values.core.ValueString;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.MinecraftServer;
 
 public class CommandTrigger extends Trigger {
@@ -21,6 +23,11 @@ public class CommandTrigger extends Trigger {
         MinecraftServer server = scriptEvent.getServer().getMinecraftServer();
 
         server.getCommandManager().executeWithPrefix(server.getCommandSource(), this.command.get());
+    }
+
+    @Override
+    public void execute(ClientScriptEvent scriptEvent) {
+        MinecraftClient.getInstance().player.networkHandler.sendChatCommand(this.command.get());
     }
 
     @Override
