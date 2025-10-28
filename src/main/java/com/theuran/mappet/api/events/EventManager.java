@@ -1,9 +1,12 @@
 package com.theuran.mappet.api.events;
 
+import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.triggers.ScriptTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
+import com.theuran.mappet.client.MappetClient;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.utils.BaseFileManager;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.ListType;
@@ -31,12 +34,33 @@ public class EventManager extends BaseFileManager {
         //this.addTriggerToEvent(EventType.PLAYER_USE_BLOCK, new ScriptTrigger("lox", "main"));
     }
 
-    public void event(EventType eventType, ScriptEvent scriptEvent) {
+    public void eventServer(EventType eventType, ScriptEvent scriptEvent) {
         List<Trigger> triggers = this.events.get(eventType.name().toLowerCase());
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
                 trigger.execute(scriptEvent);
+                trigger.resetDelay();
+            } else {
+                trigger.delay();
+            }
+        }
+    }
+
+    public void eventClient(EventType eventType, ClientScriptEvent scriptEvent) {
+        List<Trigger> triggers = this.events.get(eventType.name().toLowerCase());
+
+        for (Trigger trigger : triggers) {
+            if (trigger.getDelay() == trigger.getMaxDelay()) {
+                if(trigger instanceof ScriptTrigger scriptTrigger) {
+                    scriptEvent.setScript(scriptTrigger.script.get());
+                    scriptEvent.setFunction(scriptTrigger.function.get());
+
+                    try {
+                        MappetClient.getScripts().getScript(scriptTrigger.script.get()).execute(scriptEvent);
+                    } catch (JavetException ignored) {
+                    }
+                }
                 trigger.resetDelay();
             } else {
                 trigger.delay();

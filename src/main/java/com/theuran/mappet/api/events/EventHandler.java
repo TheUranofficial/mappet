@@ -3,10 +3,13 @@ package com.theuran.mappet.api.events;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
+import com.theuran.mappet.client.MappetClient;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.*;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
@@ -28,7 +31,7 @@ public class EventHandler {
             scriptEvent.setValue("damage", damage);
             scriptEvent.setValue("damageType", damageSource.getName());
 
-            Mappet.getEvents().event(EventType.ENTITY_DAMAGE, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.ENTITY_DAMAGE, scriptEvent);
 
             return scriptEvent.getResultType().isAccepted();
         });
@@ -39,7 +42,7 @@ public class EventHandler {
             scriptEvent.setValue("damage", damageAmount);
             scriptEvent.setValue("deathType", damageSource.getName());
 
-            Mappet.getEvents().event(EventType.ENTITY_DEATH, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.ENTITY_DEATH, scriptEvent);
 
             return scriptEvent.getResultType().isAccepted();
         });
@@ -49,26 +52,38 @@ public class EventHandler {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             ScriptEvent scriptEvent = ScriptEvent.create(null, null, server.getWorld(World.OVERWORLD), server);
 
-            Mappet.getEvents().event(EventType.SERVER_TICK, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.SERVER_TICK, scriptEvent);
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             ScriptEvent scriptEvent = ScriptEvent.create(null, null, server.getWorld(World.OVERWORLD), server);
 
-            Mappet.getEvents().event(EventType.SERVER_STARTED, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.SERVER_STARTED, scriptEvent);
         });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             ScriptEvent scriptEvent = ScriptEvent.create(null, null, server.getWorld(World.OVERWORLD), server);
 
-            Mappet.getEvents().event(EventType.SERVER_STOPPED, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.SERVER_STOPPED, scriptEvent);
         });
     }
 
     private static void player() {
         AttackBlockCallback.EVENT.register((player, world, hand, blockPos, direction) -> {
-            if (world.isClient || Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK))
                 return ActionResult.PASS;
+
+            if (world.isClient) {
+                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
+
+                scriptEvent.setValue("hand", modifyHand(hand));
+                scriptEvent.setValue("blockPos", new ScriptVector(blockPos));
+                scriptEvent.setValue("direction", direction.getName());
+
+                Mappet.getEvents().eventClient(EventType.PLAYER_ATTACK_BLOCK, scriptEvent);
+
+                return scriptEvent.getResultType();
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
@@ -76,7 +91,7 @@ public class EventHandler {
             scriptEvent.setValue("blockPos", new ScriptVector(blockPos));
             scriptEvent.setValue("direction", direction.getName());
 
-            Mappet.getEvents().event(EventType.PLAYER_ATTACK_BLOCK, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.PLAYER_ATTACK_BLOCK, scriptEvent);
 
             return scriptEvent.getResultType();
         });
@@ -89,7 +104,7 @@ public class EventHandler {
 
             scriptEvent.setValue("hand", modifyHand(hand));
 
-            Mappet.getEvents().event(EventType.PLAYER_ATTACK_ENTITY, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.PLAYER_ATTACK_ENTITY, scriptEvent);
 
             return scriptEvent.getResultType();
         });
@@ -104,7 +119,7 @@ public class EventHandler {
             scriptEvent.setValue("blockPos", new ScriptVector(blockHitResult.getBlockPos()));
             scriptEvent.setValue("direction", blockHitResult.getSide().getName().toLowerCase());
 
-            Mappet.getEvents().event(EventType.PLAYER_USE_BLOCK, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.PLAYER_USE_BLOCK, scriptEvent);
 
             return scriptEvent.getResultType();
         });
@@ -117,7 +132,7 @@ public class EventHandler {
 
             scriptEvent.setValue("hand", modifyHand(hand));
 
-            Mappet.getEvents().event(EventType.PLAYER_USE_ENTITY, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.PLAYER_USE_ENTITY, scriptEvent);
 
             return scriptEvent.getResultType();
         });
@@ -133,7 +148,7 @@ public class EventHandler {
             scriptEvent.setValue("hand", modifyHand(hand));
             scriptEvent.setValue("item", stack);
 
-            Mappet.getEvents().event(EventType.PLAYER_USE_ITEM, scriptEvent);
+            Mappet.getEvents().eventServer(EventType.PLAYER_USE_ITEM, scriptEvent);
 
             return switch (scriptEvent.getResultType()) {
                 case SUCCESS -> TypedActionResult.success(stack, true);
