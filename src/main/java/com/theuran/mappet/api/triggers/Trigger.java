@@ -38,6 +38,10 @@ public abstract class Trigger extends ValueGroup {
         return this.isServer.get();
     }
 
+    public void changeSide() {
+        this.isServer.set(!this.isServer.get());
+    }
+
     public void resetDelay() {
         this.delay = 1;
     }

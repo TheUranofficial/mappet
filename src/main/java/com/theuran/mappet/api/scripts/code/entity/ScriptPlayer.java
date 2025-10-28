@@ -2,7 +2,6 @@ package com.theuran.mappet.api.scripts.code.entity;
 
 import com.theuran.mappet.api.scripts.code.mappet.MappetStates;
 import com.theuran.mappet.api.scripts.code.bbs.ScriptForm;
-import com.theuran.mappet.api.scripts.user.entity.IScriptPlayer;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
@@ -12,7 +11,7 @@ import mchorse.bbs_mod.morphing.Morph;
 import mchorse.bbs_mod.network.ServerNetwork;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> implements IScriptPlayer {
+public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
     public ScriptPlayer(ServerPlayerEntity entity) {
         super(entity);
     }

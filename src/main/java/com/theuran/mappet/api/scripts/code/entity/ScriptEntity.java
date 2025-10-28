@@ -3,7 +3,6 @@ package com.theuran.mappet.api.scripts.code.entity;
 import com.theuran.mappet.api.scripts.code.ScriptRayTrace;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.api.scripts.code.ScriptWorld;
-import com.theuran.mappet.api.scripts.user.entity.IScriptEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

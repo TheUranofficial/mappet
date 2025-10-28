@@ -3,14 +3,13 @@ package com.theuran.mappet.api.scripts.code;
 import com.theuran.mappet.api.scripts.code.block.ScriptBlockEntity;
 import com.theuran.mappet.api.scripts.code.block.ScriptBlockState;
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
-import com.theuran.mappet.api.scripts.user.IScriptWorld;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
 
-public class ScriptWorld implements IScriptWorld {
+public class ScriptWorld {
     private ServerWorld world;
 
     public ScriptWorld(ServerWorld world) {

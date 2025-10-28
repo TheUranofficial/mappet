@@ -6,10 +6,13 @@ import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.network.packets.server.TriggerEventPacket;
 import com.theuran.mappet.utils.BaseFileManager;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.ListType;
 import mchorse.bbs_mod.data.types.MapType;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,10 +43,11 @@ public class EventManager extends BaseFileManager {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
                 if (trigger.isServer()) {
                     trigger.execute(scriptEvent);
-                    trigger.resetDelay();
-                } else {
+                } else if (scriptEvent.subject.getMinecraftEntity() instanceof ServerPlayerEntity player){
+                    Dispatcher.sendTo(new TriggerEventPacket(eventType, trigger, scriptEvent), player);
 
                 }
+                trigger.resetDelay();
             } else {
                 trigger.delay();
             }
@@ -55,7 +59,11 @@ public class EventManager extends BaseFileManager {
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
-                trigger.execute(scriptEvent);
+                if (!trigger.isServer()) {
+                    trigger.execute(scriptEvent);
+                } else {
+                    Dispatcher.sendToServer(new TriggerEventPacket(eventType, trigger, scriptEvent));
+                }
                 trigger.resetDelay();
             } else {
                 trigger.delay();

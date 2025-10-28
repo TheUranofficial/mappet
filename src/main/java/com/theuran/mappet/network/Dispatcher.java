@@ -30,6 +30,8 @@ public class Dispatcher {
             this.registerPacket(RunScriptPacket.class, RunScriptPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ClientHandler.class, EnvType.CLIENT);
         }
     };
 

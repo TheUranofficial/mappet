@@ -1,12 +1,11 @@
 package com.theuran.mappet.client.api.scripts.code.entity;
 
-import com.theuran.mappet.api.scripts.user.entity.IScriptPlayer;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptOptions;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 
-public class ClientScriptPlayer extends ClientScriptEntity<ClientPlayerEntity> implements IScriptPlayer {
+public class ClientScriptPlayer extends ClientScriptEntity<ClientPlayerEntity> {
     public ClientScriptPlayer(ClientPlayerEntity entity) {
         super(entity);
     }

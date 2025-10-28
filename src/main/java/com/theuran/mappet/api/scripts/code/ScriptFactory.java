@@ -10,7 +10,6 @@ import com.theuran.mappet.api.scripts.code.bbs.ScriptForm;
 import com.theuran.mappet.api.scripts.code.bbs.ScriptTransform;
 import com.theuran.mappet.api.scripts.code.block.ScriptBlockState;
 import com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound;
-import com.theuran.mappet.api.scripts.user.IScriptFactory;
 import com.theuran.mappet.utils.FormUtils;
 import mchorse.bbs_mod.data.DataToString;
 import mchorse.bbs_mod.utils.pose.Transform;
@@ -26,7 +25,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Map;
 
-public class ScriptFactory implements IScriptFactory {
+public class ScriptFactory {
     public ScriptVector vector(double x, double y, double z) {
         return new ScriptVector(x, y, z);
     }

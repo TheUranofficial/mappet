@@ -1,11 +1,10 @@
 package com.theuran.mappet.api.scripts.code;
 
-import com.theuran.mappet.api.scripts.user.IScriptVector;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.joml.Vector3f;
 
-public class ScriptVector implements IScriptVector {
+public class ScriptVector {
     public double x;
     public double y;
     public double z;

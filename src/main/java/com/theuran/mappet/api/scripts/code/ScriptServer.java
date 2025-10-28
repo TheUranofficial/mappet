@@ -2,11 +2,10 @@ package com.theuran.mappet.api.scripts.code;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.mappet.MappetStates;
-import com.theuran.mappet.api.scripts.user.IScriptServer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
 
-public class ScriptServer implements IScriptServer {
+public class ScriptServer {
     private MinecraftServer server;
 
     public ScriptServer(MinecraftServer server) {

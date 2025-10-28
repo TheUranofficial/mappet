@@ -105,6 +105,12 @@ public class Mappet implements ModInitializer {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             Dispatcher.sendTo(new HandshakeS2CPacket(), handler.getPlayer());
             Mappet.getScripts().sendClientScripts(handler.getPlayer());
+
+            ScriptTrigger scriptTrigger = new ScriptTrigger("lox", "main");
+
+            scriptTrigger.changeSide();
+
+            Mappet.getEvents().addTriggerToEvent(EventType.PLAYER_USE_BLOCK, scriptTrigger);
         });
 
         MappetServerNetwork.setup();
