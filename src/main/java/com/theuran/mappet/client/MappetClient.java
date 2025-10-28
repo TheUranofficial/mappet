@@ -1,10 +1,13 @@
 package com.theuran.mappet.client;
 
 import com.theuran.mappet.Mappet;
+import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
+import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.MappetClientNetwork;
+import com.theuran.mappet.network.packets.server.RunScriptPacket;
 import mchorse.bbs_mod.BBSSettings;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.ui.framework.UIScreen;
@@ -23,6 +26,7 @@ public class MappetClient implements ClientModInitializer {
     private static UIMappetDashboard dashboard;
 
     private static KeyBinding keyDashboard;
+    private static KeyBinding keyRunScript;
 
     private static L10n l10n;
 
@@ -48,12 +52,20 @@ public class MappetClient implements ClientModInitializer {
         l10n.reload(BBSSettings.language.get(), Mappet.getProvider());
 
         keyDashboard = this.createKey("dashboard", GLFW.GLFW_KEY_EQUAL);
+        keyRunScript = this.createKey("runScript", GLFW.GLFW_KEY_F6);
 
         scripts = new ClientScriptManager();
 
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             while (keyDashboard.wasPressed()) {
                 UIScreen.open(MappetClient.getDashboard());
+            }
+            while (keyRunScript.wasPressed()) {
+                Script data = dashboard.getPanel(UIScriptPanel.class).getData();
+
+                if (data != null) {
+                    Dispatcher.sendToServer(new RunScriptPacket(data.getId(), "main", data.getContent()));
+                }
             }
         });
 
@@ -67,7 +79,7 @@ public class MappetClient implements ClientModInitializer {
     }
 
     public KeyBinding createKey(String id, int key) {
-        return KeyBindingHelper.registerKeyBinding(new KeyBinding("key.mappet." + id, InputUtil.Type.KEYSYM, key, "category.mappet.main"));
+        return KeyBindingHelper.registerKeyBinding(new KeyBinding("mappet.key." + id, InputUtil.Type.KEYSYM, key, "mappet.config.title"));
     }
 
     public static ClientScriptManager getScripts() {
