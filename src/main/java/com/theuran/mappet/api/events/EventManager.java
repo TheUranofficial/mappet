@@ -51,15 +51,7 @@ public class EventManager extends BaseFileManager {
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
-                if(trigger instanceof ScriptTrigger scriptTrigger) {
-                    scriptEvent.setScript(scriptTrigger.script.get());
-                    scriptEvent.setFunction(scriptTrigger.function.get());
-
-                    try {
-                        MappetClient.getScripts().getScript(scriptTrigger.script.get()).execute(scriptEvent);
-                    } catch (JavetException ignored) {
-                    }
-                }
+                trigger.execute(scriptEvent);
                 trigger.resetDelay();
             } else {
                 trigger.delay();

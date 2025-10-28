@@ -1,6 +1,7 @@
 package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
@@ -17,7 +18,13 @@ public abstract class Trigger extends ValueGroup {
         this.add(this.maxDelay);
     }
 
-    public abstract void execute(ScriptEvent scriptEvent);
+    public void execute(ScriptEvent scriptEvent) {
+
+    }
+
+    public void execute(ClientScriptEvent scriptEvent) {
+
+    }
 
     public abstract String getTriggerId();
 

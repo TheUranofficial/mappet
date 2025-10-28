@@ -3,6 +3,8 @@ package com.theuran.mappet.api.triggers;
 import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
+import com.theuran.mappet.client.MappetClient;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 
 public class ScriptTrigger extends Trigger {
@@ -27,6 +29,17 @@ public class ScriptTrigger extends Trigger {
             scriptEvent.setFunction(this.function.get());
             Mappet.getScripts().getScript(this.script.get()).execute(scriptEvent);
         } catch (JavetException ignored) {
+        }
+    }
+
+    @Override
+    public void execute(ClientScriptEvent scriptEvent) {
+        try {
+            scriptEvent.setScript(this.script.get());
+            scriptEvent.setFunction(this.function.get());
+            MappetClient.getScripts().getScript(this.script.get()).execute(scriptEvent);
+        } catch (JavetException ignored) {
+
         }
     }
 
