@@ -54,7 +54,7 @@ public class States implements INBTSerializable {
     }
 
     public boolean has(String key) {
-        return this.values.elements.containsKey(key);
+        return this.values.has(key);
     }
 
     public void remove(String key) {

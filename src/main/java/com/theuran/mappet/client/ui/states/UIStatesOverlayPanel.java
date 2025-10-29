@@ -1,5 +1,6 @@
 package com.theuran.mappet.client.ui.states;
 
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
@@ -16,16 +17,13 @@ public class UIStatesOverlayPanel extends UIOverlayPanel {
         super(UIMappetKeys.STATES_TITLE);
 
         this.states = new UIStates();
-        this.states.full(this.content);
+        this.states.set(Mappet.getStates().get()).full(this.content);
 
-        this.addIcon = new UIIcon(Icons.ADD, icon -> {
-            this.states.add(new UIState(""));
-            this.resize();
-        });
+        this.addIcon = new UIIcon(Icons.ADD, icon -> this.states.addNew());
         this.addIcon.tooltip(UIMappetKeys.STATES_ADD, Direction.LEFT);
         this.addIcon.context(this::addContext);
 
-        this.content.context(this::addContext);
+        this.states.context(this::addContext);
 
         this.searchIcon = new UIIcon(Icons.SEARCH, icon -> {
         });
@@ -38,10 +36,7 @@ public class UIStatesOverlayPanel extends UIOverlayPanel {
     }
 
     private void addContext(ContextMenuManager menu) {
-        menu.action(Icons.ADD, UIMappetKeys.STATES_ADD, () -> {
-            this.states.add(new UIState(""));
-            this.resize();
-        });
+        menu.action(Icons.ADD, UIMappetKeys.STATES_ADD, () -> this.states.addNew());
         menu.action(Icons.FOLDER, UIMappetKeys.STATES_ADD_GROUP, null);
     }
 }
