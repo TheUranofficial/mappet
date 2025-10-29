@@ -1,10 +1,8 @@
 package com.theuran.mappet.api.events;
 
-import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.triggers.Trigger;
-import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.TriggerEventPacket;

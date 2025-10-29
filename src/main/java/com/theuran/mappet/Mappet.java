@@ -105,7 +105,7 @@ public class Mappet implements ModInitializer {
 
             scriptTrigger.changeSide();
 
-            Mappet.getEvents().addTriggerToEvent(EventType.PLAYER_USE_BLOCK, scriptTrigger);
+            //Mappet.getEvents().addTriggerToEvent(EventType.PLAYER_USE_BLOCK, scriptTrigger);
         });
 
         CommandRegistrationCallback.EVENT.register(MappetCommands::register);
