@@ -21,6 +21,7 @@ public class RunScriptPacket extends AbstractPacket {
     private String script;
     private String function;
     private String content;
+    private boolean update;
 
     public RunScriptPacket() {}
 
@@ -28,12 +29,14 @@ public class RunScriptPacket extends AbstractPacket {
         this.script = script;
         this.function = function;
         this.content = content;
+        this.update = true;
     }
 
     public RunScriptPacket(String script, String function) {
         this.script = script;
         this.function = function;
         this.content = "";
+        this.update = false;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class RunScriptPacket extends AbstractPacket {
         buf.writeString(script);
         buf.writeString(function);
         buf.writeString(content);
+        buf.writeBoolean(update);
     }
 
     @Override
@@ -48,13 +52,15 @@ public class RunScriptPacket extends AbstractPacket {
         this.script = buf.readString();
         this.function = buf.readString();
         this.content = buf.readString();
+        this.update = buf.readBoolean();
     }
 
     public static class ServerHandler implements ServerPacketHandler<RunScriptPacket> {
         @Override
         public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, RunScriptPacket packet) {
             try {
-                Mappet.getScripts().updateLoadedScript(packet.script, packet.content);
+                if (packet.update)
+                    Mappet.getScripts().updateLoadedScript(packet.script, packet.content);
 
                 Mappet.getScripts().execute(ScriptEvent.create(packet.script, packet.function, player, null, player.getServerWorld(), server));
             } catch (JavetException e) {
@@ -69,7 +75,7 @@ public class RunScriptPacket extends AbstractPacket {
         @Override
         public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, RunScriptPacket packet) {
             try {
-                MappetClient.getScripts().getScript(packet.script).execute(ClientScriptEvent.create(packet.script, packet.function, client.player, null, client.player.clientWorld));
+                MappetClient.getScripts().execute(ClientScriptEvent.create(packet.script, packet.function, client.player, null, client.player.clientWorld));
             } catch (JavetException e) {
                 String message = e.getLocalizedMessage();
 

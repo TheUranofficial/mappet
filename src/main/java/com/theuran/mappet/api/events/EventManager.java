@@ -39,12 +39,7 @@ public class EventManager extends BaseFileManager {
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
-                if (trigger.isServer()) {
-                    trigger.execute(scriptEvent);
-                } else if (scriptEvent.subject.getMinecraftEntity() instanceof ServerPlayerEntity player){
-                    Dispatcher.sendTo(new TriggerEventPacket(eventType, trigger, scriptEvent), player);
-
-                }
+                trigger.execute(scriptEvent);
                 trigger.resetDelay();
             } else {
                 trigger.delay();
@@ -57,11 +52,7 @@ public class EventManager extends BaseFileManager {
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
-                if (!trigger.isServer()) {
-                    trigger.execute(scriptEvent);
-                } else {
-                    Dispatcher.sendToServer(new TriggerEventPacket(eventType, trigger, scriptEvent));
-                }
+                trigger.execute(scriptEvent);
                 trigger.resetDelay();
             } else {
                 trigger.delay();

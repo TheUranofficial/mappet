@@ -19,7 +19,7 @@ public class ClientScriptEvent {
 
     private Map<String, Object> values = new HashMap<>();
 
-    private ActionResult resultType = ActionResult.SUCCESS;
+    private ActionResult resultType = ActionResult.PASS;
 
     public ClientScriptEvent(String script, String function, ClientScriptEntity subject, ClientScriptEntity object, ClientScriptWorld world) {
         this.script = script;

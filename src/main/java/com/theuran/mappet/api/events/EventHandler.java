@@ -5,10 +5,14 @@ import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.*;
+import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -21,6 +25,7 @@ public class EventHandler {
     public static void init() {
         entity();
         server();
+        client();
         player();
     }
 
@@ -68,22 +73,51 @@ public class EventHandler {
         });
     }
 
-    private static void player() {
-        AttackBlockCallback.EVENT.register((player, world, hand, blockPos, direction) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK))
-                return ActionResult.PASS;
+    private static void client() {
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            ClientScriptEvent scriptEvent = ClientScriptEvent.create(client.player, null, client.world);
 
+            Mappet.getEvents().eventClient(EventType.CLIENT_TICK, scriptEvent);
+        });
+    }
+
+    private static void player() {
+        ServerPlayConnectionEvents.JOIN.register((networkHandler, packetSender, server) -> {
+            ScriptEvent scriptEvent = ScriptEvent.create(networkHandler.player, null, networkHandler.player.getServerWorld(), server);
+
+            Mappet.getEvents().eventServer(EventType.PLAYER_JOIN, scriptEvent);
+        });
+
+        ServerPlayConnectionEvents.DISCONNECT.register((networkHandler, server) -> {
+            ScriptEvent scriptEvent = ScriptEvent.create(networkHandler.player, null, networkHandler.player.getServerWorld(), server);
+
+            Mappet.getEvents().eventServer(EventType.PLAYER_DISCONNECT, scriptEvent);
+        });
+
+        ServerMessageEvents.CHAT_MESSAGE.register((signedMessage, player, parameters) -> {
+            ScriptEvent scriptEvent = ScriptEvent.create(player, null, player.getServerWorld(), player.getServer());
+
+            Mappet.getEvents().eventServer(EventType.SERVER_CHAT_MESSAGE, scriptEvent);
+        });
+
+        AttackBlockCallback.EVENT.register((player, world, hand, blockPos, direction) -> {
             if (world.isClient) {
+                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_PLAYER_ATTACK_BLOCK))
+                    return ActionResult.PASS;
+
                 ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
 
                 scriptEvent.setValue("hand", modifyHand(hand));
                 scriptEvent.setValue("blockPos", new ScriptVector(blockPos));
                 scriptEvent.setValue("direction", direction.getName());
 
-                Mappet.getEvents().eventClient(EventType.PLAYER_ATTACK_BLOCK, scriptEvent);
+                Mappet.getEvents().eventClient(EventType.CLIENT_PLAYER_ATTACK_BLOCK, scriptEvent);
 
                 return scriptEvent.getResultType();
             }
+
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK))
+                return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
@@ -97,7 +131,20 @@ public class EventHandler {
         });
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (world.isClient || Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_ENTITY))
+            if (world.isClient) {
+                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_PLAYER_ATTACK_ENTITY))
+                    return ActionResult.PASS;
+
+                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, entity, (ClientWorld) world);
+
+                scriptEvent.setValue("hand", modifyHand(hand));
+
+                Mappet.getEvents().eventClient(EventType.CLIENT_PLAYER_ATTACK_ENTITY, scriptEvent);
+
+                return scriptEvent.getResultType();
+            }
+
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_ENTITY))
                 return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, entity, (ServerWorld) world, player.getServer());
@@ -110,7 +157,22 @@ public class EventHandler {
         });
 
         UseBlockCallback.EVENT.register((player, world, hand, blockHitResult) -> {
-            if (world.isClient || Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_BLOCK))
+            if (world.isClient) {
+                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_PLAYER_USE_BLOCK))
+                    return ActionResult.PASS;
+
+                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
+
+                scriptEvent.setValue("hand", modifyHand(hand));
+                scriptEvent.setValue("blockPos", new ScriptVector(blockHitResult.getBlockPos()));
+                scriptEvent.setValue("direction", blockHitResult.getSide().getName().toLowerCase());
+
+                Mappet.getEvents().eventClient(EventType.CLIENT_PLAYER_USE_BLOCK, scriptEvent);
+
+                return scriptEvent.getResultType();
+            }
+
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_BLOCK))
                 return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
@@ -125,7 +187,20 @@ public class EventHandler {
         });
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (world.isClient || Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ENTITY))
+            if (world.isClient) {
+                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_PLAYER_USE_ENTITY))
+                    return ActionResult.PASS;
+
+                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
+
+                scriptEvent.setValue("hand", modifyHand(hand));
+
+                Mappet.getEvents().eventClient(EventType.CLIENT_PLAYER_USE_ENTITY, scriptEvent);
+
+                return scriptEvent.getResultType();
+            }
+
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ENTITY))
                 return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
@@ -138,25 +213,32 @@ public class EventHandler {
         });
 
         UseItemCallback.EVENT.register((player, world, hand) -> {
-            if(world.isClient || Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ITEM))
-                return TypedActionResult.pass(player.getStackInHand(hand));
+            ItemStack stack = player.getStackInHand(hand);
+            if (world.isClient) {
+                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_PLAYER_USE_ITEM))
+                    return TypedActionResult.pass(player.getStackInHand(hand));
+
+                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
+
+                scriptEvent.setValue("hand", modifyHand(hand));
+                scriptEvent.setValue("item", stack);
+
+                Mappet.getEvents().eventClient(EventType.CLIENT_PLAYER_USE_ITEM, scriptEvent);
+
+                return new TypedActionResult<>(scriptEvent.getResultType(), stack);
+            }
+
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ITEM))
+                return new TypedActionResult<>(ActionResult.PASS, stack);
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
-
-            ItemStack stack = player.getStackInHand(hand);
 
             scriptEvent.setValue("hand", modifyHand(hand));
             scriptEvent.setValue("item", stack);
 
             Mappet.getEvents().eventServer(EventType.PLAYER_USE_ITEM, scriptEvent);
 
-            return switch (scriptEvent.getResultType()) {
-                case SUCCESS -> TypedActionResult.success(stack, true);
-                case CONSUME_PARTIAL -> TypedActionResult.success(stack, false);
-                case CONSUME -> TypedActionResult.consume(stack);
-                case FAIL -> TypedActionResult.fail(stack);
-                case PASS -> TypedActionResult.pass(stack);
-            };
+            return new TypedActionResult<>(scriptEvent.getResultType(), stack);
         });
     }
 
