@@ -1,5 +1,6 @@
 package com.theuran.mappet.api.scripts.code;
 
+import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
 import net.minecraft.entity.Entity;
@@ -107,7 +108,16 @@ public class ScriptEvent {
     }
 
     public void scheduleScript(String script, String function, int ticks) {
-        Mappet.getExecutables().addExecutable(ticks, script, function, this);
+        ScriptEvent scriptEvent = this.copy();
+        scriptEvent.setScript(script);
+        scriptEvent.setFunction(function);
+
+        Mappet.getExecutables().addExecutable(ticks, () -> {
+            try {
+                Mappet.getScripts().execute(scriptEvent);
+            } catch (JavetException ignored) {
+            }
+        });
     }
 
     public void setResultType(ActionResult resultType) {
@@ -132,5 +142,14 @@ public class ScriptEvent {
 
     public void fail() {
         this.resultType = ActionResult.FAIL;
+    }
+
+    public ScriptEvent copy() {
+        ScriptEvent scriptEvent = new ScriptEvent(this.script, this.function, this.subject, this.object, this.world, this.server);
+
+        scriptEvent.setResultType(this.getResultType());
+        scriptEvent.setValues(this.getValues());
+
+        return scriptEvent;
     }
 }

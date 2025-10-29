@@ -1,27 +1,16 @@
 package com.theuran.mappet.api.executables;
 
-import com.theuran.mappet.api.scripts.code.ScriptEvent;
-
 public class Executable {
     private int ticks;
-    private final ScriptEvent scriptEvent;
-    private String script = "";
-    private String function = "";
-    private String code = "";
+    private final Runnable runnable;
 
-    public Executable(int ticks, String script, String function, ScriptEvent scriptEvent) {
+    public Executable(int ticks, Runnable runnable) {
         this.ticks = ticks;
-        this.script = script;
-        this.function = function;
-        this.scriptEvent = scriptEvent;
-        this.scriptEvent.setScript(this.script);
-        this.scriptEvent.setFunction(this.function);
+        this.runnable = runnable;
     }
 
-    public Executable(int ticks, String code, ScriptEvent scriptEvent) {
-        this.ticks = ticks;
-        this.code = code;
-        this.scriptEvent = scriptEvent;
+    public void run() {
+        this.runnable.run();
     }
 
     public int getTicks() {
@@ -30,21 +19,5 @@ public class Executable {
 
     public void removeTick() {
         this.ticks -= 1;
-    }
-
-    public ScriptEvent getScriptEvent() {
-        return this.scriptEvent;
-    }
-
-    public String getScript() {
-        return this.script;
-    }
-
-    public String getFunction() {
-        return this.function;
-    }
-
-    public String getCode() {
-        return this.code;
     }
 }

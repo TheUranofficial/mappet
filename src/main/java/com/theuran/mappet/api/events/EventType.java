@@ -1,5 +1,8 @@
 package com.theuran.mappet.api.events;
 
+import mchorse.bbs_mod.l10n.L10n;
+import mchorse.bbs_mod.l10n.keys.IKey;
+
 public enum EventType {
     ENTITY_DEATH,
     ENTITY_DAMAGE,
@@ -7,9 +10,13 @@ public enum EventType {
     SERVER_TICK,
     SERVER_STARTED,
     SERVER_STOPPED,
-    SERVER_CHAT_MESSAGE,
 
     CLIENT_TICK,
+    CLIENT_ATTACK_BLOCK,
+    CLIENT_ATTACK_ENTITY,
+    CLIENT_USE_BLOCK,
+    CLIENT_USE_ENTITY,
+    CLIENT_USE_ITEM,
 
     PLAYER_ATTACK_BLOCK,
     PLAYER_ATTACK_ENTITY,
@@ -18,11 +25,17 @@ public enum EventType {
     PLAYER_USE_ITEM,
     PLAYER_JOIN,
     PLAYER_DISCONNECT,
-    PLAYER_PICKUP_ITEM,
+    PLAYER_CHAT_MESSAGE;
 
-    CLIENT_PLAYER_ATTACK_BLOCK,
-    CLIENT_PLAYER_ATTACK_ENTITY,
-    CLIENT_PLAYER_USE_BLOCK,
-    CLIENT_PLAYER_USE_ENTITY,
-    CLIENT_PLAYER_USE_ITEM
+    public IKey getName() {
+        return L10n.lang("mappet.events.name."+this.name().toLowerCase().replace("_", "."));
+    }
+
+    public IKey getDescription() {
+        return L10n.lang("mappet.events.description."+this.name().toLowerCase().replace("_", "."));
+    }
+
+    public IKey getVariables() {
+        return L10n.lang("mappet.events.variables."+this.name().toLowerCase().replace("_", "."));
+    }
 }

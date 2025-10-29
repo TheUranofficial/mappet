@@ -17,5 +17,81 @@
   "mappet.ui.builder.title": "UI Билдер",
   "mappet.ui.builder.elementpanel.title": "Панель элементов",
   "mappet.ui.builder.elementadd.tooltip": "Добавить элемент",
-  "mappet.ui.script.tooltip": "Редактор UI скрипта"
+  "mappet.ui.script.tooltip": "Редактор UI скрипта",
+
+  "mappet.events.name.entity.death": "Сущность: при смерти",
+  "mappet.events.description.entity.death": "Description",
+  "mappet.events.variables.entity.death": "Variables",
+
+  "mappet.events.name.entity.damage": "Сущность: при получении урона",
+  "mappet.events.description.entity.damage": "Description",
+  "mappet.events.variables.entity.damage": "Variables",
+
+  "mappet.events.name.server.tick": "Сервер: тик",
+  "mappet.events.description.server.tick": "Description",
+  "mappet.events.variables.server.tick": "Variables",
+
+  "mappet.events.name.server.started": "Сервер: при включении",
+  "mappet.events.description.server.started": "Description",
+  "mappet.events.variables.server.started": "Variables",
+
+  "mappet.events.name.server.stopped": "Сервер: при выключении",
+  "mappet.events.description.server.stopped": "Description",
+  "mappet.events.variables.server.stopped": "Variables",
+
+  "mappet.events.name.player.chat.message": "Игрок: при сообщении в чате",
+  "mappet.events.description.player.chat.message": "Description",
+  "mappet.events.variables.player.chat.message": "Variables",
+
+  "mappet.events.name.client.tick": "Клиент: тик",
+  "mappet.events.description.client.tick": "Description",
+  "mappet.events.variables.client.tick": "Variables",
+
+  "mappet.events.name.player.attack.block": "Игрок: при атаке блока",
+  "mappet.events.description.player.attack.block": "Description",
+  "mappet.events.variables.player.attack.block": "Variables",
+
+  "mappet.events.name.player.attack.entity": "Игрок: при атаке сущности",
+  "mappet.events.description.player.attack.entity": "Description",
+  "mappet.events.variables.player.attack.entity": "Variables",
+
+  "mappet.events.name.player.use.block": "Игрок: при взаимодейтсвии с блоком",
+  "mappet.events.description.player.use.block": "Description",
+  "mappet.events.variables.player.use.block": "Variables",
+
+  "mappet.events.name.player.use.entity": "Игрок: при взаимодействии с сущностью",
+  "mappet.events.description.player.use.entity": "Description",
+  "mappet.events.variables.player.use.entity": "Variables",
+
+  "mappet.events.name.player.use.item": "Игрок: при взаимодействии с предметом",
+  "mappet.events.description.player.use.item": "Description",
+  "mappet.events.variables.player.use.item": "Variables",
+
+  "mappet.events.name.player.join": "Игрок: при входе",
+  "mappet.events.description.player.join": "Description",
+  "mappet.events.variables.player.join": "Variables",
+
+  "mappet.events.name.player.disconnect": "Игрок: при выходе",
+  "mappet.events.description.player.disconnect": "Description",
+  "mappet.events.variables.player.disconnect": "Variables",
+
+  "mappet.events.name.client.attack.block": "Клиент: при атаке блока",
+  "mappet.events.description.client.attack.block": "Description",
+  "mappet.events.variables.client.attack.block": "Variables",
+
+  "mappet.events.name.client.attack.entity": "Клиент: при атаке сущности",
+  "mappet.events.description.client.attack.entity": "Description",
+  "mappet.events.variables.client.attack.entity": "Variables",
+
+  "mappet.events.name.client.use.block": "Клиент: при взаимодействии с блоком",
+  "mappet.events.description.client.use.block": "Description",
+  "mappet.events.variables.client.use.block": "Variables",
+
+  "mappet.events.name.client.use.entity": "Клиент: при взаимодействии с сущностью",
+  "mappet.events.description.client.use.entity": "Description",
+  "mappet.events.variables.client.use.entity": "Variables",
+
+  "mappet.events.name.client.use.item": "Клиент: при взаимодействии с предметом",
+  "mappet.events.description.client.use.item": "Description",
+  "mappet.events.variables.client.use.item": "Variables"
 }

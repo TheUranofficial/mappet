@@ -1,10 +1,17 @@
 package com.theuran.mappet.api.scripts.code.entity;
 
+import com.theuran.mappet.Mappet;
+import com.theuran.mappet.api.executables.Executable;
 import com.theuran.mappet.api.scripts.code.ScriptRayTrace;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.api.scripts.code.ScriptWorld;
+import mchorse.bbs_mod.utils.interps.IInterp;
+import mchorse.bbs_mod.utils.interps.Interpolation;
+import mchorse.bbs_mod.utils.interps.Interpolations;
+import mchorse.bbs_mod.utils.interps.Lerps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.registry.Registries;
@@ -443,5 +450,38 @@ public class ScriptEntity <T extends Entity> {
         float f4 = MathHelper.cos(f2);
         float f6 = MathHelper.cos(f1);
         return new ScriptVector(f3 * f6, this.entity.getRotationVector().y, f4 * f6);
+    }
+
+    public void moveTo(String interpolation, int durationTicks, double x, double y, double z) {
+        IInterp interp = Interpolations.get(interpolation);
+        double startX = this.entity.getPos().x;
+        double startY = this.entity.getPos().y;
+        double startZ = this.entity.getPos().z;
+
+        for (int i = 0; i < durationTicks; i++) {
+            double progress = (double) i / (double) durationTicks;
+            double interpX = interp.interpolate(startX, x, progress);
+            double interpY = interp.interpolate(startY, y, progress);
+            double interpZ = interp.interpolate(startZ, z, progress);
+
+            Mappet.getExecutables().addExecutable(i, () -> this.setPosition(interpX, interpY, interpZ));
+        }
+    }
+
+    public void rotateTo(String interpolation, int durationTicks, double pitch, double yaw, double headYaw) {
+        IInterp interp = Interpolations.get(interpolation);
+        double startPitch = this.getRotations().x;
+        double startYaw = this.getRotations().y;
+        double startHeadYaw = this.getRotations().z;
+
+        for (int i = 0; i < durationTicks; i++)
+        {
+            double progress = (double) i / (double) durationTicks;
+            double interpPitch = interp.interpolate(startPitch, pitch, progress);
+            double interpYaw = interp.interpolate(startYaw, yaw, progress);
+            double interpHeadYaw = interp.interpolate(startHeadYaw, headYaw, progress);
+
+            Mappet.getExecutables().addExecutable(i, () -> this.setPosition(interpPitch, interpYaw, interpHeadYaw));
+        }
     }
 }

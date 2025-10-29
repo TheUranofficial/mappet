@@ -3,7 +3,6 @@ package com.theuran.mappet.client.api.scripts.code.entity;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptOptions;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 

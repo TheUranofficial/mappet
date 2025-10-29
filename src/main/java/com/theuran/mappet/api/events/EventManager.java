@@ -1,18 +1,13 @@
 package com.theuran.mappet.api.events;
 
-import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.triggers.Trigger;
-import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
-import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.TriggerEventPacket;
 import com.theuran.mappet.utils.BaseFileManager;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.ListType;
 import mchorse.bbs_mod.data.types.MapType;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,7 +17,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class EventManager extends BaseFileManager {
-    public Map<String, List<Trigger>> events;
+    public Map<EventType, List<Trigger>> events;
 
     public EventManager(Supplier<File> file) {
         super(file);
@@ -32,12 +27,10 @@ public class EventManager extends BaseFileManager {
         for (EventType eventType : EventType.values()) {
             this.registerEvent(eventType);
         }
-
-        //this.addTriggerToEvent(EventType.PLAYER_USE_BLOCK, new ScriptTrigger("lox", "main"));
     }
 
     public void eventServer(EventType eventType, ScriptEvent scriptEvent) {
-        List<Trigger> triggers = this.events.get(eventType.name().toLowerCase());
+        List<Trigger> triggers = this.events.get(eventType);
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
@@ -50,7 +43,7 @@ public class EventManager extends BaseFileManager {
     }
 
     public void eventClient(EventType eventType, ClientScriptEvent scriptEvent) {
-        List<Trigger> triggers = this.events.get(eventType.name().toLowerCase());
+        List<Trigger> triggers = this.events.get(eventType);
 
         for (Trigger trigger : triggers) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
@@ -63,17 +56,17 @@ public class EventManager extends BaseFileManager {
     }
 
     public void addTriggerToEvent(EventType eventType, Trigger trigger) {
-        List<Trigger> triggers = this.events.get(eventType.name().toLowerCase());
+        List<Trigger> triggers = this.events.get(eventType);
 
         triggers.add(trigger);
     }
 
     public boolean noTriggersInEvent(EventType eventType) {
-        return this.events.get(eventType.name().toLowerCase()).isEmpty();
+        return this.events.get(eventType).isEmpty();
     }
 
     private void registerEvent(EventType eventType) {
-        this.events.put(eventType.name().toLowerCase(), new ArrayList<>());
+        this.events.put(eventType, new ArrayList<>());
     }
 
     @Override
@@ -82,11 +75,10 @@ public class EventManager extends BaseFileManager {
             ListType triggerList = new ListType();
 
             triggers.forEach(trigger -> {
-                System.out.println(trigger.toData());
                 triggerList.add(trigger.toData());
             });
 
-            data.put(id, triggerList);
+            data.put(id.name(), triggerList);
         });
     }
 
@@ -103,7 +95,7 @@ public class EventManager extends BaseFileManager {
                 triggerList.add(trigger);
             }
 
-            this.events.put(event.getKey(), triggerList);
+            this.events.put(EventType.valueOf(event.getKey()), triggerList);
         }
     }
 }

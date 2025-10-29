@@ -17,5 +17,81 @@
   "mappet.ui.builder.title": "UI Builder",
   "mappet.ui.builder.element.panel.title": "Elements panel",
   "mappet.ui.builder.element.add.tooltip": "Add element",
-  "mappet.ui.script.tooltip": "UI script editor"
+  "mappet.ui.script.tooltip": "UI script editor",
+  
+  "mappet.events.name.entity.death": "Entity: Death",
+  "mappet.events.description.entity.death": "Description",
+  "mappet.events.variables.entity.death": "Variables",
+  
+  "mappet.events.name.entity.damage": "Entity: Damage",
+  "mappet.events.description.entity.damage": "Description",
+  "mappet.events.variables.entity.damage": "Variables",
+  
+  "mappet.events.name.server.tick": "Server: tick",
+  "mappet.events.description.server.tick": "Description",
+  "mappet.events.variables.server.tick": "Variables",
+
+  "mappet.events.name.server.started": "Server: started",
+  "mappet.events.description.server.started": "Description",
+  "mappet.events.variables.server.started": "Variables",
+  
+  "mappet.events.name.server.stopped": "Server: stopped",
+  "mappet.events.description.server.stopped": "Description",
+  "mappet.events.variables.server.stopped": "Variables",
+  
+  "mappet.events.name.player.chat.message": "Player: chat message",
+  "mappet.events.description.player.chat.message": "Description",
+  "mappet.events.variables.player.chat.message": "Variables",
+  
+  "mappet.events.name.client.tick": "Client: tick",
+  "mappet.events.description.client.tick": "Description",
+  "mappet.events.variables.client.tick": "Variables",
+  
+  "mappet.events.name.player.attack.block": "Player: attack block",
+  "mappet.events.description.player.attack.block": "Description",
+  "mappet.events.variables.player.attack.block": "Variables",
+  
+  "mappet.events.name.player.attack.entity": "Player: attack entity",
+  "mappet.events.description.player.attack.entity": "Description",
+  "mappet.events.variables.player.attack.entity": "Variables",
+  
+  "mappet.events.name.player.use.block": "Player: use block",
+  "mappet.events.description.player.use.block": "Description",
+  "mappet.events.variables.player.use.block": "Variables",
+  
+  "mappet.events.name.player.use.entity": "Player: use entity",
+  "mappet.events.description.player.use.entity": "Description",
+  "mappet.events.variables.player.use.entity": "Variables",
+  
+  "mappet.events.name.player.use.item": "Player: use item",
+  "mappet.events.description.player.use.item": "Description",
+  "mappet.events.variables.player.use.item": "Variables",
+  
+  "mappet.events.name.player.join": "Player: join",
+  "mappet.events.description.player.join": "Description",
+  "mappet.events.variables.player.join": "Variables",
+  
+  "mappet.events.name.player.disconnect": "Player: disconnect",
+  "mappet.events.description.player.disconnect": "Description",
+  "mappet.events.variables.player.disconnect": "Variables",
+  
+  "mappet.events.name.client.attack.block": "Client: attack block",
+  "mappet.events.description.client.attack.block": "Description",
+  "mappet.events.variables.client.attack.block": "Variables",
+  
+  "mappet.events.name.client.attack.entity": "Client: attack entity",
+  "mappet.events.description.client.attack.entity": "Description",
+  "mappet.events.variables.client.attack.entity": "Variables",
+  
+  "mappet.events.name.client.use.block": "Client: use block",
+  "mappet.events.description.client.use.block": "Description",
+  "mappet.events.variables.client.use.block": "Variables",
+  
+  "mappet.events.name.client.use.entity": "Client: use entity",
+  "mappet.events.description.client.use.entity": "Description",
+  "mappet.events.variables.client.use.entity": "Variables",
+  
+  "mappet.events.name.client.use.item": "Client: use item",
+  "mappet.events.description.client.use.item": "Description",
+  "mappet.events.variables.client.use.item": "Variables"
 }

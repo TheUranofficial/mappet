@@ -16,14 +16,7 @@ public class ExecutableManager {
                 if (executable.getTicks() != 0) {
                     executable.removeTick();
                 } else {
-                    try {
-                        if (!executable.getCode().isEmpty()) {
-                            Mappet.getScripts().eval(executable.getCode(), executable.getScriptEvent());
-                        } else if (!executable.getScriptEvent().getScript().isEmpty()) {
-                            Mappet.getScripts().getScript(executable.getScript()).execute(executable.getScriptEvent());
-                        }
-                    } catch (JavetException ignored) {
-                    }
+                    executable.run();
 
                     this.executables.remove(executable);
                 }
@@ -31,11 +24,7 @@ public class ExecutableManager {
         });
     }
 
-    public void addExecutable(int ticks, String script, String function, ScriptEvent scriptEvent) {
-        this.executables.add(new Executable(ticks, script, function, scriptEvent));
-    }
-
-    public void addExecutable(int ticks, String code, ScriptEvent scriptEvent) {
-        this.executables.add(new Executable(ticks, code, scriptEvent));
+    public void addExecutable(int ticks, Runnable runnable) {
+        this.executables.add(new Executable(ticks, runnable));
     }
 }
