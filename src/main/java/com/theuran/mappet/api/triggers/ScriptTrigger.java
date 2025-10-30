@@ -27,7 +27,7 @@ public class ScriptTrigger extends Trigger {
         try {
             scriptEvent.setScript(this.script.get());
             scriptEvent.setFunction(this.function.get());
-            Mappet.getScripts().getScript(this.script.get()).execute(scriptEvent);
+            Mappet.getScripts().execute(scriptEvent);
         } catch (JavetException ignored) {
         }
     }
@@ -37,7 +37,7 @@ public class ScriptTrigger extends Trigger {
         try {
             scriptEvent.setScript(this.script.get());
             scriptEvent.setFunction(this.function.get());
-            MappetClient.getScripts().getScript(this.script.get()).execute(scriptEvent);
+            MappetClient.getScripts().execute(scriptEvent);
         } catch (JavetException ignored) {
         }
     }
