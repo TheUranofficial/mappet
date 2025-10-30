@@ -1,4 +1,4 @@
-package com.theuran.mappet.utils;
+package com.theuran.mappet.exceptions;
 
 public class MappetException extends Exception {
 

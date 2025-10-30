@@ -6,7 +6,6 @@ import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.*;
@@ -26,6 +25,7 @@ public class EventHandler {
         server();
         client();
         player();
+
     }
 
     private static void entity() {

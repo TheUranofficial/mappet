@@ -1,7 +1,7 @@
 package com.theuran.mappet.api.scripts.code.block;
 
 import com.theuran.mappet.api.scripts.code.ScriptWorld;
-import com.theuran.mappet.utils.MappetException;
+import com.theuran.mappet.exceptions.MappetException;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;

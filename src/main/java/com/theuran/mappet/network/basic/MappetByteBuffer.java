@@ -1,10 +1,9 @@
-package com.theuran.mappet.utils;
+package com.theuran.mappet.network.basic;
 
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
-import com.theuran.mappet.client.api.scripts.code.entity.ClientScriptEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
