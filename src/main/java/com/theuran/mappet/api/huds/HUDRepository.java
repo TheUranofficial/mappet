@@ -1,6 +1,6 @@
-package com.theuran.mappet.utils.repos;
+package com.theuran.mappet.api.huds;
 
-import com.theuran.mappet.api.huds.HUDScene;
+import com.theuran.mappet.utils.BaseDataRepository;
 import mchorse.bbs_mod.data.types.MapType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

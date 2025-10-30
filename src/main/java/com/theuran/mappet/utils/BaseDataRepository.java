@@ -1,4 +1,4 @@
-package com.theuran.mappet.utils.repos;
+package com.theuran.mappet.utils;
 
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;

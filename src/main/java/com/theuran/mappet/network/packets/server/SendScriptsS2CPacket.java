@@ -4,7 +4,7 @@ import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.basic.ClientPacketHandler;
-import com.theuran.mappet.utils.MappetByteBuffer;
+import com.theuran.mappet.network.basic.MappetByteBuffer;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -35,7 +35,7 @@ public class SendScriptsS2CPacket extends AbstractPacket {
 
     @Override
     public void fromBytes(PacketByteBuf buf) {
-        this.scripts = buf.readList((buffer) -> MappetByteBuffer.readScript(buffer));
+        this.scripts = buf.readList(MappetByteBuffer::readScript);
     }
 
     public static class ClientHandler implements ClientPacketHandler<SendScriptsS2CPacket> {

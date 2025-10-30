@@ -1,6 +1,5 @@
 package com.theuran.mappet.client.ui.scripts;
 
-import com.theuran.mappet.utils.Highlighter;
 import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;
 import mchorse.bbs_mod.utils.colors.Colors;

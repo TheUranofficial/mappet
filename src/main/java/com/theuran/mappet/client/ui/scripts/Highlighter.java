@@ -1,7 +1,6 @@
-package com.theuran.mappet.utils;
+package com.theuran.mappet.client.ui.scripts;
 
 import mchorse.bbs_mod.ui.framework.elements.input.text.highlighting.BaseSyntaxHighlighter;
-import mchorse.bbs_mod.ui.framework.elements.input.text.highlighting.SyntaxStyle;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
