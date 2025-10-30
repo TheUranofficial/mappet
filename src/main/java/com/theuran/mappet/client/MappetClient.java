@@ -2,6 +2,7 @@ package com.theuran.mappet.client;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.Script;
+import com.theuran.mappet.client.api.keybinds.ClientKeybindManager;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
@@ -16,6 +17,8 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
@@ -30,6 +33,7 @@ public class MappetClient implements ClientModInitializer {
     private static L10n l10n;
 
     private static ClientScriptManager scripts;
+    private static ClientKeybindManager keybinds;
 
     public static UIMappetDashboard getDashboard() {
         if (dashboard == null)
@@ -54,6 +58,7 @@ public class MappetClient implements ClientModInitializer {
         keyRunScript = this.createKey("runScript", GLFW.GLFW_KEY_F6);
 
         scripts = new ClientScriptManager();
+        keybinds = new ClientKeybindManager();
 
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             while (keyDashboard.wasPressed()) {
@@ -81,5 +86,9 @@ public class MappetClient implements ClientModInitializer {
 
     public static ClientScriptManager getScripts() {
         return scripts;
+    }
+
+    public static ClientKeybindManager getKeybinds() {
+        return keybinds;
     }
 }

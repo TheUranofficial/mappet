@@ -1,0 +1,3867 @@
+{
+  "classes": [
+    {
+      "name": "com.theuran.mappet.api.scripts.code.bbs.ScriptForm",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "getForm",
+          "doc": "",
+          "returns": {
+            "type": "mchorse.bbs_mod.forms.forms.Form"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setVisible",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "visible",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isVisible",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setAnimatable",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "animatable",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isAnimatable",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setTrackName",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "trackName",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getTrackName",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setLightning",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "lightning",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getLightning",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setName",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "name",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getName",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setTransform",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "transform",
+              "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptTransform"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getTransform",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptTransform"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setTransformOverlay",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "transform",
+              "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptTransform"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getTransformOverlay",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptTransform"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setUIScale",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "uiScale",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getUIScale",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setShaderShadow",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "shaderShadow",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isShaderShadow",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setHitbox",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hitbox",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isHitbox",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setHitboxWidth",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hitboxWidth",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getHitboxWidth",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setHitboxHeight",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hitboxHeight",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getHitboxHeight",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setHitboxSneakMultiplier",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hitboxSneakMultiplier",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getHitboxSneakMultiplier",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setHitboxEyeHeight",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hitboxEyeHeight",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getHitboxEyeHeight",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setHp",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hp",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getHp",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setSpeed",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "speed",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getSpeed",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setStepHeight",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "stepHeight",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getStepHeight",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setHotkey",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hotkey",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getHotkey",
+          "doc": "",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "toNbt",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.bbs.ScriptTransform",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "getTransform",
+          "doc": "",
+          "returns": {
+            "type": "mchorse.bbs_mod.utils.pose.Transform"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setScale",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "float"
+            },
+            {
+              "name": "y",
+              "type": "float"
+            },
+            {
+              "name": "z",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setScale",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "vector",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getScale",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setTranslate",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "float"
+            },
+            {
+              "name": "y",
+              "type": "float"
+            },
+            {
+              "name": "z",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setTranslate",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "vector",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getTranslate",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setRotate",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "float"
+            },
+            {
+              "name": "y",
+              "type": "float"
+            },
+            {
+              "name": "z",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setRotate",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "vector",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getRotate",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setRotate2",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "float"
+            },
+            {
+              "name": "y",
+              "type": "float"
+            },
+            {
+              "name": "z",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setRotate2",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "vector",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getRotate2",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "toString",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.block.ScriptBlockEntity",
+      "doc": "ScriptBlockEntity represents a block entity (tile entity) in the Minecraft world.\n Block entities are special blocks that can store additional data and perform updates, such as chests, furnaces, or custom modded blocks.\n\n Block entities maintain their own state and can interact with the world around them.\n They are positioned at specific coordinates and can store custom data using NBT compounds.",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "getMinecraftTileEntity",
+          "doc": "Returns the underlying Minecraft BlockEntity instance.\n\n This method provides access to the native Minecraft block entity object,\n which can be useful for advanced operations or compatibility with other mods.\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(x, y, z);\n const minecraftBlockEntity \u003d blockEntity.getMinecraftTileEntity();\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "net.minecraft.block.entity.BlockEntity"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getWorld",
+          "doc": "Returns the ScriptWorld instance containing this block entity.\n\n Use this method to access the world for performing operations in the\n context of this block entity\u0027s environment.\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(2, 2, 2);\n const entityWorld \u003d blockEntity.getWorld();\n const blockAbove \u003d entityWorld.getBlock(2, 2 + 1, 2);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptWorld"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getType",
+          "doc": "Returns the identifier type of this block entity.\n\n The type is returned as a string in the format \"namespace:name\",\n e.g., \"minecraft:chest\" or \"minecraft:furnace\"\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(1, 1, 1);\n const entityType \u003d blockEntity.getType();\n if (entityType \u003d\u003d\u003d \"minecraft:chest\") {\n     // Handle chest-specific logic\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getPosition",
+          "doc": "Returns the position of this block entity in the world.\n\n The position is returned as a ScriptVector containing the x, y, and z coordinates.\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(7, 7, 7);\n const pos \u003d blockEntity.getPosition();\n c.server.send(`Block entity is at: ${pos.x}, ${pos.y}, ${pos.z}`, false);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "markDirty",
+          "doc": "Marks this block entity as dirty, forcing a data save and sync.\n\n Call this method after modifying the block entity\u0027s data to ensure\n changes are properly saved and synchronized with clients.\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(6, 6, 6);\n const data \u003d blockEntity.getNbtCompound();\n data.putString(\"customData\", \"newValue\");\n blockEntity.setNbtCompound(data);\n blockEntity.markDirty(); // Ensure changes are saved\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getBlock",
+          "doc": "Returns the ScriptBlockState of the block associated with this block entity.\n\n Use this to access or modify the block\u0027s properties and state.\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(4, 4, 4);\n const blockState \u003d blockEntity.getBlock();\n c.server.send(`Block Id: ${blockState.getId()}`, false);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getNbtCompound",
+          "doc": "Returns the NBT compound containing this block entity\u0027s data.\n\n The NBT compound contains all custom data stored in the block entity.\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(3, 3, 3);\n const nbt \u003d blockEntity.getNbtCompound();\n if (nbt.contains(\"CustomName\")) {\n     const name \u003d nbt.getString(\"CustomName\");\n     c.server.send(`Block entity name: ${name}`, false);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setNbtCompound",
+          "doc": "Sets the NBT compound data for this block entity.\n\n Use this method to update the block entity\u0027s stored data.\n Remember to call markDirty() after setting new data.\n\n \n\u003cpre\u003e\n{@code\n const blockEntity \u003d c.world.getBlockEntity(2, 2, 2);\n const nbt \u003d blockEntity.getNbtCompound();\n nbt.putInt(\"StoredValue\", 42);\n blockEntity.setNbtCompound(nbt);\n blockEntity.markDirty();\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "nbtCompound",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState",
+      "doc": "ScriptBlockState represents the state of a block in the Minecraft world, including its properties, characteristics, and behavior parameters.\n\n \n\u003cpre\u003e\n{@code\n c.getServer().send(mappet.createBlockState(\\\"minecraft:dirt\\\").getId(), false)\n }\n\u003c/pre\u003e",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "create",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState"
+          },
+          "arguments": [
+            {
+              "name": "blockState",
+              "type": "net.minecraft.block.BlockState"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getMinecraftBlockState",
+          "doc": "Returns the underlying Minecraft BlockState instance.\n\n This method provides access to the native Minecraft block state object,\n useful for advanced operations or compatibility with other mods.\n\n \n\u003cpre\u003e\n{@code\n const blockState \u003d c.world.getBlock(1, 1, 1);\n const minecraftState \u003d blockState.getMinecraftBlockState();\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "net.minecraft.block.BlockState"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getId",
+          "doc": "Returns the identifier of this block state.\n\n Returns the block ID in the format \"namespace:name\" (e.g., \"minecraft:stone\").\n\n \n\u003cpre\u003e\n{@code\n const blockState \u003d c.world.getBlock(x, y, z);\n const blockId \u003d blockState.getId();\n c.server.send(`Block ID: ${blockId}`, false);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isSame",
+          "doc": "Checks if this block state is exactly the same as another block state.\n Compares both the block type and all state properties.\n\n \n\u003cpre\u003e\n{@code\n Mappet.createBlockState(\\\"minecraft:dirt\\\").isSame(Mappet.createBlockState(\\\"minecraft:dirt\\\"));\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "state",
+              "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isSameBlock",
+          "doc": "Checks if this block state is of the same block type as another state.\n\n Compares only the block type, ignoring state properties.\n\n \n\u003cpre\u003e\n{@code\n const block1 \u003d c.world.getBlock(x1, y1, z1);\n const block2 \u003d c.world.getBlock(x2, y2, z2);\n if (block1.isSameBlock(block2)) {\n     c.server.send(\"The blocks are of the same type\", false);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "state",
+              "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isOpaque",
+          "doc": "Checks if this block is opaque (fully blocks light).\n\n \n\u003cpre\u003e\n{@code\n const blockState \u003d c.world.getBlock(x, y, z);\n if (blockState.isOpaque()) {\n     c.server.send(\"This block completely blocks light\", false);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isAir",
+          "doc": "Checks if this block state represents air.\n\n \n\u003cpre\u003e\n{@code\n const blockState \u003d c.world.getBlock(x, y, z);\n if (blockState.isAir()) {\n     c.server.send(\"This block is air\", false);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isBurnable",
+          "doc": "Checks if this block can be burned.",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "hasCollision",
+          "doc": "Checks if this block has collision at the specified position.",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "world",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptWorld"
+            },
+            {
+              "name": "x",
+              "type": "int"
+            },
+            {
+              "name": "y",
+              "type": "int"
+            },
+            {
+              "name": "z",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getProperties",
+          "doc": "Returns a list of available property names for this block state.\n\n \n\u003cpre\u003e\n{@code\n const blockState \u003d c.world.getBlock(x, y, z);\n const properties \u003d blockState.getProperties();\n properties.forEach(prop \u003d\u003e {\n     c.server.send(`Property: ${prop}`, false);\n });\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "java.util.List\u003cjava.lang.String\u003e"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getName",
+          "doc": "Returns the name of this block.",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getBlastResistance",
+          "doc": "Returns the blast resistance value of this block.",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getSlipperiness",
+          "doc": "Returns the slipperiness value of this block.\n\n Higher values make entities slide more on the block.",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getHardness",
+          "doc": "Returns the hardness value of this block.\n\n Determines how long it takes to break the block.",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getVelocityMultiplier",
+          "doc": "Returns the velocity multiplier for entities moving on this block.",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getJumpVelocityMultiplier",
+          "doc": "Returns the jump velocity multiplier for entities jumping from this block.",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getProperty",
+          "doc": "Gets the value of a specific block state property.\n\n \n\u003cpre\u003e\n{@code\n const blockState \u003d c.world.getBlock(x, y, z);\n if (blockState.getId() \u003d\u003d\u003d \"minecraft:door\") {\n     const isOpen \u003d blockState.getProperty(\"open\");\n     c.server.send(`Door is open: ${isOpen}`, false);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "java.lang.Object"
+          },
+          "arguments": [
+            {
+              "name": "name",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setProperty",
+          "doc": "Sets the value of a specific block state property.\n\n \n\u003cpre\u003e\n{@code\n const blockState \u003d c.world.getBlock(x, y, z);\n if (blockState.getId() \u003d\u003d\u003d \"minecraft:door\") {\n     blockState.setProperty(\"open\", true);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "name",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "java.lang.Object"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getPropertyByName",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.state.property.Property\u003c?\u003e"
+          },
+          "arguments": [
+            {
+              "name": "name",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setPropertyValueEnum",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "property",
+              "type": "net.minecraft.state.property.Property\u003cE\u003e"
+            },
+            {
+              "name": "value",
+              "type": "T"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setPropertyValue",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "property",
+              "type": "net.minecraft.state.property.Property\u003cT\u003e"
+            },
+            {
+              "name": "value",
+              "type": "T"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.entity.ScriptEntity",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "create",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.entity.ScriptEntity\u003c?\u003e"
+          },
+          "arguments": [
+            {
+              "name": "entity",
+              "type": "net.minecraft.entity.Entity"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getMinecraftEntity",
+          "doc": "",
+          "returns": {
+            "type": "T"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setPosition",
+          "doc": "Sets entity position in the world\n\n \n\u003cpre\u003e\n{@code\n c.getPlayer().setPosition(485, 43, 43);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getPosition",
+          "doc": "Returns the entity\u0027s current position\n\n \n\u003cpre\u003e\n{@code\n var pos \u003d c.getPlayer().getPosition();\n\n c.getPlayer.setPosition(pos.x, pos.y, pos.z);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setRotations",
+          "doc": "Sets the entity\u0027s rotation angles\n\n \n\u003cpre\u003e\n{@code\n c.getPlayer().setRotations(90, 90, 0);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "pitch",
+              "type": "float"
+            },
+            {
+              "name": "yaw",
+              "type": "float"
+            },
+            {
+              "name": "headYaw",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setRotations",
+          "doc": "Sets the entity\u0027s rotation angles including body yaw\n\n \n\u003cpre\u003e\n{@code\n c.getPlayer().setRotations(90, 90, 0, 0);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "pitch",
+              "type": "float"
+            },
+            {
+              "name": "yaw",
+              "type": "float"
+            },
+            {
+              "name": "headYaw",
+              "type": "float"
+            },
+            {
+              "name": "bodyYaw",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getRotations",
+          "doc": "Returns the entity\u0027s current rotation angles\n\n \n\u003cpre\u003e\n{@code\n var rot \u003d c.getPlayer().getRotations();\n\n c.getPlayer().setRotations(rot.x, rot.y, rot.z);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getBodyYaw",
+          "doc": "Returns the entity\u0027s current body yaw angle",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "addVelocity",
+          "doc": "Adds to the entity\u0027s current velocity\n\n \n\u003cpre\u003e\n{@code\n c.getPlayer().addVelocity(0, 1, 0);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setVelocity",
+          "doc": "Sets the entity\u0027s velocity\n\n \n\u003cpre\u003e\n{@code\n c.getPlayer().setVelocity(0, 1, 0);\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getVelocity",
+          "doc": "Returns the entity\u0027s current velocity",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getWorld",
+          "doc": "Returns the world the entity is in",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptWorld"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getDimension",
+          "doc": "Returns the dimension the entity is in",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "swingHand",
+          "doc": "Makes the entity swing the specified hand\n\n \n\u003cpre\u003e\n{@code\n c.getPlayer().swingHand(\"main\");\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "hand",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "damage",
+          "doc": "Applies damage to the entity",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "damage",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getDistanceTraveled",
+          "doc": "Returns the total distance the entity has traveled",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getId",
+          "doc": "Returns the entity\u0027s unique identifier",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getName",
+          "doc": "Returns the entity\u0027s name",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getFacing",
+          "doc": "Returns the direction the entity is facing",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getWidth",
+          "doc": "Returns the entity\u0027s width",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getHeight",
+          "doc": "Returns the entity\u0027s height",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isPlayer",
+          "doc": "Checks if the entity is a player",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setGlowing",
+          "doc": "Sets whether the entity is glowing",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "isGlowing",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isGlowing",
+          "doc": "Checks if the entity is glowing",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getMovementSpeed",
+          "doc": "Returns the entity\u0027s movement speed",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setMovementSpeed",
+          "doc": "Sets the entity\u0027s movement speed",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "movementSpeed",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getRotationVector",
+          "doc": "Returns the entity\u0027s rotation as a vector",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getHealth",
+          "doc": "Returns the entity\u0027s current health",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getMaxHealth",
+          "doc": "Returns the entity\u0027s maximum health",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getArmor",
+          "doc": "Returns the entity\u0027s armor value",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setSneaking",
+          "doc": "Sets whether the entity is sneaking",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "sneaking",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isSneaking",
+          "doc": "Checks if the entity is sneaking",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setSprinting",
+          "doc": "Sets whether the entity is sprinting",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "sprinting",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isSprinting",
+          "doc": "Checks if the entity is sprinting",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isTouchingWater",
+          "doc": "Checks if the entity is touching water",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isInLava",
+          "doc": "Checks if the entity is in lava",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isBurning",
+          "doc": "Checks if the entity is on fire",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setBurning",
+          "doc": "Sets the entity on fire for the specified number of ticks",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "ticks",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isOnGround",
+          "doc": "Checks if the entity is on the ground",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "kill",
+          "doc": "Kills the entity",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "remove",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getUUID",
+          "doc": "Returns the entity\u0027s UUID",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getEyeHeight",
+          "doc": "Returns the height of the entity\u0027s eyes above its feet",
+          "returns": {
+            "type": "double"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getEyePos",
+          "doc": "Returns the position of the entity\u0027s eyes",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "rayTraceBlock",
+          "doc": "Performs a ray trace for blocks from the entity\u0027s eyes\n\n \n\u003cpre\u003e\n{@code\n function main(c) {\n     let player \u003d c.getPlayer();\n     let rayTrace \u003d player.rayTraceBlock(10, false);\n\n     c.getServer().send(rayTrace.getBlockSide(), false);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptRayTrace"
+          },
+          "arguments": [
+            {
+              "name": "maxDistance",
+              "type": "double"
+            },
+            {
+              "name": "includesFluids",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "rayTraceEntity",
+          "doc": "Performs a ray trace for entities from the entity\u0027s eyes\n\n \n\u003cpre\u003e\n{@code\n function main(c) {\n     let player \u003d c.getPlayer();\n     let rayTrace \u003d player.rayTraceEntity(10);\n\n     c.getServer().send(rayTrace.getEntity().setVelocity(0, 1, 0), false);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptRayTrace"
+          },
+          "arguments": [
+            {
+              "name": "maxDistance",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getLook",
+          "doc": "Returns the direction the entity is looking as a vector\n\n \n\u003cpre\u003e\n{@code\n function main(c) {\n     let player \u003d c.getPlayer();\n     let look \u003d player.getLook();\n\n     player.setVelocity(look.x, look.y, look.z);\n }\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "moveTo",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "interpolation",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "durationTicks",
+              "type": "int"
+            },
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "rotateTo",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "interpolation",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "durationTicks",
+              "type": "int"
+            },
+            {
+              "name": "pitch",
+              "type": "double"
+            },
+            {
+              "name": "yaw",
+              "type": "double"
+            },
+            {
+              "name": "headYaw",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.entity.ScriptPlayer",
+      "doc": "",
+      "superclass": "com.theuran.mappet.api.scripts.code.entity.ScriptEntity",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "getMinecraftPlayer",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.server.network.ServerPlayerEntity"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getStates",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.mappet.MappetStates"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setForm",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "scriptForm",
+              "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptForm"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getForm",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptForm"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "executeClientScript",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "scriptId",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "function",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.mappet.MappetStates",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "setString",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "id",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getString",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [
+            {
+              "name": "id",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setBoolean",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "id",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getBoolean",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "id",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setNumber",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "id",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getNumber",
+          "doc": "",
+          "returns": {
+            "type": "double"
+          },
+          "arguments": [
+            {
+              "name": "id",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "get",
+          "doc": "",
+          "returns": {
+            "type": "mchorse.bbs_mod.data.types.BaseType"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "keys",
+          "doc": "",
+          "returns": {
+            "type": "java.util.Set\u003cjava.lang.String\u003e"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "size",
+          "doc": "",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "has",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "remove",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.nbt.Nbt",
+      "doc": "",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "isCompound",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isList",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "stringify",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isEmpty",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "size",
+          "doc": "",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "copy",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "combine",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "nbt",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "isSame",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "nbt",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [
+        "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+      ],
+      "methods": [
+        {
+          "name": "getMinecraftNbtCompound",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.nbt.NbtCompound"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isCompound",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "isList",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "stringify",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "isEmpty",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "size",
+          "doc": "",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "copy",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "combine",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "nbt",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+            }
+          ],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "isSame",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "nbt",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+            }
+          ],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "has",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "remove",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "keys",
+          "doc": "",
+          "returns": {
+            "type": "java.util.Set\u003cjava.lang.String\u003e"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getByte",
+          "doc": "",
+          "returns": {
+            "type": "byte"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putByte",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "byte"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getShort",
+          "doc": "",
+          "returns": {
+            "type": "short"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putShort",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "short"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getInt",
+          "doc": "",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putInt",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getLong",
+          "doc": "",
+          "returns": {
+            "type": "long"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putLong",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "long"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getFloat",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putFloat",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getDouble",
+          "doc": "",
+          "returns": {
+            "type": "double"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putDouble",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getString",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putString",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getBoolean",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "putBoolean",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getCompound",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setCompound",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getList",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtList"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setList",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtList"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "get",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.Object"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "equals",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "compound",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addCompound",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "dumpJSON",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtList",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [
+        "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+      ],
+      "methods": [
+        {
+          "name": "getMinecraftNbtList",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.nbt.NbtList"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isCompound",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "isList",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "stringify",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "isEmpty",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "size",
+          "doc": "",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "copy",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+          },
+          "arguments": [],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "combine",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "nbt",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+            }
+          ],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "isSame",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "nbt",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.Nbt"
+            }
+          ],
+          "annotations": [
+            "java.lang.Override"
+          ]
+        },
+        {
+          "name": "has",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "remove",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getByte",
+          "doc": "",
+          "returns": {
+            "type": "byte"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setByte",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "byte"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addByte",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "byte"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getShort",
+          "doc": "",
+          "returns": {
+            "type": "short"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setShort",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "short"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addShort",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "short"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getInt",
+          "doc": "",
+          "returns": {
+            "type": "int"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setInt",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addInt",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getFloat",
+          "doc": "",
+          "returns": {
+            "type": "float"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setFloat",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addFloat",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "float"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getDouble",
+          "doc": "",
+          "returns": {
+            "type": "double"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setDouble",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addDouble",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getString",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setString",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addString",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getBoolean",
+          "doc": "",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setBoolean",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addBoolean",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getCompound",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setCompound",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addCompound",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getList",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtList"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setList",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "index",
+              "type": "int"
+            },
+            {
+              "name": "value",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtList"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "addList",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtList"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "toArray",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.Object[]"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.ScriptEvent",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "create",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptEvent"
+          },
+          "arguments": [
+            {
+              "name": "script",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "function",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "subject",
+              "type": "net.minecraft.entity.Entity"
+            },
+            {
+              "name": "object",
+              "type": "net.minecraft.entity.Entity"
+            },
+            {
+              "name": "world",
+              "type": "net.minecraft.server.world.ServerWorld"
+            },
+            {
+              "name": "server",
+              "type": "net.minecraft.server.MinecraftServer"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "create",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptEvent"
+          },
+          "arguments": [
+            {
+              "name": "subject",
+              "type": "net.minecraft.entity.Entity"
+            },
+            {
+              "name": "object",
+              "type": "net.minecraft.entity.Entity"
+            },
+            {
+              "name": "world",
+              "type": "net.minecraft.server.world.ServerWorld"
+            },
+            {
+              "name": "server",
+              "type": "net.minecraft.server.MinecraftServer"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setScript",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "script",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setFunction",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "function",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getScript",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getFunction",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getSubject",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.entity.ScriptEntity"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getObject",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.entity.ScriptEntity"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getWorld",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptWorld"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getServer",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptServer"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getValues",
+          "doc": "",
+          "returns": {
+            "type": "java.util.Map\u003cjava.lang.String,java.lang.Object\u003e"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "setValues",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "values",
+              "type": "java.util.Map\u003cjava.lang.String,java.lang.Object\u003e"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setValue",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "value",
+              "type": "java.lang.Object"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getValue",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.Object"
+          },
+          "arguments": [
+            {
+              "name": "key",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "send",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "message",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getResultType",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.util.ActionResult"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "scheduleScript",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "script",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "function",
+              "type": "java.lang.String"
+            },
+            {
+              "name": "ticks",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "setResultType",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "resultType",
+              "type": "net.minecraft.util.ActionResult"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "success",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "consume",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "consumePartial",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "pass",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "fail",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "copy",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptEvent"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.ScriptFactory",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "vector",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "logger",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.ScriptLogger"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "createForm",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptForm"
+          },
+          "arguments": [
+            {
+              "name": "formData",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "createTransform",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.bbs.ScriptTransform"
+          },
+          "arguments": [
+            {
+              "name": "transformData",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "createBlockState",
+          "doc": "Creates new Block State\n\n \n\u003cpre\u003e\n{@code\n mappet.createBlockState(\"minecraft:dirt\");\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState"
+          },
+          "arguments": [
+            {
+              "name": "blockId",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "createCompound",
+          "doc": "Creates a new ScriptNbtCompound from the given NBT string\n\n \n\u003cpre\u003e\n{@code\n mappet.createCompound(\"{id:\"kruto\"}\");\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound"
+          },
+          "arguments": [
+            {
+              "name": "nbt",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "jsonToNbt",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.nbt.NbtCompound"
+          },
+          "arguments": [
+            {
+              "name": "jsonObject",
+              "type": "com.google.gson.JsonObject"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "jsonArrayToNbtList",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.nbt.NbtList"
+          },
+          "arguments": [
+            {
+              "name": "jsonArray",
+              "type": "com.google.gson.JsonArray"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "dump",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [
+            {
+              "name": "object",
+              "type": "java.lang.Object"
+            },
+            {
+              "name": "simple",
+              "type": "boolean"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getModifier",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [
+            {
+              "name": "m",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getClassName",
+          "doc": "Returns the class name of the given object\n\n \n\u003cpre\u003e\n{@code\n mappet.getClassName(c.getPlayer());\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [
+            {
+              "name": "value",
+              "type": "java.lang.Object"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.ScriptRayTrace",
+      "doc": "Docs for rayTrace bruh\n\n \n\u003cpre\u003e\n{@code\n const rayTrace \u003d c.getPlayer().rayTraceBlock(5, false);\n\n c.getPlayer().send(rayTrace.getBlock().getBlockId();\n }\n\u003c/pre\u003e",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "isBlock",
+          "doc": "Checks if the ray trace hit a block\n\n \n\u003cpre\u003e\n{@code\n c.getPlayer().rayTraceBlock(5, false).isBlock();\n }\n\u003c/pre\u003e",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isEntity",
+          "doc": "Checks if the ray trace hit an entity",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "isMissed",
+          "doc": "Checks if the ray trace missed and hit nothing",
+          "returns": {
+            "type": "boolean"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getEntity",
+          "doc": "Returns the entity hit by the ray trace, if any",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.entity.ScriptEntity\u003c?\u003e"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getBlock",
+          "doc": "Returns the position of the block hit by the ray trace, if any",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getBlockSide",
+          "doc": "Returns the side of the block that was hit by the ray trace",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getHitPosition",
+          "doc": "Returns the exact position where the ray trace hit",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.ScriptServer",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "getMinecraftServer",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.server.MinecraftServer"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "send",
+          "doc": "",
+          "returns": {
+            "type": "void"
+          },
+          "arguments": [
+            {
+              "name": "message",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getStates",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.mappet.MappetStates"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.ScriptVector",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "add",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [
+            {
+              "name": "other",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "subtract",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [
+            {
+              "name": "other",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "multiply",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [
+            {
+              "name": "scalar",
+              "type": "double"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "cross",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [
+            {
+              "name": "vector",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "length",
+          "doc": "",
+          "returns": {
+            "type": "double"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "normalize",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "toBlockPos",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.util.math.BlockPos"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "toVec3d",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.util.math.Vec3d"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "toString",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "toArrayString",
+          "doc": "",
+          "returns": {
+            "type": "java.lang.String"
+          },
+          "arguments": [],
+          "annotations": []
+        }
+      ]
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.ScriptWorld",
+      "doc": "",
+      "superclass": "java.lang.Object",
+      "interfaces": [],
+      "methods": [
+        {
+          "name": "getMinecraftWorld",
+          "doc": "",
+          "returns": {
+            "type": "net.minecraft.world.World"
+          },
+          "arguments": [],
+          "annotations": []
+        },
+        {
+          "name": "getEntity",
+          "doc": "",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.entity.ScriptEntity\u003c?\u003e"
+          },
+          "arguments": [
+            {
+              "name": "uuid",
+              "type": "java.lang.String"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getBlock",
+          "doc": "Returns the block state at the specified coordinates",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "int"
+            },
+            {
+              "name": "y",
+              "type": "int"
+            },
+            {
+              "name": "z",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getBlock",
+          "doc": "Returns the block state at the specified vector position",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockState"
+          },
+          "arguments": [
+            {
+              "name": "vector",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getBlockEntity",
+          "doc": "getBlockEntity",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockEntity"
+          },
+          "arguments": [
+            {
+              "name": "x",
+              "type": "int"
+            },
+            {
+              "name": "y",
+              "type": "int"
+            },
+            {
+              "name": "z",
+              "type": "int"
+            }
+          ],
+          "annotations": []
+        },
+        {
+          "name": "getBlockEntity",
+          "doc": "getBlockEntity",
+          "returns": {
+            "type": "com.theuran.mappet.api.scripts.code.block.ScriptBlockEntity"
+          },
+          "arguments": [
+            {
+              "name": "vector",
+              "type": "com.theuran.mappet.api.scripts.code.ScriptVector"
+            }
+          ],
+          "annotations": []
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "com.theuran.mappet.api.scripts.code.bbs"
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.block"
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.entity"
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.mappet"
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code.nbt"
+    },
+    {
+      "name": "com.theuran.mappet.api.scripts.code"
+    }
+  ]
+}
