@@ -20,6 +20,7 @@ public class Dispatcher {
         public void register() {
             //SERVER
             this.registerPacket(SaveScriptC2SPacket.class, SaveScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(TriggerKeybindC2SPacket.class, TriggerKeybindC2SPacket.ServerHandler.class, EnvType.SERVER);
 
             //CLIENT
             this.registerPacket(HandshakeS2CPacket.class, HandshakeS2CPacket.ClientHandler.class, EnvType.CLIENT);

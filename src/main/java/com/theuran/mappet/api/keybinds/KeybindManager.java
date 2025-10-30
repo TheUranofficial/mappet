@@ -1,5 +1,6 @@
 package com.theuran.mappet.api.keybinds;
 
+import com.theuran.mappet.api.triggers.ScriptTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.utils.BaseFileManager;
 import com.theuran.mappet.utils.keys.Key;
@@ -20,11 +21,24 @@ public class KeybindManager extends BaseFileManager {
     public KeybindManager(Supplier<File> file) {
         super(file);
 
-        keybinds.put(new Keybind(new Key(Key.Type.PRESSED, GLFW.GLFW_KEY_E)), new ArrayList<>());
+        List<Trigger> triggers = new ArrayList<>();
+
+        ScriptTrigger scriptTrigger = new ScriptTrigger("f", "main");
+
+        scriptTrigger.changeSide();
+
+        triggers.add(scriptTrigger);
+
+        keybinds.put(new Keybind("lox").key(new Key(Key.Type.PRESSED, GLFW.GLFW_KEY_G)), triggers);
     }
 
-    public Map<Keybind, List<Trigger>> getKeybinds() {
-        return this.keybinds;
+    public List<Trigger> getTriggers(String id) {
+        for (Map.Entry<Keybind, List<Trigger>> entry : this.keybinds.entrySet()) {
+            if (entry.getKey().getId().equals(id)) {
+                return entry.getValue();
+            }
+        }
+        return new ArrayList<>();
     }
 
     @Override

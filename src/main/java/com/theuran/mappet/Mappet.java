@@ -162,6 +162,10 @@ public class Mappet implements ModInitializer {
         return executables;
     }
 
+    public static KeybindManager getKeybinds() {
+        return keybinds;
+    }
+
     public static MapFactory<Trigger, Void> getEventTriggers() {
         return eventTriggers;
     }

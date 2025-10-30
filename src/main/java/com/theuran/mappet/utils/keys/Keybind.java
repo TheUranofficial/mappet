@@ -4,14 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Keybind {
-    public List<Key> keys = new ArrayList<>();
+    private String id;
+    private final List<Key> keys = new ArrayList<>();
 
     public Keybind(Key... keys) {
         this.keys.addAll(List.of(keys));
     }
 
-    public Keybind() {
+    public Keybind(String id, Key... keys) {
+        this.id = id;
+        this.keys.addAll(List.of(keys));
+    }
 
+    public String getId() {
+        return this.id;
+    }
+
+    public List<Key> getKeys() {
+        return this.keys;
     }
 
     public Keybind key(Key key) {
