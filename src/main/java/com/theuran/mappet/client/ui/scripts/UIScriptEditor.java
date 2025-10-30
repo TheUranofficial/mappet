@@ -1,10 +1,7 @@
 package com.theuran.mappet.client.ui.scripts;
 
-import com.theuran.mappet.utils.Highlighter;
-import mchorse.bbs_mod.ui.Keys;
 import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;
-import mchorse.bbs_mod.ui.framework.elements.input.text.highlighting.HighlightedTextLine;
 import mchorse.bbs_mod.ui.framework.elements.input.text.undo.TextEditUndo;
 import mchorse.bbs_mod.utils.colors.Colors;
 import org.lwjgl.glfw.GLFW;
