@@ -6,6 +6,7 @@ import com.theuran.mappet.api.events.EventManager;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.executables.ExecutableManager;
 import com.theuran.mappet.api.huds.HUDManager;
+import com.theuran.mappet.api.keybinds.KeybindManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.StatesManager;
@@ -45,6 +46,7 @@ public class Mappet implements ModInitializer {
     private static UIManager uis;
     private static LoggerManager logger;
     private static EventManager events;
+    private static KeybindManager keybinds;
     private static ExecutableManager executables;
 
     private static MapFactory<Trigger, Void> eventTriggers;
@@ -66,6 +68,7 @@ public class Mappet implements ModInitializer {
         uis = new UIManager(() -> new File(mappetFolder, "uis"));
         states = new StatesManager(() -> new File(mappetFolder, "states.json"));
         events = new EventManager(() -> new File(mappetFolder, "events.json"));
+        keybinds = new KeybindManager(() -> new File(mappetFolder, "keybinds.json"));
         logger = new LoggerManager();
         executables = new ExecutableManager();
 
