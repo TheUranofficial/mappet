@@ -8,6 +8,7 @@ import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
+import com.theuran.mappet.utils.InputUtils;
 import mchorse.bbs_mod.BBSSettings;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.ui.framework.UIScreen;
@@ -17,8 +18,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
@@ -59,6 +58,8 @@ public class MappetClient implements ClientModInitializer {
 
         scripts = new ClientScriptManager();
         keybinds = new ClientKeybindManager();
+
+        InputUtils.init();
 
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             while (keyDashboard.wasPressed()) {

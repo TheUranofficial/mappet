@@ -3,7 +3,6 @@ package com.theuran.mappet;
 import com.mojang.logging.LogUtils;
 import com.theuran.mappet.api.events.EventHandler;
 import com.theuran.mappet.api.events.EventManager;
-import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.executables.ExecutableManager;
 import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.keybinds.KeybindManager;
@@ -12,6 +11,7 @@ import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.StatesManager;
 import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.api.ui.UIManager;
+import com.theuran.mappet.block.MappetBlocks;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.HandshakeS2CPacket;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
@@ -81,6 +81,8 @@ public class Mappet implements ModInitializer {
                 .register(link("state"), StateTrigger.class);
 
         EventHandler.init();
+
+        MappetBlocks.init();
 
         //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 

@@ -3,8 +3,6 @@ package com.theuran.mappet.api.keybinds;
 import com.theuran.mappet.api.triggers.ScriptTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.utils.BaseFileManager;
-import com.theuran.mappet.utils.keys.Key;
-import com.theuran.mappet.utils.keys.Keybind;
 import mchorse.bbs_mod.data.types.MapType;
 import org.lwjgl.glfw.GLFW;
 
@@ -25,16 +23,14 @@ public class KeybindManager extends BaseFileManager {
 
         ScriptTrigger scriptTrigger = new ScriptTrigger("f", "main");
 
-        scriptTrigger.changeSide();
-
         triggers.add(scriptTrigger);
 
-        keybinds.put(new Keybind("lox").key(new Key(Key.Type.PRESSED, GLFW.GLFW_KEY_G)), triggers);
+        this.keybinds.put(new Keybind("lox", "mappet", GLFW.GLFW_KEY_G, Keybind.Type.RELEASED, Keybind.Modificator.NONE), triggers);
     }
 
-    public List<Trigger> getTriggers(String id) {
+    public List<Trigger> getTriggers(String name) {
         for (Map.Entry<Keybind, List<Trigger>> entry : this.keybinds.entrySet()) {
-            if (entry.getKey().getId().equals(id)) {
+            if (entry.getKey().getName().equals(name)) {
                 return entry.getValue();
             }
         }

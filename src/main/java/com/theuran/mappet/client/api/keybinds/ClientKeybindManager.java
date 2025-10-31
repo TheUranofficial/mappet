@@ -5,8 +5,8 @@ import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.TriggerKeybindC2SPacket;
-import com.theuran.mappet.utils.keys.Key;
-import com.theuran.mappet.utils.keys.Keybind;
+import com.theuran.mappet.api.keybinds.Keybind;
+import com.theuran.mappet.utils.InputUtils;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
@@ -21,27 +21,37 @@ public class ClientKeybindManager {
 
         ScriptTrigger scriptTrigger = new ScriptTrigger("f", "main");
 
-        scriptTrigger.changeSide();
-
         triggers.add(scriptTrigger);
 
-        keybinds.put(new Keybind("lox").key(new Key(Key.Type.PRESSED, GLFW.GLFW_KEY_G)), triggers);
+        this.keybinds.put(new Keybind("lox", "mappet", GLFW.GLFW_KEY_G, Keybind.Type.RELEASED, Keybind.Modificator.ALT), triggers);
 
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             String keyId = "";
 
             for (Keybind keybinding : this.getKeybindings()) {
-                boolean allKeysPressed = false;
+                boolean keyPressed = false;
 
-                for (Key key : keybinding.getKeys()) {
-                    if (InputUtil.isKeyPressed(client.getWindow().getHandle(), key.keycode)) {
-                        allKeysPressed = true;
-                        break;
-                    }
+                boolean isPressedModificator = keybinding.getMod().getKeycode() == -1;
+
+                if (!isPressedModificator) {
+                    isPressedModificator = InputUtil.isKeyPressed(client.getWindow().getHandle(), keybinding.getMod().getKeycode());
                 }
 
-                if (allKeysPressed) {
-                    keyId = keybinding.getId();
+                if (isPressedModificator) {
+                    if (keybinding.getType() == Keybind.Type.PRESSED) {
+                        if (InputUtils.wasKeyJustPressed(keybinding.getKeycode())) {
+                            keyPressed = true;
+                        }
+                    } else if (keybinding.getType() == Keybind.Type.RELEASED) {
+                        if (InputUtils.isKeyReleased(keybinding.getKeycode())) {
+                            keyPressed = true;
+                        }
+                    }
+
+                }
+
+                if (keyPressed) {
+                    keyId = keybinding.getName();
                     break;
                 }
             }
@@ -69,7 +79,7 @@ public class ClientKeybindManager {
 
     public List<Trigger> getTriggers(String id) {
         for (Map.Entry<Keybind, List<Trigger>> entry : this.keybinds.entrySet()) {
-            if (entry.getKey().getId().equals(id)) {
+            if (entry.getKey().getName().equals(id)) {
                 return entry.getValue();
             }
         }
