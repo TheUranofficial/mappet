@@ -1,6 +1,9 @@
 package com.theuran.mappet.client.ui.panels;
 
+import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.api.scripts.Script;
+import com.theuran.mappet.client.MappetClient;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
@@ -15,6 +18,8 @@ import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 
 public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public UIIcon run;
@@ -48,7 +53,15 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.save();
 
         if (data != null) {
-            Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
+            if (this.data.isServer()) {
+                Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
+            } else {
+                ClientPlayerEntity player = MinecraftClient.getInstance().player;
+                try {
+                    MappetClient.getScripts().execute(ClientScriptEvent.create(player, null, player.clientWorld));
+                } catch (JavetException ignored) {
+                }
+            }
         }
     }
 
@@ -70,6 +83,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         if (data != null) {
             if (!this.content.getText().equals(data.getContent())) {
                 this.content.setText(data.getContent());
+                this.saveScript();
             }
         }
     }
