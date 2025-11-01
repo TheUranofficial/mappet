@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class KeybindManager extends BaseFileManager {
-    Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
+    public Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
 
     public KeybindManager(Supplier<File> file) {
         super(file);

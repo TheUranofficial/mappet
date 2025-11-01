@@ -3,6 +3,7 @@ package com.theuran.mappet.entity.npc;
 import mchorse.bbs_mod.entity.IEntityFormProvider;
 import mchorse.bbs_mod.forms.entities.MCEntity;
 import mchorse.bbs_mod.forms.forms.Form;
+import mchorse.bbs_mod.morphing.Morph;
 import mchorse.bbs_mod.network.ServerNetwork;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -19,8 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class NpcEntity extends LivingEntity implements IEntityFormProvider {
-    private MCEntity entity = new MCEntity(this);
-    private Form form;
+    private Morph morph = new Morph(this);
     private Map<EquipmentSlot, ItemStack> equipment = new HashMap<>();
 
     public static DefaultAttributeContainer.Builder createNpcAttributes() {
@@ -32,7 +32,7 @@ public class NpcEntity extends LivingEntity implements IEntityFormProvider {
     }
 
     public MCEntity getEntity() {
-        return this.entity;
+        return this.morph.entity;
     }
 
     @Override
@@ -42,13 +42,15 @@ public class NpcEntity extends LivingEntity implements IEntityFormProvider {
 
     @Override
     public Form getForm() {
-        return this.form;
+        return this.morph.getForm();
     }
 
     @Override
     public void setForm(Form form) {
-        Form lastForm = this.form;
-        this.form = form;
+        Form lastForm = this.morph.getForm();
+
+        this.morph.setForm(form);
+
         if (!this.getWorld().isClient()) {
             if (lastForm != null) {
                 lastForm.onDemorph(this);
@@ -63,11 +65,12 @@ public class NpcEntity extends LivingEntity implements IEntityFormProvider {
     @Override
     public boolean shouldRender(double distance) {
         double d = this.getBoundingBox().getAverageSideLength();
+
         if (Double.isNaN(d)) {
             d = 1.0;
         }
 
-        return distance < d * (double)256.0F * d * (double)256.0F;
+        return distance < d * (double) 256.0F * d * (double) 256.0F;
     }
 
     public Iterable<ItemStack> getHandItems() {
