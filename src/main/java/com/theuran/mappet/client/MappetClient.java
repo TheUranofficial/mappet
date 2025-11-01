@@ -1,9 +1,11 @@
 package com.theuran.mappet.client;
 
+import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.api.keybinds.ClientKeybindManager;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
+import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
@@ -18,6 +20,8 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
@@ -66,10 +70,20 @@ public class MappetClient implements ClientModInitializer {
                 UIScreen.open(MappetClient.getDashboard());
             }
             while (keyRunScript.wasPressed()) {
+                ClientPlayerEntity player = MinecraftClient.getInstance().player;
                 Script data = dashboard.getPanel(UIScriptPanel.class).getData();
 
                 if (data != null) {
-                    Dispatcher.sendToServer(new RunScriptPacket(data.getId(), "main", data.getContent()));
+                    Script script = MappetClient.getScripts().getScript(data.getId());
+
+                    if (script.isServer()) {
+                        Dispatcher.sendToServer(new RunScriptPacket(data.getId(), "main", data.getContent()));
+                    } else {
+                        try {
+                            script.execute(ClientScriptEvent.create(data.getId(), "main", player, null, player.clientWorld));
+                        } catch (JavetException ignored) {
+                        }
+                    }
                 }
             }
         });

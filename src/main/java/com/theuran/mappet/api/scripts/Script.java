@@ -32,6 +32,14 @@ public class Script extends ValueGroup {
         this.initialize();
     }
 
+    public Script(String id, String content, boolean isServer) {
+        this();
+
+        this.setId(id);
+        this.setContent(content);
+        this.setServer(isServer);
+    }
+
     private void initialize() {
         this.runtime = ScriptUtils.createRuntime();
     }

@@ -87,8 +87,23 @@ public class ScriptManager extends BaseManager<Script> {
         return scripts;
     }
 
+    public void updateLoadedScript(String id, String content, boolean isServer) {
+        if (!this.getScript(id).getContent().contains(content)) {
+            Script loadScript = this.load(id);
+            loadScript.setServer(isServer);
+            this.scripts.put(id, loadScript);
+        }
+    }
+
     public void updateLoadedScript(String id, String content) {
         if (!this.getScript(id).getContent().contains(content)) {
+            this.scripts.put(id, this.load(id));
+        }
+    }
+
+    public void updateLoadedScript(Script script) {
+        String id = script.getId();
+        if (!this.getScript(id).getContent().contains(script.getContent())) {
             this.scripts.put(id, this.load(id));
         }
     }

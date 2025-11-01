@@ -1,6 +1,7 @@
 package com.theuran.mappet.client.ui.panels;
 
 import com.caoccao.javet.exceptions.JavetException;
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
@@ -58,7 +59,10 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
             } else {
                 ClientPlayerEntity player = MinecraftClient.getInstance().player;
                 try {
-                    MappetClient.getScripts().execute(ClientScriptEvent.create(player, null, player.clientWorld));
+                    Script script = MappetClient.getScripts().getScript(this.data.getId());
+
+                    script.setContent(this.data.getContent());
+                    script.execute(ClientScriptEvent.create(this.data.getId(), "main", player, null, player.clientWorld));
                 } catch (JavetException ignored) {
                 }
             }
@@ -82,8 +86,8 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
         if (data != null) {
             if (!this.content.getText().equals(data.getContent())) {
-                this.content.setText(data.getContent());
                 this.saveScript();
+                this.content.setText(data.getContent());
             }
         }
     }

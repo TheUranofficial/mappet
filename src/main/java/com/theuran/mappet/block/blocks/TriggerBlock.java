@@ -75,7 +75,6 @@ public class TriggerBlock extends Block {
         if (!world.isClient()) {
             boolean current = state.get(COLLISION);
             Hitbox hitbox = state.get(HITBOX);
-            world.setBlockState(pos, state.with(COLLISION, !current));
             world.setBlockState(pos, state.with(HITBOX, hitbox.pos(0, 0, 0, (int) (hitbox.getPos2().x-1), (int) (hitbox.getPos2().y-1), (int) (hitbox.getPos2().z-1))));
             return ActionResult.SUCCESS;
         }

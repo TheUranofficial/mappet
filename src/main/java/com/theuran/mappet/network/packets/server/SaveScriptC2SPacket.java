@@ -2,6 +2,7 @@ package com.theuran.mappet.network.packets.server;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.Script;
+import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.basic.ServerPacketHandler;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -46,7 +47,11 @@ public class SaveScriptC2SPacket extends AbstractPacket {
     public static class ServerHandler implements ServerPacketHandler<SaveScriptC2SPacket> {
         @Override
         public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, SaveScriptC2SPacket packet) {
-            Mappet.getScripts().updateLoadedScript(packet.script, packet.content);
+            Mappet.getScripts().updateLoadedScript(packet.script, packet.content, packet.isServer);
+
+            if (!packet.isServer) {
+                Dispatcher.sendTo(new SendScriptsS2CPacket(new Script(packet.script, packet.content, false)), player);
+            }
         }
     }
 }
