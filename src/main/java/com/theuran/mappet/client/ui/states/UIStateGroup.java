@@ -30,12 +30,12 @@ public class UIStateGroup extends UIElement {
 
     @Override
     protected boolean subMouseClicked(UIContext context) {
-        if (this.area.isInside(context)) {
+        if (this.area.isInside(context) && context.mouseButton == 0) {
             int x = context.mouseX - this.area.x;
             int y = context.mouseY - this.area.y - 20;
 
             if (y < 0) {
-                if (x < this.area.x + 30) {
+                if (x < this.area.x + 80) {
                     this.visible = !visible;
                     return true;
                 }
@@ -62,6 +62,8 @@ public class UIStateGroup extends UIElement {
         this.states.setString(key, "");
         this.add(new UIState(key, this.states));
 
+        this.visible = true;
+
         this.getChildren().sort(Comparator.comparing(state -> ((UIState) state).getKey()));
         this.getParentContainer().resize();
     }
@@ -87,15 +89,15 @@ public class UIStateGroup extends UIElement {
         context.batcher.text(this.key.get(), this.area.x + 20, this.area.y + 4, Colors.A100 + Colors.LIGHTEST_GRAY);
 
         if (this.visible) {
-            context.batcher.outline(this.area.x, this.area.y, this.area.ex(), this.area.ey(), Colors.A100 + Colors.ORANGE);
+            context.batcher.outline(this.area.x, this.area.y, this.area.ex(), this.area.ey() + 4, Colors.A100 + Colors.ORANGE);
             context.batcher.icon(Icons.MOVE_DOWN, (float) (this.area.x + 10), (float) (this.area.y + 4), 0.5F, 0.0F);
             super.render(context);
         } else {
             context.batcher.icon(Icons.MOVE_UP, (float) (this.area.x + 10), (float) (this.area.y + 4), 0.5F, 0.0F);
-            context.batcher.outline(this.area.x, this.area.y, this.area.ex(), this.area.y + 16, Colors.A100 + Colors.ORANGE);
+            context.batcher.outline(this.area.x, this.area.y, this.area.ex(), this.area.y + 15, Colors.A100 + Colors.ORANGE);
         }
 
-        int h = this.visible ? this.area.h : 16;
+        int h = this.visible ? this.area.h : 20;
 
         if (this.last != h) {
             this.last = h;
