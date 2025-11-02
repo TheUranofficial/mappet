@@ -11,10 +11,16 @@ import java.util.Map;
 public class ClientScriptManager {
     public Map<String, Script> scripts = new HashMap<>();
 
-    public void addScripts(List<Script> scripts) {
+    public void setScripts(List<Script> scripts) {
+        this.scripts.clear();
+
         for (Script script : scripts) {
             this.scripts.put(script.getId(), script);
         }
+    }
+
+    public void setScript(Script script) {
+        this.scripts.put(script.getId(), script);
     }
 
     public String execute(ClientScriptEvent properties) throws JavetException {

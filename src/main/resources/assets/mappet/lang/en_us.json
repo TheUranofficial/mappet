@@ -1,9 +1,14 @@
 {
+  "item.mappet.logo": "Logo",
+
+  "mappet.itemGroup.name": "Mappet",
+
   "mappet.config.title": "Mappet",
   "mappet.config.general.title": "General",
 
   "mappet.key.dashboard": "Open dashboard",
   "mappet.key.runScript": "Run script",
+
 
   "mappet.server.title": "Server",
 

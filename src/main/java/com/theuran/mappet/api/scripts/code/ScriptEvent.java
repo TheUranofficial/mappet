@@ -45,6 +45,17 @@ public class ScriptEvent {
         );
     }
 
+    public static ScriptEvent create(String script, Entity subject, Entity object, ServerWorld world, MinecraftServer server) {
+        return new ScriptEvent(
+                script,
+                "main",
+                ScriptEntity.create(subject),
+                ScriptEntity.create(object),
+                world == null ? null : new ScriptWorld(world),
+                server == null ? null : new ScriptServer(server)
+        );
+    }
+
     public static ScriptEvent create(Entity subject, Entity object, ServerWorld world, MinecraftServer server) {
         return create("", "", subject, object, world, server);
     }

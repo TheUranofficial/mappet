@@ -1,9 +1,14 @@
 {
+  "item.mappet.logo": "ЛОГО",
+
+  "mappet.itemGroup.name": "Mappet",
+
   "mappet.config.title": "Маппет",
   "mappet.config.general.title": "Общее",
 
   "mappet.key.dashboard": "Открыть панель",
   "mappet.key.runScript": "Запустить скрипт",
+
 
   "mappet.server.title": "Сервер",
 
@@ -22,6 +27,10 @@
   "mappet.logger.title": "Логгер",
 
   "mappet.ui.builder.title": "UI Билдер",
+  "mappet.ui.builder.element.panel.title": "Панель элементов",
+  "mappet.ui.builder.element.add.tooltip": "Добавить элемент",
+
+  "mappet.ui.script.tooltip": "Редактор UI скрипта",
   "mappet.ui.builder.element.panel.title": "Панель элементов",
   "mappet.ui.builder.element.add.tooltip": "Добавить элемент",
   "mappet.ui.builder.script.tooltip": "Редактор UI скрипта",
