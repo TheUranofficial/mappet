@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class EventManager extends BaseFileManager {
-    public Map<EventType, List<Trigger>> events;
+    private final Map<EventType, List<Trigger>> events;
 
     public EventManager(Supplier<File> file) {
         super(file);
@@ -29,10 +29,12 @@ public class EventManager extends BaseFileManager {
         }
     }
 
-    public void eventServer(EventType eventType, ScriptEvent scriptEvent) {
-        List<Trigger> triggers = this.events.get(eventType);
+    public List<Trigger> getTriggers(EventType eventType) {
+        return this.events.get(eventType);
+    }
 
-        for (Trigger trigger : triggers) {
+    public void eventServer(EventType eventType, ScriptEvent scriptEvent) {
+        for (Trigger trigger : this.getTriggers(eventType)) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
                 trigger.execute(scriptEvent);
                 trigger.resetDelay();
@@ -43,9 +45,7 @@ public class EventManager extends BaseFileManager {
     }
 
     public void eventClient(EventType eventType, ClientScriptEvent scriptEvent) {
-        List<Trigger> triggers = this.events.get(eventType);
-
-        for (Trigger trigger : triggers) {
+        for (Trigger trigger : this.getTriggers(eventType)) {
             if (trigger.getDelay() == trigger.getMaxDelay()) {
                 trigger.execute(scriptEvent);
                 trigger.resetDelay();

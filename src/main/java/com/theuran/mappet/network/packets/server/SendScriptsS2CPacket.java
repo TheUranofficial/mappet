@@ -41,7 +41,7 @@ public class SendScriptsS2CPacket extends AbstractPacket {
     public static class ClientHandler implements ClientPacketHandler<SendScriptsS2CPacket> {
         @Override
         public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, SendScriptsS2CPacket packet) {
-            MappetClient.getScripts().addScripts(packet.scripts);
+            MappetClient.getScripts().setScripts(packet.scripts);
         }
     }
 }

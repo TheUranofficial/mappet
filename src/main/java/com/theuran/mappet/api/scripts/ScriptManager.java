@@ -19,10 +19,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
 public class ScriptManager extends BaseManager<Script> {
-    private final Map<String, Script> scripts = new HashMap<>();
+    private final Map<String, Script> scripts = new ConcurrentHashMap<>();
 
     public ScriptManager(Supplier<File> folder) {
         super(folder);
@@ -37,7 +38,9 @@ public class ScriptManager extends BaseManager<Script> {
 
             Script script = this.load(key);
 
-            this.scripts.put(key, script);
+            if (script != null) {
+                this.scripts.put(key, script);
+            }
         }
     }
 
@@ -54,7 +57,7 @@ public class ScriptManager extends BaseManager<Script> {
 
             return value == null ? "null" : value.toString();
         } catch (JavetException e) {
-            Mappet.getLogger().addLog(LogType.ERROR, properties.getScript(), e);
+            Mappet.getLogger().addLog(LogType.ERROR, "eval", e);
             throw e;
         }
     }
@@ -114,7 +117,11 @@ public class ScriptManager extends BaseManager<Script> {
     public Script loadScript(String id) {
         Script script = this.load(id);
 
-        this.scripts.put(id, script);
+        if (script != null) {
+            this.scripts.put(id, script);
+        } else {
+            Mappet.getLogger().addLog(LogType.ERROR, "Mappet", "Script not found: "+id);
+        }
 
         return script;
     }

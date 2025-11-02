@@ -50,7 +50,7 @@ public class SaveScriptC2SPacket extends AbstractPacket {
             Mappet.getScripts().updateLoadedScript(packet.script, packet.content, packet.isServer);
 
             if (!packet.isServer) {
-                Dispatcher.sendTo(new SendScriptsS2CPacket(new Script(packet.script, packet.content, false)), player);
+                Dispatcher.sendTo(new SendScriptsS2CPacket(Mappet.getScripts().getClientScripts()), player);
             }
         }
     }

@@ -32,7 +32,11 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
         this.overlay.namesList.setFileIcon(Icons.PROPERTIES);
 
-        this.content = new UIScriptEditor(null);
+        this.content = new UIScriptEditor(text -> {
+            if (!this.data.isServer()) {
+                this.data.setContent(text);
+            }
+        });
 
         this.content.relative(this.editor);
 
@@ -53,7 +57,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     private void runScript(UIIcon icon) {
         this.save();
 
-        if (data != null) {
+        if (this.data != null) {
             if (this.data.isServer()) {
                 Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
             } else {
@@ -114,7 +118,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
     private void saveScript() {
         if (this.data != null) {
-            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.data.getContent(), this.data.isServer()));
+            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText(), this.data.isServer()));
         }
     }
 
