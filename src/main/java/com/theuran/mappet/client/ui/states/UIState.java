@@ -33,7 +33,6 @@ public class UIState extends UIElement {
 
         this.remove = new UIIcon(Icons.REMOVE, this::removeState);
         this.id = new UITextbox(1000, this::rename).background(false);
-        this.id.w(120);
         this.id.setText(key);
 
         this.column(0).vertical().stretch();

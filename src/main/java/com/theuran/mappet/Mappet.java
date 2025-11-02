@@ -77,12 +77,12 @@ public class Mappet implements ModInitializer {
                 .register(link("command"), CommandTrigger.class)
                 .register(link("item"), ItemTrigger.class)
                 .register(link("script"), ScriptTrigger.class)
-                .register(link("sound"), ScriptTrigger.class)
+                .register(link("sound"), SoundTrigger.class)
                 .register(link("state"), StateTrigger.class);
 
         EventHandler.init();
 
-        MappetBlocks.init();
+        //MappetBlocks.init();
 
         //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 

@@ -37,7 +37,6 @@ public class MappetStates {
         return this.states.getNumber(id);
     }
 
-
     public BaseType get(String key) {
         return this.states.get(key);
     }

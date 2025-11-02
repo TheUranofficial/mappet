@@ -1,23 +1,30 @@
 {
   "mappet.config.title": "Маппет",
   "mappet.config.general.title": "Общее",
+
   "mappet.key.dashboard": "Открыть панель",
   "mappet.key.runScript": "Запустить скрипт",
+
+  "mappet.server.title": "Сервер",
+
   "mappet.states.title": "Состояния",
   "mappet.states.add": "Добавить состояние",
-  "mappet.states.add.group": "Добавить группу",
   "mappet.states.search": "Найти состояние",
   "mappet.states.refresh": "Сменить тип",
+
   "mappet.hud.scene.title": "HUD Сцены",
   "mappet.hud.scene.ortho": "Орфографический",
+
   "mappet.scripts.title": "Скрипты",
   "mappet.scripts.run": "Запустить скрипт",
   "mappet.scripts.side": "Сменить сторону",
+
   "mappet.logger.title": "Логгер",
+
   "mappet.ui.builder.title": "UI Билдер",
-  "mappet.ui.builder.elementpanel.title": "Панель элементов",
-  "mappet.ui.builder.elementadd.tooltip": "Добавить элемент",
-  "mappet.ui.script.tooltip": "Редактор UI скрипта",
+  "mappet.ui.builder.element.panel.title": "Панель элементов",
+  "mappet.ui.builder.element.add.tooltip": "Добавить элемент",
+  "mappet.ui.builder.script.tooltip": "Редактор UI скрипта",
 
   "mappet.events.name.entity.death": "Сущность: при смерти",
   "mappet.events.description.entity.death": "Description",

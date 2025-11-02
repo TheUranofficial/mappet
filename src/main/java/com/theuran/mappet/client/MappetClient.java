@@ -76,12 +76,14 @@ public class MappetClient implements ClientModInitializer {
                 if (data != null) {
                     Script script = MappetClient.getScripts().getScript(data.getId());
 
-                    if (script.isServer()) {
-                        Dispatcher.sendToServer(new RunScriptPacket(data.getId(), "main", data.getContent()));
-                    } else {
-                        try {
-                            script.execute(ClientScriptEvent.create(data.getId(), "main", player, null, player.clientWorld));
-                        } catch (JavetException ignored) {
+                    if (script != null) {
+                        if (script.isServer()) {
+                            Dispatcher.sendToServer(new RunScriptPacket(data.getId(), "main", data.getContent()));
+                        } else {
+                            try {
+                                script.execute(ClientScriptEvent.create(data.getId(), "main", player, null, player.clientWorld));
+                            } catch (JavetException ignored) {
+                            }
                         }
                     }
                 }

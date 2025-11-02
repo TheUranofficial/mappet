@@ -1,23 +1,30 @@
 {
   "mappet.config.title": "Mappet",
   "mappet.config.general.title": "General",
+
   "mappet.key.dashboard": "Open dashboard",
   "mappet.key.runScript": "Run script",
+
+  "mappet.server.title": "Server",
+
   "mappet.states.title": "States",
   "mappet.states.add": "Add state",
-  "mappet.states.add.group": "Add group",
   "mappet.states.search": "Search state",
   "mappet.states.refresh": "Change type",
+
   "mappet.hud.scene.title": "HUD Scenes",
   "mappet.hud.scene.ortho": "Orthographic",
+
   "mappet.scripts.title": "Scripts",
   "mappet.scripts.run": "Run script",
   "mappet.scripts.side": "Change Side",
+
   "mappet.logger.title": "Logger",
+
   "mappet.ui.builder.title": "UI Builder",
   "mappet.ui.builder.element.panel.title": "Elements panel",
   "mappet.ui.builder.element.add.tooltip": "Add element",
-  "mappet.ui.script.tooltip": "UI script editor",
+  "mappet.ui.builder.script.tooltip": "UI script editor",
   
   "mappet.events.name.entity.death": "Entity: Death",
   "mappet.events.description.entity.death": "Description",

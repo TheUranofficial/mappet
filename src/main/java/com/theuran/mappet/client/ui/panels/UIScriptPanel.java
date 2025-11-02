@@ -114,7 +114,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
     private void saveScript() {
         if (this.data != null) {
-            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText(), this.data.isServer()));
+            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.data.getContent(), this.data.isServer()));
         }
     }
 

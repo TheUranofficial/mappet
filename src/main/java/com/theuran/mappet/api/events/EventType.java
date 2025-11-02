@@ -28,14 +28,14 @@ public enum EventType {
     PLAYER_CHAT_MESSAGE;
 
     public IKey getName() {
-        return L10n.lang("mappet.events.name."+this.name().toLowerCase().replace("_", "."));
+        return L10n.lang("mappet.events.name." + this.name().toLowerCase().replace("_", "."));
     }
 
     public IKey getDescription() {
-        return L10n.lang("mappet.events.description."+this.name().toLowerCase().replace("_", "."));
+        return L10n.lang("mappet.events.description." + this.name().toLowerCase().replace("_", "."));
     }
 
     public IKey getVariables() {
-        return L10n.lang("mappet.events.variables."+this.name().toLowerCase().replace("_", "."));
+        return L10n.lang("mappet.events.variables." + this.name().toLowerCase().replace("_", "."));
     }
 }

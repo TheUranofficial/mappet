@@ -7,9 +7,10 @@ import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public class UIMappetKeys {
+    public static final IKey SERVER_TITLE = L10n.lang("mappet.server.title");
+
     public static final IKey STATES_TITLE = L10n.lang("mappet.states.title");
     public static final IKey STATES_ADD = L10n.lang("mappet.states.add");
-    public static final IKey STATES_ADD_GROUP = L10n.lang("mappet.states.add.group");
     public static final IKey STATES_REFRESH = L10n.lang("mappet.states.refresh");
     public static final IKey STATES_SEARCH = L10n.lang("mappet.states.search");
 
@@ -25,5 +26,5 @@ public class UIMappetKeys {
     public static final IKey UI_BUILDER_TITLE = L10n.lang("mappet.ui.builder.title");
     public static final IKey UI_BUILDER_ELEMENT_PANEL = L10n.lang("mappet.ui.builder.element.panel.title");
     public static final IKey UI_BUILDER_ELEMENT_ADD = L10n.lang("mappet.ui.builder.element.add.tooltip");
-    public static final IKey UI_BUILDER_SCRIPT = L10n.lang("mappet.ui.script.tooltip");
+    public static final IKey UI_BUILDER_SCRIPT = L10n.lang("mappet.ui.builder.script.tooltip");
 }
