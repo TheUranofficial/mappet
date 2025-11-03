@@ -5,6 +5,8 @@
   "client": [
     "L10nMixin",
     "BBSModClientMixin"
+    "BBSModClientMixin",
+    "GameOptionsMixin",
   ],
   "injectors": {
     "defaultRequire": 1

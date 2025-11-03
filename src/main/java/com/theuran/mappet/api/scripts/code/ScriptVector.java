@@ -2,6 +2,7 @@ package com.theuran.mappet.api.scripts.code;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import org.joml.Vector3d;
 import org.joml.Vector3f;
 
 public class ScriptVector {
@@ -19,6 +20,12 @@ public class ScriptVector {
         this.x = vector3f.x;
         this.y = vector3f.y;
         this.z = vector3f.z;
+    }
+
+    public ScriptVector(Vector3d vector3d) {
+        this.x = vector3d.x;
+        this.y = vector3d.y;
+        this.z = vector3d.z;
     }
 
     public ScriptVector(Vec3d vector) {
