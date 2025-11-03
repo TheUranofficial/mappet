@@ -2,7 +2,7 @@ package com.theuran.mappet.client.api.scripts.code.entity;
 
 import com.theuran.mappet.client.api.scripts.code.ui.MappetUIBuilder;
 import com.theuran.mappet.client.ui.UIMappetBase;
-import com.theuran.mappet.client.api.scripts.code.ClientScriptCamera;
+//import com.theuran.mappet.client.api.scripts.code.ClientScriptCamera;
 import com.theuran.mappet.client.managers.ClientOptionsManager;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
@@ -27,9 +27,9 @@ public class ClientScriptPlayer extends ClientScriptEntity<ClientPlayerEntity> {
         this.entity.sendMessage(Text.of(message));
     }
 
-    public ClientScriptCamera getCamera() {
-        return new ClientScriptCamera();
-    }
+//    public ClientScriptCamera getCamera() {
+//        return new ClientScriptCamera();
+//    }
 
     public void setOption(String key, Object value) {
         ClientOptionsManager.INSTANCE.set(key, value);

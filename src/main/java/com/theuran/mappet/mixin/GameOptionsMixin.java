@@ -1,6 +1,7 @@
 package com.theuran.mappet.mixin;
 
-import com.theuran.mappet.client.api.scripts.code.ClientScriptCamera;
+//magma plohoy malcheg
+//import com.theuran.mappet.client.api.scripts.code.ClientScriptCamera;
 import com.theuran.mappet.client.managers.ClientOptionsManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,6 +21,6 @@ public class GameOptionsMixin {
 
     @Inject(method = "write", at = @At("HEAD"), cancellable = true)
     public void setPerspective(CallbackInfo callback) {
-        if (ClientScriptCamera.IS_LOCKED) callback.cancel();
+        //if (ClientScriptCamera.IS_LOCKED) callback.cancel();
     }
 }

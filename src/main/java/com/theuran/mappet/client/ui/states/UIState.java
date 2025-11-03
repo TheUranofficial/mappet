@@ -65,16 +65,20 @@ public class UIState extends UIElement {
     }
 
     private void convert() {
-        BaseType type = this.states.get(this.key);
-
-        if (type.isString())
-            this.states.setBoolean(this.key, false);
-        else if (type instanceof ByteType)
-            this.states.setNumber(this.key, 0);
-        else
-            this.states.setString(this.key, "");
-
-        this.refresh();
+        this.getContext().replaceContextMenu(menu -> {
+            menu.action(IKey.constant("String"), () -> {
+                this.states.setString(this.key, "");
+                this.refresh();
+            });
+            menu.action(IKey.constant("Boolean"), () -> {
+                this.states.setBoolean(this.key, false);
+                this.refresh();
+            });
+            menu.action(IKey.constant("Number"), () -> {
+                this.states.setNumber(this.key, 0);
+                this.refresh();
+            });
+        });
     }
 
     private void removeState(UIIcon icon) {

@@ -17,6 +17,12 @@ public class States implements INBTSerializable {
         this.values.putDouble(id, value);
     }
 
+    public States() {}
+
+    public States(MapType values) {
+        this.values = values;
+    }
+
     public double getNumber(String id) {
         return this.values.getDouble(id);
     }

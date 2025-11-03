@@ -7,8 +7,6 @@ import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public class UIMappetKeys {
-    public static final IKey SERVER_TITLE = L10n.lang("mappet.server.title");
-
     public static final IKey STATES_TITLE = L10n.lang("mappet.states.title");
     public static final IKey STATES_ADD = L10n.lang("mappet.states.add");
     public static final IKey STATES_REFRESH = L10n.lang("mappet.states.refresh");

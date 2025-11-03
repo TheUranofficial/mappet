@@ -7,10 +7,15 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityStatesMixin implements IStatesProvider {
-    private final States states = new States();
+    private States states = new States();
 
     @Override
     public States getStates() {
         return this.states;
+    }
+
+    @Override
+    public void setStates(States states) {
+        this.states = states;
     }
 }

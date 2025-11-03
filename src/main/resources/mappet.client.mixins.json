@@ -4,9 +4,8 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "L10nMixin",
-    "BBSModClientMixin"
     "BBSModClientMixin",
-    "GameOptionsMixin",
+    "GameOptionsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

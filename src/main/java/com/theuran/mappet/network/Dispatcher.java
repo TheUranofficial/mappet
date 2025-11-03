@@ -21,6 +21,7 @@ public class Dispatcher {
             //SERVER
             this.registerPacket(SaveScriptC2SPacket.class, SaveScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerKeybindC2SPacket.class, TriggerKeybindC2SPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(RequestStatesPacket.class, RequestStatesPacket.ServerHandler.class, EnvType.SERVER);
 
             //CLIENT
             this.registerPacket(HandshakeS2CPacket.class, HandshakeS2CPacket.ClientHandler.class, EnvType.CLIENT);
@@ -33,6 +34,8 @@ public class Dispatcher {
             this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(StatesPacket.class, StatesPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(StatesPacket.class, StatesPacket.ServerHandler.class, EnvType.SERVER);
         }
     };
 

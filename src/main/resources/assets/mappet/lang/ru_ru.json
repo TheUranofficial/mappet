@@ -9,9 +9,6 @@
   "mappet.key.dashboard": "Открыть панель",
   "mappet.key.runScript": "Запустить скрипт",
 
-
-  "mappet.server.title": "Сервер",
-
   "mappet.states.title": "Состояния",
   "mappet.states.add": "Добавить состояние",
   "mappet.states.search": "Найти состояние",

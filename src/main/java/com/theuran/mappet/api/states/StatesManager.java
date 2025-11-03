@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.function.Supplier;
 
 public class StatesManager extends BaseFileManager {
-    private final States states = new States();
+    private States states = new States();
 
     public StatesManager(Supplier<File> file) {
         super(file);
@@ -25,5 +25,9 @@ public class StatesManager extends BaseFileManager {
 
     public States get() {
         return this.states;
+    }
+
+    public void set(States states) {
+        this.states = states;
     }
 }
