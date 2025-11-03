@@ -9,7 +9,6 @@ import com.theuran.mappet.api.keybinds.Keybind;
 import com.theuran.mappet.utils.InputUtils;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.util.InputUtil;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.*;
 
@@ -17,14 +16,6 @@ public class ClientKeybindManager {
     Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
 
     public ClientKeybindManager() {
-        List<Trigger> triggers = new ArrayList<>();
-
-        ScriptTrigger scriptTrigger = new ScriptTrigger("f", "main");
-
-        triggers.add(scriptTrigger);
-
-        this.keybinds.put(new Keybind("lox", "mappet", GLFW.GLFW_KEY_G, Keybind.Type.RELEASED, Keybind.Modificator.ALT), triggers);
-
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             String keyId = "";
 

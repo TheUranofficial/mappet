@@ -65,8 +65,10 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
                 try {
                     Script script = MappetClient.getScripts().getScript(this.data.getId());
 
-                    script.setContent(this.data.getContent());
-                    script.execute(ClientScriptEvent.create(this.data.getId(), "main", player, null, player.clientWorld));
+                    if (script != null) {
+                        script.setContent(this.data.getContent());
+                        script.execute(ClientScriptEvent.create(this.data.getId(), "main", player, null, player.clientWorld));
+                    }
                 } catch (JavetException ignored) {
                 }
             }
@@ -85,14 +87,24 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     }
 
     @Override
+    public void fill(Script data) {
+        this.saveScript(data);
+
+        super.fill(data);
+    }
+
+    @Override
+    public void close() {
+        super.close();
+        this.saveScript(this.data);
+    }
+
+    @Override
     protected void fillData(Script data) {
         this.updateButtons();
 
         if (data != null) {
-            if (!this.content.getText().equals(data.getContent())) {
-                this.saveScript();
-                this.content.setText(data.getContent());
-            }
+            this.content.setText(data.getContent());
         }
     }
 
@@ -111,14 +123,14 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public void forceSave() {
         this.data.setContent(this.content.getText());
 
-        this.saveScript();
+        this.saveScript(this.data);
 
         super.forceSave();
     }
 
-    private void saveScript() {
-        if (this.data != null) {
-            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText(), this.data.isServer()));
+    private void saveScript(Script data) {
+        if (data != null) {
+            Dispatcher.sendToServer(new SaveScriptC2SPacket(data.getId(), this.content.getText(), data.isServer()));
         }
     }
 

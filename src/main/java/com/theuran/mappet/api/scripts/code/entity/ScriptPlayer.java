@@ -10,6 +10,7 @@ import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.morphing.Morph;
 import mchorse.bbs_mod.network.ServerNetwork;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
     public ScriptPlayer(ServerPlayerEntity entity) {
@@ -36,5 +37,9 @@ public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
 
     public void executeClientScript(String scriptId, String function) {
         Dispatcher.sendTo(new RunScriptPacket(scriptId, function), this.entity);
+    }
+
+    public void send(String message) {
+        this.entity.sendMessage(Text.of(message));
     }
 }
