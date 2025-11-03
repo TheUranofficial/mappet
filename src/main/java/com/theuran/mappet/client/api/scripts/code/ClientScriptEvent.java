@@ -1,6 +1,8 @@
 package com.theuran.mappet.client.api.scripts.code;
 
+import com.theuran.mappet.api.scripts.code.entity.ScriptPlayer;
 import com.theuran.mappet.client.api.scripts.code.entity.ClientScriptEntity;
+import com.theuran.mappet.client.api.scripts.code.entity.ClientScriptPlayer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
@@ -66,6 +68,18 @@ public class ClientScriptEvent {
 
     public ClientScriptEntity getObject() {
         return this.object;
+    }
+
+    public ClientScriptPlayer getPlayer() {
+        if (this.subject instanceof ClientScriptPlayer) {
+            return (ClientScriptPlayer) this.subject;
+        }
+
+        if (this.object instanceof ClientScriptPlayer) {
+            return (ClientScriptPlayer) this.object;
+        }
+
+        return null;
     }
 
     public ClientScriptWorld getWorld() {

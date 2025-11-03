@@ -3,6 +3,7 @@ package com.theuran.mappet.api.scripts.code;
 import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.entity.ScriptEntity;
+import com.theuran.mappet.api.scripts.code.entity.ScriptPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
@@ -78,6 +79,18 @@ public class ScriptEvent {
 
     public ScriptEntity getSubject() {
         return this.subject;
+    }
+
+    public ScriptPlayer getPlayer() {
+        if (this.subject instanceof ScriptPlayer) {
+            return (ScriptPlayer) this.subject;
+        }
+
+        if (this.object instanceof ScriptPlayer) {
+            return (ScriptPlayer) this.object;
+        }
+
+        return null;
     }
 
     public ScriptEntity getObject() {

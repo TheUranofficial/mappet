@@ -11,6 +11,9 @@ import mchorse.bbs_mod.utils.interps.Interpolations;
 import mchorse.bbs_mod.utils.interps.Lerps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -20,6 +23,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.UUID;
 
 public class ScriptEntity <T extends Entity> {
     protected T entity;
@@ -307,6 +312,31 @@ public class ScriptEntity <T extends Entity> {
      */
     public void setSprinting(boolean sprinting) {
         this.entity.setSprinting(sprinting);
+    }
+
+    public void setSpeed(float speed) {
+        if (this.entity.isLiving()) {
+            EntityAttributeInstance movementSpeed = ((LivingEntity)this.entity).getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+            if (movementSpeed != null) {
+                movementSpeed.clearModifiers();
+
+                movementSpeed.addPersistentModifier(new EntityAttributeModifier(
+                        UUID.randomUUID(),
+                        "Mappet",
+                        speed,
+                        EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                ));
+            }
+        }
+    }
+
+    public void resetSpeed() {
+        if (this.entity.isLiving()) {
+            EntityAttributeInstance movementSpeed = ((LivingEntity)this.entity).getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+            if (movementSpeed != null) {
+                movementSpeed.clearModifiers();
+            }
+        }
     }
 
     /**
