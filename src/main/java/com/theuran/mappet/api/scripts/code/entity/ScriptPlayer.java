@@ -1,7 +1,7 @@
 package com.theuran.mappet.api.scripts.code.entity;
 
 import com.theuran.mappet.api.scripts.code.mappet.MappetStates;
-import com.theuran.mappet.api.scripts.code.bbs.ScriptForm;
+import com.theuran.mappet.api.scripts.code.bbs.BBSForm;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
@@ -25,14 +25,14 @@ public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
         return new MappetStates(((IStatesProvider) this.entity).getStates());
     }
 
-    public void setForm(ScriptForm scriptForm) {
+    public void setForm(BBSForm scriptForm) {
         Form form = scriptForm.getForm();
         ServerNetwork.sendMorphToTracked(this.getMinecraftPlayer(), form);
         Morph.getMorph(this.getMinecraftPlayer()).setForm(FormUtils.copy(form));
     }
 
-    public ScriptForm getForm() {
-        return new ScriptForm(Morph.getMorph(this.getMinecraftPlayer()).getForm());
+    public BBSForm getForm() {
+        return new BBSForm(Morph.getMorph(this.getMinecraftPlayer()).getForm());
     }
 
     public void executeClientScript(String scriptId, String function) {

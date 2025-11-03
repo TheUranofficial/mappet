@@ -4,10 +4,10 @@ import com.theuran.mappet.api.scripts.code.ScriptFactory;
 import com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound;
 import mchorse.bbs_mod.forms.forms.Form;
 
-public class ScriptForm {
+public class BBSForm {
     private final Form form;
 
-    public ScriptForm(Form form) {
+    public BBSForm(Form form) {
         this.form = form;
     }
 
@@ -55,20 +55,20 @@ public class ScriptForm {
         return this.form.name.get();
     }
 
-    public void setTransform(ScriptTransform transform) {
+    public void setTransform(BBSTransform transform) {
         this.form.transform.set(transform.getTransform());
     }
 
-    public ScriptTransform getTransform() {
-        return new ScriptTransform(this.form.transform.get());
+    public BBSTransform getTransform() {
+        return new BBSTransform(this.form.transform.get());
     }
 
-    public void setTransformOverlay(ScriptTransform transform) {
+    public void setTransformOverlay(BBSTransform transform) {
         this.form.transformOverlay.set(transform.getTransform());
     }
 
-    public ScriptTransform getTransformOverlay() {
-        return new ScriptTransform(this.form.transformOverlay.get());
+    public BBSTransform getTransformOverlay() {
+        return new BBSTransform(this.form.transformOverlay.get());
     }
 
     public void setUIScale(float uiScale) {

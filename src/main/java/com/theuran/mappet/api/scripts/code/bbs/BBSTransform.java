@@ -4,10 +4,10 @@ import com.theuran.mappet.api.scripts.code.ScriptVector;
 import mchorse.bbs_mod.utils.pose.Transform;
 import org.joml.Vector3f;
 
-public class ScriptTransform {
+public class BBSTransform {
     private final Transform transform;
 
-    public ScriptTransform(Transform transform) {
+    public BBSTransform(Transform transform) {
         this.transform = transform;
     }
 

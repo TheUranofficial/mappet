@@ -6,8 +6,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.theuran.mappet.api.scripts.ScriptLogger;
-import com.theuran.mappet.api.scripts.code.bbs.ScriptForm;
-import com.theuran.mappet.api.scripts.code.bbs.ScriptTransform;
+import com.theuran.mappet.api.scripts.code.bbs.BBSForm;
+import com.theuran.mappet.api.scripts.code.bbs.BBSTransform;
 import com.theuran.mappet.api.scripts.code.block.ScriptBlockState;
 import com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound;
 import com.theuran.mappet.utils.FormUtils;
@@ -34,15 +34,15 @@ public class ScriptFactory {
         return new ScriptLogger();
     }
 
-    public ScriptForm createForm(String formData) {
-        return new ScriptForm(FormUtils.fromData(formData));
+    public BBSForm createForm(String formData) {
+        return new BBSForm(FormUtils.fromData(formData));
     }
 
-    public ScriptTransform createTransform(String transformData) {
+    public BBSTransform createTransform(String transformData) {
         Transform transformDefault = Transform.DEFAULT;
         transformDefault.toData(DataToString.mapFromString(transformData));
 
-        return new ScriptTransform(transformDefault);
+        return new BBSTransform(transformDefault);
     }
 
     /**
