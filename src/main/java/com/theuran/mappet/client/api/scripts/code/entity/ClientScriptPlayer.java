@@ -1,8 +1,11 @@
 package com.theuran.mappet.client.api.scripts.code.entity;
 
 import com.theuran.mappet.client.api.scripts.code.ClientScriptOptions;
+import com.theuran.mappet.client.api.scripts.code.ui.MappetUIBuilder;
+import com.theuran.mappet.client.ui.UIMappetBase;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
+import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
 
@@ -25,5 +28,9 @@ public class ClientScriptPlayer extends ClientScriptEntity<ClientPlayerEntity> {
 
     public void executeServerScript(String name, String function) {
         Dispatcher.sendToServer(new RunScriptPacket(name, function));
+    }
+
+    public void openUI(MappetUIBuilder builder) {
+        UIScreen.open(new UIMappetBase(builder));
     }
 }

@@ -10,9 +10,12 @@ import com.theuran.mappet.api.scripts.code.bbs.BBSForm;
 import com.theuran.mappet.api.scripts.code.bbs.BBSTransform;
 import com.theuran.mappet.api.scripts.code.block.ScriptBlockState;
 import com.theuran.mappet.api.scripts.code.nbt.ScriptNbtCompound;
+import com.theuran.mappet.client.api.scripts.code.ui.MappetUIBuilder;
 import com.theuran.mappet.utils.FormUtils;
 import mchorse.bbs_mod.data.DataToString;
 import mchorse.bbs_mod.utils.pose.Transform;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -43,6 +46,11 @@ public class ScriptFactory {
         transformDefault.toData(DataToString.mapFromString(transformData));
 
         return new BBSTransform(transformDefault);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public MappetUIBuilder createUI() {
+        return new MappetUIBuilder();
     }
 
     /**

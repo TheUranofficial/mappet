@@ -6,6 +6,8 @@ import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.api.keybinds.ClientKeybindManager;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import com.theuran.mappet.client.api.scripts.code.ui.MappetUIBuilder;
+import com.theuran.mappet.client.ui.UIMappetBase;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
@@ -25,6 +27,8 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
+
+import java.util.ArrayList;
 
 @Environment(EnvType.CLIENT)
 public class MappetClient implements ClientModInitializer {
