@@ -1,16 +1,14 @@
 package com.theuran.mappet.client.api.scripts.code.ui;
 
-import com.theuran.mappet.client.api.scripts.code.ui.components.UIButtonComponent;
-import com.theuran.mappet.client.api.scripts.code.ui.components.UIComponent;
-import com.theuran.mappet.client.api.scripts.code.ui.components.UILabelComponent;
-import com.theuran.mappet.client.api.scripts.code.ui.components.UIToggleComponent;
+import com.theuran.mappet.client.api.scripts.code.ui.components.*;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MappetUIBuilder {
-    public List<UIComponent> elements = new ArrayList<>();
+    public List<UIComponent<?>> elements = new ArrayList<>();
 
     public MappetUIBuilder() {
 
@@ -58,5 +56,36 @@ public class MappetUIBuilder {
         UIToggleComponent toggle = new UIToggleComponent(label, false, null);
         this.elements.add(toggle);
         return toggle;
+    }
+
+    public UITextboxComponent textbox() {
+        return this.textbox(10000, null);
+    }
+
+    public UITextboxComponent textbox(int maxLength) {
+        return this.textbox(maxLength, null);
+    }
+
+    public UITextboxComponent textbox(int maxLength, Consumer<String> consumer) {
+        return this.textbox("", maxLength, consumer);
+    }
+
+    public UITextboxComponent textbox(String text) {
+        return this.textbox(text, 10000, null);
+    }
+
+    public UITextboxComponent textbox(String text, int maxLength) {
+        return this.textbox(text, maxLength, null);
+    }
+
+    public UITextboxComponent textbox(String text, Consumer<String> consumer) {
+        return this.textbox(text, 10000, consumer);
+    }
+
+    public UITextboxComponent textbox(String text, int maxLength, Consumer<String> consumer) {
+        UITextboxComponent textbox = new UITextboxComponent(maxLength, consumer);
+        textbox.text(text);
+        this.elements.add(textbox);
+        return textbox;
     }
 }

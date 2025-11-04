@@ -9,5 +9,18 @@ public class UITextboxComponent extends UIComponent<UITextbox>{
         super(new UITextbox(maxLength, consumer));
     }
 
+    public UITextboxComponent text(String text) {
+        this.element.setText(text);
+        return this;
+    }
 
+    public UITextboxComponent color(int color) {
+        this.element.setColor(color);
+        return this;
+    }
+
+    public UITextboxComponent border(boolean border) {
+        this.element.textbox.setBorder(border);
+        return this;
+    }
 }

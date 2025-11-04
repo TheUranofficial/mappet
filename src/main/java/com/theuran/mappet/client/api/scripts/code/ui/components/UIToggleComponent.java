@@ -12,6 +12,22 @@ public class UIToggleComponent extends UIComponent<UIToggle> {
         }));
     }
 
+    public String getLabel() {
+        return this.element.label.get();
+    }
+
+    public int getColor() {
+        return this.element.color;
+    }
+
+    public boolean isTextShadow() {
+        return this.element.textShadow;
+    }
+
+    public boolean getValue() {
+        return this.element.getValue();
+    }
+
     public UIToggleComponent label(String label) {
         this.element.label(IKey.raw(label));
         return this;

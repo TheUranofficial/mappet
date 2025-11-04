@@ -12,6 +12,26 @@ public class UIButtonComponent extends UIComponent<UIButton> {
         }));
     }
 
+    public String getLabel() {
+        return this.element.label.get();
+    }
+
+    public int getColor() {
+        return this.element.customColor;
+    }
+
+    public int getTextColor() {
+        return this.element.textColor;
+    }
+
+    public boolean isTextShadow() {
+        return this.element.textShadow;
+    }
+
+    public boolean isBackground() {
+        return this.element.background;
+    }
+
     public UIButtonComponent label(String text) {
         this.element.label = IKey.raw(text);
         return this;
