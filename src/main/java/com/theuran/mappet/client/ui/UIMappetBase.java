@@ -8,7 +8,7 @@ public class UIMappetBase extends UIBaseMenu {
     public UIMappetBase(MappetUIBuilder uiBuilder) {
         super();
 
-        for (UIComponent component : uiBuilder.elements) {
+        for (UIComponent<?> component : uiBuilder.elements) {
             this.getRoot().add(component.getMappetElement().relative(this.getRoot()));
         }
     }
