@@ -1,6 +1,8 @@
 package com.theuran.mappet.block.blocks;
 
 import com.theuran.mappet.api.scripts.code.ScriptVector;
+import com.theuran.mappet.client.ui.panels.UITriggerBlock;
+import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -12,7 +14,6 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.Util;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.*;
@@ -72,10 +73,8 @@ public class TriggerBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient()) {
-            boolean current = state.get(COLLISION);
-            Hitbox hitbox = state.get(HITBOX);
-            world.setBlockState(pos, state.with(HITBOX, hitbox.pos(0, 0, 0, (int) (hitbox.getPos2().x-1), (int) (hitbox.getPos2().y-1), (int) (hitbox.getPos2().z-1))));
+        if (world.isClient()) {
+            UIScreen.open(new UITriggerBlock());
             return ActionResult.SUCCESS;
         }
         return ActionResult.CONSUME;

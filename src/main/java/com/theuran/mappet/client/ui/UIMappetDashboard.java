@@ -38,7 +38,6 @@ public class UIMappetDashboard extends UIDashboard {
         this.getPanels().registerPanel(new UIScriptPanel(this), UIMappetKeys.SCRIPTS_TITLE, Icons.PROPERTIES);
         this.getPanels().registerPanel(new UILoggerPanel(this), UIMappetKeys.LOGGER_TITLE, Icons.CROPS);
         this.getPanels().registerPanel(new UIBuilderPanel(this), UIMappetKeys.UI_BUILDER_TITLE, Icons.MAZE);
-        this.getPanels().registerPanel(new UITriggerBlockPanel(this), UIMappetKeys.UI_TRIGGER_BLOCK_TITLE, Icons.JOYSTICK);
 
         this.setPanel(this.getPanel(UILoggerPanel.class));
     }
