@@ -38,6 +38,8 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
             }
         });
 
+        this.content.background().wh(1f, 1f);
+
         this.content.relative(this.editor);
 
         this.run = new UIIcon(Icons.PLAY, this::runScript);

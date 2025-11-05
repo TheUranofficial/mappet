@@ -1,16 +1,16 @@
 package com.theuran.mappet.client.api.scripts.code.ui;
 
 import com.theuran.mappet.client.api.scripts.code.ui.components.*;
-import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.utils.icons.Icon;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class MappetUIBuilder {
-    public List<UIComponent<?>> elements = new ArrayList<>();
+    public List<UIComponent<?>> components = new ArrayList<>();
 
     public MappetUIBuilder() {
 
@@ -26,13 +26,13 @@ public class MappetUIBuilder {
 
     public UIButtonComponent button(String label, Runnable onClick) {
         UIButtonComponent button = new UIButtonComponent(label, onClick);
-        this.elements.add(button);
+        this.components.add(button);
         return button;
     }
 
     public UILabelComponent label(String text, int color) {
         UILabelComponent label = new UILabelComponent(text, color);
-        this.elements.add(label);
+        this.components.add(label);
         return label;
     }
 
@@ -42,7 +42,7 @@ public class MappetUIBuilder {
 
     public UIToggleComponent toggle(String label, boolean value, Runnable runnable) {
         UIToggleComponent toggle = new UIToggleComponent(label, value, runnable);
-        this.elements.add(toggle);
+        this.components.add(toggle);
         return toggle;
     }
 
@@ -81,7 +81,7 @@ public class MappetUIBuilder {
     public UITextboxComponent textbox(String text, int maxLength, Consumer<String> consumer) {
         UITextboxComponent textbox = new UITextboxComponent(maxLength, consumer);
         textbox.text(text);
-        this.elements.add(textbox);
+        this.components.add(textbox);
         return textbox;
     }
 
@@ -93,11 +93,51 @@ public class MappetUIBuilder {
         }
 
         UIIconComponent iconComponent = new UIIconComponent(icon, onClick);
-        this.elements.add(iconComponent);
+        this.components.add(iconComponent);
         return iconComponent;
     }
 
     public UIIconComponent icon(String iconId) {
         return this.icon(iconId, null);
+    }
+
+    public List<UIIconComponent> icons() {
+        List<UIIconComponent> icons = new ArrayList<>();
+        for (String iconId : Icons.ICONS.keySet()) {
+            icons.add(icon(iconId));
+        }
+        return icons;
+    }
+
+    public UITrackpadComponent trackpad(Consumer<Double> consumer) {
+        UITrackpadComponent trackpad = new UITrackpadComponent(consumer);
+        this.components.add(trackpad);
+        return trackpad;
+    }
+
+    public UITrackpadComponent trackpad() {
+        return this.trackpad(null);
+    }
+
+    public UIOverlayComponent overlay(Consumer<MappetUIBuilder> consumer) {
+        UIOverlayComponent overlay = new UIOverlayComponent(consumer);
+        this.components.add(overlay);
+        return overlay;
+    }
+
+    public UILayoutComponent layout(BiConsumer<UILayoutComponent, MappetUIBuilder> consumer) {
+        UILayoutComponent layout = new UILayoutComponent(consumer);
+        this.components.add(layout);
+        return layout;
+    }
+
+    public UIComponent<?> getComponent(String id) {
+        for (UIComponent<?> component : this.components) {
+            if (component.getMappetElement().getUndoId().equals(id)) {
+                return component;
+            }
+        }
+
+        return null;
     }
 }

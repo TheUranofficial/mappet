@@ -1,6 +1,8 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
+import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
+import mchorse.bbs_mod.utils.Direction;
 
 public class UIComponent<T extends UIElement> {
     protected T element;
@@ -139,8 +141,41 @@ public class UIComponent<T extends UIElement> {
         return this;
     }
 
+    public boolean isEnabled() {
+        return this.element.isEnabled();
+    }
+
     public UIComponent<T> visible(boolean visible) {
         this.element.setVisible(visible);
+        return this;
+    }
+
+    public boolean isVisible() {
+        return this.element.isVisible();
+    }
+
+    public UIComponent<T> culling(boolean culling) {
+        this.element.culled = culling;
+        return this;
+    }
+
+    public UIComponent<T> tooltip(String label, String direction) {
+        this.element.tooltip(IKey.raw(label), Direction.valueOf(direction));
+        return this;
+    }
+
+    public UIComponent<T> tooltip(String label) {
+        this.element.tooltip(IKey.raw(label));
+        return this;
+    }
+
+    public UIComponent<T> tooltip(String label, int width, String direction) {
+        this.element.tooltip(IKey.raw(label), width, Direction.valueOf(direction));
+        return this;
+    }
+
+    public UIComponent<T> noTooltip() {
+        this.element.removeTooltip();
         return this;
     }
 }

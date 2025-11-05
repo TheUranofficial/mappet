@@ -13,7 +13,6 @@ public class UIScriptEditor extends UITextEditor {
         super(callback);
 
         this.highlighter(new Highlighter());
-        this.background().wh(1f, 1f);
     }
 
     @Override
