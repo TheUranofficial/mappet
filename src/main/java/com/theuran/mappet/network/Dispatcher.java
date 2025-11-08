@@ -3,6 +3,7 @@ package com.theuran.mappet.network;
 import com.theuran.mappet.network.basic.AbstractDispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.packets.server.*;
+import mchorse.bbs_mod.data.types.BaseType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -11,9 +12,17 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+
 public class Dispatcher {
     @Environment(EnvType.CLIENT)
     public static boolean isMappetModOnServer;
+    @Environment(EnvType.CLIENT)
+    public static Map<Integer, Consumer<BaseType>> callbacks = new HashMap<>();
+    @Environment(EnvType.CLIENT)
+    public static int ids = 0;
 
     private static final AbstractDispatcher DISPATCHER = new AbstractDispatcher() {
         @Override

@@ -26,6 +26,7 @@ public class UIStateGroup extends UIElement {
         this.set(states);
 
         this.column().vertical().stretch().padding(8);
+        this.h(20);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class UIStateGroup extends UIElement {
 
             if (y < 0) {
                 if (x < this.area.x + 80) {
-                    this.visible = !visible;
+                    this.setValuesVisible(!this.visible);
                     return true;
                 }
 
@@ -45,6 +46,14 @@ public class UIStateGroup extends UIElement {
         }
 
         return super.subMouseClicked(context);
+    }
+
+    public void setValuesVisible(boolean flag) {
+        this.visible = flag;
+
+        for (UIState child : this.getChildren(UIState.class)) {
+            child.setVisible(this.visible);
+        }
     }
 
     public void addNew() {
@@ -62,7 +71,7 @@ public class UIStateGroup extends UIElement {
         this.states.setString(key, "");
         this.add(new UIState(key, this.states));
 
-        this.visible = true;
+        this.setValuesVisible(true);
 
         this.getChildren().sort(Comparator.comparing(state -> ((UIState) state).getKey()));
         this.getParentContainer().resize();
@@ -97,7 +106,11 @@ public class UIStateGroup extends UIElement {
             context.batcher.outline(this.area.x, this.area.y, this.area.ex(), this.area.y + 15, Colors.A100 + Colors.ORANGE);
         }
 
-        int h = this.visible ? this.area.h : 20;
+        int h = 20;
+
+        if (this.visible) {
+            h = this.area.h;
+        }
 
         if (this.last != h) {
             this.last = h;
@@ -105,7 +118,7 @@ public class UIStateGroup extends UIElement {
             UIElement parent = this.getParentContainer();
 
             if (parent != null) {
-                this.area.h = h;
+                this.h(h);
                 parent.resize();
             }
         }

@@ -1,7 +1,6 @@
 package com.theuran.mappet.client.ui.panels;
 
 import com.caoccao.javet.exceptions.JavetException;
-import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
@@ -32,11 +31,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
         this.overlay.namesList.setFileIcon(Icons.PROPERTIES);
 
-        this.content = new UIScriptEditor(text -> {
-            if (!this.data.isServer()) {
-                this.data.setContent(text);
-            }
-        });
+        this.content = new UIScriptEditor(null);
 
         this.content.background().wh(1f, 1f);
 

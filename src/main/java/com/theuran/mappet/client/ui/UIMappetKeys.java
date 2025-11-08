@@ -26,6 +26,7 @@ public class UIMappetKeys {
     public static final IKey UI_BUILDER_ELEMENT_ADD = L10n.lang("mappet.ui.builder.element.add.tooltip");
     public static final IKey UI_BUILDER_SCRIPT = L10n.lang("mappet.ui.script.tooltip");
 
-
     public static final IKey UI_TRIGGER_BLOCK_TITLE = L10n.lang("mappet.ui.trigger_block.title");
+
+    public static final IKey EVENTS_TITLE = L10n.lang("mappet.events.title");
 }

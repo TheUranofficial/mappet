@@ -1,8 +1,9 @@
 package com.theuran.mappet.utils;
 
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.network.packets.server.ManagerDataPacket;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
-import mchorse.bbs_mod.network.ClientNetwork;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
 import mchorse.bbs_mod.utils.repos.IRepository;
 import mchorse.bbs_mod.utils.repos.RepositoryOperation;
@@ -19,7 +20,7 @@ import java.util.function.Consumer;
 public abstract class BaseDataRepository <T extends ValueGroup> implements IRepository<T> {
     @Override
     public void load(String id, Consumer<T> consumer) {
-        ClientNetwork.sendManagerDataLoad(id, data -> {
+        this.sendPacketLoad(id, data -> {
             if (data.isMap()) {
                 consumer.accept(this.create(id, data.asMap()));
             }
@@ -35,7 +36,7 @@ public abstract class BaseDataRepository <T extends ValueGroup> implements IRepo
         map.putString("id", id);
         map.put("data", data);
 
-        ClientNetwork.sendManagerData(-1, RepositoryOperation.SAVE, map);
+        this.sendPacket(RepositoryOperation.SAVE, map, -1);
     }
 
     @Override
@@ -45,7 +46,7 @@ public abstract class BaseDataRepository <T extends ValueGroup> implements IRepo
         map.putString("from", from);
         map.putString("to", to);
 
-        ClientNetwork.sendManagerData(-1, RepositoryOperation.RENAME, map);
+        this.sendPacket(RepositoryOperation.RENAME, map, -1);
     }
 
     @Override
@@ -54,14 +55,14 @@ public abstract class BaseDataRepository <T extends ValueGroup> implements IRepo
 
         map.putString("id", id);
 
-        ClientNetwork.sendManagerData(-1, RepositoryOperation.DELETE, map);
+        this.sendPacket(RepositoryOperation.DELETE, map, -1);
     }
 
     @Override
     public void requestKeys(Consumer<Collection<String>> consumer) {
         MapType map = new MapType();
 
-        ClientNetwork.sendManagerData(RepositoryOperation.KEYS, map, data -> {
+        this.sendPacket(RepositoryOperation.KEYS, map, data -> {
             if (data.isList()) {
                 List<String> list = new ArrayList<>();
 
@@ -85,7 +86,7 @@ public abstract class BaseDataRepository <T extends ValueGroup> implements IRepo
 
         map.putString("folder", path);
 
-        ClientNetwork.sendManagerData(RepositoryOperation.ADD_FOLDER, map, data -> {
+        this.sendPacket(RepositoryOperation.ADD_FOLDER, map, data -> {
             if (data.isNumeric()) {
                 consumer.accept(data.asNumeric().boolValue());
             }
@@ -98,7 +99,7 @@ public abstract class BaseDataRepository <T extends ValueGroup> implements IRepo
 
         mapType.putString("folder", path);
 
-        ClientNetwork.sendManagerData(RepositoryOperation.DELETE_FOLDER, mapType, (data) -> {
+        this.sendPacket(RepositoryOperation.DELETE_FOLDER, mapType, data -> {
             if (data.isNumeric()) {
                 consumer.accept(data.asNumeric().boolValue());
             }
@@ -112,10 +113,28 @@ public abstract class BaseDataRepository <T extends ValueGroup> implements IRepo
         mapType.putString("from", from);
         mapType.putString("to", to);
 
-        ClientNetwork.sendManagerData(RepositoryOperation.RENAME_FOLDER, mapType, (data) -> {
+        this.sendPacket(RepositoryOperation.RENAME_FOLDER, mapType, data -> {
             if (data.isNumeric()) {
                 consumer.accept(data.asNumeric().boolValue());
             }
         });
+    }
+
+    private void sendPacket(RepositoryOperation operation, MapType data, int callbackId) {
+        Dispatcher.sendToServer(new ManagerDataPacket(this.getId(), operation, data, callbackId));
+    }
+
+    private void sendPacket(RepositoryOperation operation, MapType data, Consumer<BaseType> callback) {
+        Dispatcher.callbacks.put(Dispatcher.ids, callback);
+        this.sendPacket(operation, data, Dispatcher.ids);
+        Dispatcher.ids++;
+    }
+
+    private void sendPacketLoad(String id, Consumer<BaseType> callback) {
+        MapType data = new MapType();
+
+        data.putString("id", id);
+
+        this.sendPacket(RepositoryOperation.LOAD, data, callback);
     }
 }

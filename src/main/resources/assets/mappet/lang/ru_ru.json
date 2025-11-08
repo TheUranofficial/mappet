@@ -32,6 +32,8 @@
   "mappet.ui.builder.element.add.tooltip": "Добавить элемент",
   "mappet.ui.builder.script.tooltip": "Редактор UI скрипта",
 
+  "mappet.events.title": "События",
+
   "mappet.events.name.entity.death": "Сущность: при смерти",
   "mappet.events.description.entity.death": "Description",
   "mappet.events.variables.entity.death": "Variables",

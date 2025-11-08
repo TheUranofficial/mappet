@@ -27,7 +27,9 @@
   "mappet.ui.builder.element.panel.title": "Elements panel",
   "mappet.ui.builder.element.add.tooltip": "Add element",
   "mappet.ui.builder.script.tooltip": "UI script editor",
-  
+
+  "mappet.events.title": "Events",
+
   "mappet.events.name.entity.death": "Entity: Death",
   "mappet.events.description.entity.death": "Description",
   "mappet.events.variables.entity.death": "Variables",

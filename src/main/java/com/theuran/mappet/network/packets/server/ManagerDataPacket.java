@@ -6,6 +6,9 @@ import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.basic.ClientPacketHandler;
 import com.theuran.mappet.network.basic.ServerPacketHandler;
 import mchorse.bbs_mod.data.DataStorageUtils;
+import mchorse.bbs_mod.data.types.BaseType;
+import mchorse.bbs_mod.data.types.ByteType;
+import mchorse.bbs_mod.data.types.ListType;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
 import mchorse.bbs_mod.utils.manager.BaseManager;
@@ -20,19 +23,22 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-//TODO: make this
+import java.util.function.Consumer;
+
 public class ManagerDataPacket extends AbstractPacket {
     public String manager;
     public RepositoryOperation operation;
-    public MapType data;
+    public BaseType data;
+    public int callbackId;
 
     public ManagerDataPacket() {
     }
 
-    public ManagerDataPacket(String manager, RepositoryOperation operation, MapType data) {
+    public ManagerDataPacket(String manager, RepositoryOperation operation, BaseType data, int callbackId) {
         this.manager = manager;
         this.operation = operation;
         this.data = data;
+        this.callbackId = callbackId;
     }
 
     @Override
@@ -44,7 +50,7 @@ public class ManagerDataPacket extends AbstractPacket {
 
     @Override
     public void fromBytes(PacketByteBuf buf) {
-        this.data = (MapType) DataStorageUtils.readFromPacket(buf);
+        this.data = DataStorageUtils.readFromPacket(buf);
         this.manager = buf.readString();
         this.operation = RepositoryOperation.values()[buf.readInt()];
     }
@@ -63,17 +69,29 @@ public class ManagerDataPacket extends AbstractPacket {
             else
                 return;
 
+            MapType data = (MapType) packet.data;
+
             if (packet.operation == RepositoryOperation.LOAD) {
-                String id = packet.data.getString("id");
+                String id = data.getString("id");
                 ValueGroup group = manager.load(id);
 
-                Dispatcher.sendTo(new ManagerDataPacket(packet.manager, packet.operation, group.toData().asMap()), player);
+                Dispatcher.sendTo(new ManagerDataPacket(packet.manager, packet.operation, group.toData(), packet.callbackId), player);
             } else if (packet.operation == RepositoryOperation.SAVE) {
-                manager.save(packet.data.getString("id"), packet.data.getMap("data"));
+                manager.save(data.getString("id"), data.getMap("data"));
             } else if (packet.operation == RepositoryOperation.RENAME) {
-                manager.rename(packet.data.getString("from"), packet.data.getString("to"));
+                manager.rename(data.getString("from"), data.getString("to"));
             } else if (packet.operation == RepositoryOperation.DELETE) {
-                manager.delete(packet.data.getString("id"));
+                manager.delete(data.getString("id"));
+            } else if (packet.operation == RepositoryOperation.KEYS) {
+                ListType list = DataStorageUtils.stringListToData(manager.getKeys());
+
+                Dispatcher.sendTo(new ManagerDataPacket(packet.manager, packet.operation, list, packet.callbackId), player);
+            } else if (packet.operation == RepositoryOperation.ADD_FOLDER) {
+                Dispatcher.sendTo(new ManagerDataPacket(packet.manager, packet.operation, new ByteType(manager.addFolder(data.getString("folder"))), packet.callbackId), player);
+            } else if (packet.operation == RepositoryOperation.RENAME_FOLDER) {
+                Dispatcher.sendTo(new ManagerDataPacket(packet.manager, packet.operation, new ByteType(manager.renameFolder(data.getString("from"), data.getString("to"))), packet.callbackId), player);
+            } else if (packet.operation == RepositoryOperation.DELETE_FOLDER) {
+                Dispatcher.sendTo(new ManagerDataPacket(packet.manager, packet.operation, new ByteType(manager.deleteFolder(data.getString("folder"))), packet.callbackId), player);
             }
         }
     }
@@ -82,7 +100,11 @@ public class ManagerDataPacket extends AbstractPacket {
         @Environment(EnvType.CLIENT)
         @Override
         public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, ManagerDataPacket packet) {
+            Consumer<BaseType> callback = Dispatcher.callbacks.remove(packet.callbackId);
 
+            if (callback != null) {
+                callback.accept(packet.data);
+            }
         }
     }
 }
