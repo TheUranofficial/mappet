@@ -6,7 +6,8 @@
   "description": "Adventure map toolset mod",
   "authors": [
     "TheUran",
-    "Llama"
+    "Llama",
+    "Ded"
   ],
   "contact": {
     "homepage": "https://github.com/TheUranofficial",
@@ -35,7 +36,7 @@
     "minecraft": "~1.20.4",
     "java": ">=17",
     "fabric-api": "*",
-    "bbs": "*"
+    "bbs": ">=1.6"
   },
   "suggests": {
     "another-mod": "*"
