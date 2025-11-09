@@ -1,11 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
+import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetButtonElement;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
 
-public class UIButtonComponent extends UIComponent<UIButton> {
+public class UIButtonComponent extends UIComponent<UIMappetButtonElement> {
     public UIButtonComponent(String label, Runnable onClick) {
-        super(new UIButton(IKey.raw(label), (b) -> {
+        super(new UIMappetButtonElement(IKey.raw(label), (b) -> {
             if (onClick != null) {
                 onClick.run();
             }
@@ -18,6 +19,10 @@ public class UIButtonComponent extends UIComponent<UIButton> {
 
     public int getColor() {
         return this.element.customColor;
+    }
+
+    public float getAlpha() {
+        return this.element.alpha;
     }
 
     public int getTextColor() {
@@ -42,8 +47,18 @@ public class UIButtonComponent extends UIComponent<UIButton> {
         return this;
     }
 
+    public UIButtonComponent alpha(float alpha) {
+        this.element.alpha(alpha);
+        return this;
+    }
+
     public UIButtonComponent textColor(int color) {
         this.element.textColor(color, this.element.textShadow);
+        return this;
+    }
+
+    public UIButtonComponent textAlpha(float alpha) {
+        this.element.textAlpha(alpha);
         return this;
     }
 

@@ -1,12 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
-import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
+import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetScriptEditorElement;
 
 import java.util.function.Consumer;
 
-public class UIScriptEditorComponent extends UIComponent<UIScriptEditor>{
+public class UIScriptEditorComponent extends UIComponent<UIMappetScriptEditorElement>{
     public UIScriptEditorComponent(Consumer<String> consumer) {
-        super(new UIScriptEditor(consumer));
+        super(new UIMappetScriptEditorElement(consumer));
     }
 
     public UIScriptEditorComponent background(boolean background) {
@@ -31,6 +31,24 @@ public class UIScriptEditorComponent extends UIComponent<UIScriptEditor>{
 
     public UIScriptEditorComponent textColor(int textColor) {
         this.element.setColor(textColor, false);
+        return this;
+    }
+
+    public float getTextAlpha() {
+        return this.element.textAlpha;
+    }
+
+    public UIScriptEditorComponent textAlpha(float alpha) {
+        this.element.textAlpha = alpha;
+        return this;
+    }
+
+    public float getBackgroundAlpha() {
+        return this.element.backgroundAlpha;
+    }
+
+    public UIScriptEditorComponent backgroundAlpha(float alpha) {
+        this.element.backgroundAlpha = alpha;
         return this;
     }
 

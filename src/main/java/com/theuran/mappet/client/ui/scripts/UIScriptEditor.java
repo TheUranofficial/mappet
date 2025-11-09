@@ -24,7 +24,7 @@ public class UIScriptEditor extends UITextEditor {
     }
 
     @Override
-    protected void renderBackground(UIContext context) {
+    public void renderBackground(UIContext context) {
         this.area.render(context.batcher, Colors.A50 | Colors.mulRGB(this.getHighlighter().getStyle().background, 0.8F));
     }
 }

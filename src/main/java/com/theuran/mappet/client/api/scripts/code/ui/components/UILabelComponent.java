@@ -1,11 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
+import com.theuran.mappet.api.scripts.code.ScriptVector;
+import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetLabelElement;
 import mchorse.bbs_mod.l10n.keys.IKey;
-import mchorse.bbs_mod.ui.framework.elements.utils.UILabel;
 
-public class UILabelComponent extends UIComponent<UILabel> {
+public class UILabelComponent extends UIComponent<UIMappetLabelElement> {
     public UILabelComponent(String label, int color) {
-        super(new UILabel(IKey.raw(label), color));
+        super(new UIMappetLabelElement(IKey.raw(label), color));
     }
 
     public String getLabel() {
@@ -20,12 +21,21 @@ public class UILabelComponent extends UIComponent<UILabel> {
         return this.element.textShadow;
     }
 
-    public float getAnchorX() {
+    public ScriptVector getLabelAnchor() {
+        return new ScriptVector(this.element.anchorX, this.element.anchorY, 0);
+    }
+
+    public float getLabelAnchorX() {
         return this.element.anchorX;
     }
 
-    public float getAnchorY() {
+    public float getLabelAnchorY() {
         return this.element.anchorY;
+    }
+
+    public UILabelComponent labelAnchor(float x, float y) {
+        this.element.labelAnchor(x, y);
+        return this;
     }
 
     public int getBackgroundColor() {
@@ -42,18 +52,26 @@ public class UILabelComponent extends UIComponent<UILabel> {
         return this;
     }
 
+    public UILabelComponent alpha(float alpha) {
+        this.element.alpha(alpha);
+        return this;
+    }
+
+    public UILabelComponent backgroundAlpha(float alpha) {
+        this.element.backgroundAlpha(alpha);
+        return this;
+    }
+
+    public float getAlpha() {
+        return this.element.alpha;
+    }
+
+    public float getBackgroundAlpha() {
+        return this.element.backgroundAlpha;
+    }
+
     public UILabelComponent textShadow(boolean textShadow) {
         this.element.textShadow = textShadow;
-        return this;
-    }
-
-    public UILabelComponent anchorX(float value) {
-        this.element.anchorX(value);
-        return this;
-    }
-
-    public UILabelComponent anchorY(float value) {
-        this.element.anchorY(value);
         return this;
     }
 

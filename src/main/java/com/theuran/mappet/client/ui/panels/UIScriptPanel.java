@@ -20,6 +20,7 @@ import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.text.Text;
 
 public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public UIIcon run;
@@ -66,7 +67,10 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
                         script.setContent(this.data.getContent());
                         script.execute(ClientScriptEvent.create(this.data.getId(), "main", player, null, player.clientWorld));
                     }
-                } catch (JavetException ignored) {
+                } catch (JavetException e) {
+                    String message = e.getLocalizedMessage();
+
+                    MinecraftClient.getInstance().player.sendMessage(Text.of(message), false);
                 }
             }
         }

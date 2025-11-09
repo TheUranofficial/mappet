@@ -1,19 +1,51 @@
 package com.theuran.mappet.client.api.scripts.code.ui;
 
+import com.theuran.mappet.client.api.scripts.code.ui.animation.AnimationManager;
 import com.theuran.mappet.client.api.scripts.code.ui.components.*;
+import com.theuran.mappet.client.api.scripts.code.ui.systems.UIAnimationSystem;
 import mchorse.bbs_mod.ui.utils.icons.Icon;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class MappetUIBuilder {
     public List<UIComponent<?>> components = new ArrayList<>();
+    public AnimationManager animationManager = new AnimationManager();
 
-    public MappetUIBuilder() {
+    public UIAnimationSystem animation(String componentId, String id, String interpolation, float delay, BiConsumer<UIComponent<?>, Double> consumer) {
+        UIComponent<?> component = this.getComponent(componentId);
 
+        UIAnimationSystem animationSystem = new UIAnimationSystem(id, component, this.animationManager);
+
+        animationSystem.animation(interpolation, delay, consumer);
+
+        return animationSystem;
+    }
+
+    public UIAnimationSystem animation(String componentId, String id, float delay, BiConsumer<UIComponent<?>, Double> consumer) {
+        return this.animation(componentId, id, "linear", delay, consumer);
+    }
+
+    public UIAnimationSystem animation(String componentId, float delay, BiConsumer<UIComponent<?>, Double> consumer) {
+        return this.animation(componentId, UUID.randomUUID().toString(), delay, consumer);
+    }
+
+    public void cancelAnimation(String animationId) {
+        this.animationManager.cancelAnimation(animationId);
+    }
+
+    public UIComponent<?> getComponent(String id) {
+        for (UIComponent<?> component : this.components) {
+            if (component.getMappetElement().getUndoId().equals(id)) {
+                return component;
+            }
+        }
+
+        return null;
     }
 
     public UIButtonComponent button() {
@@ -86,7 +118,7 @@ public class MappetUIBuilder {
     }
 
     public UIIconComponent icon(String iconId, Runnable onClick) {
-        Icon icon = Icons.ICONS.get(iconId);
+        Icon icon = Icons.ICONS.get(iconId.toLowerCase());
 
         if (icon == null) {
             icon = Icons.HELP;
@@ -131,13 +163,28 @@ public class MappetUIBuilder {
         return layout;
     }
 
-    public UIComponent<?> getComponent(String id) {
-        for (UIComponent<?> component : this.components) {
-            if (component.getMappetElement().getUndoId().equals(id)) {
-                return component;
-            }
-        }
+    public UITextareaComponent textarea(Consumer<String> consumer) {
+        UITextareaComponent textarea = new UITextareaComponent(consumer);
+        this.components.add(textarea);
+        return textarea;
+    }
 
-        return null;
+    public UITextareaComponent textarea(String text) {
+        UITextareaComponent textarea = new UITextareaComponent(null);
+        textarea.text(text);
+        this.components.add(textarea);
+        return textarea;
+    }
+
+    public UIModelComponent model() {
+        UIModelComponent model = new UIModelComponent();
+        this.components.add(model);
+        return model;
+    }
+
+    public UIGraphicsComponent graphics() {
+        UIGraphicsComponent graphics = new UIGraphicsComponent();
+        this.components.add(graphics);
+        return graphics;
     }
 }

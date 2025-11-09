@@ -1,11 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
+import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetToggleElement;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIToggle;
 
-public class UIToggleComponent extends UIComponent<UIToggle> {
+public class UIToggleComponent extends UIComponent<UIMappetToggleElement> {
     public UIToggleComponent(String label, boolean value, Runnable runnable) {
-        super(new UIToggle(IKey.raw(label), value, (toggle) -> {
+        super(new UIMappetToggleElement(IKey.raw(label), value, (toggle) -> {
             if (runnable != null) {
                 runnable.run();
             }
@@ -18,6 +19,14 @@ public class UIToggleComponent extends UIComponent<UIToggle> {
 
     public int getColor() {
         return this.element.color;
+    }
+
+    public float getAlpha() {
+        return this.element.alpha;
+    }
+
+    public float getTextAlpha() {
+        return this.element.textAlpha;
     }
 
     public boolean isTextShadow() {
@@ -35,6 +44,16 @@ public class UIToggleComponent extends UIComponent<UIToggle> {
 
     public UIToggleComponent color(int color) {
         this.element.color(color);
+        return this;
+    }
+
+    public UIToggleComponent alpha(float alpha) {
+        this.element.alpha = alpha;
+        return this;
+    }
+
+    public UIToggleComponent textAlpha(int alpha) {
+        this.element.textAlpha = alpha;
         return this;
     }
 

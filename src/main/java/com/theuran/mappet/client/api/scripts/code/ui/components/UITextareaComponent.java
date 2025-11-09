@@ -20,7 +20,7 @@ public class UITextareaComponent extends UIComponent<UITextarea<HighlightedTextL
         return this;
     }
 
-    public UITextareaComponent lingHeight(int lineHeight) {
+    public UITextareaComponent lineHeight(int lineHeight) {
         this.element.lineHeight(lineHeight);
         return this;
     }
