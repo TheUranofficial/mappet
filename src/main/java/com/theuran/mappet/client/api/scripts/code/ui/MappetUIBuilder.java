@@ -176,10 +176,10 @@ public class MappetUIBuilder {
         return textarea;
     }
 
-    public UIModelComponent model() {
-        UIModelComponent model = new UIModelComponent();
-        this.components.add(model);
-        return model;
+    public UIFormComponent form() {
+        UIFormComponent form = new UIFormComponent();
+        this.components.add(form);
+        return form;
     }
 
     public UIGraphicsComponent graphics() {

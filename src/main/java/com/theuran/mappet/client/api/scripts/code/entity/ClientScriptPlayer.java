@@ -1,11 +1,16 @@
 package com.theuran.mappet.client.api.scripts.code.entity;
 
+import com.theuran.mappet.api.scripts.code.bbs.BBSForm;
 import com.theuran.mappet.client.api.scripts.code.ui.MappetUIBuilder;
 import com.theuran.mappet.client.ui.UIMappetBase;
 //import com.theuran.mappet.client.api.scripts.code.ClientScriptCamera;
 import com.theuran.mappet.client.managers.ClientOptionsManager;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
+import mchorse.bbs_mod.forms.FormUtils;
+import mchorse.bbs_mod.forms.forms.Form;
+import mchorse.bbs_mod.morphing.Morph;
+import mchorse.bbs_mod.network.ServerNetwork;
 import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -54,6 +59,15 @@ public class ClientScriptPlayer extends ClientScriptEntity<ClientPlayerEntity> {
 
     public boolean hasLicense() {
         return MinecraftClient.getInstance().getSession().getUuidOrNull() != null;
+    }
+
+    public BBSForm getForm() {
+        return new BBSForm(Morph.getMorph(this.entity).getForm());
+    }
+
+    public void setForm(BBSForm scriptForm) {
+        Form form = scriptForm.getForm();
+        Morph.getMorph(this.getMinecraftPlayer()).setForm(FormUtils.copy(form));
     }
 
     public void executeServerScript(String name, String function) {
