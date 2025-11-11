@@ -26,7 +26,9 @@ public class UIEventsOverlayPanel extends UIOverlayPanel {
         this.list = new UILabelList<>(strings -> {
             for (Label<String> string : strings) {
                 if (this.latest.equals(string.value)) {
+                    UIEventOverlayPanel panel = new UIEventOverlayPanel(EventType.valueOf(string.value.toUpperCase()));
 
+                    UIOverlay.addOverlay(this.getContext(), panel, 0.55f, 0.75f);
                 }
                 this.latest = string.value;
             }

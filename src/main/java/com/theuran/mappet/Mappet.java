@@ -20,6 +20,7 @@ import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;
 import mchorse.bbs_mod.resources.Link;
+import mchorse.bbs_mod.utils.colors.Colors;
 import mchorse.bbs_mod.utils.factory.MapFactory;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -51,7 +52,7 @@ public class Mappet implements ModInitializer {
     private static KeybindManager keybinds;
     private static ExecutableManager executables;
 
-    private static MapFactory<Trigger, Void> eventTriggers;
+    private static MapFactory<Trigger, Integer> eventTriggers;
 
     @Override
     public void onInitialize() {
@@ -76,11 +77,11 @@ public class Mappet implements ModInitializer {
 
         eventTriggers = new MapFactory<>();
         eventTriggers
-                .register(link("command"), CommandTrigger.class)
-                .register(link("item"), ItemTrigger.class)
-                .register(link("script"), ScriptTrigger.class)
-                .register(link("sound"), SoundTrigger.class)
-                .register(link("state"), StateTrigger.class);
+                .register(link("command"), CommandTrigger.class, 0x942aff)
+                .register(link("item"), ItemTrigger.class, 0xff6600)
+                .register(link("script"), ScriptTrigger.class, 0x2d4163)
+                .register(link("sound"), SoundTrigger.class, 0x00a0ff)
+                .register(link("state"), StateTrigger.class, Colors.NEGATIVE);
 
         EventHandler.init();
 
@@ -166,7 +167,7 @@ public class Mappet implements ModInitializer {
         return keybinds;
     }
 
-    public static MapFactory<Trigger, Void> getEventTriggers() {
+    public static MapFactory<Trigger, Integer> getEventTriggers() {
         return eventTriggers;
     }
 }

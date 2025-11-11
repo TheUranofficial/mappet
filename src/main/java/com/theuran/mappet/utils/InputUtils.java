@@ -1,6 +1,7 @@
 package com.theuran.mappet.utils;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
@@ -70,6 +71,6 @@ public class InputUtils {
     }
 
     private static long getWindow() {
-        return net.minecraft.client.MinecraftClient.getInstance().getWindow().getHandle();
+        return MinecraftClient.getInstance().getWindow().getHandle();
     }
 }

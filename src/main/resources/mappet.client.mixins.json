@@ -5,7 +5,8 @@
   "client": [
     "L10nMixin",
     "BBSModClientMixin",
-    "GameOptionsMixin"
+    "GameOptionsMixin",
+    "TextureManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
