@@ -42,6 +42,9 @@ public class MappetIcons {
     public static final Icon API_UI_TOGGLE = register("api_ui_toggle", 8, 1);
     public static final Icon API_UI_TRACKPAD = register("api_ui_toggle", 9, 1);
 
+    public static final Icon UIB_BUTTON = register("uib_button", 0, 2);
+    public static final Icon UIB_TEXTURE = register("uib_texture", 1, 2);
+    public static final Icon UIB_LABEL = register("uib_label", 2, 2);
 
     public static final Icon UI = register("ui", 0, 3);
     public static final Icon UI_BUILDER = register("ui_builder", 1, 3);

@@ -16,7 +16,7 @@ import mchorse.bbs_mod.ui.utils.icons.Icons;
 import java.util.List;
 
 public class UIEventOverlayPanel extends UIEditorOverlayPanel<Trigger> {
-    private List<Trigger> triggers;
+    private final List<Trigger> triggers;
 
     public UIEventOverlayPanel(EventType event) {
         super(UIMappetKeys.TRIGGERS_TITLE);
