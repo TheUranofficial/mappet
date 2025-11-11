@@ -3,6 +3,7 @@ package com.theuran.mappet.api.triggers;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import mchorse.bbs_mod.settings.values.numeric.ValueBoolean;
@@ -61,6 +62,6 @@ public abstract class Trigger extends ValueGroup {
 
     @Environment(EnvType.CLIENT)
     public String asString() {
-        return "mappet.triggers.types." + Mappet.getTriggers().getType(this);
+        return L10n.lang("mappet.triggers.types." + Mappet.getTriggers().getType(this).path).get();
     }
 }

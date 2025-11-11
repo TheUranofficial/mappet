@@ -31,6 +31,7 @@
 
   "mappet.triggers.title": "Триггеры",
   "mappet.triggers.add": "Добавить триггер",
+  "mappet.triggers.frequency": "Частота",
   "mappet.triggers.add.format": "Добавить %s",
   "mappet.triggers.remove": "Убрать триггер",
   "mappet.triggers.types.script": "Скрипт",
@@ -38,6 +39,8 @@
   "mappet.triggers.types.state": "Состояние",
   "mappet.triggers.types.sound": "Звук",
   "mappet.triggers.types.item": "Предмет",
+
+  "mappet.overlays.fullscreen": "Редактировать в полноэкранном режиме...",
 
   "mappet.events.title": "События",
 

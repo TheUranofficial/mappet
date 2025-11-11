@@ -53,7 +53,5 @@ public class UIMappetDashboard extends UIDashboard {
     @Override
     protected void registerPanels() {
         this.getPanels().registerPanel(new UIScriptPanel(this), UIMappetKeys.SCRIPTS_TITLE, Icons.PROPERTIES);
-
-        this.setPanel(this.getPanel(UILoggerPanel.class));
     }
 }

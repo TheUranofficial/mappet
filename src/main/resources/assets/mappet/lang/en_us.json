@@ -31,6 +31,7 @@
 
   "mappet.triggers.title": "Triggers",
   "mappet.triggers.add": "Add trigger",
+  "mappet.triggers.frequency": "Frequency",
   "mappet.triggers.add.format": "Add %s",
   "mappet.triggers.remove": "Remove trigger",
   "mappet.triggers.types.script": "Script",
@@ -38,6 +39,8 @@
   "mappet.triggers.types.state": "State",
   "mappet.triggers.types.sound": "Sound",
   "mappet.triggers.types.item": "Item",
+
+  "mappet.overlays.fullscreen": "Edit in fullscreen mode...",
 
   "mappet.events.title": "Events",
 

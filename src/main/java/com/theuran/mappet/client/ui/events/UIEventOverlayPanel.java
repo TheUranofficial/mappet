@@ -2,8 +2,13 @@ package com.theuran.mappet.client.ui.events;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
+import com.theuran.mappet.api.triggers.CommandTrigger;
+import com.theuran.mappet.api.triggers.StateTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
+import com.theuran.mappet.client.ui.events.panels.UICommandTriggerPanel;
+import com.theuran.mappet.client.ui.events.panels.UIStateTriggerPanel;
+import com.theuran.mappet.client.ui.events.panels.UITriggerPanel;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.resources.Link;
@@ -13,10 +18,14 @@ import mchorse.bbs_mod.ui.framework.elements.overlay.UIEditorOverlayPanel;
 import mchorse.bbs_mod.ui.utils.context.ContextMenuManager;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UIEventOverlayPanel extends UIEditorOverlayPanel<Trigger> {
     private final List<Trigger> triggers;
+
+    public static final Map<Class<? extends Trigger>, Class<? extends UITriggerPanel<? extends Trigger>>> PANELS = new HashMap<>();
 
     public UIEventOverlayPanel(EventType event) {
         super(UIMappetKeys.TRIGGERS_TITLE);
@@ -70,9 +79,18 @@ public class UIEventOverlayPanel extends UIEditorOverlayPanel<Trigger> {
     }
 
     @Override
-    protected void fillData(Trigger item) {
-//        this.editor.removeAll();
-//
-//        this.editor.add();
+    protected void fillData(Trigger trigger) {
+        this.editor.removeAll();
+
+        try {
+            this.editor.add((UITriggerPanel<? extends Trigger>) PANELS.get(trigger.getClass()).getConstructors()[0].newInstance(this, trigger));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static {
+        PANELS.put(CommandTrigger.class, UICommandTriggerPanel.class);
+        PANELS.put(StateTrigger.class, UIStateTriggerPanel.class);
     }
 }
