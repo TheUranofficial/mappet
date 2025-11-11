@@ -20,6 +20,7 @@ import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;
 import mchorse.bbs_mod.resources.Link;
+import mchorse.bbs_mod.utils.colors.Colors;
 import mchorse.bbs_mod.utils.factory.MapFactory;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -51,7 +52,7 @@ public class Mappet implements ModInitializer {
     private static KeybindManager keybinds;
     private static ExecutableManager executables;
 
-    private static MapFactory<Trigger, Void> triggers;
+    private static MapFactory<Trigger, Integer> triggers;
 
     @Override
     public void onInitialize() {
@@ -166,7 +167,7 @@ public class Mappet implements ModInitializer {
         return keybinds;
     }
 
-    public static MapFactory<Trigger, Void> getTriggers() {
+    public static MapFactory<Trigger, Integer> getTriggers() {
         return triggers;
     }
 }

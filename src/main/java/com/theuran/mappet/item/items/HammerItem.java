@@ -5,8 +5,6 @@ import net.minecraft.item.Item;
 
 public class HammerItem extends Item {
     public HammerItem() {
-        super(new FabricItemSettings());
+        super(new FabricItemSettings().maxCount(1));
     }
-
-
 }

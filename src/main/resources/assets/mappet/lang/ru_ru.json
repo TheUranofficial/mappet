@@ -27,11 +27,17 @@
   "mappet.ui.builder.title": "UI Билдер",
   "mappet.ui.builder.element.panel.title": "Панель элементов",
   "mappet.ui.builder.element.add.tooltip": "Добавить элемент",
-
-  "mappet.ui.script.tooltip": "Редактор UI скрипта",
-  "mappet.ui.builder.element.panel.title": "Панель элементов",
-  "mappet.ui.builder.element.add.tooltip": "Добавить элемент",
   "mappet.ui.builder.script.tooltip": "Редактор UI скрипта",
+
+  "mappet.triggers.title": "Триггеры",
+  "mappet.triggers.add": "Добавить триггер",
+  "mappet.triggers.add.format": "Добавить %s",
+  "mappet.triggers.remove": "Убрать триггер",
+  "mappet.triggers.types.script": "Скрипт",
+  "mappet.triggers.types.command": "Комманда",
+  "mappet.triggers.types.state": "Состояние",
+  "mappet.triggers.types.sound": "Звук",
+  "mappet.triggers.types.item": "Предмет",
 
   "mappet.events.title": "События",
 

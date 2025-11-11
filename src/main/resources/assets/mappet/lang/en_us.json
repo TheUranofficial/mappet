@@ -29,6 +29,16 @@
   "mappet.ui.builder.element.add.tooltip": "Add element",
   "mappet.ui.builder.script.tooltip": "UI script editor",
 
+  "mappet.triggers.title": "Triggers",
+  "mappet.triggers.add": "Add trigger",
+  "mappet.triggers.add.format": "Add %s",
+  "mappet.triggers.remove": "Remove trigger",
+  "mappet.triggers.types.script": "Script",
+  "mappet.triggers.types.command": "Command",
+  "mappet.triggers.types.state": "State",
+  "mappet.triggers.types.sound": "Sound",
+  "mappet.triggers.types.item": "Item",
+
   "mappet.events.title": "Events",
 
   "mappet.events.name.entity.death": "Entity: Death",

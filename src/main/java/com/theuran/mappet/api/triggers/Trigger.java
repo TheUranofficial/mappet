@@ -1,16 +1,19 @@
 package com.theuran.mappet.api.triggers;
 
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
-import mchorse.bbs_mod.data.types.BaseType;
-import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
+import mchorse.bbs_mod.settings.values.core.ValueString;
 import mchorse.bbs_mod.settings.values.numeric.ValueBoolean;
 import mchorse.bbs_mod.settings.values.numeric.ValueInt;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 public abstract class Trigger extends ValueGroup {
     private ValueBoolean isServer = new ValueBoolean("isServer", true);
     private ValueInt maxDelay = new ValueInt("maxDelay", 1);
+    private ValueString type = new ValueString("type", this.getTriggerId());
     private int delay = 1;
 
     public Trigger() {
@@ -18,6 +21,7 @@ public abstract class Trigger extends ValueGroup {
 
         this.setId(this.getTriggerId());
         this.add(this.maxDelay);
+        this.add(this.type);
     }
 
     public abstract void execute(ScriptEvent scriptEvent);
@@ -55,20 +59,8 @@ public abstract class Trigger extends ValueGroup {
         this.delay += 1;
     }
 
-    @Override
-    public void fromData(BaseType data) {
-        super.fromData(data);
-
-        this.setId(data.asMap().getString("type"));
-    }
-
-    @Override
-    public BaseType toData() {
-        MapType data = new MapType();
-
-        data.putString("type", this.getId());
-        data.combine(super.toData().asMap());
-
-        return data;
+    @Environment(EnvType.CLIENT)
+    public String asString() {
+        return "mappet.triggers.types." + Mappet.getEventTriggers().getType(this);
     }
 }
