@@ -1,0 +1,6 @@
+{
+  "parent": "mappet:item/hammer",
+  "textures": {
+    "layer0": "mappet:item/hammer/magmaout"
+  }
+}

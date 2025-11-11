@@ -1,0 +1,38 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mappet:item/hammer"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "date": 0.2
+      },
+      "model": "mappet:item/hammer/llama"
+    },
+    {
+      "predicate": {
+        "date": 0.4
+      },
+      "model": "mappet:item/hammer/ded"
+    },
+    {
+      "predicate": {
+        "date": 0.6
+      },
+      "model": "mappet:item/hammer/magmaout"
+    },
+    {
+      "predicate": {
+        "date": 0.8
+      },
+      "model": "mappet:item/hammer/uran"
+    },
+    {
+      "predicate": {
+        "date": 1.0
+      },
+      "model": "mappet:item/hammer/birthday"
+    }
+  ]
+}

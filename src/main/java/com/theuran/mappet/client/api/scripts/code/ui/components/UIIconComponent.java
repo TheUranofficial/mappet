@@ -1,13 +1,11 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
-import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetIconElement;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.utils.icons.Icon;
-import mchorse.bbs_mod.ui.utils.icons.Icons;
 
-public class UIIconComponent extends UIComponent<UIMappetIconElement>{
+public class UIIconComponent extends UIComponent<UIIcon>{
     public UIIconComponent(Icon icon, Runnable onClick) {
-        super(new UIMappetIconElement(icon, (uiIcon -> {
+        super(new UIIcon(icon, (uiIcon -> {
             if (onClick != null) {
                 onClick.run();
             }
@@ -29,11 +27,6 @@ public class UIIconComponent extends UIComponent<UIMappetIconElement>{
         return this;
     }
 
-    public UIIconComponent alpha(float alpha) {
-        this.element.alpha(alpha);
-        return this;
-    }
-
     public int getColor() {
         return this.element.iconColor;
     }
@@ -44,9 +37,5 @@ public class UIIconComponent extends UIComponent<UIMappetIconElement>{
 
     public int getDisabledColor() {
         return this.element.disabledColor;
-    }
-
-    public float getAlpha() {
-        return this.element.alpha;
     }
 }

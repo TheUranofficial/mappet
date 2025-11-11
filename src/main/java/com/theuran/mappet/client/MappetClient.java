@@ -7,9 +7,11 @@ import com.theuran.mappet.client.api.keybinds.ClientKeybindManager;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.api.scripts.code.ui.MappetUIBuilder;
+import com.theuran.mappet.client.keybinds.MappetKeybinds;
 import com.theuran.mappet.client.ui.UIMappetBase;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
+import com.theuran.mappet.item.MappetItems;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RunScriptPacket;
 import com.theuran.mappet.utils.InputUtils;
@@ -23,19 +25,19 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Environment(EnvType.CLIENT)
 public class MappetClient implements ClientModInitializer {
     private static UIMappetDashboard dashboard;
-
-    private static KeyBinding keyDashboard;
-    private static KeyBinding keyRunScript;
 
     private static L10n l10n;
 
@@ -61,48 +63,44 @@ public class MappetClient implements ClientModInitializer {
         l10n.registerOne((lang) -> Mappet.link("lang/" + lang + ".json"));
         l10n.reload(BBSSettings.language.get(), Mappet.getProvider());
 
-        keyDashboard = this.createKey("dashboard", GLFW.GLFW_KEY_EQUAL);
-        keyRunScript = this.createKey("runScript", GLFW.GLFW_KEY_F6);
+        MappetKeybinds.init();
 
         scripts = new ClientScriptManager();
         keybinds = new ClientKeybindManager();
 
         InputUtils.init();
 
-        ClientTickEvents.END_CLIENT_TICK.register((client) -> {
-            while (keyDashboard.wasPressed()) {
-                UIScreen.open(MappetClient.getDashboard());
-            }
-            while (keyRunScript.wasPressed()) {
-                ClientPlayerEntity player = MinecraftClient.getInstance().player;
-                Script data = dashboard.getPanel(UIScriptPanel.class).getData();
+        ModelPredicateProviderRegistry.register(
+                MappetItems.HAMMER,
+                new Identifier("date"),
+                (stack, world, entity, seed) -> {
+                    LocalDate now = LocalDate.now();
+                    int day = now.getDayOfMonth();
+                    int month = now.getMonthValue();
 
-                if (data != null) {
-                    Script script = MappetClient.getScripts().getScript(data.getId());
+                    float value = 0.0f;
 
-                    if (script != null) {
-                        if (script.isServer()) {
-                            Dispatcher.sendToServer(new RunScriptPacket(data.getId(), "main", data.getContent()));
-                        } else {
-                            try {
-                                script.execute(ClientScriptEvent.create(data.getId(), "main", player, null, player.clientWorld));
-                            } catch (JavetException ignored) {
-                            }
-                        }
+                    if (month == 12 && day == 1) {
+                        value = 0.2f;
+                    } else if (month == 5 && day == 2) {
+                        value = 0.4f;
+                    } else if (month == 11 && day == 12) {
+                        value = 0.6f;
+                    } else if (month == 4 && day == 22) {
+                        value = 0.8f;
+                    } else if (month == 12 && day == 2) {
+                        value = 1f;
                     }
+
+                    return value;
                 }
-            }
-        });
+        );
 
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             dashboard = null;
 
             Dispatcher.isMappetModOnServer = false;
         });
-    }
-
-    public KeyBinding createKey(String id, int key) {
-        return KeyBindingHelper.registerKeyBinding(new KeyBinding("mappet.key." + id, InputUtil.Type.KEYSYM, key, "mappet.config.title"));
     }
 
     public static ClientScriptManager getScripts() {

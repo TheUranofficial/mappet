@@ -1,12 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import com.theuran.mappet.api.scripts.code.ScriptVector;
-import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetLabelElement;
 import mchorse.bbs_mod.l10n.keys.IKey;
+import mchorse.bbs_mod.ui.framework.elements.utils.UILabel;
 
-public class UILabelComponent extends UIComponent<UIMappetLabelElement> {
+public class UILabelComponent extends UIComponent<UILabel> {
     public UILabelComponent(String label, int color) {
-        super(new UIMappetLabelElement(IKey.raw(label), color));
+        super(new UILabel(IKey.raw(label), color));
     }
 
     public String getLabel() {
@@ -50,24 +50,6 @@ public class UILabelComponent extends UIComponent<UIMappetLabelElement> {
     public UILabelComponent color(int color) {
         this.element.color(color);
         return this;
-    }
-
-    public UILabelComponent alpha(float alpha) {
-        this.element.alpha(alpha);
-        return this;
-    }
-
-    public UILabelComponent backgroundAlpha(float alpha) {
-        this.element.backgroundAlpha(alpha);
-        return this;
-    }
-
-    public float getAlpha() {
-        return this.element.alpha;
-    }
-
-    public float getBackgroundAlpha() {
-        return this.element.backgroundAlpha;
     }
 
     public UILabelComponent textShadow(boolean textShadow) {

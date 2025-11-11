@@ -21,7 +21,7 @@ public class MappetUIBuilder {
 
         UIAnimationSystem animationSystem = new UIAnimationSystem(id, component, this.animationManager);
 
-        animationSystem.animation(interpolation, delay, consumer);
+        this.animationManager.registerAnimation(component, id, interpolation, delay, consumer);
 
         return animationSystem;
     }

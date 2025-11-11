@@ -14,7 +14,7 @@ public class MappetItemGroups {
             .icon(() -> new ItemStack(MappetItems.LOGO))
             .displayName(Text.translatable("mappet.itemGroup.name"))
             .entries((context, entries) -> {
-                entries.add(MappetItems.LOGO);
+                entries.add(MappetItems.HAMMER);
                 entries.add(MappetBlocks.TRIGGER_BLOCK);
             })
             .build();
