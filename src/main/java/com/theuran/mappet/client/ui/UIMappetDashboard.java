@@ -4,6 +4,7 @@ import com.theuran.mappet.client.ui.events.UIEventsOverlayPanel;
 import com.theuran.mappet.client.ui.events.UIKeybindsOverlayPanel;
 import com.theuran.mappet.client.ui.panels.*;
 import com.theuran.mappet.client.ui.states.UIStatesOverlayPanel;
+import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.RequestStatesPacket;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
@@ -29,26 +30,26 @@ public class UIMappetDashboard extends UIDashboard {
         super();
 
         this.statesPanel = new UIStatesOverlayPanel();
-        this.states = new UIIcon(Icons.SETTINGS, icon -> {
+        this.states = new UIIcon(MappetIcons.STATES, icon -> {
             UIOverlay.addOverlayLeft(this.context, this.statesPanel, 240);
             Dispatcher.sendToServer(new RequestStatesPacket());
         });
         this.states.tooltip(UIMappetKeys.STATES_TITLE, Direction.TOP);
 
         this.eventsPanel = new UIEventsOverlayPanel();
-        this.events = new UIIcon(Icons.FILE, icon -> {
+        this.events = new UIIcon(MappetIcons.EVENTS, icon -> {
             UIOverlay.addOverlayRight(this.context, this.eventsPanel, 240);
         });
         this.events.tooltip(UIMappetKeys.EVENTS_TITLE, Direction.TOP);
 
         this.keybindsPanel = new UIKeybindsOverlayPanel();
-        this.keybinds = new UIIcon(Icons.CROPS, icon -> {
+        this.keybinds = new UIIcon(MappetIcons.KEYBINDS, icon -> {
             UIOverlay.addOverlayRight(this.context, this.keybindsPanel, 240);
         });
         this.keybinds.tooltip(UIMappetKeys.KEYBINDS_TITLE, Direction.TOP);
 
         this.getPanels().pinned.getChildren().clear();
-        this.getPanels().pinned.add(this.states, this.events);
+        this.getPanels().pinned.add(this.states, this.events, this.keybinds);
     }
 
     @Override
@@ -56,7 +57,7 @@ public class UIMappetDashboard extends UIDashboard {
         this.getPanels().registerPanel(new UIHUDScenePanel(this), UIMappetKeys.HUD_SCENE_TITLE, Icons.POSE);
         this.getPanels().registerPanel(new UIScriptPanel(this), UIMappetKeys.SCRIPTS_TITLE, Icons.PROPERTIES);
         this.getPanels().registerPanel(new UILoggerPanel(this), UIMappetKeys.LOGGER_TITLE, Icons.CROPS);
-        this.getPanels().registerPanel(new UIBuilderPanel(this), UIMappetKeys.UI_BUILDER_TITLE, Icons.MAZE);
+        this.getPanels().registerPanel(new UIBuilderPanel(this), UIMappetKeys.UI_BUILDER_TITLE, MappetIcons.UI_BUILDER);
 
         this.setPanel(this.getPanel(UILoggerPanel.class));
     }

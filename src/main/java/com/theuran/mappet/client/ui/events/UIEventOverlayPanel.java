@@ -38,12 +38,12 @@ public class UIEventOverlayPanel extends UIEditorOverlayPanel<Trigger> {
     protected void addNewItem() {
         ContextMenuManager menu = new ContextMenuManager();
 
-        for (Link key : Mappet.getEventTriggers().getKeys()) {
+        for (Link key : Mappet.getTriggers().getKeys()) {
             IKey label = UIMappetKeys.TRIGGERS_ADD_FORMAT.format(L10n.lang("mappet.triggers.types." + key.path));
-            int color = Mappet.getEventTriggers().getData(key);
+            int color = Mappet.getTriggers().getData(key);
 
             menu.action(Icons.ADD, label, color, () -> {
-                Trigger trigger = Mappet.getEventTriggers().create(key);
+                Trigger trigger = Mappet.getTriggers().create(key);
 
                 this.triggers.add(trigger);
                 this.pickItem(trigger, true);

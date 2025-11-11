@@ -20,6 +20,6 @@ public class MappetItemGroups {
             .build();
 
     public static void init() {
-        Registry.register(Registries.ITEM_GROUP, Mappet.id("itemGroup"), MAPPET_GROUP);
+        Registry.register(Registries.ITEM_GROUP, Mappet.id("mappet"), MAPPET_GROUP);
     }
 }

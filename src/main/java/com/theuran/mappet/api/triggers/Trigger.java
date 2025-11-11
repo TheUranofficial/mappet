@@ -61,6 +61,6 @@ public abstract class Trigger extends ValueGroup {
 
     @Environment(EnvType.CLIENT)
     public String asString() {
-        return "mappet.triggers.types." + Mappet.getEventTriggers().getType(this);
+        return "mappet.triggers.types." + Mappet.getTriggers().getType(this);
     }
 }
