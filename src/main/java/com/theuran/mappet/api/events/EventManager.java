@@ -88,7 +88,7 @@ public class EventManager extends BaseFileManager {
             List<Trigger> triggerList = new ArrayList<>();
 
             for (BaseType type : event.getValue().asList()) {
-                Trigger trigger = Mappet.getEventTriggers().create(Mappet.link(type.asMap().getString("type")));
+                Trigger trigger = Mappet.getTriggers().create(Mappet.link(type.asMap().getString("type")));
 
                 trigger.fromData(type);
 

@@ -1,6 +1,5 @@
 package com.theuran.mappet.client.api.keybinds;
 
-import com.theuran.mappet.api.triggers.ScriptTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.network.Dispatcher;
@@ -42,7 +41,7 @@ public class ClientKeybindManager {
                 }
 
                 if (keyPressed) {
-                    keyId = keybinding.getName();
+                    keyId = keybinding.getId();
                     break;
                 }
             }
@@ -70,7 +69,7 @@ public class ClientKeybindManager {
 
     public List<Trigger> getTriggers(String id) {
         for (Map.Entry<Keybind, List<Trigger>> entry : this.keybinds.entrySet()) {
-            if (entry.getKey().getName().equals(id)) {
+            if (entry.getKey().getId().equals(id)) {
                 return entry.getValue();
             }
         }

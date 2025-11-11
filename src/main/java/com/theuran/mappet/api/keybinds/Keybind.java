@@ -3,26 +3,26 @@ package com.theuran.mappet.api.keybinds;
 import org.lwjgl.glfw.GLFW;
 
 public class Keybind {
-    private String name;
-    private String categoryName;
-    private int keycode;
-    private Type type;
-    private Modificator mod;
+    private final String id;
+    private final String category;
+    private final int keycode;
+    private final Type type;
+    private final Modificator mod;
 
-    public Keybind(String name, String categoryName, int keycode, Type type, Modificator mod) {
-        this.name = name;
-        this.categoryName = categoryName;
+    public Keybind(String id, String categoryName, int keycode, Type type, Modificator mod) {
+        this.id = id;
+        this.category = categoryName;
         this.type = type;
         this.keycode = keycode;
         this.mod = mod;
     }
 
-    public String getName() {
-        return this.name;
+    public String getId() {
+        return this.id;
     }
 
-    public String getCategoryName() {
-        return this.categoryName;
+    public String getCategory() {
+        return this.category;
     }
 
     public int getKeycode() {

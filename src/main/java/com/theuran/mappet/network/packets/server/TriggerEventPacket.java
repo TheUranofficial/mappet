@@ -60,7 +60,7 @@ public class TriggerEventPacket extends AbstractPacket {
         this.eventType = buf.readEnumConstant(EventType.class);
 
         MapType data = DataStorageUtils.readFromPacket(buf).asMap();
-        this.trigger = Mappet.getEventTriggers().create(Mappet.link(data.getString("type")));
+        this.trigger = Mappet.getTriggers().create(Mappet.link(data.getString("type")));
 
         this.trigger.fromData(data);
 

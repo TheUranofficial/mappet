@@ -51,7 +51,7 @@ public class Mappet implements ModInitializer {
     private static KeybindManager keybinds;
     private static ExecutableManager executables;
 
-    private static MapFactory<Trigger, Void> eventTriggers;
+    private static MapFactory<Trigger, Void> triggers;
 
     @Override
     public void onInitialize() {
@@ -74,8 +74,8 @@ public class Mappet implements ModInitializer {
         logger = new LoggerManager();
         executables = new ExecutableManager();
 
-        eventTriggers = new MapFactory<>();
-        eventTriggers
+        triggers = new MapFactory<>();
+        triggers
                 .register(link("command"), CommandTrigger.class)
                 .register(link("item"), ItemTrigger.class)
                 .register(link("script"), ScriptTrigger.class)
@@ -166,7 +166,7 @@ public class Mappet implements ModInitializer {
         return keybinds;
     }
 
-    public static MapFactory<Trigger, Void> getEventTriggers() {
-        return eventTriggers;
+    public static MapFactory<Trigger, Void> getTriggers() {
+        return triggers;
     }
 }

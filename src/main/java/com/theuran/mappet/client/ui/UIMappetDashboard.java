@@ -1,6 +1,7 @@
 package com.theuran.mappet.client.ui;
 
 import com.theuran.mappet.client.ui.events.UIEventsOverlayPanel;
+import com.theuran.mappet.client.ui.events.UIKeybindsOverlayPanel;
 import com.theuran.mappet.client.ui.panels.*;
 import com.theuran.mappet.client.ui.states.UIStatesOverlayPanel;
 import com.theuran.mappet.network.Dispatcher;
@@ -13,13 +14,16 @@ import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import org.lwjgl.system.linux.UIO;
 
 @Environment(EnvType.CLIENT)
 public class UIMappetDashboard extends UIDashboard {
     public UIIcon states;
     public UIIcon events;
+    public UIIcon keybinds;
     public UIStatesOverlayPanel statesPanel;
     public UIEventsOverlayPanel eventsPanel;
+    public UIKeybindsOverlayPanel keybindsPanel;
 
     public UIMappetDashboard() {
         super();
@@ -30,11 +34,18 @@ public class UIMappetDashboard extends UIDashboard {
             Dispatcher.sendToServer(new RequestStatesPacket());
         });
         this.states.tooltip(UIMappetKeys.STATES_TITLE, Direction.TOP);
+
         this.eventsPanel = new UIEventsOverlayPanel();
         this.events = new UIIcon(Icons.FILE, icon -> {
             UIOverlay.addOverlayRight(this.context, this.eventsPanel, 240);
         });
         this.events.tooltip(UIMappetKeys.EVENTS_TITLE, Direction.TOP);
+
+        this.keybindsPanel = new UIKeybindsOverlayPanel();
+        this.keybinds = new UIIcon(Icons.CROPS, icon -> {
+            UIOverlay.addOverlayRight(this.context, this.keybindsPanel, 240);
+        });
+        this.keybinds.tooltip(UIMappetKeys.KEYBINDS_TITLE, Direction.TOP);
 
         this.getPanels().pinned.getChildren().clear();
         this.getPanels().pinned.add(this.states, this.events);

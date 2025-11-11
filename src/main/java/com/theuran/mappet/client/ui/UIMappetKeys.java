@@ -29,4 +29,6 @@ public class UIMappetKeys {
     public static final IKey UI_TRIGGER_BLOCK_TITLE = L10n.lang("mappet.ui.trigger_block.title");
 
     public static final IKey EVENTS_TITLE = L10n.lang("mappet.events.title");
+
+    public static final IKey KEYBINDS_TITLE = L10n.lang("mappet.keybinds.title");
 }
