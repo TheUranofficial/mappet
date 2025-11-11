@@ -1,7 +1,7 @@
 package com.theuran.mappet.client.ui;
 
 import com.theuran.mappet.client.ui.events.UIEventsOverlayPanel;
-import com.theuran.mappet.client.ui.events.UIKeybindsOverlayPanel;
+import com.theuran.mappet.client.ui.keybinds.UIKeybindsOverlayPanel;
 import com.theuran.mappet.client.ui.panels.*;
 import com.theuran.mappet.client.ui.states.UIStatesOverlayPanel;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
@@ -10,12 +10,10 @@ import com.theuran.mappet.network.packets.server.RequestStatesPacket;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
-import mchorse.bbs_mod.ui.utils.UI;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import org.lwjgl.system.linux.UIO;
 
 @Environment(EnvType.CLIENT)
 public class UIMappetDashboard extends UIDashboard {
