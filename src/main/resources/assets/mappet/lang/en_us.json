@@ -121,5 +121,9 @@
   
   "mappet.events.name.client.use.item": "Client: use item",
   "mappet.events.description.client.use.item": "Description",
-  "mappet.events.variables.client.use.item": "Variables"
+  "mappet.events.variables.client.use.item": "Variables",
+
+  "mappet.events.name.client.change.options": "Client: change options",
+  "mappet.events.description.client.change.options": "Description",
+  "mappet.events.variables.client.change.options": "Variables"
 }
