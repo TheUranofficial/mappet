@@ -1,4 +1,4 @@
-package com.theuran.mappet.client.ui.events;
+package com.theuran.mappet.client.ui.triggers;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
@@ -6,9 +6,9 @@ import com.theuran.mappet.api.triggers.CommandTrigger;
 import com.theuran.mappet.api.triggers.StateTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
-import com.theuran.mappet.client.ui.events.panels.UICommandTriggerPanel;
-import com.theuran.mappet.client.ui.events.panels.UIStateTriggerPanel;
-import com.theuran.mappet.client.ui.events.panels.UITriggerPanel;
+import com.theuran.mappet.client.ui.events.UITriggerList;
+import com.theuran.mappet.client.ui.triggers.panels.UICommandTriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UIStateTriggerPanel;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.resources.Link;
@@ -22,12 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UIEventOverlayPanel extends UIEditorOverlayPanel<Trigger> {
+public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> {
     private final List<Trigger> triggers;
 
-    public static final Map<Class<? extends Trigger>, Class<? extends UITriggerPanel<? extends Trigger>>> PANELS = new HashMap<>();
-
-    public UIEventOverlayPanel(EventType event) {
+    public UIEditorTriggersOverlayPanel(EventType event) {
         super(UIMappetKeys.TRIGGERS_TITLE);
 
         this.triggers = Mappet.getEvents().getTriggers(event);
@@ -83,14 +81,9 @@ public class UIEventOverlayPanel extends UIEditorOverlayPanel<Trigger> {
         this.editor.removeAll();
 
         try {
-            this.editor.add((UITriggerPanel<? extends Trigger>) PANELS.get(trigger.getClass()).getConstructors()[0].newInstance(this, trigger));
+            this.editor.add(trigger.getPanel(this));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    static {
-        PANELS.put(CommandTrigger.class, UICommandTriggerPanel.class);
-        PANELS.put(StateTrigger.class, UIStateTriggerPanel.class);
     }
 }

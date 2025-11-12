@@ -10,7 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class MappetBlocks {
-    public static final Block TRIGGER_BLOCK = register(new TriggerBlock(), "trigger_block", true);
+    public static final Block TRIGGER_BLOCK = register(new TriggerBlock(), "trigger", true);
 
     public static void init() {}
 

@@ -8,8 +8,8 @@ import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.RunScriptPacket;
-import com.theuran.mappet.network.packets.server.SaveScriptC2SPacket;
+import com.theuran.mappet.network.packets.server.scripts.RunScriptPacket;
+import com.theuran.mappet.network.packets.server.scripts.SaveScriptC2SPacket;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
@@ -80,6 +80,10 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.data.setServer(!this.data.isServer());
 
         this.side.both(this.data.isServer() ? Icons.PROCESSOR : Icons.MORE);
+
+        if (this.data.isServer()) {
+            MappetClient.getScripts().removeScript(this.data.getId());
+        }
     }
 
     @Override

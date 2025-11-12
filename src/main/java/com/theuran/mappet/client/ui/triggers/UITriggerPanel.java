@@ -1,9 +1,9 @@
-package com.theuran.mappet.client.ui.events.panels;
+package com.theuran.mappet.client.ui.triggers;
 
 import com.theuran.mappet.Mappet;
-import com.theuran.mappet.api.triggers.Trigger;
+import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.client.ui.UIMappetKeys;
-import com.theuran.mappet.client.ui.events.UIEventOverlayPanel;
+import com.theuran.mappet.client.ui.triggers.panels.*;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.input.UITrackpad;
@@ -13,10 +13,10 @@ import mchorse.bbs_mod.ui.utils.UI;
 public class UITriggerPanel <T extends Trigger> extends UIElement {
     public UITrackpad frequency;
 
-    protected UIEventOverlayPanel overlay;
+    protected UIEditorTriggersOverlayPanel overlay;
     protected T trigger;
 
-    public UITriggerPanel(UIEventOverlayPanel overlay, T trigger) {
+    public UITriggerPanel(UIEditorTriggersOverlayPanel overlay, T trigger) {
         this.overlay = overlay;
         this.trigger = trigger;
 

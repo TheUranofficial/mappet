@@ -2,18 +2,25 @@ package com.theuran.mappet.block.blocks;
 
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.client.ui.panels.UITriggerBlock;
+import mchorse.bbs_mod.blocks.entities.ModelBlockEntity;
 import mchorse.bbs_mod.ui.framework.UIScreen;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.*;
@@ -21,7 +28,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class TriggerBlock extends Block {
+public class TriggerBlock extends Block implements Waterloggable {
     public static final BooleanProperty COLLISION = BooleanProperty.of("collision");
     public static final EnumProperty<Hitbox> HITBOX = EnumProperty.of("hitbox", Hitbox.class);
 
@@ -29,12 +36,13 @@ public class TriggerBlock extends Block {
         super(Settings.create().nonOpaque().noCollision());
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(COLLISION, true)
-                .with(HITBOX, Hitbox.FULL));
+                .with(HITBOX, Hitbox.SMALL)
+                .with(Properties.WATERLOGGED, false));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(COLLISION, HITBOX);
+        builder.add(COLLISION, HITBOX, Properties.WATERLOGGED);
     }
 
     @Override
@@ -67,8 +75,14 @@ public class TriggerBlock extends Block {
     }
 
     @Override
-    public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
-        return 1f;
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.INVISIBLE;
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state)
+    {
+        return state.get(Properties.WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
     @Override
@@ -82,7 +96,10 @@ public class TriggerBlock extends Block {
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(COLLISION, true);
+        return this.getDefaultState()
+                .with(COLLISION, true)
+                .with(HITBOX, Hitbox.SMALL)
+                .with(Properties.WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).isOf(Fluids.WATER));
     }
 
     public enum Hitbox implements StringIdentifiable {

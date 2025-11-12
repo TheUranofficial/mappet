@@ -1,4 +1,4 @@
-package com.theuran.mappet.network.packets.server;
+package com.theuran.mappet.network.packets.server.scripts;
 
 import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.Mappet;

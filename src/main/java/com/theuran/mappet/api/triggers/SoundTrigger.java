@@ -2,9 +2,15 @@ package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
+import com.theuran.mappet.client.ui.triggers.UITriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UICommandTriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UISoundTriggerPanel;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import mchorse.bbs_mod.settings.values.numeric.ValueFloat;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -40,5 +46,11 @@ public class SoundTrigger extends Trigger {
     @Override
     public String getTriggerId() {
         return "sound";
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
+    public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
+        return new UISoundTriggerPanel(overlayPanel, this);
     }
 }

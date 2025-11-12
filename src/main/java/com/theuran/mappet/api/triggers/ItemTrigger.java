@@ -2,8 +2,14 @@ package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
+import com.theuran.mappet.client.ui.triggers.UITriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UICommandTriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UIItemTriggerPanel;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.core.ValueString;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -40,5 +46,11 @@ public class ItemTrigger extends Trigger {
     @Override
     public String getTriggerId() {
         return "item";
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
+    public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
+        return new UIItemTriggerPanel(overlayPanel, this);
     }
 }

@@ -7,7 +7,7 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.logger.LogType;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.SendScriptsS2CPacket;
+import com.theuran.mappet.network.packets.server.scripts.SendScriptsS2CPacket;
 import com.theuran.mappet.utils.ScriptUtils;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.utils.manager.BaseManager;
@@ -16,7 +16,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

@@ -35,4 +35,8 @@ public class ClientScriptManager {
         }
         return null;
     }
+
+    public void removeScript(String id) {
+        this.scripts.remove(id);
+    }
 }

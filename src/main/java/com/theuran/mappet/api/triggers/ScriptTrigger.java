@@ -5,7 +5,12 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
+import com.theuran.mappet.client.ui.triggers.UITriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UIScriptTriggerPanel;
 import mchorse.bbs_mod.settings.values.core.ValueString;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 public class ScriptTrigger extends Trigger {
     public ValueString script = new ValueString("script", "");
@@ -45,5 +50,10 @@ public class ScriptTrigger extends Trigger {
     @Override
     public String getTriggerId() {
         return "script";
+    }
+
+    @Environment(EnvType.CLIENT)
+    public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
+        return new UIScriptTriggerPanel(overlayPanel, this);
     }
 }

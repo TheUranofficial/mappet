@@ -1,4 +1,4 @@
-package com.theuran.mappet.network.packets.server;
+package com.theuran.mappet.network.packets.server.scripts;
 
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.MappetClient;
