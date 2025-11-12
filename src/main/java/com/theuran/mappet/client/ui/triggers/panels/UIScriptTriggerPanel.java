@@ -30,8 +30,6 @@ public class UIScriptTriggerPanel extends UITriggerPanel<ScriptTrigger> {
 
         this.add(this.script);
 
-        this.add(new UILabel(IKey.raw("Function")));
-
         this.add(this.function);
 
         this.addDelay();

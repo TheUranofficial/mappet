@@ -1,4 +1,4 @@
-package com.theuran.mappet.client.ui.events;
+package com.theuran.mappet.client.ui.triggers;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.triggers.Trigger;

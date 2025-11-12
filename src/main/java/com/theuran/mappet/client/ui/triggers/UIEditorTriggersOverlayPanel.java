@@ -2,13 +2,8 @@ package com.theuran.mappet.client.ui.triggers;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
-import com.theuran.mappet.api.triggers.CommandTrigger;
-import com.theuran.mappet.api.triggers.StateTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
-import com.theuran.mappet.client.ui.events.UITriggerList;
-import com.theuran.mappet.client.ui.triggers.panels.UICommandTriggerPanel;
-import com.theuran.mappet.client.ui.triggers.panels.UIStateTriggerPanel;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.resources.Link;
@@ -18,9 +13,7 @@ import mchorse.bbs_mod.ui.framework.elements.overlay.UIEditorOverlayPanel;
 import mchorse.bbs_mod.ui.utils.context.ContextMenuManager;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> {
     private final List<Trigger> triggers;
