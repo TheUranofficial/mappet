@@ -7,6 +7,7 @@ import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
+import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.server.scripts.RunScriptPacket;
 import com.theuran.mappet.network.packets.server.scripts.SaveScriptC2SPacket;
@@ -15,7 +16,6 @@ import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.dashboard.panels.UIDataDashboardPanel;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
-import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
 import net.minecraft.client.MinecraftClient;
@@ -25,7 +25,7 @@ import net.minecraft.text.Text;
 public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public UIIcon run;
     public UIIcon side;
-    public UITextEditor content;
+    public UIScriptEditor content;
 
     public UIScriptPanel(UIDashboard dashboard) {
         super(dashboard);
@@ -41,7 +41,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.run = new UIIcon(Icons.PLAY, this::runScript);
         this.run.tooltip(UIMappetKeys.SCRIPTS_RUN, Direction.LEFT);
 
-        this.side = new UIIcon(Icons.PROCESSOR, this::changeSide);
+        this.side = new UIIcon(MappetIcons.SERVER, this::changeSide);
         this.side.tooltip(UIMappetKeys.SCRIPTS_SIDE, Direction.LEFT);
 
         this.editor.add(this.content);
@@ -79,7 +79,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     private void changeSide(UIIcon icon) {
         this.data.setServer(!this.data.isServer());
 
-        this.side.both(this.data.isServer() ? Icons.PROCESSOR : Icons.MORE);
+        this.side.both(this.data.isServer() ? MappetIcons.SERVER : MappetIcons.CLIENT);
 
         if (this.data.isServer()) {
             MappetClient.getScripts().removeScript(this.data.getId());

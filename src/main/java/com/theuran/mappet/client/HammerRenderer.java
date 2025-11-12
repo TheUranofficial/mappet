@@ -6,16 +6,12 @@ import net.minecraft.util.Identifier;
 
 import java.time.LocalDate;
 
-public class HammerRender {
+public class HammerRenderer {
     public static void init() {
         ModelPredicateProviderRegistry.register(
                 MappetItems.HAMMER,
                 new Identifier("date"),
                 (stack, world, entity, seed) -> {
-                    LocalDate now = LocalDate.now();
-                    int day = now.getDayOfMonth();
-                    int month = now.getMonthValue();
-
                     float value = 0.0f;
 
                     if (isDateInRange(12, 1, 3)) {

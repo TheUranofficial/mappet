@@ -5,7 +5,6 @@ import com.theuran.mappet.client.api.keybinds.ClientKeybindManager;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.keybinds.MappetKeybinds;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
-import com.theuran.mappet.item.MappetItems;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.utils.InputUtils;
 import mchorse.bbs_mod.BBSSettings;
@@ -14,10 +13,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
-import net.minecraft.util.Identifier;
-
-import java.time.LocalDate;
 
 @Environment(EnvType.CLIENT)
 public class MappetClient implements ClientModInitializer {
@@ -54,7 +49,8 @@ public class MappetClient implements ClientModInitializer {
 
         InputUtils.init();
 
-        HammerRender.init();
+        HammerRenderer.init();
+        TriggerRenderer.init();
 
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             dashboard = null;
