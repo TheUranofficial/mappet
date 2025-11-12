@@ -35,7 +35,7 @@ public class EventManager extends BaseFileManager {
 
     public void eventServer(EventType eventType, ScriptEvent scriptEvent) {
         for (Trigger trigger : this.getTriggers(eventType)) {
-            if (!trigger.isServer()) {
+            if (trigger.isServer()) {
                 if (trigger.getDelay() == trigger.getMaxDelay()) {
                     trigger.execute(scriptEvent);
                     trigger.resetDelay();
