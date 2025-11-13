@@ -1,7 +1,9 @@
 package com.theuran.mappet.client;
 
 import com.theuran.mappet.block.MappetBlocks;
+import com.theuran.mappet.client.ui.blocks.trigger.UITriggerBlock;
 import mchorse.bbs_mod.graphics.Draw;
+import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.MinecraftClient;
@@ -15,7 +17,7 @@ public class TriggerRenderer {
         WorldRenderEvents.END.register((context) -> {
             MinecraftClient client = MinecraftClient.getInstance();
 
-            if (client.getDebugHud().shouldShowDebugHud() && client.interactionManager.getCurrentGameMode().isCreative()) {
+            if ((client.getDebugHud().shouldShowDebugHud() && client.interactionManager.getCurrentGameMode().isCreative()) || UIScreen.getCurrentMenu() instanceof UITriggerBlock) {
                 renderDebugBoxes(context);
             }
         });

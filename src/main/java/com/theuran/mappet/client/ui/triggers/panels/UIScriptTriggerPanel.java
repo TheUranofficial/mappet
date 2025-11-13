@@ -29,7 +29,6 @@ public class UIScriptTriggerPanel extends UITriggerPanel<ScriptTrigger> {
         this.function.setText(trigger.function.get());
 
         this.add(this.script);
-
         this.add(this.function);
 
         this.addDelay();

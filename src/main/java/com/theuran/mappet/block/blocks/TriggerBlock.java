@@ -1,26 +1,20 @@
 package com.theuran.mappet.block.blocks;
 
 import com.theuran.mappet.api.scripts.code.ScriptVector;
-import com.theuran.mappet.client.ui.panels.UITriggerBlock;
-import mchorse.bbs_mod.blocks.entities.ModelBlockEntity;
+import com.theuran.mappet.client.ui.blocks.trigger.UITriggerBlock;
 import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.*;
