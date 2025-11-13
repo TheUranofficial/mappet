@@ -1,18 +1,23 @@
 package com.theuran.mappet.client.ui.blocks.trigger;
 
-import com.theuran.mappet.block.blocks.TriggerBlock;
+import com.theuran.mappet.api.scripts.code.ScriptVector;
+import com.theuran.mappet.block.MappetBlockEntities;
+import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.client.ui.utils.UIMappetTransform;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.UpdateTriggerBlockPacket;
+import com.theuran.mappet.network.packets.server.UpdateTriggerBlockC2SPacket;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.UIBaseMenu;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class UITriggerBlock extends UIBaseMenu {
     public final BlockPos blockPos;
-    private final TriggerBlock.Hitbox hitbox;
+    public final TriggerBlockEntity triggerBlockEntity;
 
     public UIElement layout;
 
@@ -21,9 +26,9 @@ public class UITriggerBlock extends UIBaseMenu {
 
     public UIMappetTransform transform;
 
-    public UITriggerBlock(BlockPos blockPos, TriggerBlock.Hitbox hitbox) {
-        this.blockPos = blockPos;
-        this.hitbox = hitbox;
+    public UITriggerBlock(BlockPos blockPos) {
+        this.blockPos = new BlockPos(blockPos);
+        this.triggerBlockEntity = MinecraftClient.getInstance().player.getWorld().getBlockEntity(this.blockPos, MappetBlockEntities.TRIGGER_BLOCK).get();
 
         this.layout = new UIElement();
 
@@ -50,24 +55,16 @@ public class UITriggerBlock extends UIBaseMenu {
         this.transform = new UIMappetTransform();
 
         this.transform.fillS(
-                this.hitbox.getPos1().x,
-                this.hitbox.getPos1().y,
-                this.hitbox.getPos1().z
+            this.triggerBlockEntity.getPos1().x,
+            this.triggerBlockEntity.getPos1().y,
+            this.triggerBlockEntity.getPos1().z
         );
 
         this.transform.fillS2(
-                this.hitbox.getPos2().x,
-                this.hitbox.getPos2().y,
-                this.hitbox.getPos2().z
+            this.triggerBlockEntity.getPos2().x,
+            this.triggerBlockEntity.getPos2().y,
+            this.triggerBlockEntity.getPos2().z
         );
-
-        this.transform.onScale(() -> {
-            Dispatcher.sendToServer(new UpdateTriggerBlockPacket(this.hitbox, this.blockPos));
-        });
-
-        this.transform.onScale2(() -> {
-            Dispatcher.sendToServer(new UpdateTriggerBlockPacket(this.hitbox, this.blockPos));
-        });
 
         this.transform.wh(1f, 0.4f);
         this.transform.xy(0.5f, 1f);
@@ -88,17 +85,9 @@ public class UITriggerBlock extends UIBaseMenu {
 
     @Override
     public void onClose(UIBaseMenu nextMenu) {
-        TriggerBlock.Hitbox hitbox = TriggerBlock.Hitbox.SLAB;
-
-        hitbox.pos(
-                (int) this.transform.sx.getValue(),
-                (int) this.transform.sy.getValue(),
-                (int) this.transform.sz.getValue(),
-                (int) this.transform.s2x.getValue(),
-                (int) this.transform.s2y.getValue(),
-                (int) this.transform.s2z.getValue()
+        Dispatcher.sendToServer(new UpdateTriggerBlockC2SPacket(this.blockPos,
+                new ScriptVector((int) this.transform.sx.getValue(), (int) this.transform.sy.getValue(), (int) this.transform.sz.getValue()),
+                new ScriptVector((int) this.transform.s2x.getValue(), (int) this.transform.s2y.getValue(), (int) this.transform.s2z.getValue()))
         );
-
-        Dispatcher.sendToServer(new UpdateTriggerBlockPacket(hitbox, this.blockPos));
     }
 }

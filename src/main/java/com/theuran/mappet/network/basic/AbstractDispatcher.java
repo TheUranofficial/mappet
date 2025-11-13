@@ -28,8 +28,9 @@ public abstract class AbstractDispatcher {
 
                 ServerPlayNetworking.registerGlobalReceiver(packet.getId(), ((server, player, handler, buf, responseSender) -> {
                     packet.fromBytes(buf);
-
-                    serverHandler.run(server, player, handler, responseSender, packet);
+                    server.execute(() -> {
+                        serverHandler.run(server, player, handler, responseSender, packet);
+                    });
                 }));
             }
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {

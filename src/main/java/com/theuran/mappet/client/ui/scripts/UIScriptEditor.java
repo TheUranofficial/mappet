@@ -29,7 +29,7 @@ public class UIScriptEditor extends UITextEditor {
     private void handleLogic(String text) {
         Vector2d cursorPosition = this.getCursorPosition(this.getFont(), this.cursor);
 
-        String c = this.getCurrentLine().text.substring(this.cursor.offset-1, this.cursor.offset);
+        String c = "lox";//this.getCurrentLine().text.substring(this.cursor.offset-1, this.cursor.offset);
 
 
         if (c.equals(".")) {

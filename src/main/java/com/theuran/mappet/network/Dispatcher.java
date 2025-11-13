@@ -34,7 +34,7 @@ public class Dispatcher {
             this.registerPacket(SaveScriptC2SPacket.class, SaveScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerKeybindC2SPacket.class, TriggerKeybindC2SPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(RequestStatesPacket.class, RequestStatesPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(UpdateTriggerBlockPacket.class, UpdateTriggerBlockPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(UpdateTriggerBlockC2SPacket.class, UpdateTriggerBlockC2SPacket.ServerHandler.class, EnvType.SERVER);
 
             //CLIENT
             this.registerPacket(HandshakeS2CPacket.class, HandshakeS2CPacket.ClientHandler.class, EnvType.CLIENT);

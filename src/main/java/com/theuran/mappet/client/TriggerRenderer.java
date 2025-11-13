@@ -1,7 +1,6 @@
 package com.theuran.mappet.client;
 
 import com.theuran.mappet.block.MappetBlocks;
-import com.theuran.mappet.block.blocks.TriggerBlock;
 import com.theuran.mappet.client.ui.blocks.trigger.UITriggerBlock;
 import mchorse.bbs_mod.graphics.Draw;
 import mchorse.bbs_mod.ui.framework.UIBaseMenu;
@@ -15,7 +14,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
 
 public class TriggerRenderer {
@@ -68,16 +66,7 @@ public class TriggerRenderer {
     private static void renderHitboxAtPos(MatrixStack matrices, BlockPos pos, Camera camera, World world) {
         BlockState state = world.getBlockState(pos);
 
-        TriggerBlock.Hitbox hitboxEnum = state.get(TriggerBlock.HITBOX);
-
-        if (hitboxEnum == null) {
-            return;
-        }
-
-        VoxelShape hitbox = VoxelShapes.cuboid(
-                hitboxEnum.getPos1().x / 16.0, hitboxEnum.getPos1().y / 16.0, hitboxEnum.getPos1().z / 16.0,
-                hitboxEnum.getPos2().x / 16.0, hitboxEnum.getPos2().y / 16.0, hitboxEnum.getPos2().z / 16.0
-        );
+        VoxelShape hitbox = state.getOutlineShape(world, pos);
 
         matrices.push();
 

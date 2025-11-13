@@ -11,6 +11,7 @@ import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.StatesManager;
 import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.api.ui.UIManager;
+import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.MappetBlocks;
 import com.theuran.mappet.item.MappetItemGroups;
 import com.theuran.mappet.item.MappetItems;
@@ -88,6 +89,7 @@ public class Mappet implements ModInitializer {
         MappetItems.init();
         MappetItemGroups.init();
         MappetBlocks.init();
+        MappetBlockEntities.init();
 
         //BBSMod.setupConfig(Icons.PLANE, Mappet.MOD_ID, new File(settingsFolder, "mappet.json"), MappetSettings::register);
 
