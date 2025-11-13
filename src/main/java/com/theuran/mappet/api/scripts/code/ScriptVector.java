@@ -92,6 +92,10 @@ public class ScriptVector {
         return new Vec3d(this.x, this.y, this.z);
     }
 
+    public Vector3d toVector3d() {
+        return new Vector3d(this.x, this.y, this.z);
+    }
+
     public String toString() {
         return "("+x+", "+y+", "+z+")";
     }

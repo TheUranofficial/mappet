@@ -24,7 +24,10 @@ public class UIMappetTransform extends UIElement
     public UITrackpad s2x;
     public UITrackpad s2y;
     public UITrackpad s2z;
-    
+
+    public Runnable onScale = () -> {};
+    public Runnable onScale2 = () -> {};
+
     protected UIIcon iconS;
     protected UIIcon iconS2;
 
@@ -42,55 +45,60 @@ public class UIMappetTransform extends UIElement
         this.sx = new UITrackpad((value) ->
         {
             this.internalSetS(value, Axis.X);
-            this.syncScale(value);
         }).disableCanceling();
         this.sx.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_X));
         this.sx.textbox.setColor(Colors.RED);
+        this.sx.limit(0, 16);
+        this.sx.integer();
+
         this.sy = new UITrackpad((value) ->
         {
             this.internalSetS(value, Axis.Y);
-            this.syncScale(value);
         }).disableCanceling();
         this.sy.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_Y));
         this.sy.textbox.setColor(Colors.GREEN);
+        this.sy.limit(0, 16);
+        this.sy.integer();
+
         this.sz = new UITrackpad((value) ->
         {
             this.internalSetS(value, Axis.Z);
-            this.syncScale(value);
         }).disableCanceling();
         this.sz.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_Z));
         this.sz.textbox.setColor(Colors.BLUE);
+        this.sz.limit(0, 16);
+        this.sz.integer();
 
         /// ///////////////////////////
 
         this.s2x = new UITrackpad((value) -> {
             this.internalSetS2(value, Axis.X);
-            this.syncScale2(value);
         }).disableCanceling();
         this.s2x.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_X));
         this.s2x.textbox.setColor(Colors.RED);
+        this.s2x.limit(0, 16);
+        this.s2x.integer();
 
         this.s2y = new UITrackpad((value) -> {
             this.internalSetS2(value, Axis.Y);
-            this.syncScale2(value);
         }).disableCanceling();
         this.s2y.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_Y));
         this.s2y.textbox.setColor(Colors.GREEN);
+        this.s2y.limit(0, 16);
+        this.s2y.integer();
 
         this.s2z = new UITrackpad((value) -> {
             this.internalSetS2(value, Axis.Z);
-            this.syncScale2(value);
         }).disableCanceling();
         this.s2z.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_Z));
         this.s2z.textbox.setColor(Colors.BLUE);
+        this.s2z.limit(0, 16);
+        this.s2z.integer();
 
         this.w(1F).column().stretch().vertical();
 
-        this.iconS = new UIIcon(Icons.SCALE, (b) -> this.toggleUniformScale());
-        this.iconS.tooltip(UIKeys.TRANSFORMS_UNIFORM_SCALE);
-
-        this.iconS2 = new UIIcon(Icons.SCALE, (b) -> this.toggleUniformScale());
-        this.iconS.tooltip(UIKeys.TRANSFORMS_UNIFORM_SCALE);
+        this.iconS = new UIIcon(Icons.SCALE, null);
+        this.iconS2 = new UIIcon(Icons.SCALE, null);
 
         this.add(this.scaleRow = UI.row(this.iconS, this.sx, this.sy, this.sz));
         this.add(this.scaleRow = UI.row(this.iconS2, this.s2x, this.s2y, this.s2z));
@@ -137,85 +145,40 @@ public class UIMappetTransform extends UIElement
         }).inside().label(UIKeys.TRANSFORMS_CONTEXT_PASTE);
     }
 
-    protected void toggleUniformScale()
-    {
-        this.uniformScale = !this.uniformScale;
-
-        this.scaleRow.removeAll();
-
-        if (this.uniformScale)
-        {
-            this.scaleRow.add(this.iconS, this.sx);
-        }
-        else
-        {
-            this.scaleRow.add(this.iconS, this.sx, this.sy, this.sz);
-        }
-
-        UIElement parentContainer = this.getParentContainer();
-
-        if (parentContainer != null)
-        {
-            parentContainer.resize();
-        }
+    public void onScale(Runnable runnable) {
+        this.onScale = runnable;
     }
 
-    protected boolean isUniformScale()
-    {
-        return this.uniformDrag || Window.isKeyPressed(GLFW.GLFW_KEY_SPACE);
+    public void onScale2(Runnable runnable) {
+        this.onScale2 = runnable;
     }
 
-    private void syncScale(double value)
-    {
-        if (this.isUniformScale())
-        {
-            this.fillS(value, value, value);
-            this.setS(null, value, value, value);
-        }
-    }
-
-    private void syncScale2(double value)
-    {
-        if (this.isUniformScale())
-        {
-            this.fillS2(value, value, value);
-            this.setS2(null, value, value, value);
-        }
-    }
-
-    public void fillSetS(double x, double y, double z)
-    {
+    public void fillSetS(double x, double y, double z) {
         this.fillS(x, y, z);
         this.setS(null, x, y, z);
     }
 
-    public void fillSetS2(double x, double y, double z)
-    {
+    public void fillSetS2(double x, double y, double z) {
         this.fillS2(x, y, z);
         this.setS2(null, x, y, z);
     }
 
 
-    public void fillS(double x, double y, double z)
-    {
+    public void fillS(double x, double y, double z) {
         this.sx.setValue(x);
         this.sy.setValue(y);
         this.sz.setValue(z);
     }
 
-    public void fillS2(double x, double y, double z)
-    {
+    public void fillS2(double x, double y, double z) {
         this.s2x.setValue(x);
         this.s2y.setValue(y);
         this.s2z.setValue(z);
     }
 
-    protected void internalSetS(double x, Axis axis)
-    {
-        try
-        {
-            if (this.uniformScale && axis == Axis.X)
-            {
+    protected void internalSetS(double x, Axis axis) {
+        try {
+            if (this.uniformScale && axis == Axis.X) {
                 this.setS(axis, x, x, x);
                 this.sy.setValue(x);
                 this.sz.setValue(x);
@@ -229,16 +192,15 @@ public class UIMappetTransform extends UIElement
                     axis == Axis.Z ? x : this.sz.getValue()
             );
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             e.printStackTrace();
         }
+
+        this.onScale.run();
     }
 
-    protected void internalSetS2(double x, Axis axis)
-    {
-        try
-        {
+    protected void internalSetS2(double x, Axis axis) {
+        try {
             this.setS2(axis,
                     axis == Axis.X ? x : this.s2x.getValue(),
                     axis == Axis.Y ? x : this.s2y.getValue(),
@@ -249,6 +211,8 @@ public class UIMappetTransform extends UIElement
         {
             e.printStackTrace();
         }
+
+        this.onScale2.run();
     }
 
     public void setS(Axis axis, double x, double y, double z) {

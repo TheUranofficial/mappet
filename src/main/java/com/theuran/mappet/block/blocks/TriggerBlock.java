@@ -82,7 +82,7 @@ public class TriggerBlock extends Block implements Waterloggable {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()) {
-            UIScreen.open(new UITriggerBlock());
+            UIScreen.open(new UITriggerBlock(pos, state.get(HITBOX)));
             return ActionResult.SUCCESS;
         }
         return ActionResult.CONSUME;
