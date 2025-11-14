@@ -1,7 +1,6 @@
 package com.theuran.mappet.client.ui.triggers;
 
 import com.theuran.mappet.Mappet;
-import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import mchorse.bbs_mod.l10n.L10n;
@@ -18,10 +17,10 @@ import java.util.List;
 public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> {
     private final List<Trigger> triggers;
 
-    public UIEditorTriggersOverlayPanel(EventType event) {
+    public UIEditorTriggersOverlayPanel(List<Trigger> triggers) {
         super(UIMappetKeys.TRIGGERS_TITLE);
 
-        this.triggers = Mappet.getEvents().getTriggers(event);
+        this.triggers = triggers;
 
         this.list.sorting().setList(this.triggers);
         this.list.context(menu -> {
