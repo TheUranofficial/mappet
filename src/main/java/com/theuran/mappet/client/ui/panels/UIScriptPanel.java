@@ -114,7 +114,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
     private void updateButtons() {
         this.side.setEnabled(this.data != null);
-        this.side.both(this.data != null && this.data.isServer() ? Icons.PROCESSOR : Icons.MORE);
+        this.side.both(this.data != null && this.data.isServer() ? MappetIcons.SERVER : MappetIcons.CLIENT);
         this.run.setEnabled(this.data != null);
     }
 

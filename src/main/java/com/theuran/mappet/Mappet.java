@@ -104,6 +104,7 @@ public class Mappet implements ModInitializer {
 
             states.load();
             events.load();
+            keybinds.load();
 
             scripts.initialize();
         });
@@ -111,6 +112,7 @@ public class Mappet implements ModInitializer {
         ServerLifecycleEvents.BEFORE_SAVE.register((server, flush, force) -> {
             states.save();
             events.save();
+            keybinds.save();
         });
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {

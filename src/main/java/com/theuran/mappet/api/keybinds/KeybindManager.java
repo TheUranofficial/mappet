@@ -15,12 +15,29 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class KeybindManager extends BaseFileManager {
-    public Map<Keybind, List<Trigger>> keybinds;
+    private final Map<Keybind, List<Trigger>> keybinds;
 
     public KeybindManager(Supplier<File> file) {
         super(file);
 
         this.keybinds = new HashMap<>();
+    }
+
+    public List<Keybind> getKeybinds() {
+        return new ArrayList<>(this.keybinds.keySet());
+    }
+
+    public Keybind getKeybind(String keybindId) {
+        for (Keybind keybind : this.getKeybinds()) {
+            if (keybind.getId().equals(keybindId)) {
+                return keybind;
+            }
+        }
+        return null;
+    }
+
+    public void addKeybind(Keybind keybind) {
+        this.keybinds.put(keybind, new ArrayList<>());
     }
 
     public List<Trigger> getTriggers(String name) {

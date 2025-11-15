@@ -46,6 +46,7 @@
   "mappet.events.title": "Events",
 
   "mappet.keybinds.title": "Keybinds",
+  "mappet.keybinds.add": "Add keybind",
 
   "mappet.events.name.entity.death": "Entity: Death",
   "mappet.events.description.entity.death": "Description",

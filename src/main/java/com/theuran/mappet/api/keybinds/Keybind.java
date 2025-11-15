@@ -9,9 +9,9 @@ public class Keybind {
     private final Type type;
     private final Modificator mod;
 
-    public Keybind(String id, String categoryName, int keycode, Type type, Modificator mod) {
+    public Keybind(String id, String category, int keycode, Type type, Modificator mod) {
         this.id = id;
-        this.category = categoryName;
+        this.category = category;
         this.type = type;
         this.keycode = keycode;
         this.mod = mod;
