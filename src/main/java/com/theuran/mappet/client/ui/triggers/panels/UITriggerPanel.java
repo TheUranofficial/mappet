@@ -1,9 +1,9 @@
-package com.theuran.mappet.client.ui.triggers;
+package com.theuran.mappet.client.ui.triggers.panels;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.client.ui.UIMappetKeys;
-import com.theuran.mappet.client.ui.triggers.panels.*;
+import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.input.UITrackpad;

@@ -4,7 +4,7 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
-import com.theuran.mappet.client.ui.triggers.UITriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UITriggerPanel;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
 import mchorse.bbs_mod.settings.values.core.ValueString;

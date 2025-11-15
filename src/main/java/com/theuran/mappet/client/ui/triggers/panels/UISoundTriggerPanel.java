@@ -1,25 +1,41 @@
 package com.theuran.mappet.client.ui.triggers.panels;
 
 import com.theuran.mappet.api.triggers.SoundTrigger;
+import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
-import com.theuran.mappet.client.ui.triggers.UITriggerPanel;
-import com.theuran.mappet.client.ui.utils.UIMappetUtils;
-import mchorse.bbs_mod.l10n.L10n;
-import mchorse.bbs_mod.ui.framework.elements.input.text.UITextbox;
+import mchorse.bbs_mod.l10n.keys.IKey;
+import mchorse.bbs_mod.resources.Link;
+import mchorse.bbs_mod.ui.ContentType;
+import mchorse.bbs_mod.ui.UIKeys;
+import mchorse.bbs_mod.ui.framework.elements.buttons.UICirculate;
+import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
+import mchorse.bbs_mod.ui.framework.elements.overlay.UISoundOverlayPanel;
+import mchorse.bbs_mod.ui.framework.elements.overlay.UIStringOverlayPanel;
 
-public class UISoundTriggerPanel extends UITriggerPanel<SoundTrigger> {
-    UITextbox sound;
+public class UISoundTriggerPanel extends UIStringTriggerPanel<SoundTrigger> {
+    public UICirculate sound;
 
     public UISoundTriggerPanel(UIEditorTriggersOverlayPanel overlay, SoundTrigger trigger) {
         super(overlay, trigger);
 
-        this.sound = UIMappetUtils.fullWindowContext(
-                new UITextbox(10000, text -> this.trigger.sound.set(text)),
-                L10n.lang("mappet.triggers.types.sound")
-        );
-        this.sound.setText(trigger.sound.get());
-
-        this.add(this.sound);
+        this.addPicker();
         this.addDelay();
+    }
+
+    @Override
+    public IKey getLabel() {
+        return UIKeys.OVERLAYS_SOUNDS_MAIN;
+    }
+
+    @Override
+    protected void openOverlay() {
+        UIStringOverlayPanel overlay = new UISoundOverlayPanel(link -> this.trigger.key.set(link.toString())).set(trigger.key.get());
+
+        UIOverlay.addOverlay(this.getContext(), overlay, 0.5f, 0.9f);
+    }
+
+    @Override
+    public ContentType getType() {
+        return null;
     }
 }

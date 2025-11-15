@@ -4,30 +4,27 @@ import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
-import com.theuran.mappet.client.ui.triggers.UITriggerPanel;
-import com.theuran.mappet.client.ui.triggers.panels.UICommandTriggerPanel;
+import com.theuran.mappet.client.ui.triggers.panels.UITriggerPanel;
 import com.theuran.mappet.client.ui.triggers.panels.UIStateTriggerPanel;
 import com.theuran.mappet.utils.ValueType;
 import mchorse.bbs_mod.data.types.BaseType;
-import mchorse.bbs_mod.settings.values.core.ValueString;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class StateTrigger extends Trigger {
-    public ValueString key = new ValueString("key", "");
-    public ValueType baseType = new ValueType("baseType", null);
+public class StateTrigger extends StringTrigger {
+    public ValueType value = new ValueType("value", null);
 
     public StateTrigger() {
-        this.add(this.key);
-        this.add(this.baseType);
+        super();
+        this.add(this.value);
     }
 
-    public StateTrigger(String key, BaseType baseType) {
+    public StateTrigger(String key, BaseType value) {
         this();
         this.key.set(key);
-        this.baseType.set(baseType);
+        this.value.set(value);
     }
 
     @Override
@@ -37,7 +34,7 @@ public class StateTrigger extends Trigger {
         if (entity instanceof ServerPlayerEntity player) {
             IStatesProvider playerStates = (IStatesProvider) player;
 
-            playerStates.getStates().set(this.key.get(), this.baseType.get());
+            playerStates.getStates().set(this.key.get(), this.value.get());
         }
     }
 
