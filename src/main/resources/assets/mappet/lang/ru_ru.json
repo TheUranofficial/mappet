@@ -125,5 +125,7 @@
   
   "mappet.events.name.client.change.options": "Клиент: при изменении настроек",
   "mappet.events.description.client.change.options": "Описание",
-  "mappet.events.variables.client.change.options": "Переменные"
+  "mappet.events.variables.client.change.options": "Переменные",
+
+  "mappet.general.function": "Функция"
 }

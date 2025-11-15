@@ -40,7 +40,7 @@ public class HUDMorph extends ValueGroup {
     public boolean update(boolean allowExpiring) {
         IEntity stubEntity = this.getEntity();
 
-        if (!this.form.getProperties().isEmpty()) {
+        if (!this.form.parts.getAll().isEmpty()) {
             this.form.update(stubEntity);
         }
 

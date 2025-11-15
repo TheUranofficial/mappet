@@ -15,7 +15,7 @@ public class UISoundTriggerPanel extends UITriggerPanel<SoundTrigger> {
 
         this.sound = UIMappetUtils.fullWindowContext(
                 new UITextbox(10000, text -> this.trigger.sound.set(text)),
-                L10n.lang("mappet.triggers.types."+trigger.getTriggerId())
+                L10n.lang("mappet.triggers.types.sound")
         );
         this.sound.setText(trigger.sound.get());
 

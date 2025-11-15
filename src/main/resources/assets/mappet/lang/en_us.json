@@ -125,5 +125,7 @@
 
   "mappet.events.name.client.change.options": "Client: change options",
   "mappet.events.description.client.change.options": "Description",
-  "mappet.events.variables.client.change.options": "Variables"
+  "mappet.events.variables.client.change.options": "Variables",
+
+  "mappet.general.function": "Function"
 }

@@ -39,4 +39,6 @@ public class UIMappetKeys {
     public static final IKey KEYBINDS_TITLE = L10n.lang("mappet.keybinds.title");
 
     public static final IKey OVERLAYS_FULLSCREEN = L10n.lang("mappet.overlays.fullscreen");
+
+    public static final IKey GENERAL_FUNCTION = L10n.lang("mappet.general.function");
 }

@@ -36,7 +36,7 @@
     "minecraft": "~1.20.4",
     "java": ">=17",
     "fabric-api": "*",
-    "bbs": ">=1.5.6"
+    "bbs": ">=1.6-1.20.4"
   },
   "suggests": {
     "another-mod": "*"
