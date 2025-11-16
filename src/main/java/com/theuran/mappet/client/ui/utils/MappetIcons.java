@@ -40,7 +40,7 @@ public class MappetIcons {
     public static final Icon API_UI_TEXTBOX = register("api_ui_textbox", 6, 1);
     public static final Icon API_UI_TEXTAREA = register("api_ui_textarea", 7, 1);
     public static final Icon API_UI_TOGGLE = register("api_ui_toggle", 8, 1);
-    public static final Icon API_UI_TRACKPAD = register("api_ui_toggle", 9, 1);
+    public static final Icon API_UI_TRACKPAD = register("api_ui_trackpad", 9, 1);
 
     public static final Icon UIB_BUTTON = register("uib_button", 0, 2);
     public static final Icon UIB_TEXTURE = register("uib_texture", 1, 2);
