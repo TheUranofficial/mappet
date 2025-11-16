@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.function.Supplier;
 
 public abstract class BaseFileManager implements IMapSerializable {
-    private Supplier<File> file;
+    private final Supplier<File> file;
 
     public BaseFileManager(Supplier<File> file) {
         this.file = file;
@@ -18,31 +18,27 @@ public abstract class BaseFileManager implements IMapSerializable {
         this.save(this.file.get());
     }
 
-    public boolean save(File file) {
+    public void save(File file) {
         if (file != null) {
             if (!file.getParentFile().isDirectory()) {
                 file.getParentFile().mkdirs();
             }
 
             DataToString.writeSilently(file, this.toData(), true);
-            return true;
         }
-        return false;
     }
 
     public void load() {
         this.load(this.file.get());
     }
 
-    public boolean load(File file) {
+    public void load(File file) {
         try {
             if (file != null && file.exists()) {
                 this.fromData((MapType) DataToString.read(file));
             }
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
     }
 }

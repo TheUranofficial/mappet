@@ -29,7 +29,7 @@ public class UIMappetDashboard extends UIDashboard {
 
         this.statesPanel = new UIStatesOverlayPanel();
         this.states = new UIIcon(MappetIcons.STATES, icon -> {
-            UIOverlay.addOverlayLeft(this.context, this.statesPanel, 240);
+            UIOverlay.addOverlayRight(this.context, this.statesPanel, 240);
             Dispatcher.sendToServer(new RequestStatesPacket());
         });
         this.states.tooltip(UIMappetKeys.STATES_TITLE, Direction.TOP);

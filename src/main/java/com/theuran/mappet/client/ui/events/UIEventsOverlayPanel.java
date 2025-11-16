@@ -27,11 +27,14 @@ public class UIEventsOverlayPanel extends UIOverlayPanel {
                 this.latest = string.value;
             }
         });
-        this.list.full(this.content);
-        this.content.add(this.list);
 
         for (EventType value : EventType.values()) {
             this.list.add(value.getName(), value.name().toLowerCase());
         }
+
+        this.list.full(this.content);
+        this.list.sort();
+        this.list.setCurrentValue(this.latest);
+        this.content.add(this.list);
     }
 }

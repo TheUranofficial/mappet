@@ -15,12 +15,10 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class KeybindManager extends BaseFileManager {
-    private final Map<Keybind, List<Trigger>> keybinds;
+    private final Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
 
     public KeybindManager(Supplier<File> file) {
         super(file);
-
-        this.keybinds = new HashMap<>();
     }
 
     public List<Keybind> getKeybinds() {

@@ -1,20 +1,15 @@
 package com.theuran.mappet.client.ui.triggers.panels;
 
 import com.theuran.mappet.api.triggers.SoundTrigger;
-import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
 import mchorse.bbs_mod.l10n.keys.IKey;
-import mchorse.bbs_mod.resources.Link;
 import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.ui.UIKeys;
-import mchorse.bbs_mod.ui.framework.elements.buttons.UICirculate;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UISoundOverlayPanel;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIStringOverlayPanel;
 
 public class UISoundTriggerPanel extends UIStringTriggerPanel<SoundTrigger> {
-    public UICirculate sound;
-
     public UISoundTriggerPanel(UIEditorTriggersOverlayPanel overlay, SoundTrigger trigger) {
         super(overlay, trigger);
 

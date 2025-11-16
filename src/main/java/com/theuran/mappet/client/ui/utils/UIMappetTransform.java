@@ -16,8 +16,7 @@ import mchorse.bbs_mod.utils.colors.Colors;
 import org.joml.Vector3d;
 import org.lwjgl.glfw.GLFW;
 
-public class UIMappetTransform extends UIElement
-{
+public class UIMappetTransform extends UIElement {
     public UITrackpad sx;
     public UITrackpad sy;
     public UITrackpad sz;
@@ -25,8 +24,10 @@ public class UIMappetTransform extends UIElement
     public UITrackpad s2y;
     public UITrackpad s2z;
 
-    public Runnable onScale = () -> {};
-    public Runnable onScale2 = () -> {};
+    public Runnable onScale = () -> {
+    };
+    public Runnable onScale2 = () -> {
+    };
 
     protected UIIcon iconS;
     protected UIIcon iconS2;
@@ -36,8 +37,7 @@ public class UIMappetTransform extends UIElement
     private boolean uniformDrag;
     private boolean uniformScale;
 
-    public UIMappetTransform()
-    {
+    public UIMappetTransform() {
         super();
 
         IKey raw = IKey.constant("%s (%s)");
@@ -107,15 +107,13 @@ public class UIMappetTransform extends UIElement
         {
             ListType transforms = Window.getClipboardList();
 
-            if (transforms != null && transforms.size() < 9)
-            {
+            if (transforms != null && transforms.size() < 9) {
                 transforms = null;
             }
 
             menu.autoKeys().action(Icons.COPY, UIKeys.TRANSFORMS_CONTEXT_COPY, this::copyTransformations);
 
-            if (transforms != null)
-            {
+            if (transforms != null) {
                 final ListType innerList = transforms;
 
                 menu.action(Icons.PASTE, UIKeys.TRANSFORMS_CONTEXT_PASTE, () -> this.pasteAll(innerList));
@@ -133,13 +131,11 @@ public class UIMappetTransform extends UIElement
         {
             ListType transforms = Window.getClipboardList();
 
-            if (transforms != null && transforms.size() < 9)
-            {
+            if (transforms != null && transforms.size() < 9) {
                 transforms = null;
             }
 
-            if (transforms != null)
-            {
+            if (transforms != null) {
                 this.pasteAll(transforms);
             }
         }).inside().label(UIKeys.TRANSFORMS_CONTEXT_PASTE);
@@ -191,8 +187,7 @@ public class UIMappetTransform extends UIElement
                     axis == Axis.Y ? x : this.sy.getValue(),
                     axis == Axis.Z ? x : this.sz.getValue()
             );
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -206,9 +201,7 @@ public class UIMappetTransform extends UIElement
                     axis == Axis.Y ? x : this.s2y.getValue(),
                     axis == Axis.Z ? x : this.s2z.getValue()
             );
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -217,14 +210,17 @@ public class UIMappetTransform extends UIElement
 
     public void setS(Axis axis, double x, double y, double z) {
 
-    };
+    }
+
+    ;
 
     public void setS2(Axis axis, double x, double y, double z) {
 
-    };
+    }
 
-    private void copyTransformations()
-    {
+    ;
+
+    private void copyTransformations() {
         ListType list = new ListType();
 
         list.addDouble(this.sx.getValue());
@@ -237,40 +233,33 @@ public class UIMappetTransform extends UIElement
         Window.setClipboard(list);
     }
 
-    public void pasteAll(ListType list)
-    {
+    public void pasteAll(ListType list) {
         this.pasteScale(this.getVector(list, 3));
         this.pasteScale2(this.getVector(list, 6));
     }
 
-    public void pasteScale(Vector3d scale)
-    {
+    public void pasteScale(Vector3d scale) {
         this.setS(null, scale.x, scale.y, scale.z);
     }
 
-    public void pasteScale2(Vector3d scale)
-    {
+    public void pasteScale2(Vector3d scale) {
         this.setS2(null, scale.x, scale.y, scale.z);
     }
 
-    private Vector3d getVector(ListType list, int offset)
-    {
+    private Vector3d getVector(ListType list, int offset) {
         Vector3d result = new Vector3d();
 
-        if (list.get(offset).isNumeric() && list.get(offset + 1).isNumeric() && list.get(offset + 2).isNumeric())
-        {
+        if (list.get(offset).isNumeric() && list.get(offset + 1).isNumeric() && list.get(offset + 2).isNumeric()) {
             result.x = list.get(offset).asNumeric().doubleValue();
             result.y = list.get(offset + 1).asNumeric().doubleValue();
             result.z = list.get(offset + 2).asNumeric().doubleValue();
         }
 
-        if (offset == 0)
-        {
+        if (offset == 0) {
             result.x *= Window.isShiftPressed() ? -1 : 1;
         }
 
-        if (offset >= 6)
-        {
+        if (offset >= 6) {
             result.y *= Window.isShiftPressed() ? -1 : 1;
             result.z *= Window.isShiftPressed() ? -1 : 1;
         }
@@ -278,19 +267,15 @@ public class UIMappetTransform extends UIElement
         return result;
     }
 
-    protected void reset()
-    {
+    protected void reset() {
         this.fillSetS(1, 1, 1);
         this.fillSetS2(0, 0, 0);
     }
 
     @Override
-    protected boolean subMouseClicked(UIContext context)
-    {
-        if (this.sx.area.isInside(context) || this.sy.area.isInside(context) || this.sz.area.isInside(context))
-        {
-            if (context.mouseButton == 1 && (this.sx.isDragging() || this.sy.isDragging() || this.sz.isDragging()))
-            {
+    protected boolean subMouseClicked(UIContext context) {
+        if (this.sx.area.isInside(context) || this.sy.area.isInside(context) || this.sz.area.isInside(context)) {
+            if (context.mouseButton == 1 && (this.sx.isDragging() || this.sy.isDragging() || this.sz.isDragging())) {
                 this.uniformDrag = true;
 
                 return true;
@@ -301,10 +286,8 @@ public class UIMappetTransform extends UIElement
     }
 
     @Override
-    protected boolean subMouseReleased(UIContext context)
-    {
-        if (context.mouseButton == 1)
-        {
+    protected boolean subMouseReleased(UIContext context) {
+        if (context.mouseButton == 1) {
             this.uniformDrag = false;
         }
 
@@ -312,12 +295,9 @@ public class UIMappetTransform extends UIElement
     }
 
     @Override
-    protected boolean subKeyPressed(UIContext context)
-    {
-        if (this.sx.isDragging() || this.sy.isDragging() || this.sz.isDragging())
-        {
-            if (context.isHeld(GLFW.GLFW_KEY_SPACE))
-            {
+    protected boolean subKeyPressed(UIContext context) {
+        if (this.sx.isDragging() || this.sy.isDragging() || this.sz.isDragging()) {
+            if (context.isHeld(GLFW.GLFW_KEY_SPACE)) {
                 return true;
             }
         }
