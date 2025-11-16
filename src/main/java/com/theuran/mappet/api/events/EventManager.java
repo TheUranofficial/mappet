@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class EventManager extends BaseFileManager {
-    private final Map<EventType, List<Trigger>> events = new HashMap<>();
+    public Map<EventType, List<Trigger>> events = new HashMap<>();
 
     public EventManager(Supplier<File> file) {
         super(file);

@@ -14,7 +14,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.List;
 
 public class TriggerKeybindC2SPacket extends AbstractPacket {
-    String keybindId;
+    public String keybindId;
 
     public TriggerKeybindC2SPacket() {}
 

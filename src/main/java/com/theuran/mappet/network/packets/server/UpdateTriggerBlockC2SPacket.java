@@ -16,9 +16,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class UpdateTriggerBlockC2SPacket extends AbstractPacket {
-    BlockPos blockPos;
-    ScriptVector pos1;
-    ScriptVector pos2;
+    public BlockPos blockPos;
+    public ScriptVector pos1;
+    public ScriptVector pos2;
 
     public UpdateTriggerBlockC2SPacket() {}
 

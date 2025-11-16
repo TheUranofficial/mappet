@@ -1,12 +1,14 @@
 package com.theuran.mappet.client.ui.triggers;
 
 import com.theuran.mappet.Mappet;
+import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.network.packets.server.TriggersPacket;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.resources.Link;
-import mchorse.bbs_mod.ui.UIKeys;
 import mchorse.bbs_mod.ui.framework.elements.input.list.UIList;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIEditorOverlayPanel;
 import mchorse.bbs_mod.ui.utils.context.ContextMenuManager;
@@ -15,22 +17,13 @@ import mchorse.bbs_mod.ui.utils.icons.Icons;
 import java.util.List;
 
 public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> {
-    private final List<Trigger> triggers;
+    public List<Trigger> triggers;
+    public EventType type;
 
-    public UIEditorTriggersOverlayPanel(List<Trigger> triggers) {
+    public UIEditorTriggersOverlayPanel() {
         super(UIMappetKeys.TRIGGERS_TITLE);
 
-        this.triggers = triggers;
-
-        this.list.sorting().setList(this.triggers);
-        this.list.context(menu -> {
-            if (this.list.isSelected()) {
-                menu.action(Icons.COPY, UIKeys.GENERAL_COPY, () -> {});
-                menu.action(Icons.PASTE, UIKeys.GENERAL_PASTE, () -> {});
-            }
-        });
-
-        this.pickItem(this.triggers.isEmpty() ? null : this.triggers.getFirst(), true);
+        this.list.sorting();
     }
 
     @Override
@@ -77,5 +70,27 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void set(List<Trigger> triggers, EventType type) {
+        this.list.setList(this.triggers = triggers);
+        this.type = type;
+
+        this.pickItem(this.triggers.isEmpty() ? null : this.triggers.getFirst(), true);
+    }
+
+    public void save() {
+        if (this.triggers != null) {
+            Dispatcher.sendToServer(new TriggersPacket(this.triggers, this.type));
+        }
+    }
+
+    @Override
+    public void onClose() {
+        super.onClose();
+
+        this.save();
+        this.triggers = null;
+        this.list.clear();
     }
 }

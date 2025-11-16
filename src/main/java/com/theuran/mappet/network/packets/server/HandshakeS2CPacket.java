@@ -11,8 +11,6 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 
 public class HandshakeS2CPacket extends AbstractPacket {
-    public HandshakeS2CPacket() {}
-
     @Override
     public void toBytes(PacketByteBuf buf) {}
 

@@ -31,12 +31,14 @@ public class Dispatcher {
         @Override
         public void register() {
             //SERVER
+            this.registerPacket(RequestTriggersPacket.class, RequestTriggersPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(SaveScriptC2SPacket.class, SaveScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerKeybindC2SPacket.class, TriggerKeybindC2SPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(RequestStatesPacket.class, RequestStatesPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(RequestPacket.class, RequestPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(UpdateTriggerBlockC2SPacket.class, UpdateTriggerBlockC2SPacket.ServerHandler.class, EnvType.SERVER);
 
             //CLIENT
+            this.registerPacket(EventsPacket.class, EventsPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(HandshakeS2CPacket.class, HandshakeS2CPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(SendScriptsS2CPacket.class, SendScriptsS2CPacket.ClientHandler.class, EnvType.CLIENT);
 
@@ -49,6 +51,8 @@ public class Dispatcher {
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(StatesPacket.class, StatesPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(StatesPacket.class, StatesPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(TriggersPacket.class, TriggersPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(TriggersPacket.class, TriggersPacket.ServerHandler.class, EnvType.SERVER);
         }
     };
 

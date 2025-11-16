@@ -31,7 +31,7 @@ public abstract class Trigger extends ValueGroup {
 
     public abstract void execute(ClientScriptEvent scriptEvent);
 
-    public abstract String getTriggerId();
+    protected abstract String getTriggerId();
 
     public int getMaxDelay() {
         return this.maxDelay.get();

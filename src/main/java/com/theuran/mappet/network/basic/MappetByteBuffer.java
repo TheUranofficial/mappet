@@ -1,13 +1,18 @@
 package com.theuran.mappet.network.basic;
 
+import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
+import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import mchorse.bbs_mod.data.DataStorageUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -101,7 +106,7 @@ public class MappetByteBuffer {
 
     public static ClientScriptEvent readClientScriptEvent(PacketByteBuf buf) {
         String script = buf.readString();
-        String function =  buf.readString();
+        String function = buf.readString();
 
         int subjectId = buf.readInt();
         int objectId = buf.readInt();
@@ -138,6 +143,29 @@ public class MappetByteBuffer {
     public static Object readValue(PacketByteBuf buf) {
         String typeName = buf.readString();
         return ValueType.fromTypeName(typeName).read(buf);
+    }
+
+    public static void writeTriggerList(PacketByteBuf buf, List<Trigger> list) {
+        buf.writeInt(list.size());
+        list.forEach(trigger -> {
+            buf.writeString(trigger.getId());
+            DataStorageUtils.writeToPacket(buf, trigger.toData());
+        });
+    }
+
+    public static List<Trigger> readTriggerList(PacketByteBuf buf) {
+        int size = buf.readInt();
+        List<Trigger> list = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            Trigger trigger = Mappet.getTriggers().create(Mappet.link(buf.readString()));
+
+            trigger.fromData(DataStorageUtils.readFromPacket(buf));
+
+            list.add(trigger);
+        }
+
+        return list;
     }
 
     private enum ValueType {

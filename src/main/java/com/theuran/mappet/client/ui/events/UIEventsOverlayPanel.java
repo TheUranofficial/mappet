@@ -1,9 +1,10 @@
 package com.theuran.mappet.client.ui.events;
 
-import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.network.packets.server.RequestTriggersPacket;
 import mchorse.bbs_mod.ui.framework.elements.input.list.UILabelList;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
@@ -11,8 +12,9 @@ import mchorse.bbs_mod.ui.utils.Label;
 
 public class UIEventsOverlayPanel extends UIOverlayPanel {
     public UILabelList<String> list;
+    public UIEditorTriggersOverlayPanel panel;
 
-    private String latest = "";
+    public String latest = "";
 
     public UIEventsOverlayPanel() {
         super(UIMappetKeys.EVENTS_TITLE);
@@ -20,21 +22,16 @@ public class UIEventsOverlayPanel extends UIOverlayPanel {
         this.list = new UILabelList<>(strings -> {
             for (Label<String> string : strings) {
                 if (this.latest.equals(string.value)) {
-                    UIEditorTriggersOverlayPanel panel = new UIEditorTriggersOverlayPanel(Mappet.getEvents().getTriggers(EventType.valueOf(string.value.toUpperCase())));
+                    this.panel = new UIEditorTriggersOverlayPanel();
 
-                    UIOverlay.addOverlay(this.getContext(), panel, 0.55f, 0.75f);
+                    Dispatcher.sendToServer(new RequestTriggersPacket(EventType.valueOf(string.value.toUpperCase())));
+                    UIOverlay.addOverlay(this.getContext(), this.panel, 0.55f, 0.75f);
                 }
                 this.latest = string.value;
             }
         });
 
-        for (EventType value : EventType.values()) {
-            this.list.add(value.getName(), value.name().toLowerCase());
-        }
-
         this.list.full(this.content);
-        this.list.sort();
-        this.list.setCurrentValue(this.latest);
         this.content.add(this.list);
     }
 }

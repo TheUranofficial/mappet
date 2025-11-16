@@ -21,11 +21,11 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
 public class TriggerEventPacket extends AbstractPacket {
-    EventType eventType;
-    Trigger trigger;
+    public EventType eventType;
+    public Trigger trigger;
 
-    ScriptEvent scriptEvent;
-    ClientScriptEvent clientScriptEvent;
+    public ScriptEvent scriptEvent;
+    public ClientScriptEvent clientScriptEvent;
 
     public TriggerEventPacket() {}
 
