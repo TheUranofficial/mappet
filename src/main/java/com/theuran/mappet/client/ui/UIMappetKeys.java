@@ -42,4 +42,7 @@ public class UIMappetKeys {
     public static final IKey OVERLAYS_FULLSCREEN = L10n.lang("mappet.overlays.fullscreen");
 
     public static final IKey GENERAL_FUNCTION = L10n.lang("mappet.general.function");
+
+    public static final IKey AI_TITLE = L10n.lang("mappet.ai.title");
+    public static final IKey AI_OPEN = L10n.lang("mappet.ai.open");
 }

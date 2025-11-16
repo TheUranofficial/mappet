@@ -6,6 +6,7 @@ import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
+import com.theuran.mappet.client.ui.ai.UIAiOverlayPanel;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
@@ -16,6 +17,8 @@ import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.dashboard.panels.UIDataDashboardPanel;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
+import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;
+import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
 import net.minecraft.client.MinecraftClient;
@@ -25,7 +28,10 @@ import net.minecraft.text.Text;
 public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public UIIcon run;
     public UIIcon side;
+    public UIIcon ai;
     public UIScriptEditor content;
+
+    public UIAiOverlayPanel aiPanel;
 
     public UIScriptPanel(UIDashboard dashboard) {
         super(dashboard);
@@ -44,12 +50,18 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.side = new UIIcon(MappetIcons.SERVER, this::changeSide);
         this.side.tooltip(UIMappetKeys.SCRIPTS_SIDE, Direction.LEFT);
 
+        this.ai = new UIIcon(MappetIcons.SERVER, this::aiPanel);
+        this.ai.tooltip(UIMappetKeys.AI_OPEN, Direction.LEFT);
+
         this.editor.add(this.content);
 
-        this.iconBar.add(this.run);
-        this.iconBar.add(this.side);
+        this.iconBar.add(this.run, this.side, this.ai);
 
         this.fill(null);
+    }
+
+    private void aiPanel(UIIcon icon) {
+        UIOverlay.addOverlayRight(this.getContext(), new UIAiOverlayPanel(), 400);
     }
 
     private void runScript(UIIcon icon) {
@@ -116,6 +128,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.side.setEnabled(this.data != null);
         this.side.both(this.data != null && this.data.isServer() ? MappetIcons.SERVER : MappetIcons.CLIENT);
         this.run.setEnabled(this.data != null);
+        this.ai.setEnabled(this.data != null);
     }
 
     @Override

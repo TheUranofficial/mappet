@@ -15,6 +15,7 @@ import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.MappetBlocks;
+import com.theuran.mappet.client.ai.AiMain;
 import com.theuran.mappet.item.MappetItemGroups;
 import com.theuran.mappet.item.MappetItems;
 import com.theuran.mappet.network.Dispatcher;
@@ -61,6 +62,8 @@ public class Mappet implements ModInitializer {
     @Override
     public void onInitialize() {
         Dispatcher.register();
+
+        AiMain.init();
 
         settingsFolder = BBSMod.getGamePath("config/mappet/settings");
         settingsFolder.mkdirs();
