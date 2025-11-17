@@ -22,9 +22,10 @@ public class UIEventsOverlayPanel extends UIOverlayPanel {
         this.list = new UILabelList<>(strings -> {
             for (Label<String> string : strings) {
                 if (this.latest.equals(string.value)) {
-                    this.panel = new UIEditorTriggersOverlayPanel();
+                    EventType eventType = EventType.valueOf(string.value.toUpperCase());
+                    this.panel = new UIEditorTriggersOverlayPanel(eventType);
 
-                    Dispatcher.sendToServer(new RequestTriggersPacket(EventType.valueOf(string.value.toUpperCase())));
+                    Dispatcher.sendToServer(new RequestTriggersPacket(eventType));
                     UIOverlay.addOverlay(this.getContext(), this.panel, 0.55f, 0.75f);
                 }
                 this.latest = string.value;

@@ -3,14 +3,11 @@ package com.theuran.mappet.network.packets.server;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.triggers.Trigger;
-import com.theuran.mappet.client.MappetClient;
-import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
+import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.basic.ClientPacketHandler;
 import com.theuran.mappet.network.basic.MappetByteBuffer;
 import com.theuran.mappet.network.basic.ServerPacketHandler;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -21,15 +18,15 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.List;
 
-public class TriggersPacket extends AbstractPacket {
-    public List<Trigger> triggers;
+public class SendTriggersPacket extends AbstractPacket {
     public EventType type;
+    public List<Trigger> triggers;
 
-    public TriggersPacket() {}
+    public SendTriggersPacket() {}
 
-    public TriggersPacket(List<Trigger> triggers, EventType type) {
-        this.triggers = triggers;
+    public SendTriggersPacket(EventType type, List<Trigger> triggers) {
         this.type = type;
+        this.triggers = triggers;
     }
 
     @Override
@@ -44,19 +41,18 @@ public class TriggersPacket extends AbstractPacket {
         this.type = buf.readEnumConstant(EventType.class);
     }
 
-    public static class ClientHandler implements ClientPacketHandler<TriggersPacket> {
-        @Environment(EnvType.CLIENT)
+    public static class ServerHandler implements ServerPacketHandler<SendTriggersPacket> {
         @Override
-        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, TriggersPacket packet) {
-            UIEditorTriggersOverlayPanel panel = MappetClient.getDashboard().eventsPanel.panel;
+        public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, SendTriggersPacket packet) {
+            Mappet.getEvents().events.put(packet.type, packet.triggers);
 
-            panel.set(packet.triggers, packet.type);
+            Dispatcher.sendToAll(new SendTriggersPacket(packet.type, packet.triggers), server);
         }
     }
 
-    public static class ServerHandler implements ServerPacketHandler<TriggersPacket> {
+    public static class ClientHandler implements ClientPacketHandler<SendTriggersPacket> {
         @Override
-        public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, TriggersPacket packet) {
+        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, SendTriggersPacket packet) {
             Mappet.getEvents().events.put(packet.type, packet.triggers);
         }
     }

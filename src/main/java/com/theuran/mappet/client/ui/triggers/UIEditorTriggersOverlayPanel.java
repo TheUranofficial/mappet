@@ -5,7 +5,7 @@ import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.TriggersPacket;
+import com.theuran.mappet.network.packets.server.SendTriggersPacket;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.resources.Link;
@@ -20,9 +20,11 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
     public List<Trigger> triggers;
     public EventType type;
 
-    public UIEditorTriggersOverlayPanel() {
+    public UIEditorTriggersOverlayPanel(EventType type) {
         super(UIMappetKeys.TRIGGERS_TITLE);
 
+        this.triggers = Mappet.getEvents().getTriggers(type);
+        this.type = type;
         this.list.sorting();
     }
 
@@ -81,7 +83,7 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
 
     public void save() {
         if (this.triggers != null) {
-            Dispatcher.sendToServer(new TriggersPacket(this.triggers, this.type));
+            Dispatcher.sendToServer(new SendTriggersPacket(this.type, this.triggers));
         }
     }
 

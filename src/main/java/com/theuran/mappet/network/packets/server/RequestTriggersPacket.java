@@ -33,7 +33,7 @@ public class RequestTriggersPacket extends AbstractPacket {
     public static class ServerHandler implements ServerPacketHandler<RequestTriggersPacket> {
         @Override
         public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, RequestTriggersPacket packet) {
-            Dispatcher.sendTo(new TriggersPacket(Mappet.getEvents().getTriggers(packet.type), packet.type), player);
+            Dispatcher.sendTo(new SendTriggersPacket(packet.type, Mappet.getEvents().getTriggers(packet.type)), player);
         }
     }
 }

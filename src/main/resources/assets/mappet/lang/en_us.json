@@ -112,15 +112,15 @@
   "mappet.events.description.client.attack.entity": "Description",
   "mappet.events.variables.client.attack.entity": "Variables",
   
-  "mappet.events.name.client.use.block": "Client: use block",
+  "mappet.events.name.client.use.block": "Client: interact block",
   "mappet.events.description.client.use.block": "Description",
   "mappet.events.variables.client.use.block": "Variables",
   
-  "mappet.events.name.client.use.entity": "Client: use entity",
+  "mappet.events.name.client.use.entity": "Client: interact entity",
   "mappet.events.description.client.use.entity": "Description",
   "mappet.events.variables.client.use.entity": "Variables",
   
-  "mappet.events.name.client.use.item": "Client: use item",
+  "mappet.events.name.client.use.item": "Client: interact item",
   "mappet.events.description.client.use.item": "Description",
   "mappet.events.variables.client.use.item": "Variables",
 

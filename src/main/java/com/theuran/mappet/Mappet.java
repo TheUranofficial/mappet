@@ -90,7 +90,7 @@ public class Mappet implements ModInitializer {
                 .register(link("sound"), SoundTrigger.class, 0x00a0ff)
                 .register(link("state"), StateTrigger.class, Colors.NEGATIVE);
 
-        //EventHandler.init();
+        EventHandler.init();
 
         MappetItems.init();
         MappetItemGroups.init();
