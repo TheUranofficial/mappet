@@ -3,6 +3,7 @@ package com.theuran.mappet.network.packets;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.triggers.Trigger;
+import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.basic.ClientPacketHandler;
@@ -54,6 +55,10 @@ public class SendTriggersPacket extends AbstractPacket {
         @Override
         public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, SendTriggersPacket packet) {
             Mappet.getEvents().events.put(packet.type, packet.triggers);
+
+            if (MappetClient.getDashboard().eventsPanel.panel != null) {
+                MappetClient.getDashboard().eventsPanel.panel.set(packet.type, packet.triggers);
+            }
         }
     }
 }

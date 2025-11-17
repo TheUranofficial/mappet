@@ -58,9 +58,14 @@ public class Mappet implements ModInitializer {
 
     private static MapFactory<Trigger, Integer> triggers;
 
+    private static com.theuran.mappet.testnetwowk.Dispatcher dispatcher;
+
     @Override
     public void onInitialize() {
         Dispatcher.register();
+
+        dispatcher = new com.theuran.mappet.testnetwowk.Dispatcher();
+        dispatcher.register();
 
         AiMain.init();
 
@@ -183,5 +188,9 @@ public class Mappet implements ModInitializer {
 
     public static MapFactory<Trigger, Integer> getTriggers() {
         return triggers;
+    }
+
+    public static com.theuran.mappet.testnetwowk.Dispatcher getDispatcher() {
+        return dispatcher;
     }
 }

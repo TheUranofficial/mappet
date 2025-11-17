@@ -1,0 +1,9 @@
+package com.theuran.mappet.testnetwowk.core;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+public interface ClientPacketHandler {
+    @Environment(EnvType.CLIENT)
+    void handleClient();
+}

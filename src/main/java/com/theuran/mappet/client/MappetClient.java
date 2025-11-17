@@ -40,6 +40,8 @@ public class MappetClient implements ClientModInitializer {
     public void onInitializeClient() {
         Dispatcher.register();
 
+        Mappet.getDispatcher().registerClient();
+
         ClientEventHandler.init();
 
         l10n = new L10n();

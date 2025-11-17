@@ -73,7 +73,7 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
         }
     }
 
-    public void set(List<Trigger> triggers, EventType type) {
+    public void set(EventType type, List<Trigger> triggers) {
         this.list.setList(this.triggers = triggers);
         this.type = type;
 
