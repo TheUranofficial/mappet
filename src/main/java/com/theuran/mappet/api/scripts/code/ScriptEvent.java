@@ -121,7 +121,7 @@ public class ScriptEvent {
         return this.values.get(key);
     }
 
-    public void send(String message) {
+    public void send(Object message) {
         if (this.server != null) {
             this.server.send(message);
         }

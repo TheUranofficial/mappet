@@ -16,8 +16,8 @@ public class ScriptServer {
         return this.server;
     }
 
-    public void send(String message) {
-        this.server.getPlayerManager().broadcast(Text.of(message), false);
+    public void send(Object message) {
+        this.server.getPlayerManager().broadcast(Text.of(message.toString()), false);
     }
 
     public MappetStates getStates() {
