@@ -9,6 +9,7 @@ import mchorse.bbs_mod.settings.values.numeric.ValueFloat;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 

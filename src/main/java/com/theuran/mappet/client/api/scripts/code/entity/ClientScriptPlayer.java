@@ -27,8 +27,8 @@ public class ClientScriptPlayer extends ClientScriptEntity<ClientPlayerEntity> {
         return this.entity;
     }
 
-    public void send(String message) {
-        this.entity.sendMessage(Text.of(message));
+    public void send(Object message) {
+        this.entity.sendMessage(Text.of(message.toString()));
     }
 
 //    public ClientScriptCamera getCamera() {

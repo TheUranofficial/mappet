@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 public class NpcEntity extends LivingEntity implements IEntityFormProvider {
-    private Morph morph = new Morph(this);
-    private Map<EquipmentSlot, ItemStack> equipment = new HashMap<>();
+    private final Morph morph = new Morph(this);
+    private final Map<EquipmentSlot, ItemStack> equipment = new HashMap<>();
 
     public static DefaultAttributeContainer.Builder createNpcAttributes() {
         return LivingEntity.createLivingAttributes().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1).add(EntityAttributes.GENERIC_ATTACK_SPEED).add(EntityAttributes.GENERIC_LUCK);

@@ -1,5 +1,6 @@
 package com.theuran.mappet.client.api.scripts.code.ui;
 
+import com.theuran.mappet.api.scripts.code.item.ScriptItemStack;
 import com.theuran.mappet.client.api.scripts.code.ui.animation.AnimationManager;
 import com.theuran.mappet.client.api.scripts.code.ui.components.*;
 import com.theuran.mappet.client.api.scripts.code.ui.systems.UIAnimationSystem;
@@ -160,16 +161,6 @@ public class MappetUIBuilder {
         return overlay;
     }
 
-    public void openOverlay(UIOverlayComponent overlay) {
-//        UIOverlayPanel overlayPanel = new UIOverlayPanel(IKey.raw(title));
-//
-//        for (UIComponent<?> child : this.components) {
-//            overlayPanel.add(child.getMappetElement().relative(overlayPanel));
-//        }
-//
-//        UIOverlay.addOverlay(this.element.getContext(), overlayPanel, 0.55f, 0.75f);
-    }
-
     public UILayoutComponent layout(BiConsumer<UILayoutComponent, MappetUIBuilder> consumer) {
         UILayoutComponent layout = new UILayoutComponent(consumer);
         this.components.add(layout);
@@ -199,5 +190,23 @@ public class MappetUIBuilder {
         UIGraphicsComponent graphics = new UIGraphicsComponent();
         this.components.add(graphics);
         return graphics;
+    }
+
+    public UITextComponent text(String text) {
+        UITextComponent textComponent = new UITextComponent(text);
+        this.components.add(textComponent);
+        return textComponent;
+    }
+
+    public UIItemStackComponent itemStack(Consumer<ScriptItemStack> consumer) {
+        UIItemStackComponent itemStack = new UIItemStackComponent(consumer);
+        this.components.add(itemStack);
+        return itemStack;
+    }
+
+    public UIKeybindComponent keybind(Consumer<String> consumer) {
+        UIKeybindComponent keybind = new UIKeybindComponent(consumer);
+        this.components.add(keybind);
+        return keybind;
     }
 }

@@ -3,9 +3,11 @@ package com.theuran.mappet.client.api.scripts.code;
 import com.theuran.mappet.api.scripts.code.entity.ScriptPlayer;
 import com.theuran.mappet.client.api.scripts.code.entity.ClientScriptEntity;
 import com.theuran.mappet.client.api.scripts.code.entity.ClientScriptPlayer;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
 import java.util.HashMap;
@@ -113,6 +115,10 @@ public class ClientScriptEvent {
 
     public void setResultType(ActionResult resultType) {
         this.resultType = resultType;
+    }
+
+    public void send(Object message) {
+        MinecraftClient.getInstance().player.sendMessage(Text.of(message.toString()));
     }
 
     public void success() {
