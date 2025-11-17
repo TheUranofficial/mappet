@@ -1,4 +1,4 @@
-package com.theuran.mappet.testnetwowk.core;
+package com.theuran.mappet.network.core;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

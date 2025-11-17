@@ -7,7 +7,7 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.logger.LogType;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.scripts.SendScriptsS2CPacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsSendPacket;
 import com.theuran.mappet.utils.ScriptUtils;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.utils.manager.BaseManager;
@@ -75,7 +75,7 @@ public class ScriptManager extends BaseManager<Script> {
     }
 
     public void sendClientScripts(ServerPlayerEntity player) {
-        Dispatcher.sendTo(new SendScriptsS2CPacket(this.getClientScripts()), player);
+        Dispatcher.sendTo(new ScriptsSendPacket(this.getClientScripts()), player);
     }
 
     public List<Script> getClientScripts() {

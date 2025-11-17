@@ -1,86 +1,58 @@
 package com.theuran.mappet.network;
 
-import com.theuran.mappet.network.basic.AbstractDispatcher;
-import com.theuran.mappet.network.basic.AbstractPacket;
-import com.theuran.mappet.network.packets.*;
-import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
-import com.theuran.mappet.network.packets.scripts.SaveScriptC2SPacket;
-import com.theuran.mappet.network.packets.scripts.SendScriptsS2CPacket;
+import com.theuran.mappet.network.core.AbstractDispatcher;
+import com.theuran.mappet.network.packets.events.EventsExecuteTriggersPacket;
+import com.theuran.mappet.network.packets.events.EventsRequestPacket;
+import com.theuran.mappet.network.packets.events.EventsUpdatePacket;
+import com.theuran.mappet.network.packets.keybinds.KeybindsExecuteTriggersPacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsSavePacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsSendPacket;
+import com.theuran.mappet.network.packets.states.StatesRequestPacket;
+import com.theuran.mappet.network.packets.states.StatesUpdatePacket;
+import com.theuran.mappet.network.packets.triggers.TriggersRequestPacket;
+import com.theuran.mappet.network.packets.triggers.TriggersSendPacket;
+import com.theuran.mappet.network.packets.utils.HandshakeS2CPacket;
+import com.theuran.mappet.network.packets.utils.ManagerDataPacket;
 import mchorse.bbs_mod.data.types.BaseType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class Dispatcher {
-    @Environment(EnvType.CLIENT)
-    public static boolean isMappetModOnServer;
+public class Dispatcher extends AbstractDispatcher {
     @Environment(EnvType.CLIENT)
     public static Map<Integer, Consumer<BaseType>> callbacks = new HashMap<>();
     @Environment(EnvType.CLIENT)
     public static int ids = 0;
 
-    private static final AbstractDispatcher DISPATCHER = new AbstractDispatcher() {
-        @Override
-        public void register() {
-            //SERVER
-            this.registerPacket(RequestTriggersPacket.class, RequestTriggersPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(SaveScriptC2SPacket.class, SaveScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(TriggerKeybindC2SPacket.class, TriggerKeybindC2SPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(RequestC2SPacket.class, RequestC2SPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(UpdateTriggerBlockC2SPacket.class, UpdateTriggerBlockC2SPacket.ServerHandler.class, EnvType.SERVER);
+    @Override
+    public void setup() {
+        //Utils
+        this.register(HandshakeS2CPacket.class);
+        this.register(ManagerDataPacket.class);
 
-            //CLIENT
-            this.registerPacket(EventsS2CPacket.class, EventsS2CPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(HandshakeS2CPacket.class, HandshakeS2CPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(SendScriptsS2CPacket.class, SendScriptsS2CPacket.ClientHandler.class, EnvType.CLIENT);
+        //States
+        this.register(StatesUpdatePacket.class);
+        this.register(StatesRequestPacket.class);
 
-            //COMMON
-            this.registerPacket(RunScriptPacket.class, RunScriptPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(RunScriptPacket.class, RunScriptPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(StatesPacket.class, StatesPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(StatesPacket.class, StatesPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(SendTriggersPacket.class, SendTriggersPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(SendTriggersPacket.class, SendTriggersPacket.ClientHandler.class, EnvType.CLIENT);
-        }
-    };
+        //Events
+        this.register(EventsExecuteTriggersPacket.class);
+        this.register(EventsRequestPacket.class);
+        this.register(EventsUpdatePacket.class);
 
-    public static void sendTo(AbstractPacket packet, ServerPlayerEntity player) {
-        PacketByteBuf buf = packet.buf;
+        //Triggers
+        this.register(TriggersRequestPacket.class);
+        this.register(TriggersSendPacket.class);
 
-        packet.toBytes(buf);
-        ServerPlayNetworking.send(player, packet.getId(), buf);
-    }
-
-    public static void sendToAll(AbstractPacket packet, MinecraftServer server) {
-        PacketByteBuf buf = packet.buf;
-
-        packet.toBytes(buf);
-
-        for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
-            ServerPlayNetworking.send(player, packet.getId(), buf);
-        }
-    }
-
-    public static void sendToServer(AbstractPacket packet) {
-        PacketByteBuf buf = packet.buf;
-
-        packet.toBytes(buf);
-        ClientPlayNetworking.send(packet.getId(), buf);
-    }
-
-    public static void register() {
-        DISPATCHER.register();
+        //Scripts
+        this.register(ScriptsSendPacket.class);
+        this.register(ScriptsSavePacket.class);
+        this.register(ScriptsRunPacket.class);
+        
+        //Keybinds
+        this.register(KeybindsExecuteTriggersPacket.class);
     }
 }

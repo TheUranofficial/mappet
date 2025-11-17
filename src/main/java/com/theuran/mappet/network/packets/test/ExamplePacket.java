@@ -1,7 +1,7 @@
-package com.theuran.mappet.testnetwowk.packets.test;
+package com.theuran.mappet.network.packets.test;
 
-import com.theuran.mappet.testnetwowk.core.AbstractPacket;
-import com.theuran.mappet.testnetwowk.core.ClientPacketHandler;
+import com.theuran.mappet.network.core.AbstractPacket;
+import com.theuran.mappet.network.core.ClientPacketHandler;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

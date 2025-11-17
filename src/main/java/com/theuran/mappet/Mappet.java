@@ -17,9 +17,9 @@ import com.theuran.mappet.block.MappetBlocks;
 import com.theuran.mappet.client.ai.AiMain;
 import com.theuran.mappet.item.MappetItemGroups;
 import com.theuran.mappet.item.MappetItems;
-import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.HandshakeS2CPacket;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.network.packets.utils.HandshakeS2CPacket;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;
 import mchorse.bbs_mod.resources.Link;
@@ -58,13 +58,11 @@ public class Mappet implements ModInitializer {
 
     private static MapFactory<Trigger, Integer> triggers;
 
-    private static com.theuran.mappet.testnetwowk.Dispatcher dispatcher;
+    private static Dispatcher dispatcher;
 
     @Override
     public void onInitialize() {
-        Dispatcher.register();
-
-        dispatcher = new com.theuran.mappet.testnetwowk.Dispatcher();
+        dispatcher = new Dispatcher();
         dispatcher.register();
 
         AiMain.init();
@@ -190,7 +188,7 @@ public class Mappet implements ModInitializer {
         return triggers;
     }
 
-    public static com.theuran.mappet.testnetwowk.Dispatcher getDispatcher() {
+    public static com.theuran.mappet.network.Dispatcher getDispatcher() {
         return dispatcher;
     }
 }

@@ -4,12 +4,11 @@ import com.theuran.mappet.api.scripts.code.mappet.MappetStates;
 import com.theuran.mappet.api.scripts.code.bbs.BBSForm;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
 import mchorse.bbs_mod.forms.FormUtils;
 import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.morphing.Morph;
 import mchorse.bbs_mod.network.ServerNetwork;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
@@ -37,7 +36,7 @@ public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
     }
 
     public void executeClientScript(String scriptId, String function) {
-        Dispatcher.sendTo(new RunScriptPacket(scriptId, function), this.entity);
+        Dispatcher.sendTo(new ScriptsRunPacket(scriptId, function), this.entity);
     }
 
     public void send(Object message) {

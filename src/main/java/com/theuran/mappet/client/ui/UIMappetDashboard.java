@@ -6,7 +6,7 @@ import com.theuran.mappet.client.ui.panels.*;
 import com.theuran.mappet.client.ui.states.UIStatesOverlayPanel;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.RequestC2SPacket;
+import com.theuran.mappet.network.packets.states.StatesRequestPacket;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
@@ -30,14 +30,14 @@ public class UIMappetDashboard extends UIDashboard {
         this.statesPanel = new UIStatesOverlayPanel();
         this.states = new UIIcon(MappetIcons.STATES, icon -> {
             UIOverlay.addOverlayRight(this.context, this.statesPanel, 240);
-            Dispatcher.sendToServer(new RequestC2SPacket(RequestC2SPacket.Type.STATES));
+            Dispatcher.sendToServer(new StatesRequestPacket());
         });
         this.states.tooltip(UIMappetKeys.STATES_TITLE, Direction.TOP);
 
         this.eventsPanel = new UIEventsOverlayPanel();
         this.events = new UIIcon(MappetIcons.EVENTS, icon -> {
             UIOverlay.addOverlayRight(this.context, this.eventsPanel, 240);
-            Dispatcher.sendToServer(new RequestC2SPacket(RequestC2SPacket.Type.EVENTS));
+            Dispatcher.sendToServer(new StatesRequestPacket());
         });
         this.events.tooltip(UIMappetKeys.EVENTS_TITLE, Direction.TOP);
 

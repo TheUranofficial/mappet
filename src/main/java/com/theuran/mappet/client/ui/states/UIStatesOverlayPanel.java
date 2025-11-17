@@ -2,7 +2,7 @@ package com.theuran.mappet.client.ui.states;
 
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.StatesPacket;
+import com.theuran.mappet.network.packets.states.StatesUpdatePacket;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
@@ -31,7 +31,7 @@ public class UIStatesOverlayPanel extends UIOverlayPanel {
 
     public void save() {
         if (this.states != null) {
-            Dispatcher.sendToServer(new StatesPacket(this.states.get()));
+            Dispatcher.sendToServer(new StatesUpdatePacket(this.states.get()));
         }
     }
 

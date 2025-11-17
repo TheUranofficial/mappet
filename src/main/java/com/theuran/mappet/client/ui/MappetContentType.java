@@ -10,10 +10,10 @@ import com.theuran.mappet.api.scripts.ScriptRepository;
 import com.theuran.mappet.api.ui.UI;
 import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.api.ui.UIRepository;
+import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.ui.panels.UIBuilderPanel;
 import com.theuran.mappet.client.ui.panels.UIHUDScenePanel;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
-import com.theuran.mappet.network.Dispatcher;
 import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.utils.repos.FolderManagerRepository;
 import mchorse.bbs_mod.utils.repos.IRepository;
@@ -33,7 +33,7 @@ public class MappetContentType {
         if (MinecraftClient.getInstance().isIntegratedServerRunning()) {
             return new FolderManagerRepository<>(Mappet.getScripts());
         } else {
-            return Dispatcher.isMappetModOnServer ? new ScriptRepository() : new FolderManagerRepository<>(new ScriptManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/scripts")));
+            return MappetClient.isMappetModOnServer ? new ScriptRepository() : new FolderManagerRepository<>(new ScriptManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/scripts")));
         }
     }
 
@@ -41,7 +41,7 @@ public class MappetContentType {
         if (MinecraftClient.getInstance().isIntegratedServerRunning()) {
             return new FolderManagerRepository<>(Mappet.getHuds());
         } else {
-            return Dispatcher.isMappetModOnServer ? new HUDRepository() : new FolderManagerRepository<>(new HUDManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/huds")));
+            return MappetClient.isMappetModOnServer ? new HUDRepository() : new FolderManagerRepository<>(new HUDManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/huds")));
         }
     }
 
@@ -49,7 +49,7 @@ public class MappetContentType {
         if (MinecraftClient.getInstance().isIntegratedServerRunning()) {
             return new FolderManagerRepository<>(Mappet.getUIs());
         } else {
-            return Dispatcher.isMappetModOnServer ? new UIRepository() : new FolderManagerRepository<>(new UIManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/uis")));
+            return MappetClient.isMappetModOnServer ? new UIRepository() : new FolderManagerRepository<>(new UIManager(() -> new File(Mappet.getAssetsFolder().getParentFile(), "data/uis")));
         }
     }
 }

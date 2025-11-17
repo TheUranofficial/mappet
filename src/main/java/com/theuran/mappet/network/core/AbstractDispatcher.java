@@ -1,4 +1,4 @@
-package com.theuran.mappet.testnetwowk.core;
+package com.theuran.mappet.network.core;
 
 import com.theuran.mappet.Mappet;
 import net.fabricmc.api.EnvType;
@@ -42,7 +42,7 @@ public abstract class AbstractDispatcher {
                 ServerPlayNetworking.registerGlobalReceiver(packet.createId(), (server, player, handler, buf, responseSender) -> {
                     packet.fromBytes(buf);
 
-                    server.execute(() -> ((ServerPacketHandler) packet).handle(player));
+                    server.execute(() -> ((ServerPacketHandler) packet).handle(server, player));
                 });
             } catch (Exception e) {
                 Mappet.LOGGER.error("Can't register packet", e);
@@ -88,6 +88,7 @@ public abstract class AbstractDispatcher {
         }
     }
 
+    @Environment(EnvType.CLIENT)
     public static void sendToServer(AbstractPacket packet) {
         PacketByteBuf buf = PacketByteBufs.create();
 

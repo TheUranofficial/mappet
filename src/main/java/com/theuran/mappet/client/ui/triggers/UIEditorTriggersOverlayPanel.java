@@ -5,8 +5,8 @@ import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.RequestC2SPacket;
-import com.theuran.mappet.network.packets.SendTriggersPacket;
+import com.theuran.mappet.network.packets.events.EventsRequestPacket;
+import com.theuran.mappet.network.packets.triggers.TriggersSendPacket;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.resources.Link;
@@ -82,7 +82,7 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
 
     public void save() {
         if (this.triggers != null) {
-            Dispatcher.sendToServer(new SendTriggersPacket(this.type, this.triggers));
+            Dispatcher.sendToServer(new TriggersSendPacket(this.type, this.triggers));
         }
     }
 
@@ -91,7 +91,7 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
         super.onClose();
 
         this.save();
-        Dispatcher.sendToServer(new RequestC2SPacket(RequestC2SPacket.Type.EVENTS));
+        Dispatcher.sendToServer(new EventsRequestPacket());
         this.triggers = null;
     }
 }

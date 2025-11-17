@@ -1,4 +1,4 @@
-package com.theuran.mappet.testnetwowk.core;
+package com.theuran.mappet.network.core;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.utils.IByteBufSerializable;

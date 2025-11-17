@@ -10,14 +10,13 @@ import com.theuran.mappet.client.ui.ai.UIAiOverlayPanel;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
-import com.theuran.mappet.network.packets.scripts.SaveScriptC2SPacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsSavePacket;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.dashboard.panels.UIDataDashboardPanel;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
-import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
@@ -69,7 +68,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
         if (this.data != null) {
             if (this.data.isServer()) {
-                Dispatcher.sendToServer(new RunScriptPacket(this.data.getId(), "main", this.data.getContent()));
+                Dispatcher.sendToServer(new ScriptsRunPacket(this.data.getId(), "main", this.data.getContent()));
             } else {
                 ClientPlayerEntity player = MinecraftClient.getInstance().player;
                 try {
@@ -142,7 +141,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
 
     private void saveScript() {
         if (this.data != null) {
-            Dispatcher.sendToServer(new SaveScriptC2SPacket(this.data.getId(), this.content.getText(), this.data.isServer()));
+            Dispatcher.sendToServer(new ScriptsSavePacket(this.data.getId(), this.content.getText(), this.data.isServer()));
         }
     }
 

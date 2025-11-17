@@ -2,9 +2,9 @@ package com.theuran.mappet.client.api.keybinds;
 
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
-import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.TriggerKeybindC2SPacket;
 import com.theuran.mappet.api.keybinds.Keybind;
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.network.packets.keybinds.KeybindsExecuteTriggersPacket;
 import com.theuran.mappet.utils.InputUtils;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.util.InputUtil;
@@ -57,7 +57,7 @@ public class ClientKeybindManager {
                 }
 
                 if (isServerPacket) {
-                    Dispatcher.sendToServer(new TriggerKeybindC2SPacket(keyId));
+                    Dispatcher.sendToServer(new KeybindsExecuteTriggersPacket(keyId));
                 }
             }
         });

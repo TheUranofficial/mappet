@@ -5,7 +5,7 @@ import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.client.ui.utils.UIMappetTransform;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.UpdateTriggerBlockC2SPacket;
+import com.theuran.mappet.network.packets.blocks.trigger.TriggerBlockUpdatePacket;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.UIBaseMenu;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
@@ -83,7 +83,7 @@ public class UITriggerBlock extends UIBaseMenu {
 
     @Override
     public void onClose(UIBaseMenu nextMenu) {
-        Dispatcher.sendToServer(new UpdateTriggerBlockC2SPacket(this.blockPos,
+        Dispatcher.sendToServer(new TriggerBlockUpdatePacket(this.blockPos,
                 new ScriptVector((int) this.transform.sx.getValue(), (int) this.transform.sy.getValue(), (int) this.transform.sz.getValue()),
                 new ScriptVector((int) this.transform.s2x.getValue(), (int) this.transform.s2y.getValue(), (int) this.transform.s2z.getValue()))
         );

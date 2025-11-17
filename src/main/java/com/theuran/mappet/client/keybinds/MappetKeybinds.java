@@ -6,7 +6,7 @@ import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
+import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
 import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -35,7 +35,7 @@ public class MappetKeybinds {
 
                     if (script != null) {
                         if (script.isServer()) {
-                            Dispatcher.sendToServer(new RunScriptPacket(data.getId(), "main", data.getContent()));
+                            Dispatcher.sendToServer(new ScriptsRunPacket(data.getId(), "main", data.getContent()));
                         } else {
                             try {
                                 script.execute(ClientScriptEvent.create(data.getId(), "main", player, null, player.clientWorld));

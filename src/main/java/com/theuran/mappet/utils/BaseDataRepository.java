@@ -1,7 +1,7 @@
 package com.theuran.mappet.utils;
 
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.ManagerDataPacket;
+import com.theuran.mappet.network.packets.utils.ManagerDataPacket;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.core.ValueGroup;
