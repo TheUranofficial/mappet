@@ -123,7 +123,7 @@ public class ScriptEvent {
 
     public void send(Object message) {
         if (this.server != null) {
-            this.server.send(message);
+            this.server.send(message.toString());
         }
     }
 
