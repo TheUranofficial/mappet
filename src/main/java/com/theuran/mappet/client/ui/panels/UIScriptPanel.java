@@ -7,6 +7,7 @@ import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.ai.UIAiOverlayPanel;
+import com.theuran.mappet.client.ui.ai.UIMascotPanel;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
@@ -60,7 +61,8 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     }
 
     private void aiPanel(UIIcon icon) {
-        UIOverlay.addOverlayRight(this.getContext(), new UIAiOverlayPanel(), 400);
+        this.save();
+        UIOverlay.addOverlayRight(this.getContext(), new UIAiOverlayPanel(this.data.getId(), this.data.getContent()), 400);
     }
 
     private void runScript(UIIcon icon) {

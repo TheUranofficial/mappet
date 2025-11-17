@@ -128,5 +128,10 @@
   "mappet.events.variables.client.change.options": "Переменные",
 
   "mappet.general.function": "Функция",
-  "mappet.keybinds.add": "Добавить Кейбинд"
+  "mappet.keybinds.add": "Добавить Кейбинд",
+
+  "mappet.ai.title": "Маппет коробка нахуй",
+  "mappet.ai.open": "Открыть AI",
+  "mappet.ai.script": "Текущий скрипт: ",
+  "mappet.ai.request_placeholder": "Введите запрос..."
 }

@@ -67,6 +67,10 @@ public class Mappet implements ModInitializer {
 
         AiMain.init();
 
+        Thread.startVirtualThread(() -> {
+            LOGGER.info(AiMain.getAIResponse("", true));
+        });
+
         settingsFolder = BBSMod.getGamePath("config/mappet/settings");
         settingsFolder.mkdirs();
         assetsFolder = BBSMod.getGamePath("config/mappet/assets");

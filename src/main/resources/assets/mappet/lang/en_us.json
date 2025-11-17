@@ -128,5 +128,11 @@
   "mappet.events.description.client.change.options": "Description",
   "mappet.events.variables.client.change.options": "Variables",
 
-  "mappet.general.function": "Function"
+  "mappet.general.function": "Function",
+
+  "mappet.ai.title": "Mappet fucking BOX",
+  "mappet.ai.open": "Open AI",
+  "mappet.ai.script": "Current script: ",
+  "mappet.ai.request_placeholder": "Enter a request..."
+
 }

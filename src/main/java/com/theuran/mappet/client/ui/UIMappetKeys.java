@@ -45,4 +45,6 @@ public class UIMappetKeys {
 
     public static final IKey AI_TITLE = L10n.lang("mappet.ai.title");
     public static final IKey AI_OPEN = L10n.lang("mappet.ai.open");
+    public static final IKey AI_SCRIPT = L10n.lang("mappet.ai.script");
+    public static final IKey AI_REQUEST_PLACEHOLDER = L10n.lang("mappet.ai.request_placeholder");
 }
