@@ -4,7 +4,6 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.client.MappetClient;
-import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.basic.ClientPacketHandler;
 import com.theuran.mappet.network.basic.ServerPacketHandler;
@@ -21,13 +20,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Map;
 
-public class StatesPacket extends AbstractPacket {
+public class StatesS2CPacket extends AbstractPacket {
     public Map<String, States> states;
 
-    public StatesPacket() {
+    public StatesS2CPacket() {
     }
 
-    public StatesPacket(Map<String, States> states) {
+    public StatesS2CPacket(Map<String, States> states) {
         this.states = states;
     }
 
@@ -41,17 +40,17 @@ public class StatesPacket extends AbstractPacket {
         this.states = buf.readMap(PacketByteBuf::readString, (packet) -> new States(DataStorageUtils.readFromPacket(packet).asMap()));
     }
 
-    public static class ClientHandler implements ClientPacketHandler<StatesPacket> {
+    public static class ClientHandler implements ClientPacketHandler<StatesS2CPacket> {
         @Environment(EnvType.CLIENT)
         @Override
-        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, StatesPacket packet) {
+        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, StatesS2CPacket packet) {
             MappetClient.getDashboard().statesPanel.states.set(packet.states);
         }
     }
 
-    public static class ServerHandler implements ServerPacketHandler<StatesPacket> {
+    public static class ServerHandler implements ServerPacketHandler<StatesS2CPacket> {
         @Override
-        public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, StatesPacket packet) {
+        public void run(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketSender responseSender, StatesS2CPacket packet) {
             Mappet.getStates().set(packet.states.get("Server"));
 
             for (ServerPlayerEntity serverPlayer : server.getPlayerManager().getPlayerList()) {

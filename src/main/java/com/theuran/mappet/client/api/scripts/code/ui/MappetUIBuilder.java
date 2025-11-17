@@ -3,6 +3,9 @@ package com.theuran.mappet.client.api.scripts.code.ui;
 import com.theuran.mappet.client.api.scripts.code.ui.animation.AnimationManager;
 import com.theuran.mappet.client.api.scripts.code.ui.components.*;
 import com.theuran.mappet.client.api.scripts.code.ui.systems.UIAnimationSystem;
+import mchorse.bbs_mod.l10n.keys.IKey;
+import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
+import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
 import mchorse.bbs_mod.ui.utils.icons.Icon;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 
@@ -151,10 +154,20 @@ public class MappetUIBuilder {
         return this.trackpad(null);
     }
 
-    public UIOverlayComponent overlay(Consumer<MappetUIBuilder> consumer) {
-        UIOverlayComponent overlay = new UIOverlayComponent(consumer);
+    public UIOverlayComponent overlay(String title, Consumer<MappetUIBuilder> consumer) {
+        UIOverlayComponent overlay = new UIOverlayComponent(title, consumer);
         this.components.add(overlay);
         return overlay;
+    }
+
+    public void openOverlay(UIOverlayComponent overlay) {
+//        UIOverlayPanel overlayPanel = new UIOverlayPanel(IKey.raw(title));
+//
+//        for (UIComponent<?> child : this.components) {
+//            overlayPanel.add(child.getMappetElement().relative(overlayPanel));
+//        }
+//
+//        UIOverlay.addOverlay(this.element.getContext(), overlayPanel, 0.55f, 0.75f);
     }
 
     public UILayoutComponent layout(BiConsumer<UILayoutComponent, MappetUIBuilder> consumer) {

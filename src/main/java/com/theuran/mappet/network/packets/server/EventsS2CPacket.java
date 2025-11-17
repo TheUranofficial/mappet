@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EventsPacket extends AbstractPacket {
+public class EventsS2CPacket extends AbstractPacket {
     public Map<EventType, Integer> events;
 
-    public EventsPacket() {}
+    public EventsS2CPacket() {}
 
-    public EventsPacket(Map<EventType, Integer> events) {
+    public EventsS2CPacket(Map<EventType, Integer> events) {
         this.events = events;
     }
 
@@ -36,10 +36,10 @@ public class EventsPacket extends AbstractPacket {
         this.events = buf.readMap(packet -> packet.readEnumConstant(EventType.class), PacketByteBuf::readInt);
     }
 
-    public static class ClientHandler implements ClientPacketHandler<EventsPacket> {
+    public static class ClientHandler implements ClientPacketHandler<EventsS2CPacket> {
         @Environment(EnvType.CLIENT)
         @Override
-        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, EventsPacket packet) {
+        public void run(MinecraftClient client, ClientPlayNetworkHandler handler, PacketSender responseSender, EventsS2CPacket packet) {
             UIEventsOverlayPanel panel = MappetClient.getDashboard().eventsPanel;
 
             panel.list.clear();

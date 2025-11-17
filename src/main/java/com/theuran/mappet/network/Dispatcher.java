@@ -34,11 +34,11 @@ public class Dispatcher {
             this.registerPacket(RequestTriggersPacket.class, RequestTriggersPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(SaveScriptC2SPacket.class, SaveScriptC2SPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerKeybindC2SPacket.class, TriggerKeybindC2SPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(RequestPacket.class, RequestPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(RequestC2SPacket.class, RequestC2SPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(UpdateTriggerBlockC2SPacket.class, UpdateTriggerBlockC2SPacket.ServerHandler.class, EnvType.SERVER);
 
             //CLIENT
-            this.registerPacket(EventsPacket.class, EventsPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(EventsS2CPacket.class, EventsS2CPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(HandshakeS2CPacket.class, HandshakeS2CPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(SendScriptsS2CPacket.class, SendScriptsS2CPacket.ClientHandler.class, EnvType.CLIENT);
 
@@ -49,8 +49,8 @@ public class Dispatcher {
             this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(StatesPacket.class, StatesPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(StatesPacket.class, StatesPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(StatesS2CPacket.class, StatesS2CPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(StatesS2CPacket.class, StatesS2CPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggersPacket.class, TriggersPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(TriggersPacket.class, TriggersPacket.ServerHandler.class, EnvType.SERVER);
         }

@@ -82,7 +82,7 @@ public class KeybindManager extends BaseFileManager {
 
             List<Trigger> triggerList = new ArrayList<>();
 
-            for (BaseType type : event.getValue().asList()) {
+            for (BaseType type : value.getList("triggers").asList()) {
                 Trigger trigger = Mappet.getTriggers().create(Mappet.link(type.asMap().getString("type")));
 
                 trigger.fromData(type);

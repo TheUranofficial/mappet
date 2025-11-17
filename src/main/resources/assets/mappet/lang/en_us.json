@@ -84,15 +84,15 @@
   "mappet.events.description.player.attack.entity": "Description",
   "mappet.events.variables.player.attack.entity": "Variables",
   
-  "mappet.events.name.player.use.block": "Player: use block",
+  "mappet.events.name.player.use.block": "Player: interact block",
   "mappet.events.description.player.use.block": "Description",
   "mappet.events.variables.player.use.block": "Variables",
   
-  "mappet.events.name.player.use.entity": "Player: use entity",
+  "mappet.events.name.player.use.entity": "Player: interact entity",
   "mappet.events.description.player.use.entity": "Description",
   "mappet.events.variables.player.use.entity": "Variables",
   
-  "mappet.events.name.player.use.item": "Player: use item",
+  "mappet.events.name.player.use.item": "Player: interact item",
   "mappet.events.description.player.use.item": "Description",
   "mappet.events.variables.player.use.item": "Variables",
   

@@ -83,7 +83,7 @@
   "mappet.events.description.player.attack.entity": "Описание",
   "mappet.events.variables.player.attack.entity": "Переменные",
 
-  "mappet.events.name.player.use.block": "Игрок: при взаимодейтсвии с блоком",
+  "mappet.events.name.player.use.block": "Игрок: при взаимодействии с блоком",
   "mappet.events.description.player.use.block": "Описание",
   "mappet.events.variables.player.use.block": "Переменные",
 
@@ -122,10 +122,11 @@
   "mappet.events.name.client.use.item": "Клиент: при взаимодействии с предметом",
   "mappet.events.description.client.use.item": "Описание",
   "mappet.events.variables.client.use.item": "Переменные",
-  
+
   "mappet.events.name.client.change.options": "Клиент: при изменении настроек",
   "mappet.events.description.client.change.options": "Описание",
   "mappet.events.variables.client.change.options": "Переменные",
 
-  "mappet.general.function": "Функция"
+  "mappet.general.function": "Функция",
+  "mappet.keybinds.add": "Добавить Кейбинд"
 }
