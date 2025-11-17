@@ -6,7 +6,7 @@ import com.theuran.mappet.client.ui.panels.*;
 import com.theuran.mappet.client.ui.states.UIStatesOverlayPanel;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.RequestC2SPacket;
+import com.theuran.mappet.network.packets.RequestC2SPacket;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;

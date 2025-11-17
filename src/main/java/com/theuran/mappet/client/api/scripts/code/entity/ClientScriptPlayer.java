@@ -6,7 +6,7 @@ import com.theuran.mappet.client.ui.UIMappetBase;
 //import com.theuran.mappet.client.api.scripts.code.ClientScriptCamera;
 import com.theuran.mappet.client.managers.ClientOptionsManager;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.scripts.RunScriptPacket;
+import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
 import mchorse.bbs_mod.forms.FormUtils;
 import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.morphing.Morph;

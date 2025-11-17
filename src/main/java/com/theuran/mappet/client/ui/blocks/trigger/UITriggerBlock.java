@@ -5,14 +5,12 @@ import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.client.ui.utils.UIMappetTransform;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.UpdateTriggerBlockC2SPacket;
+import com.theuran.mappet.network.packets.UpdateTriggerBlockC2SPacket;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.UIBaseMenu;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class UITriggerBlock extends UIBaseMenu {
