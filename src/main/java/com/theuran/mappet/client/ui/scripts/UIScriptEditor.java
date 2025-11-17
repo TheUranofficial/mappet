@@ -6,15 +6,18 @@ import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.context.UISimpleContextMenu;
 import mchorse.bbs_mod.ui.framework.elements.input.list.UILabelList;
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextEditor;
+import mchorse.bbs_mod.ui.framework.elements.input.text.UITextarea;
 import mchorse.bbs_mod.ui.framework.elements.input.text.highlighting.HighlightedTextLine;
 import mchorse.bbs_mod.ui.framework.elements.input.text.undo.TextEditUndo;
 import mchorse.bbs_mod.ui.framework.elements.input.text.utils.Cursor;
 import mchorse.bbs_mod.ui.framework.elements.utils.UILabel;
 import mchorse.bbs_mod.ui.utils.context.ContextMenuManager;
 import mchorse.bbs_mod.utils.colors.Colors;
+import mchorse.bbs_mod.utils.undo.UndoManager;
 import org.joml.Vector2d;
 import org.lwjgl.glfw.GLFW;
 
+import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
@@ -22,7 +25,7 @@ import java.util.function.Consumer;
 public class UIScriptEditor extends UITextEditor {
     private long lastTypedTime = 0;
 
-    private final long autocompleteDelay = 1000;
+    private final long autocompleteDelay = 750;
     private boolean isTypedText = false;
 
     private String oldText;
@@ -186,7 +189,43 @@ public class UIScriptEditor extends UITextEditor {
             undo.ready();
             return true;
         }
+        if (ctrl && (context.isPressed(GLFW.GLFW_KEY_Z) || context.isRepeated(GLFW.GLFW_KEY_Z)))
+        {
+            boolean result = this.getUndo().undo(this);
+
+            if (result)
+            {
+                this.playSound("undo");
+            }
+
+            return result;
+        }
+        else if (ctrl && (context.isPressed(GLFW.GLFW_KEY_Y) || context.isRepeated(GLFW.GLFW_KEY_Y)))
+        {
+            boolean result = this.getUndo().redo(this);
+
+            if (result)
+            {
+                this.playSound("redo");
+            }
+
+            return result;
+        }
+
         return super.handleKeys(context, undo, ctrl, shift);
+    }
+
+    private UndoManager<UITextarea<?>> getUndo() {
+        UndoManager<UITextarea<?>> undo = null;
+        try {
+            Field f = UITextarea.class.getDeclaredField("undo");
+            f.setAccessible(true);
+            undo = (UndoManager<UITextarea<?>>) f.get(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return undo;
     }
 
     private HighlightedTextLine getLine(int line) {

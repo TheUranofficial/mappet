@@ -14,8 +14,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 public abstract class Trigger extends ValueGroup {
-    private ValueBoolean isServer = new ValueBoolean("isServer", true);
-    private ValueInt maxDelay = new ValueInt("maxDelay", 1);
+    private final ValueBoolean isServer = new ValueBoolean("isServer", true);
+    private final ValueInt maxDelay = new ValueInt("maxDelay", 1);
     private ValueString type = new ValueString("type", this.getTriggerId());
     private int delay = 1;
 
@@ -53,9 +53,8 @@ public abstract class Trigger extends ValueGroup {
         this.delay = 1;
     }
 
-    public Trigger maxDelay(int maxDelay) {
+    public void maxDelay(int maxDelay) {
         this.maxDelay.set(maxDelay);
-        return this;
     }
 
     public void delay() {

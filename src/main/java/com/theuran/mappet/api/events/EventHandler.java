@@ -112,7 +112,7 @@ public class EventHandler {
         });
 
         AttackBlockCallback.EVENT.register((player, world, hand, blockPos, direction) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK) || world.isClient)
                 return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
@@ -127,7 +127,7 @@ public class EventHandler {
         });
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_ENTITY))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_ENTITY) || world.isClient)
                 return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, entity, (ServerWorld) world, player.getServer());
@@ -140,7 +140,7 @@ public class EventHandler {
         });
 
         UseBlockCallback.EVENT.register((player, world, hand, blockHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_BLOCK))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_BLOCK) || world.isClient)
                 return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
@@ -155,7 +155,7 @@ public class EventHandler {
         });
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ENTITY))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ENTITY) || world.isClient)
                 return ActionResult.PASS;
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
@@ -170,7 +170,7 @@ public class EventHandler {
         UseItemCallback.EVENT.register((player, world, hand) -> {
             ItemStack stack = player.getStackInHand(hand);
 
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ITEM))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ITEM) || world.isClient)
                 return new TypedActionResult<>(ActionResult.PASS, stack);
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
