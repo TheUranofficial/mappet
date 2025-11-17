@@ -1,7 +1,6 @@
-package com.theuran.mappet.network.packets.server;
+package com.theuran.mappet.network.packets;
 
 import com.theuran.mappet.api.scripts.code.ScriptVector;
-import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.network.basic.AbstractPacket;
 import com.theuran.mappet.network.basic.MappetByteBuffer;

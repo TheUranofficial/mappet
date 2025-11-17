@@ -18,7 +18,7 @@ import com.theuran.mappet.client.ai.AiMain;
 import com.theuran.mappet.item.MappetItemGroups;
 import com.theuran.mappet.item.MappetItems;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.HandshakeS2CPacket;
+import com.theuran.mappet.network.packets.HandshakeS2CPacket;
 import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.resources.AssetProvider;

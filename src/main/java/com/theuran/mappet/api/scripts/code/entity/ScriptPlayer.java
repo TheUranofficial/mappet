@@ -4,7 +4,7 @@ import com.theuran.mappet.api.scripts.code.mappet.MappetStates;
 import com.theuran.mappet.api.scripts.code.bbs.BBSForm;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.scripts.RunScriptPacket;
+import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
 import mchorse.bbs_mod.forms.FormUtils;
 import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.morphing.Morph;

@@ -4,7 +4,7 @@ import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.RequestTriggersPacket;
+import com.theuran.mappet.network.packets.RequestTriggersPacket;
 import mchorse.bbs_mod.ui.framework.elements.input.list.UILabelList;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
@@ -22,10 +22,9 @@ public class UIEventsOverlayPanel extends UIOverlayPanel {
         this.list = new UILabelList<>(strings -> {
             for (Label<String> string : strings) {
                 if (this.latest.equals(string.value)) {
-                    EventType eventType = EventType.valueOf(string.value.toUpperCase());
-                    this.panel = new UIEditorTriggersOverlayPanel(eventType);
+                    this.panel = new UIEditorTriggersOverlayPanel();
 
-                    Dispatcher.sendToServer(new RequestTriggersPacket(eventType));
+                    Dispatcher.sendToServer(new RequestTriggersPacket(EventType.valueOf(string.value.toUpperCase())));
                     UIOverlay.addOverlay(this.getContext(), this.panel, 0.55f, 0.75f);
                 }
                 this.latest = string.value;

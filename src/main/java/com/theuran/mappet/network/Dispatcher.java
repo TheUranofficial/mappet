@@ -2,10 +2,10 @@ package com.theuran.mappet.network;
 
 import com.theuran.mappet.network.basic.AbstractDispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
-import com.theuran.mappet.network.packets.server.*;
-import com.theuran.mappet.network.packets.server.scripts.RunScriptPacket;
-import com.theuran.mappet.network.packets.server.scripts.SaveScriptC2SPacket;
-import com.theuran.mappet.network.packets.server.scripts.SendScriptsS2CPacket;
+import com.theuran.mappet.network.packets.*;
+import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
+import com.theuran.mappet.network.packets.scripts.SaveScriptC2SPacket;
+import com.theuran.mappet.network.packets.scripts.SendScriptsS2CPacket;
 import mchorse.bbs_mod.data.types.BaseType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -49,8 +49,8 @@ public class Dispatcher {
             this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(StatesS2CPacket.class, StatesS2CPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(StatesS2CPacket.class, StatesS2CPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(StatesPacket.class, StatesPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(StatesPacket.class, StatesPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(SendTriggersPacket.class, SendTriggersPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(SendTriggersPacket.class, SendTriggersPacket.ClientHandler.class, EnvType.CLIENT);
         }

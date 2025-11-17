@@ -6,7 +6,7 @@ import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.server.scripts.RunScriptPacket;
+import com.theuran.mappet.network.packets.scripts.RunScriptPacket;
 import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;

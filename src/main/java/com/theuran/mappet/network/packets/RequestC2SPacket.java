@@ -1,4 +1,4 @@
-package com.theuran.mappet.network.packets.server;
+package com.theuran.mappet.network.packets;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
@@ -53,7 +53,7 @@ public class RequestC2SPacket extends AbstractPacket {
                 map.put(serverPlayer.getGameProfile().getName(), ((IStatesProvider) serverPlayer).getStates());
             }
 
-            Dispatcher.sendTo(new StatesS2CPacket(map), player);
+            Dispatcher.sendTo(new StatesPacket(map), player);
         }
 
         private void handleEvents(ServerPlayerEntity player) {

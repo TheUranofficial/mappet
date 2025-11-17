@@ -1,4 +1,4 @@
-package com.theuran.mappet.network.packets.server;
+package com.theuran.mappet.network.packets;
 
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.basic.AbstractPacket;
