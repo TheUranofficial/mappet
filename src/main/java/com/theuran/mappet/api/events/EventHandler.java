@@ -23,9 +23,7 @@ public class EventHandler {
     public static void init() {
         entity();
         server();
-        client();
         player();
-
     }
 
     private static void entity() {
@@ -85,17 +83,6 @@ public class EventHandler {
         });
     }
 
-    private static void client() {
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_TICK))
-                return;
-
-            ClientScriptEvent scriptEvent = ClientScriptEvent.create(client.player, null, client.world);
-
-            Mappet.getEvents().eventClient(EventType.CLIENT_TICK, scriptEvent);
-        });
-    }
-
     private static void player() {
         ServerPlayConnectionEvents.JOIN.register((networkHandler, packetSender, server) -> {
             if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_JOIN))
@@ -125,21 +112,6 @@ public class EventHandler {
         });
 
         AttackBlockCallback.EVENT.register((player, world, hand, blockPos, direction) -> {
-            if (world.isClient) {
-                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_ATTACK_BLOCK))
-                    return ActionResult.PASS;
-
-                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
-
-                scriptEvent.setValue("hand", modifyHand(hand));
-                scriptEvent.setValue("blockPos", new ScriptVector(blockPos));
-                scriptEvent.setValue("direction", direction.getName());
-
-                Mappet.getEvents().eventClient(EventType.CLIENT_ATTACK_BLOCK, scriptEvent);
-
-                return scriptEvent.getResultType();
-            }
-
             if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK))
                 return ActionResult.PASS;
 
@@ -155,19 +127,6 @@ public class EventHandler {
         });
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (world.isClient) {
-                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_ATTACK_ENTITY))
-                    return ActionResult.PASS;
-
-                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, entity, (ClientWorld) world);
-
-                scriptEvent.setValue("hand", modifyHand(hand));
-
-                Mappet.getEvents().eventClient(EventType.CLIENT_ATTACK_ENTITY, scriptEvent);
-
-                return scriptEvent.getResultType();
-            }
-
             if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_ENTITY))
                 return ActionResult.PASS;
 
@@ -181,21 +140,6 @@ public class EventHandler {
         });
 
         UseBlockCallback.EVENT.register((player, world, hand, blockHitResult) -> {
-            if (world.isClient) {
-                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_USE_BLOCK))
-                    return ActionResult.PASS;
-
-                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
-
-                scriptEvent.setValue("hand", modifyHand(hand));
-                scriptEvent.setValue("blockPos", new ScriptVector(blockHitResult.getBlockPos()));
-                scriptEvent.setValue("direction", blockHitResult.getSide().getName().toLowerCase());
-
-                Mappet.getEvents().eventClient(EventType.CLIENT_USE_BLOCK, scriptEvent);
-
-                return scriptEvent.getResultType();
-            }
-
             if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_BLOCK))
                 return ActionResult.PASS;
 
@@ -211,19 +155,6 @@ public class EventHandler {
         });
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (world.isClient) {
-                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_USE_ENTITY))
-                    return ActionResult.PASS;
-
-                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
-
-                scriptEvent.setValue("hand", modifyHand(hand));
-
-                Mappet.getEvents().eventClient(EventType.CLIENT_USE_ENTITY, scriptEvent);
-
-                return scriptEvent.getResultType();
-            }
-
             if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ENTITY))
                 return ActionResult.PASS;
 
@@ -238,19 +169,6 @@ public class EventHandler {
 
         UseItemCallback.EVENT.register((player, world, hand) -> {
             ItemStack stack = player.getStackInHand(hand);
-            if (world.isClient) {
-                if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_USE_ITEM))
-                    return TypedActionResult.pass(player.getStackInHand(hand));
-
-                ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
-
-                scriptEvent.setValue("hand", modifyHand(hand));
-                scriptEvent.setValue("item", stack);
-
-                Mappet.getEvents().eventClient(EventType.CLIENT_USE_ITEM, scriptEvent);
-
-                return new TypedActionResult<>(scriptEvent.getResultType(), stack);
-            }
 
             if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ITEM))
                 return new TypedActionResult<>(ActionResult.PASS, stack);

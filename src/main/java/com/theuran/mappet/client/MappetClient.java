@@ -1,6 +1,7 @@
 package com.theuran.mappet.client;
 
 import com.theuran.mappet.Mappet;
+import com.theuran.mappet.api.events.EventHandler;
 import com.theuran.mappet.client.api.keybinds.ClientKeybindManager;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.keybinds.MappetKeybinds;
@@ -38,6 +39,8 @@ public class MappetClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         Dispatcher.register();
+
+        ClientEventHandler.init();
 
         l10n = new L10n();
         l10n.registerOne((lang) -> Mappet.link("lang/" + lang + ".json"));

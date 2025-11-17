@@ -7,7 +7,6 @@ import com.theuran.mappet.api.executables.ExecutableManager;
 import com.theuran.mappet.api.huds.HUDManager;
 import com.theuran.mappet.api.keybinds.KeybindManager;
 import com.theuran.mappet.api.localization.LocalizationManager;
-import com.theuran.mappet.api.localization.LocalizationType;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.StatesManager;
@@ -91,7 +90,7 @@ public class Mappet implements ModInitializer {
                 .register(link("sound"), SoundTrigger.class, 0x00a0ff)
                 .register(link("state"), StateTrigger.class, Colors.NEGATIVE);
 
-        EventHandler.init();
+        //EventHandler.init();
 
         MappetItems.init();
         MappetItemGroups.init();

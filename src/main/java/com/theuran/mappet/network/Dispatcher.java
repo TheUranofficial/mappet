@@ -49,10 +49,10 @@ public class Dispatcher {
             this.registerPacket(ManagerDataPacket.class, ManagerDataPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ServerHandler.class, EnvType.SERVER);
             this.registerPacket(TriggerEventPacket.class, TriggerEventPacket.ClientHandler.class, EnvType.CLIENT);
-            this.registerPacket(StatesS2CPacket.class, StatesS2CPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(StatesS2CPacket.class, StatesS2CPacket.ServerHandler.class, EnvType.SERVER);
-            this.registerPacket(TriggersPacket.class, TriggersPacket.ClientHandler.class, EnvType.CLIENT);
+            this.registerPacket(StatesS2CPacket.class, StatesS2CPacket.ClientHandler.class, EnvType.CLIENT);
             this.registerPacket(TriggersPacket.class, TriggersPacket.ServerHandler.class, EnvType.SERVER);
+            this.registerPacket(TriggersPacket.class, TriggersPacket.ClientHandler.class, EnvType.CLIENT);
         }
     };
 
