@@ -50,7 +50,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.side = new UIIcon(MappetIcons.SERVER, this::changeSide);
         this.side.tooltip(UIMappetKeys.SCRIPTS_SIDE, Direction.LEFT);
 
-        this.ai = new UIIcon(MappetIcons.SERVER, this::aiPanel);
+        this.ai = new UIIcon(MappetIcons.API_BBS_FORM, this::aiPanel);
         this.ai.tooltip(UIMappetKeys.AI_OPEN, Direction.LEFT);
 
         this.editor.add(this.content);
