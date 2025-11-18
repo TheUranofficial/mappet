@@ -15,6 +15,12 @@ public abstract class AbstractPacket extends ValueGroup implements IByteBufSeria
         this.setId(this.createId().getPath());
     }
 
+    public void add(BaseValue... values) {
+        for (BaseValue value : values) {
+            this.add(value);
+        }
+    }
+
     public Identifier createId() {
         return Identifier.of(Mappet.MOD_ID, this.getClass().getSimpleName().toLowerCase());
     }

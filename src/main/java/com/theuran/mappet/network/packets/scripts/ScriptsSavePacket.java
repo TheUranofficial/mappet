@@ -16,9 +16,7 @@ public class ScriptsSavePacket extends AbstractPacket implements ServerPacketHan
 
     public ScriptsSavePacket() {
         super();
-        this.add(this.script);
-        this.add(this.content);
-        this.add(this.isServer);
+        this.add(this.script, this.content, this.isServer);
     }
 
     public ScriptsSavePacket(String script, String content, boolean isServer) {

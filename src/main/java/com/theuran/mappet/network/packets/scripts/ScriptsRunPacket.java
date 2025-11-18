@@ -25,10 +25,7 @@ public class ScriptsRunPacket extends AbstractPacket implements ServerPacketHand
 
     public ScriptsRunPacket() {
         super();
-        this.add(this.script);
-        this.add(this.function);
-        this.add(this.content);
-        this.add(this.update);
+        this.add(this.script, this.function, this.content, this.update);
     }
 
     public ScriptsRunPacket(String script, String function, String content) {

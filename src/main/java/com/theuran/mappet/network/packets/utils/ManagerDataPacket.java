@@ -32,10 +32,7 @@ public class ManagerDataPacket extends AbstractPacket implements ClientPacketHan
 
     public ManagerDataPacket() {
         super();
-        this.add(this.callbackId);
-        this.add(this.manager);
-        this.add(this.operation);
-        this.add(this.data);
+        this.add(this.callbackId, this.manager, this.operation, this.data);
     }
 
     public ManagerDataPacket(String manager, RepositoryOperation operation, BaseType data, int callbackId) {
