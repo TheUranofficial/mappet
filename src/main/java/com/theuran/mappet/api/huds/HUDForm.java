@@ -1,5 +1,6 @@
 package com.theuran.mappet.api.huds;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import mchorse.bbs_mod.forms.FormUtilsClient;
 import mchorse.bbs_mod.forms.entities.IEntity;
 import mchorse.bbs_mod.forms.entities.StubEntity;
@@ -29,8 +30,9 @@ public class HUDForm extends ValueGroup {
 
     private int tick;
 
-    public HUDForm(String id) {
-        super(id);
+    public HUDForm() {
+        super("");
+
         this.add(this.form);
         this.add(this.ortho);
         this.add(this.orthoX);
@@ -86,7 +88,7 @@ public class HUDForm extends ValueGroup {
         context.stack.push();
         MatrixStackUtils.applyTransform(context.stack, this.transform.get());
 
-        FormUtilsClient.getRenderer(this.form.get()).render(context);
+        FormUtilsClient.render(this.form.get(), context);
 
         context.stack.pop();
     }

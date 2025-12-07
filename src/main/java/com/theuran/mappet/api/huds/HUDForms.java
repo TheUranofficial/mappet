@@ -9,6 +9,10 @@ public class HUDForms extends ValueList<HUDForm> {
 
     @Override
     protected HUDForm create(String id) {
-        return new HUDForm(id);
+        HUDForm form = new HUDForm();
+
+        form.setId(id);
+
+        return form;
     }
 }

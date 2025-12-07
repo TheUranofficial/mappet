@@ -13,7 +13,10 @@ public class UIMappetKeys {
     public static final IKey STATES_SEARCH = L10n.lang("mappet.states.search");
 
     public static final IKey HUD_SCENE_TITLE = L10n.lang("mappet.hud.scene.title");
+    public static final IKey HUD_SCENE_OVERLAY_TITLE = L10n.lang("mappet.hud.scene.overlay.title");
     public static final IKey HUD_SCENE_ORTHO = L10n.lang("mappet.hud.scene.ortho");
+    public static final IKey HUD_SCENE_EXPIRE = L10n.lang("mappet.hud.scene.expire");
+    public static final IKey HUD_SCENE_FOV = L10n.lang("mappet.hud.scene.fov");
 
     public static final IKey SCRIPTS_TITLE = L10n.lang("mappet.scripts.title");
     public static final IKey SCRIPTS_RUN = L10n.lang("mappet.scripts.run");
@@ -42,6 +45,7 @@ public class UIMappetKeys {
     public static final IKey OVERLAYS_FULLSCREEN = L10n.lang("mappet.overlays.fullscreen");
 
     public static final IKey GENERAL_FUNCTION = L10n.lang("mappet.general.function");
+    public static final IKey GENERAL_OPTIONS = L10n.lang("mappet.general.options");
 
     public static final IKey AI_TITLE = L10n.lang("mappet.ai.title");
     public static final IKey AI_OPEN = L10n.lang("mappet.ai.open");

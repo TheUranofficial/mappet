@@ -17,7 +17,10 @@
   "mappet.states.refresh": "Change type",
 
   "mappet.hud.scene.title": "HUD Scenes",
+  "mappet.hud.scene.overlay.title": "HUD's forms",
   "mappet.hud.scene.ortho": "Orthographic",
+  "mappet.hud.scene.expire": "Expire",
+  "mappet.hud.scene.fov": "Fov",
 
   "mappet.scripts.title": "Scripts",
   "mappet.scripts.run": "Run script",
@@ -129,6 +132,7 @@
   "mappet.events.variables.client.change.options": "Variables",
 
   "mappet.general.function": "Function",
+  "mappet.general.options": "Options",
 
   "mappet.ai.title": "Mappet fucking BOX",
   "mappet.ai.open": "Open AI",

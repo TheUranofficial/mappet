@@ -25,7 +25,7 @@ public class UIEventsOverlayPanel extends UIOverlayPanel {
                     this.panel = new UIEditorTriggersOverlayPanel();
 
                     Dispatcher.sendToServer(new TriggersRequestPacket(EventType.valueOf(string.value.toUpperCase())));
-                    UIOverlay.addOverlay(this.getContext(), this.panel, 0.55f, 0.75f);
+                    UIOverlay.addOverlay(this.getContext(), this.panel, 0.55f, 0.75f).noBackground();
                 }
                 this.latest = string.value;
             }

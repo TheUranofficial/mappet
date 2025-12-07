@@ -10,10 +10,12 @@ import com.theuran.mappet.network.packets.triggers.TriggersSendPacket;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.resources.Link;
+import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.input.list.UIList;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIEditorOverlayPanel;
 import mchorse.bbs_mod.ui.utils.context.ContextMenuManager;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
+import mchorse.bbs_mod.utils.colors.Colors;
 
 import java.util.List;
 
@@ -93,5 +95,17 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
         this.save();
         Dispatcher.sendToServer(new EventsRequestPacket());
         this.triggers = null;
+    }
+
+    @Override
+    public void render(UIContext context) {
+        super.render(context);
+    }
+
+    @Override
+    protected void renderBackground(UIContext context) {
+        super.renderBackground(context);
+
+        this.content.area.render(context.batcher, Colors.A100);
     }
 }

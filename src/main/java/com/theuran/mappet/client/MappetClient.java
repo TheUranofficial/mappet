@@ -11,7 +11,9 @@ import mchorse.bbs_mod.l10n.L10n;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 
 @Environment(EnvType.CLIENT)
 public class MappetClient implements ClientModInitializer {
@@ -23,6 +25,7 @@ public class MappetClient implements ClientModInitializer {
 
     private static ClientScriptManager scripts;
     private static ClientKeybindManager keybinds;
+    private static RenderingHandler handler;
 
     @Override
     public void onInitializeClient() {
@@ -38,6 +41,7 @@ public class MappetClient implements ClientModInitializer {
 
         scripts = new ClientScriptManager();
         keybinds = new ClientKeybindManager();
+        handler = new RenderingHandler();
 
         InputUtils.init();
 
@@ -48,6 +52,17 @@ public class MappetClient implements ClientModInitializer {
             dashboard = null;
 
             isMappetModOnServer = false;
+            MappetClient.handler.reset();
+        });
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (!client.isPaused()) {
+                handler.update();
+            }
+        });
+
+        HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
+            handler.render(drawContext, tickDelta);
         });
     }
 
@@ -57,6 +72,10 @@ public class MappetClient implements ClientModInitializer {
 
     public static ClientKeybindManager getKeybinds() {
         return keybinds;
+    }
+
+    public static RenderingHandler getHandler() {
+        return handler;
     }
 
     public static UIMappetDashboard getDashboard() {

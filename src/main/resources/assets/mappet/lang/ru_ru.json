@@ -17,7 +17,10 @@
   "mappet.states.refresh": "Сменить тип",
 
   "mappet.hud.scene.title": "HUD Сцены",
-  "mappet.hud.scene.ortho": "Орфографический",
+  "mappet.hud.scene.overlay.title": "Формы HUD'а",
+  "mappet.hud.scene.ortho": "Ортография",
+  "mappet.hud.scene.expire": "Срок действия",
+  "mappet.hud.scene.fov": "Поле зрения",
 
   "mappet.scripts.title": "Скрипты",
   "mappet.scripts.run": "Запустить скрипт",
@@ -128,6 +131,7 @@
   "mappet.events.variables.client.change.options": "Переменные",
 
   "mappet.general.function": "Функция",
+  "mappet.general.options": "Настройки",
   "mappet.keybinds.add": "Добавить Кейбинд",
 
   "mappet.ai.title": "Маппет коробка нахуй",

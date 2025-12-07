@@ -9,12 +9,13 @@ public class HUDScene extends ValueGroup {
 
     public HUDScene() {
         super("");
+
         this.add(this.forms);
         this.add(this.fov);
     }
 
     public boolean update(boolean allowExpiring) {
-        this.forms.getList().removeIf(form -> form.update(allowExpiring));
+        this.forms.getAll().removeIf(form -> ((HUDForm) form).update(allowExpiring));
 
         return allowExpiring && this.forms.getList().isEmpty();
     }
