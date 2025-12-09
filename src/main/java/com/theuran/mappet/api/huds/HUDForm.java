@@ -1,6 +1,5 @@
 package com.theuran.mappet.api.huds;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import mchorse.bbs_mod.forms.FormUtilsClient;
 import mchorse.bbs_mod.forms.entities.IEntity;
 import mchorse.bbs_mod.forms.entities.StubEntity;
@@ -48,7 +47,7 @@ public class HUDForm extends ValueGroup {
         if (this.form.get() != null)
             this.form.get().update(entity);
 
-        entity.setAge(entity.getAge() + 1);
+        entity.update();
         this.tick++;
 
         if (!allowExpiring)

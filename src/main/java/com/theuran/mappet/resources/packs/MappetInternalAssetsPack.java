@@ -24,7 +24,6 @@ public class MappetInternalAssetsPack implements ISourcePack {
     private String prefix;
     private String internalPrefix;
     private Class clazz;
-    private boolean isForge;
     private List<String> zipCache;
 
     public MappetInternalAssetsPack() {
@@ -36,12 +35,6 @@ public class MappetInternalAssetsPack implements ISourcePack {
         this.prefix = prefix;
         this.internalPrefix = internalPrefix;
         this.clazz = clazz;
-
-        try {
-            Class.forName("net.minecraftforge.common.MinecraftForge");
-            this.isForge = true;
-        } catch (ClassNotFoundException e) {
-        }
     }
 
     @Override
@@ -73,23 +66,19 @@ public class MappetInternalAssetsPack implements ISourcePack {
 
     @Override
     public void getLinksFromPath(Collection<Link> links, Link link, boolean recursive) {
-        if (this.isForge) {
-            this.findLinksForJar(links, link, recursive);
-        } else {
-            URL url = this.clazz.getProtectionDomain().getCodeSource().getLocation();
+        URL url = this.clazz.getProtectionDomain().getCodeSource().getLocation();
 
-            try {
-                File file = Paths.get(url.toURI()).toFile();
+        try {
+            File file = Paths.get(url.toURI()).toFile();
 
-                if (file.isDirectory()) {
-                    this.getLinksFromFolder(this.getResourcesFolder(file), link, links, recursive);
-                } else if (file.getName().endsWith(".jar") || file.getName().endsWith(".zip")) {
-                    this.getLinksFromZipFile(file, link, links, recursive);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                this.findLinksForJar(links, link, recursive);
+            if (file.isDirectory()) {
+                this.getLinksFromFolder(this.getResourcesFolder(file), link, links, recursive);
+            } else if (file.getName().endsWith(".jar") || file.getName().endsWith(".zip")) {
+                this.getLinksFromZipFile(file, link, links, recursive);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.findLinksForJar(links, link, recursive);
         }
     }
 

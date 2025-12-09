@@ -21,7 +21,8 @@ import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.utils.HandshakeS2CPacket;
 import mchorse.bbs_mod.BBSMod;
-import mchorse.bbs_mod.resources.AssetProvider;
+import mchorse.bbs_mod.events.Subscribe;
+import mchorse.bbs_mod.events.register.RegisterSourcePacksEvent;
 import mchorse.bbs_mod.resources.Link;
 import mchorse.bbs_mod.utils.colors.Colors;
 import mchorse.bbs_mod.utils.factory.MapFactory;
@@ -44,8 +45,6 @@ public class Mappet implements ModInitializer {
     private static File assetsFolder;
     private static File mappetFolder;
 
-    private static AssetProvider provider;
-
     private static StatesManager states;
     private static HUDManager huds;
     private static ScriptManager scripts;
@@ -59,6 +58,10 @@ public class Mappet implements ModInitializer {
     private static MapFactory<Trigger, Integer> triggers;
 
     private static Dispatcher dispatcher;
+
+    public Mappet() {
+        BBSMod.events.register(this);
+    }
 
     @Override
     public void onInitialize() {
@@ -75,9 +78,6 @@ public class Mappet implements ModInitializer {
         settingsFolder.mkdirs();
         assetsFolder = BBSMod.getGamePath("config/mappet/assets");
         assetsFolder.mkdirs();
-
-        provider = new AssetProvider();
-        provider.register(new MappetInternalAssetsPack());
 
         huds = new HUDManager(() -> new File(mappetFolder, "huds"));
         scripts = new ScriptManager(() -> new File(mappetFolder, "scripts"));
@@ -132,16 +132,17 @@ public class Mappet implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(MappetCommands::register);
     }
 
+    @Subscribe
+    public void registerSourcePacks(RegisterSourcePacksEvent event) {
+        event.provider.register(new MappetInternalAssetsPack());
+    }
+
     public static Link link(String path) {
         return new Link(MOD_ID, path);
     }
 
     public static Identifier id(String path) {
         return new Identifier(Mappet.MOD_ID, path);
-    }
-
-    public static AssetProvider getProvider() {
-        return provider;
     }
 
     public static StatesManager getStates() {
@@ -192,7 +193,7 @@ public class Mappet implements ModInitializer {
         return triggers;
     }
 
-    public static com.theuran.mappet.network.Dispatcher getDispatcher() {
+    public static Dispatcher getDispatcher() {
         return dispatcher;
     }
 }

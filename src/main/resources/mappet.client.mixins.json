@@ -2,12 +2,7 @@
   "required": true,
   "package": "com.theuran.mappet.mixin",
   "compatibilityLevel": "JAVA_17",
-  "client": [
-    "L10nMixin",
-    "BBSModClientMixin",
-    "GameOptionsMixin",
-    "TextureManagerMixin"
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   },

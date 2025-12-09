@@ -6,8 +6,9 @@ import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.keybinds.MappetKeybinds;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.utils.InputUtils;
-import mchorse.bbs_mod.BBSSettings;
-import mchorse.bbs_mod.l10n.L10n;
+import mchorse.bbs_mod.BBSMod;
+import mchorse.bbs_mod.events.Subscribe;
+import mchorse.bbs_mod.events.register.RegisterL10nEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,27 +16,27 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 
+import java.util.Collections;
+
 @Environment(EnvType.CLIENT)
 public class MappetClient implements ClientModInitializer {
     public static boolean isMappetModOnServer;
 
     private static UIMappetDashboard dashboard;
 
-    private static L10n l10n;
-
     private static ClientScriptManager scripts;
     private static ClientKeybindManager keybinds;
     private static RenderingHandler handler;
+
+    public MappetClient() {
+        BBSMod.events.register(this);
+    }
 
     @Override
     public void onInitializeClient() {
         Mappet.getDispatcher().registerClient();
 
         ClientEventHandler.init();
-
-        l10n = new L10n();
-        l10n.registerOne((lang) -> Mappet.link("lang/" + lang + ".json"));
-        l10n.reload(BBSSettings.language.get(), Mappet.getProvider());
 
         MappetKeybinds.init();
 
@@ -66,6 +67,12 @@ public class MappetClient implements ClientModInitializer {
         });
     }
 
+    @Subscribe
+    public void registerL10n(RegisterL10nEvent event) {
+        event.l10n.register(lang -> Collections.singletonList(Mappet.link("lang/" + lang + ".json")));
+        event.l10n.reload();
+    }
+
     public static ClientScriptManager getScripts() {
         return scripts;
     }
@@ -83,9 +90,5 @@ public class MappetClient implements ClientModInitializer {
             dashboard = new UIMappetDashboard();
 
         return dashboard;
-    }
-
-    public static L10n getL10n() {
-        return l10n;
     }
 }
