@@ -17,8 +17,6 @@ import mchorse.bbs_mod.ui.forms.UINestedEdit;
 import mchorse.bbs_mod.ui.framework.elements.IUIElement;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
-import mchorse.bbs_mod.ui.framework.elements.buttons.UIToggle;
-import mchorse.bbs_mod.ui.framework.elements.input.UIPropTransform;
 import mchorse.bbs_mod.ui.framework.elements.input.UITrackpad;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.UI;
@@ -30,15 +28,15 @@ import net.fabricmc.api.Environment;
 public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
     public UIIcon forms;
     public UINestedEdit form;
-    public UIToggle ortho;
-    public UITrackpad orthoX;
-    public UITrackpad orthoY;
+    public UITrackpad anchorX;
+    public UITrackpad anchorY;
+
+    public UITrackpad pivotX;
+    public UITrackpad pivotY;
+
     public UITrackpad expire;
-    public UIPropTransform transform;
 
-    public UITrackpad fov;
-
-    private HUDStage stage = new HUDStage();
+    private final HUDStage stage = new HUDStage();
     private HUDForm current;
 
     public UIHUDScenePanel(UIDashboard dashboard) {
@@ -48,21 +46,31 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
 
         this.forms = new UIIcon(Icons.POSE, icon -> this.openForms());
         this.form = new UINestedEdit(this::openFormMenu);
-        this.ortho = new UIToggle(UIMappetKeys.HUD_SCENE_ORTHO, toggle -> this.current.ortho.set(toggle.getValue()));
-        this.orthoX = new UITrackpad(value -> this.current.orthoX.set(value.floatValue()));
-        this.orthoX.limit(0, 1).metric().strong = 0.25D;
-        this.orthoY = new UITrackpad(value -> this.current.orthoY.set(value.floatValue()));
-        this.orthoY.limit(0, 1).metric().strong = 0.25D;
+
+        this.anchorX = new UITrackpad(value -> this.current.anchorX.set(value.floatValue()));
+        this.anchorX.limit(-1, 1).metric().strong = 0.25D;
+        this.anchorX.tooltip(IKey.raw("X"));
+        this.anchorY = new UITrackpad(value -> this.current.anchorY.set(value.floatValue()));
+        this.anchorY.limit(-1, 1).metric().strong = 0.25D;
+        this.anchorY.tooltip(IKey.raw("Y"));
+
+        this.pivotX = new UITrackpad(value -> this.current.pivotX.set(value.floatValue()));
+        this.pivotX.limit(-1, 1).metric().strong = 0.25D;
+        this.pivotX.tooltip(IKey.raw("X"));
+        this.pivotY = new UITrackpad(value -> this.current.pivotY.set(value.floatValue()));
+        this.pivotY.limit(-1, 1).metric().strong = 0.25D;
+        this.pivotY.tooltip(IKey.raw("Y"));
+
         this.expire = new UITrackpad(value -> this.current.expire.set(value.intValue()));
         this.expire.limit(0).integer();
-        this.transform = new UIPropTransform();
-
-        this.fov = new UITrackpad(value -> this.data.fov.set(value.floatValue()));
-        this.fov.limit(0, 180);
 
         this.addOptions();
-        this.options.fields.add(this.form, this.ortho, this.orthoX, this.orthoY, UI.label(UIMappetKeys.HUD_SCENE_EXPIRE).marginTop(12), this.expire);
-        this.options.fields.add(UI.label(UIMappetKeys.HUD_SCENE_FOV).marginTop(12), this.fov, this.transform.marginTop(20));
+        this.options.fields.add(
+                this.form,
+                UI.label(IKey.raw("Anchor")).marginTop(8), this.anchorX, this.anchorY,
+                UI.label(IKey.raw("Pivot")).marginTop(8), this.pivotX, this.pivotY,
+                UI.label(UIMappetKeys.HUD_SCENE_EXPIRE).marginTop(8), this.expire
+        );
 
         this.iconBar.add(this.forms);
 
@@ -97,8 +105,6 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
             this.stage.reset();
             this.stage.scenes.put(data.getId(), data);
 
-            this.fov.setValue(data.fov.get());
-
             this.pickForm(this.data.forms.getList().isEmpty() ? null : this.data.forms.getList().getFirst());
         }
     }
@@ -116,11 +122,11 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
 
         if (current != null) {
             this.form.setForm(current.form.get());
-            this.ortho.setValue(current.ortho.get());
-            this.orthoX.setValue(current.orthoX.get());
-            this.orthoY.setValue(current.orthoY.get());
+            this.anchorX.setValue(current.anchorX.get());
+            this.anchorY.setValue(current.anchorY.get());
+            this.pivotX.setValue(current.pivotX.get());
+            this.pivotY.setValue(current.pivotY.get());
             this.expire.setValue(current.expire.get());
-            this.transform.setTransform(current.transform.get());
         }
     }
 

@@ -15,14 +15,16 @@ import mchorse.bbs_mod.utils.pose.Transform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.Window;
+import net.minecraft.client.util.math.MatrixStack;
 
 public class HUDForm extends ValueGroup {
     public ValueForm form = new ValueForm("form");
-    public ValueBoolean ortho = new ValueBoolean("ortho");
-    public ValueFloat orthoX = new ValueFloat("orthoX", 0f);
-    public ValueFloat orthoY = new ValueFloat("orthoY", 0f);
+    public ValueFloat anchorX = new ValueFloat("anchorX", 0.5f);
+    public ValueFloat anchorY = new ValueFloat("anchorY", 0.5f);
+    public ValueFloat pivotX = new ValueFloat("pivotX", 0.5f);
+    public ValueFloat pivotY = new ValueFloat("pivotY", 0.5f);
     public ValueInt expire = new ValueInt("expire", 0);
-    public ValueTransform transform = new ValueTransform("transform", new Transform());
 
     @Environment(EnvType.CLIENT)
     private IEntity entity;
@@ -33,11 +35,11 @@ public class HUDForm extends ValueGroup {
         super("");
 
         this.add(this.form);
-        this.add(this.ortho);
-        this.add(this.orthoX);
-        this.add(this.orthoY);
+        this.add(this.anchorX);
+        this.add(this.anchorY);
+        this.add(this.pivotX);
+        this.add(this.pivotY);
         this.add(this.expire);
-        this.add(this.transform);
     }
 
     @Environment(EnvType.CLIENT)
@@ -75,17 +77,11 @@ public class HUDForm extends ValueGroup {
     }
 
     @Environment(EnvType.CLIENT)
-    public void render(FormRenderingContext context, int w, int h) {
-        if (this.form.get() == null)
-            return;
-
-        if (this.ortho.get()) {
-            this.transform.get().translate.x = w * this.orthoX.get() + this.transform.get().translate.x;
-            this.transform.get().translate.y = h * this.orthoY.get() + this.transform.get().translate.y;
-        }
+    public void render(FormRenderingContext context) {
+        if (this.form.get() == null) return;
 
         context.stack.push();
-        MatrixStackUtils.applyTransform(context.stack, this.transform.get());
+        context.stack.translate(this.pivotX.get(), this.pivotY.get(), 0);
 
         FormUtilsClient.render(this.form.get(), context);
 
