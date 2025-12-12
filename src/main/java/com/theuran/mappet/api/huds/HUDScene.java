@@ -48,6 +48,7 @@ public class HUDScene extends ValueGroup {
 
     public void render(DrawContext context, float tickDelta) {
         Window window = MinecraftClient.getInstance().getWindow();
+
         RenderSystem.depthFunc(GL11.GL_LEQUAL);
 
         this.setDistance(15);

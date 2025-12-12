@@ -20,10 +20,6 @@ import net.minecraft.client.util.math.MatrixStack;
 
 public class HUDForm extends ValueGroup {
     public ValueForm form = new ValueForm("form");
-    public ValueFloat anchorX = new ValueFloat("anchorX", 0.5f);
-    public ValueFloat anchorY = new ValueFloat("anchorY", 0.5f);
-    public ValueFloat pivotX = new ValueFloat("pivotX", 0.5f);
-    public ValueFloat pivotY = new ValueFloat("pivotY", 0.5f);
     public ValueInt expire = new ValueInt("expire", 0);
 
     @Environment(EnvType.CLIENT)
@@ -35,10 +31,6 @@ public class HUDForm extends ValueGroup {
         super("");
 
         this.add(this.form);
-        this.add(this.anchorX);
-        this.add(this.anchorY);
-        this.add(this.pivotX);
-        this.add(this.pivotY);
         this.add(this.expire);
     }
 
@@ -81,7 +73,6 @@ public class HUDForm extends ValueGroup {
         if (this.form.get() == null) return;
 
         context.stack.push();
-        context.stack.translate(this.pivotX.get(), this.pivotY.get(), 0);
 
         FormUtilsClient.render(this.form.get(), context);
 

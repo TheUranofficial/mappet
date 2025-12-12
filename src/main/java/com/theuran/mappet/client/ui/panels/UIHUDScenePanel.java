@@ -28,11 +28,6 @@ import net.fabricmc.api.Environment;
 public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
     public UIIcon forms;
     public UINestedEdit form;
-    public UITrackpad anchorX;
-    public UITrackpad anchorY;
-
-    public UITrackpad pivotX;
-    public UITrackpad pivotY;
 
     public UITrackpad expire;
 
@@ -47,28 +42,12 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
         this.forms = new UIIcon(Icons.POSE, icon -> this.openForms());
         this.form = new UINestedEdit(this::openFormMenu);
 
-        this.anchorX = new UITrackpad(value -> this.current.anchorX.set(value.floatValue()));
-        this.anchorX.limit(-1, 1).metric().strong = 0.25D;
-        this.anchorX.tooltip(IKey.raw("X"));
-        this.anchorY = new UITrackpad(value -> this.current.anchorY.set(value.floatValue()));
-        this.anchorY.limit(-1, 1).metric().strong = 0.25D;
-        this.anchorY.tooltip(IKey.raw("Y"));
-
-        this.pivotX = new UITrackpad(value -> this.current.pivotX.set(value.floatValue()));
-        this.pivotX.limit(-1, 1).metric().strong = 0.25D;
-        this.pivotX.tooltip(IKey.raw("X"));
-        this.pivotY = new UITrackpad(value -> this.current.pivotY.set(value.floatValue()));
-        this.pivotY.limit(-1, 1).metric().strong = 0.25D;
-        this.pivotY.tooltip(IKey.raw("Y"));
-
         this.expire = new UITrackpad(value -> this.current.expire.set(value.intValue()));
         this.expire.limit(0).integer();
 
         this.addOptions();
         this.options.fields.add(
                 this.form,
-                UI.label(IKey.raw("Anchor")).marginTop(8), this.anchorX, this.anchorY,
-                UI.label(IKey.raw("Pivot")).marginTop(8), this.pivotX, this.pivotY,
                 UI.label(UIMappetKeys.HUD_SCENE_EXPIRE).marginTop(8), this.expire
         );
 
@@ -122,10 +101,6 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
 
         if (current != null) {
             this.form.setForm(current.form.get());
-            this.anchorX.setValue(current.anchorX.get());
-            this.anchorY.setValue(current.anchorY.get());
-            this.pivotX.setValue(current.pivotX.get());
-            this.pivotY.setValue(current.pivotY.get());
             this.expire.setValue(current.expire.get());
         }
     }
