@@ -6,6 +6,7 @@ import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.keybinds.MappetKeybinds;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.utils.InputUtils;
+import com.theuran.mappet.utils.documentation.Documentation;
 import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.events.Subscribe;
 import mchorse.bbs_mod.events.register.RegisterL10nEvent;
@@ -54,6 +55,10 @@ public class MappetClient implements ClientModInitializer {
 
             isMappetModOnServer = false;
             MappetClient.handler.reset();
+        });
+
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+            Documentation.parseDocs();
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
