@@ -53,7 +53,7 @@ public class UIScriptEditor extends UITextEditor {
     }
 
     private void handleLogic(String text) {
-        if (this.oldText == null){
+        if (this.oldText == null) {
             this.oldText = text;
         }
 
@@ -120,7 +120,6 @@ public class UIScriptEditor extends UITextEditor {
     }
 
 
-
     private void applySuggestion(String prefix, String suggestion) {
         int pos = this.cursor.offset;
 
@@ -141,7 +140,7 @@ public class UIScriptEditor extends UITextEditor {
             return Collections.emptyList();
         }
 
-        return ((Highlighter)this.getHighlighter()).getAllKeywords().stream()
+        return ((Highlighter) this.getHighlighter()).getAllKeywords().stream()
                 .filter(s -> s.startsWith(prefix) && !s.equals(prefix))
                 .sorted()
                 .toList();
@@ -189,23 +188,18 @@ public class UIScriptEditor extends UITextEditor {
             undo.ready();
             return true;
         }
-        if (ctrl && (context.isPressed(GLFW.GLFW_KEY_Z) || context.isRepeated(GLFW.GLFW_KEY_Z)))
-        {
+        if (ctrl && (context.isPressed(GLFW.GLFW_KEY_Z) || context.isRepeated(GLFW.GLFW_KEY_Z))) {
             boolean result = this.getUndo().undo(this);
 
-            if (result)
-            {
+            if (result) {
                 this.playSound("undo");
             }
 
             return result;
-        }
-        else if (ctrl && (context.isPressed(GLFW.GLFW_KEY_Y) || context.isRepeated(GLFW.GLFW_KEY_Y)))
-        {
+        } else if (ctrl && (context.isPressed(GLFW.GLFW_KEY_Y) || context.isRepeated(GLFW.GLFW_KEY_Y))) {
             boolean result = this.getUndo().redo(this);
 
-            if (result)
-            {
+            if (result) {
                 this.playSound("redo");
             }
 

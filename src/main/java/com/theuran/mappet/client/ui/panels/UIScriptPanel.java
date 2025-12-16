@@ -7,7 +7,7 @@ import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.ai.UIAiOverlayPanel;
-import com.theuran.mappet.client.ui.ai.UIMascotPanel;
+import com.theuran.mappet.client.ui.scripts.UIDocumentationOverlayPanel;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
@@ -29,9 +29,9 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public UIIcon run;
     public UIIcon side;
     public UIIcon ai;
+    public UIIcon docs;
     public UIScriptEditor content;
 
-    public UIAiOverlayPanel aiPanel;
 
     public UIScriptPanel(UIDashboard dashboard) {
         super(dashboard);
@@ -39,9 +39,8 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.overlay.namesList.setFileIcon(Icons.PROPERTIES);
 
         this.content = new UIScriptEditor(null);
-
         this.content.background().wh(1f, 1f);
-
+        this.content.keys().ignoreFocus();
         this.content.relative(this.editor);
 
         this.run = new UIIcon(Icons.PLAY, this::runScript);
@@ -53,11 +52,20 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.ai = new UIIcon(MappetIcons.API_BBS_FORM, this::aiPanel);
         this.ai.tooltip(UIMappetKeys.AI_OPEN, Direction.LEFT);
 
+        this.docs = new UIIcon(Icons.HELP, this::openDocumentation);
+        this.docs.tooltip(UIMappetKeys.SCRIPTS_DOCUMENTATION_TITLE, Direction.LEFT);
+
         this.editor.add(this.content);
 
-        this.iconBar.add(this.run, this.side, this.ai);
+        this.iconBar.add(this.run, this.side, this.ai, this.docs);
 
         this.fill(null);
+    }
+
+    private void openDocumentation(UIIcon icon) {
+        UIDocumentationOverlayPanel panel = new UIDocumentationOverlayPanel();
+
+        UIOverlay.addOverlay(this.getContext(), panel, 0.7f, 0.9f);
     }
 
     private void aiPanel(UIIcon icon) {
