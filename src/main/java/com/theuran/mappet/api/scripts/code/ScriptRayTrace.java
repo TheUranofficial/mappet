@@ -6,17 +6,17 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 
 /**
- * Docs for rayTrace bruh
+ * Docs for rayTrace bruh.
  *
  * <pre>{@code
- * const rayTrace = c.getPlayer().rayTraceBlock(5, false);
+ *    const rayTrace = c.getPlayer().rayTraceBlock(5, false);
  *
- * c.getPlayer().send(rayTrace.getBlock().getBlockId();
+ *    c.getPlayer().send(rayTrace.getBlock().getBlockId());
  * }</pre>
  */
 public class ScriptRayTrace {
-    HitResult result;
-    ScriptEntity<?> entity;
+    public HitResult result;
+    public ScriptEntity<?> entity;
 
     public ScriptRayTrace(HitResult hitResult) {
         this.result = hitResult;
@@ -26,7 +26,7 @@ public class ScriptRayTrace {
      * Checks if the ray trace hit a block
      *
      * <pre>{@code
-     * c.getPlayer().rayTraceBlock(5, false).isBlock();
+     *    c.getPlayer().rayTraceBlock(5, false).isBlock();
      * }</pre>
      */
     public boolean isBlock() {
@@ -51,7 +51,7 @@ public class ScriptRayTrace {
      * Returns the entity hit by the ray trace, if any
      */
     public ScriptEntity<?> getEntity() {
-        if(this.result == null || !this.isEntity()) {
+        if (this.result == null || !this.isEntity()) {
             return null;
         }
 
@@ -66,8 +66,8 @@ public class ScriptRayTrace {
      * Returns the position of the block hit by the ray trace, if any
      */
     public ScriptVector getBlock() {
-        if(this.isBlock()) {
-            return new ScriptVector(((BlockHitResult)this.result).getBlockPos());
+        if (this.isBlock()) {
+            return new ScriptVector(((BlockHitResult) this.result).getBlockPos());
         }
 
         return null;
@@ -77,8 +77,8 @@ public class ScriptRayTrace {
      * Returns the side of the block that was hit by the ray trace
      */
     public String getBlockSide() {
-        if(this.isBlock()) {
-            return ((BlockHitResult)this.result).getSide().getName();
+        if (this.isBlock()) {
+            return ((BlockHitResult) this.result).getSide().getName();
         }
 
         return null;

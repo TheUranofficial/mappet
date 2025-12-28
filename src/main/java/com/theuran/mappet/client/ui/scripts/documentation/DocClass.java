@@ -25,7 +25,7 @@ public class DocClass extends DocEntry {
     }
 
     public void setup() {
-        this.methods.removeIf(method -> method.annotations.contains("com/theuran/mappet/utils/DiscardMethod"));
+        this.methods.removeIf(method -> method.annotations.contains("com.theuran.mappet.utils.DiscardMethod"));
 
         for (DocMethod method : this.methods) {
             method.parent = this;

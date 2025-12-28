@@ -80,7 +80,7 @@ public class ScriptItemStack {
      * Adds an enchantment to the item stack
      *
      * <pre>{@code
-     * c.getPlayer().getMainItemStack().addEnchantment("mending", 0);
+     *  c.getPlayer().getMainItemStack().addEnchantment("mending", 0);
      * }</pre>
      */
     public void addEnchantment(String enchantment, int level) {

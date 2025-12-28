@@ -26,6 +26,8 @@
   "mappet.scripts.run": "Запустить скрипт",
   "mappet.scripts.side": "Сменить сторону",
 
+  "mappet.scripts.documentation.title": "Документация",
+
   "mappet.logger.title": "Логгер",
 
   "mappet.ui.builder.title": "UI Билдер",

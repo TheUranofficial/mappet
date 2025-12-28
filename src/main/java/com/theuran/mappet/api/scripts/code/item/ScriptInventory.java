@@ -4,7 +4,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 
 /**
- * c.getPlayer().getInventory().clear();
+ *  c.getPlayer().getInventory().clear();
  */
 public class ScriptInventory {
     private Inventory inventory;
@@ -38,7 +38,7 @@ public class ScriptInventory {
      * Returns the item stack at the specified index in the inventory
      *
      * <pre>{@code
-     * c.getPlayer().getInventory().getStack(0);
+     *  c.getPlayer().getInventory().getStack(0);
      * }</pre>
      */
     public ScriptItemStack getStack(int index) {
@@ -56,7 +56,7 @@ public class ScriptInventory {
      * Sets the item stack at the specified index in the inventory
      *
      * <pre>{@code
-     * c.getPlayer().getInventory().setStack(0, c.getPlayer().getMainItemStack());
+     *  c.getPlayer().getInventory().setStack(0, c.getPlayer().getMainItemStack());
      * }</pre>
      */
     public void setStack(int index, ScriptItemStack stack) {
