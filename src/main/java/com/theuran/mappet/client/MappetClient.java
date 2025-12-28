@@ -6,18 +6,12 @@ import com.theuran.mappet.client.api.scripts.ClientScriptManager;
 import com.theuran.mappet.client.keybinds.MappetKeybinds;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.utils.InputUtils;
-import com.theuran.mappet.utils.documentation.Documentation;
-import mchorse.bbs_mod.BBSMod;
-import mchorse.bbs_mod.events.Subscribe;
-import mchorse.bbs_mod.events.register.RegisterL10nEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-
-import java.util.Collections;
 
 @Environment(EnvType.CLIENT)
 public class MappetClient implements ClientModInitializer {
@@ -28,10 +22,6 @@ public class MappetClient implements ClientModInitializer {
     private static ClientScriptManager scripts;
     private static ClientKeybindManager keybinds;
     private static RenderingHandler handler;
-
-    public MappetClient() {
-        BBSMod.events.register(this);
-    }
 
     @Override
     public void onInitializeClient() {
@@ -57,10 +47,6 @@ public class MappetClient implements ClientModInitializer {
             MappetClient.handler.reset();
         });
 
-        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            Documentation.parseDocs();
-        });
-
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (!client.isPaused()) {
                 handler.update();
@@ -70,12 +56,6 @@ public class MappetClient implements ClientModInitializer {
         HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
             handler.render(drawContext, tickDelta);
         });
-    }
-
-    @Subscribe
-    public void registerL10n(RegisterL10nEvent event) {
-        event.l10n.register(lang -> Collections.singletonList(Mappet.link("lang/" + lang + ".json")));
-        event.l10n.reload();
     }
 
     public static ClientScriptManager getScripts() {
