@@ -56,17 +56,17 @@ java {
     targetCompatibility = JavaVersion.VERSION_21
 }
 
-//tasks.register("scriptingJavadocsJson", Exec) {
-//    executable "javadoc"
-//    args "-doclet", "com.theuran.doclets.JsonDoclet",
-//            "-docletpath", "./run/jsonDoclet.jar",
-//            "-sourcepath", "./src/main/java",
-//            "-classpath", sourceSets.main.compileClasspath.asPath,
-//            "-subpackages", "com.theuran.mappet.api.scripts.code"
-//
-//    doLast {
-//        file("src/main/resources/assets/mappet/docs.json").setText(file("docs.json").text);
-//    }
-//}
-//
-//tasks.processResources.dependsOn("scriptingJavadocsJson")
+tasks.register("scriptingJavadocsJson", Exec) {
+    executable "javadoc"
+    args "-doclet", "com.theuran.doclets.JsonDoclet",
+            "-docletpath", "./run/jsonDoclet.jar",
+            "-sourcepath", "./src/main/java",
+            "-classpath", sourceSets.main.compileClasspath.asPath,
+            "-subpackages", "com.theuran.mappet.api.scripts.code"
+
+    doLast {
+        file("src/main/resources/assets/mappet/docs.json").setText(file("docs.json").text);
+    }
+}
+
+tasks.processResources.dependsOn("scriptingJavadocsJson")
