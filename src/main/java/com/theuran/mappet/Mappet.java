@@ -17,12 +17,9 @@ import com.theuran.mappet.block.MappetBlocks;
 import com.theuran.mappet.client.ai.AiMain;
 import com.theuran.mappet.item.MappetItemGroups;
 import com.theuran.mappet.item.MappetItems;
-import com.theuran.mappet.resources.packs.MappetInternalAssetsPack;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.utils.HandshakeS2CPacket;
 import mchorse.bbs_mod.BBSMod;
-import mchorse.bbs_mod.events.Subscribe;
-import mchorse.bbs_mod.events.register.RegisterSourcePacksEvent;
 import mchorse.bbs_mod.resources.Link;
 import mchorse.bbs_mod.utils.colors.Colors;
 import mchorse.bbs_mod.utils.factory.MapFactory;
@@ -58,10 +55,6 @@ public class Mappet implements ModInitializer {
     private static MapFactory<Trigger, Integer> triggers;
 
     private static Dispatcher dispatcher;
-
-    public Mappet() {
-        BBSMod.events.register(this);
-    }
 
     @Override
     public void onInitialize() {
@@ -130,11 +123,6 @@ public class Mappet implements ModInitializer {
         });
 
         CommandRegistrationCallback.EVENT.register(MappetCommands::register);
-    }
-
-    @Subscribe
-    public void registerSourcePacks(RegisterSourcePacksEvent event) {
-        event.provider.register(new MappetInternalAssetsPack());
     }
 
     public static Link link(String path) {

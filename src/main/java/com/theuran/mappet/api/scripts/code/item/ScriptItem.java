@@ -13,7 +13,7 @@ public class ScriptItem {
     /**
      * Returns the Minecraft ItemStack associated with this script item stack
      * <pre>{@code
-     * c.getPlayer().getMainItemStack().getItem().getItemStack();
+     *  c.getPlayer().getMainItemStack().getItem().getItemStack();
      * }</pre>
      */
     public ItemStack getItemStack() {
@@ -24,7 +24,7 @@ public class ScriptItem {
      * Returns the Minecraft Item associated with this script item
      *
      * <pre>{@code
-     * c.getPlayer().getMainItemStack().getItem().getMinecraftItem();
+     *  c.getPlayer().getMainItemStack().getItem().getMinecraftItem();
      * }</pre>
      */
     public Item getMinecraftItem() {

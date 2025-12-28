@@ -26,6 +26,8 @@
   "mappet.scripts.run": "Run script",
   "mappet.scripts.side": "Change Side",
 
+  "mappet.scripts.documentation.title": "Documentation",
+
   "mappet.logger.title": "Logger",
 
   "mappet.ui.builder.title": "UI Builder",

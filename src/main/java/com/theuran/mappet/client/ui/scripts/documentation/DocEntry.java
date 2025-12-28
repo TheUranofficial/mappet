@@ -23,10 +23,14 @@ public abstract class DocEntry {
         /* Find first non-empty string */
         for (String string : strings) {
             if (string.trim().isEmpty()) {
-                first += 1;
+                first++;
             } else {
                 break;
             }
+        }
+
+        if (first >= strings.size()) {
+            return "";
         }
 
         /* Once first string is found, find the first string's indentation*/
@@ -82,9 +86,9 @@ public abstract class DocEntry {
                 line = line.replaceAll("<li> *", "\n- ");
                 line = line.replaceAll("</(b|i|s|code|ul|li)>", "§r");
                 line = line.replaceAll("</?(p|ul|li)>", "");
-                line = line.replaceAll("\\{@link +[^}]+\\.([^}]+)}", "§7$1§r");
-                line = line.replaceAll("\\{@link +([^}]*)#([^}]+)}", "§7$1§r.§7$2§r");
-                line = line.replaceAll("\\{@link ([^}]+)}", "§7$1§r");
+                line = line.replaceAll("\\{@link +[^}]+\\.([^}]+)}", "§6$1§r");
+                line = line.replaceAll("\\{@link +([^}]*)#([^}]+)}", "§6$1§r.§6$2§r");
+                line = line.replaceAll("\\{@link ([^}]+)}", "§6$1§r");
                 line = line.replaceAll("&lt;", "<");
                 line = line.replaceAll("&gt;", ">");
                 line = line.replaceAll("&amp;", "&");
@@ -123,6 +127,10 @@ public abstract class DocEntry {
 
     public List<DocEntry> getEntries() {
         return Collections.emptyList();
+    }
+
+    public DocEntry getEntry() {
+        return this;
     }
 
     public String getName() {

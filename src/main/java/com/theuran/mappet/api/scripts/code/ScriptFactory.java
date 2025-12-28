@@ -58,7 +58,7 @@ public class ScriptFactory {
      * Creates new Block State
      *
      * <pre>{@code
-     * mappet.createBlockState("minecraft:dirt");
+     *  mappet.createBlockState("minecraft:dirt");
      * }</pre>
      */
     public ScriptBlockState createBlockState(String blockId) {

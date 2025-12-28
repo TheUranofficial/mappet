@@ -22,6 +22,9 @@
     ],
     "client": [
       "com.theuran.mappet.client.MappetClient"
+    ],
+    "bbs-addon": [
+      "com.theuran.mappet.MappetAddon"
     ]
   },
   "mixins": [
@@ -36,9 +39,8 @@
     "minecraft": "~1.20.4",
     "java": ">=17",
     "fabric-api": "*",
-    "bbs": ">=1.7-1.20.4"
+    "bbs": ">=1.7.5-1.20.4"
   },
   "suggests": {
-    "another-mod": "*"
   }
 }
