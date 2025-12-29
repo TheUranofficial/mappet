@@ -2,14 +2,13 @@ package com.theuran.mappet.network.packets.scripts;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ServerPacketHandler;
+import com.theuran.mappet.network.core.ServerPacket;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import mchorse.bbs_mod.settings.values.numeric.ValueBoolean;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class ScriptsSavePacket extends AbstractPacket implements ServerPacketHandler {
+public class ScriptsSavePacket extends ServerPacket {
     private final ValueString script = new ValueString("script", "");
     private final ValueString content = new ValueString("content", "");
     private final ValueBoolean isServer = new ValueBoolean("isServer", true);

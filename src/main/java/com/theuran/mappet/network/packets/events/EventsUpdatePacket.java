@@ -3,8 +3,7 @@ package com.theuran.mappet.network.packets.events;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.ui.events.UIEventsOverlayPanel;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ClientPacketHandler;
+import com.theuran.mappet.network.core.ClientPacket;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EventsUpdatePacket extends AbstractPacket implements ClientPacketHandler {
+public class EventsUpdatePacket extends ClientPacket {
     private Map<EventType, Integer> events;
 
     public EventsUpdatePacket() {

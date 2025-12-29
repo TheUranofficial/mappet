@@ -1,7 +1,6 @@
 package com.theuran.mappet.network.packets.test;
 
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ClientPacketHandler;
+import com.theuran.mappet.network.core.ClientPacket;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,7 +8,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
 //Example packet for my networking system
-public class ExamplePacket extends AbstractPacket implements ClientPacketHandler {
+public class ExamplePacket extends ClientPacket {
     public ValueString message = new ValueString("string", "");
 
     public ExamplePacket() {

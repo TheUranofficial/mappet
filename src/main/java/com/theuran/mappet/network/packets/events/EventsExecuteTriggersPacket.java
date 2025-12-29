@@ -5,11 +5,9 @@ import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import com.theuran.mappet.network.core.CommonPacket;
 import com.theuran.mappet.utils.MappetByteBuffer;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ClientPacketHandler;
-import com.theuran.mappet.network.core.ServerPacketHandler;
-import com.theuran.mappet.utils.ValueEnum;
+import com.theuran.mappet.utils.ValueEventType;
 import mchorse.bbs_mod.data.DataStorageUtils;
 import mchorse.bbs_mod.data.types.MapType;
 import net.fabricmc.api.EnvType;
@@ -19,8 +17,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
-public class EventsExecuteTriggersPacket extends AbstractPacket implements ClientPacketHandler, ServerPacketHandler {
-    public ValueEnum<EventType> eventType = new ValueEnum<>("eventType", null);
+public class EventsExecuteTriggersPacket extends CommonPacket {
+    public ValueEventType eventType = new ValueEventType("eventType", null);
     public Trigger trigger;
 
     public ScriptEvent scriptEvent;

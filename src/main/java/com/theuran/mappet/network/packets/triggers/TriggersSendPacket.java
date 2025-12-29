@@ -4,12 +4,10 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.MappetClient;
+import com.theuran.mappet.network.core.CommonPacket;
 import com.theuran.mappet.utils.MappetByteBuffer;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ClientPacketHandler;
-import com.theuran.mappet.network.core.ServerPacketHandler;
-import com.theuran.mappet.utils.ValueEnum;
+import com.theuran.mappet.utils.ValueEventType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.network.PacketByteBuf;
@@ -18,8 +16,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.List;
 
-public class TriggersSendPacket extends AbstractPacket implements ClientPacketHandler, ServerPacketHandler {
-    private final ValueEnum<EventType> type = new ValueEnum<>("type", null);
+public class TriggersSendPacket extends CommonPacket {
+    private final ValueEventType type = new ValueEventType("type", null);
     private List<Trigger> triggers;
 
     public TriggersSendPacket() {

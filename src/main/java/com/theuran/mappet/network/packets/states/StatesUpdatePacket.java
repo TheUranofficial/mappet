@@ -4,9 +4,7 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.client.MappetClient;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ClientPacketHandler;
-import com.theuran.mappet.network.core.ServerPacketHandler;
+import com.theuran.mappet.network.core.CommonPacket;
 import mchorse.bbs_mod.data.DataStorageUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,7 +14,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Map;
 
-public class StatesUpdatePacket extends AbstractPacket implements ClientPacketHandler, ServerPacketHandler {
+public class StatesUpdatePacket extends CommonPacket {
     private Map<String, States> states;
 
     public StatesUpdatePacket() {

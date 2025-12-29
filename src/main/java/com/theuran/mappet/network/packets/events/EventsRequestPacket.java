@@ -3,15 +3,14 @@ package com.theuran.mappet.network.packets.events;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ServerPacketHandler;
+import com.theuran.mappet.network.core.ServerPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class EventsRequestPacket extends AbstractPacket implements ServerPacketHandler {
+public class EventsRequestPacket extends ServerPacket {
     @Override
     public void handle(MinecraftServer server, ServerPlayerEntity player) {
         Map<EventType, Integer> events = new HashMap<>();

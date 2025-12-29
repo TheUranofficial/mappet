@@ -3,14 +3,13 @@ package com.theuran.mappet.network.packets.triggers;
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ServerPacketHandler;
-import com.theuran.mappet.utils.ValueEnum;
+import com.theuran.mappet.network.core.ServerPacket;
+import com.theuran.mappet.utils.ValueEventType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class TriggersRequestPacket extends AbstractPacket implements ServerPacketHandler {
-    private final ValueEnum<EventType> type = new ValueEnum<>("type", null);
+public class TriggersRequestPacket extends ServerPacket {
+    private final ValueEventType type = new ValueEventType("type", null);
 
     public TriggersRequestPacket() {
         super();

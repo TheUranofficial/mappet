@@ -2,9 +2,7 @@ package com.theuran.mappet.network.packets.utils;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ClientPacketHandler;
-import com.theuran.mappet.network.core.ServerPacketHandler;
+import com.theuran.mappet.network.core.CommonPacket;
 import com.theuran.mappet.utils.ValueEnum;
 import com.theuran.mappet.utils.ValueType;
 import mchorse.bbs_mod.data.DataStorageUtils;
@@ -24,7 +22,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.function.Consumer;
 
-public class ManagerDataPacket extends AbstractPacket implements ClientPacketHandler, ServerPacketHandler {
+public class ManagerDataPacket extends CommonPacket {
     private final ValueInt callbackId = new ValueInt("callbackId", 0);
     private final ValueString manager = new ValueString("manager", "");
     private final ValueEnum<RepositoryOperation> operation = new ValueEnum<>("operation", null);

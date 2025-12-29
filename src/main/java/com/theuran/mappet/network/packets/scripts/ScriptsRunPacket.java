@@ -5,9 +5,7 @@ import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ClientPacketHandler;
-import com.theuran.mappet.network.core.ServerPacketHandler;
+import com.theuran.mappet.network.core.CommonPacket;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import mchorse.bbs_mod.settings.values.numeric.ValueBoolean;
 import net.fabricmc.api.EnvType;
@@ -17,7 +15,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
-public class ScriptsRunPacket extends AbstractPacket implements ServerPacketHandler, ClientPacketHandler {
+public class ScriptsRunPacket extends CommonPacket {
     private final ValueString script = new ValueString("script", "");
     private final ValueString function = new ValueString("function", "");
     private final ValueString content = new ValueString("content", "");

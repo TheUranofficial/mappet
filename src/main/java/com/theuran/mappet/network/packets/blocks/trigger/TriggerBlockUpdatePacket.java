@@ -2,9 +2,8 @@ package com.theuran.mappet.network.packets.blocks.trigger;
 
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
+import com.theuran.mappet.network.core.ServerPacket;
 import com.theuran.mappet.utils.MappetByteBuffer;
-import com.theuran.mappet.network.core.AbstractPacket;
-import com.theuran.mappet.network.core.ServerPacketHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.network.PacketByteBuf;
@@ -12,7 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
-public class TriggerBlockUpdatePacket extends AbstractPacket implements ServerPacketHandler {
+public class TriggerBlockUpdatePacket extends ServerPacket {
     private BlockPos blockPos;
     private ScriptVector pos1;
     private ScriptVector pos2;
