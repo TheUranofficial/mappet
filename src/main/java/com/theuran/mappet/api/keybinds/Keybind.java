@@ -2,40 +2,7 @@ package com.theuran.mappet.api.keybinds;
 
 import org.lwjgl.glfw.GLFW;
 
-public class Keybind {
-    private final String id;
-    private final String category;
-    private final int keycode;
-    private final Type type;
-    private final Modificator mod;
-
-    public Keybind(String id, String category, int keycode, Type type, Modificator mod) {
-        this.id = id;
-        this.category = category;
-        this.type = type;
-        this.keycode = keycode;
-        this.mod = mod;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getCategory() {
-        return this.category;
-    }
-
-    public int getKeycode() {
-        return this.keycode;
-    }
-
-    public Type getType() {
-        return this.type;
-    }
-
-    public Modificator getMod() {
-        return this.mod;
-    }
+public record Keybind(String id, String category, int keycode, Type type, Modificator mod) {
 
     public enum Type {
         RELEASED, PRESSED

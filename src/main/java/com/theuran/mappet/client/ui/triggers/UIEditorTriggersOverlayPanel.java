@@ -1,7 +1,7 @@
 package com.theuran.mappet.client.ui.triggers;
 
 import com.theuran.mappet.Mappet;
-import com.theuran.mappet.api.events.EventType;
+import com.theuran.mappet.api.triggers.RequestTrigger;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.network.Dispatcher;
@@ -20,12 +20,16 @@ import mchorse.bbs_mod.utils.colors.Colors;
 import java.util.List;
 
 public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> {
-    public List<Trigger> triggers;
-    public EventType type;
+    public RequestTrigger trigger;
 
-    public UIEditorTriggersOverlayPanel() {
+    public List<Trigger> triggers;
+    public RequestTrigger requestTrigger;
+    public String id;
+
+    public UIEditorTriggersOverlayPanel(RequestTrigger trigger) {
         super(UIMappetKeys.TRIGGERS_TITLE);
 
+        this.requestTrigger = trigger;
         this.list.sorting();
     }
 
@@ -75,16 +79,17 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
         }
     }
 
-    public void set(EventType type, List<Trigger> triggers) {
+    public void set(RequestTrigger requestTrigger, String id, List<Trigger> triggers) {
         this.list.setList(this.triggers = triggers);
-        this.type = type;
+        this.requestTrigger = requestTrigger;
+        this.id = id;
 
         this.pickItem(this.triggers.isEmpty() ? null : this.triggers.getFirst(), true);
     }
 
     public void save() {
         if (this.triggers != null) {
-            Dispatcher.sendToServer(new TriggersSendPacket(this.type, this.triggers));
+            Dispatcher.sendToServer(new TriggersSendPacket(this.requestTrigger, this.id, this.triggers));
         }
     }
 
@@ -93,6 +98,7 @@ public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> 
         super.onClose();
 
         this.save();
+        this.requestTrigger.update();
         Dispatcher.sendToServer(new EventsRequestPacket());
         this.triggers = null;
     }

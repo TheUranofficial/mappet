@@ -24,12 +24,24 @@ public class TriggerRenderer {
 
             if (client.getDebugHud().shouldShowDebugHud() && client.interactionManager.getCurrentGameMode().isCreative()) {
                 renderDebugBoxes(context);
-            } else if (currentMenu instanceof UITriggerBlock uiTriggerBlock) {
+            } else if (currentMenu instanceof UITriggerBlock) {
                 Camera camera = context.camera();
-
-                renderHitboxAtPos(context.matrixStack(), uiTriggerBlock.blockPos, camera, client.world);
+                renderAllHitboxes(context.matrixStack(), camera, client.world);
             }
         });
+    }
+
+    private static void renderAllHitboxes(MatrixStack matrices, Camera camera, World world) {
+        BlockPos playerPos = camera.getBlockPos();
+        int radius = 10;
+
+        BlockPos.stream(playerPos.add(-radius, -radius, -radius),
+                        playerPos.add(radius, radius, radius))
+                .forEach(pos -> {
+                    if (world.getBlockState(pos).isOf(MappetBlocks.TRIGGER_BLOCK)) {
+                        renderHitboxAtPos(matrices, pos, camera, world);
+                    }
+                });
     }
 
     private static void renderDebugBoxes(WorldRenderContext context) {
@@ -37,7 +49,7 @@ public class TriggerRenderer {
         Camera camera = context.camera();
         BlockPos playerPos = camera.getBlockPos();
 
-        int radius = 10;
+        int radius = 15;
         BlockPos.stream(playerPos.add(-radius, -radius, -radius),
                         playerPos.add(radius, radius, radius))
                 .forEach(pos -> {
@@ -65,26 +77,25 @@ public class TriggerRenderer {
 
     private static void renderHitboxAtPos(MatrixStack matrices, BlockPos pos, Camera camera, World world) {
         BlockState state = world.getBlockState(pos);
-
         VoxelShape hitbox = state.getOutlineShape(world, pos);
-
-        matrices.push();
 
         for (Box box : hitbox.getBoundingBoxes()) {
             matrices.push();
 
-            matrices.translate(pos.getX() - camera.getPos().x,
+            matrices.translate(
+                    pos.getX() - camera.getPos().x,
                     pos.getY() - camera.getPos().y,
-                    pos.getZ() - camera.getPos().z);
+                    pos.getZ() - camera.getPos().z
+            );
 
             Draw.renderBox(matrices,
                     (float) box.minX, (float) box.minY, (float) box.minZ,
-                    (float) box.maxX*0.7, (float) box.maxY*0.7, (float) box.maxZ*0.7,
+                    (float) (box.maxX - box.minX),
+                    (float) (box.maxY - box.minY),
+                    (float) (box.maxZ - box.minZ),
                     1.0F, 0.0F, 0.0F, 0.3F);
 
             matrices.pop();
         }
-
-        matrices.pop();
     }
 }

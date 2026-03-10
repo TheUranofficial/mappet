@@ -1,5 +1,8 @@
 package com.theuran.mappet.client.ai;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
@@ -96,7 +99,7 @@ public class AiMain {
                 try (Scanner scanner = new Scanner(conn.getErrorStream(), StandardCharsets.UTF_8)) {
                     while (scanner.hasNextLine()) errorResponse.append(scanner.nextLine());
                 }
-                return "⚠ Ошибка API " + responseCode + ": " + errorResponse;
+                return "⚠ Ошибка API " + responseCode + ": " + new Gson().fromJson(errorResponse.toString(), JsonObject.class).get("detail");
             }
 
             StringBuilder response = new StringBuilder();

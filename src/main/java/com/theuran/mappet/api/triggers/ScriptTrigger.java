@@ -13,7 +13,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 public class ScriptTrigger extends StringTrigger {
-    public ValueString function = new ValueString("function", "");
+    public ValueString function = new ValueString("function", "main");
 
     public ScriptTrigger() {
         super();

@@ -4,13 +4,13 @@ import com.theuran.mappet.network.core.AbstractDispatcher;
 import com.theuran.mappet.network.packets.events.EventsExecuteTriggersPacket;
 import com.theuran.mappet.network.packets.events.EventsRequestPacket;
 import com.theuran.mappet.network.packets.events.EventsUpdatePacket;
-import com.theuran.mappet.network.packets.keybinds.KeybindsExecuteTriggersPacket;
+import com.theuran.mappet.network.packets.keybinds.*;
 import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
 import com.theuran.mappet.network.packets.scripts.ScriptsSavePacket;
 import com.theuran.mappet.network.packets.scripts.ScriptsSendPacket;
 import com.theuran.mappet.network.packets.states.StatesRequestPacket;
 import com.theuran.mappet.network.packets.states.StatesUpdatePacket;
-import com.theuran.mappet.network.packets.triggers.TriggersRequestPacket;
+import com.theuran.mappet.network.packets.triggers.TriggersRequestC2SPacket;
 import com.theuran.mappet.network.packets.triggers.TriggersSendPacket;
 import com.theuran.mappet.network.packets.utils.HandshakeS2CPacket;
 import com.theuran.mappet.network.packets.utils.ManagerDataPacket;
@@ -44,7 +44,7 @@ public class Dispatcher extends AbstractDispatcher {
         this.register(EventsUpdatePacket.class);
 
         //Triggers
-        this.register(TriggersRequestPacket.class);
+        this.register(TriggersRequestC2SPacket.class);
         this.register(TriggersSendPacket.class);
 
         //Scripts
@@ -54,5 +54,9 @@ public class Dispatcher extends AbstractDispatcher {
         
         //Keybinds
         this.register(KeybindsExecuteTriggersPacket.class);
+        this.register(KeybindsRequestPacket.class);
+        this.register(KeybindsUpdatePacket.class);
+        this.register(KeybindsSetPacket.class);
+        this.register(KeybindsSyncPacket.class);
     }
 }

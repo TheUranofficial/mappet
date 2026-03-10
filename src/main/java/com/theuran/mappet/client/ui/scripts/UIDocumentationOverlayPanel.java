@@ -52,7 +52,7 @@ public class UIDocumentationOverlayPanel extends UIOverlayPanel {
         server.doc = docs.getPackage("com.theuran.mappet.api.scripts.code").doc;
         server.parent = topPackage;
         client.name = "Client API";
-        client.doc = docs.getPackage("com.theuran.mappet.client.api.scripts.code").doc;
+        client.doc = docs.getPackage("com.theuran.mappet.client.api.scripts.code") != null ? docs.getPackage("com.theuran.mappet.client.api.scripts.code").doc : "";
         client.parent = topPackage;
 
         for (DocClass docClass : docs.classes) {

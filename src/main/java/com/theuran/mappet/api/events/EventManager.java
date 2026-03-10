@@ -5,6 +5,7 @@ import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.utils.BaseFileManager;
+import com.theuran.mappet.utils.HasTriggers;
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.ListType;
 import mchorse.bbs_mod.data.types.MapType;

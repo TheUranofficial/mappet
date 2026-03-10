@@ -7,6 +7,7 @@ import com.theuran.mappet.client.ui.states.UIStatesOverlayPanel;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.events.EventsRequestPacket;
+import com.theuran.mappet.network.packets.keybinds.KeybindsRequestPacket;
 import com.theuran.mappet.network.packets.states.StatesRequestPacket;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
@@ -45,6 +46,7 @@ public class UIMappetDashboard extends UIDashboard {
         this.keybindsPanel = new UIKeybindsOverlayPanel();
         this.keybinds = new UIIcon(MappetIcons.KEYBINDS, icon -> {
             UIOverlay.addOverlayRight(this.context, this.keybindsPanel, 240);
+            Dispatcher.sendToServer(new KeybindsRequestPacket());
         });
         this.keybinds.tooltip(UIMappetKeys.KEYBINDS_TITLE, Direction.TOP);
 

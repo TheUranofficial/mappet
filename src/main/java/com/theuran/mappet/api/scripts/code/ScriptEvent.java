@@ -23,7 +23,7 @@ public class ScriptEvent {
 
     private Map<String, Object> values = new HashMap<>();
 
-    private ActionResult resultType = ActionResult.PASS;
+    private ActionResult resultType = ActionResult.SUCCESS;
 
     public ScriptEvent(String script, String function, ScriptEntity<?> subject, ScriptEntity<?> object, ScriptWorld world, ScriptServer server) {
         this.script = script;

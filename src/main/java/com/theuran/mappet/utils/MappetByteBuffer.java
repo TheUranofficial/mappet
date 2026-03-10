@@ -1,6 +1,7 @@
 package com.theuran.mappet.utils;
 
 import com.theuran.mappet.Mappet;
+import com.theuran.mappet.api.keybinds.Keybind;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
@@ -18,6 +19,24 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public class MappetByteBuffer {
+    public static void writeKeybind(PacketByteBuf buf, Keybind keybind) {
+        buf.writeString(keybind.id());
+        buf.writeString(keybind.category());
+        buf.writeInt(keybind.keycode());
+        buf.writeString(keybind.type().name());
+        buf.writeString(keybind.mod().name());
+    }
+
+    public static Keybind readKeybind(PacketByteBuf buf) {
+        return new Keybind(
+                buf.readString(),
+                buf.readString(),
+                buf.readInt(),
+                Keybind.Type.valueOf(buf.readString()),
+                Keybind.Modificator.valueOf(buf.readString())
+        );
+    }
+
     public static void writeScript(PacketByteBuf buf, Script script) {
         buf.writeString(script.getId());
         buf.writeString(script.getContent());

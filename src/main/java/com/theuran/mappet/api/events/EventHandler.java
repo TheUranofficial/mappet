@@ -14,6 +14,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -31,7 +32,7 @@ public class EventHandler {
             if (Mappet.getEvents().noTriggersInEvent(EventType.ENTITY_DAMAGE))
                 return true;
 
-            ScriptEvent scriptEvent = ScriptEvent.create(damageSource.getAttacker(), damageSource.getSource(), (ServerWorld) damageSource.getAttacker().getWorld(), damageSource.getAttacker().getServer());
+            ScriptEvent scriptEvent = ScriptEvent.create(damageSource.getAttacker(), damageSource.getSource(), (ServerWorld) livingEntity.getWorld(), livingEntity.getServer());
 
             scriptEvent.setValue("damage", damage);
             scriptEvent.setValue("damageType", damageSource.getName());

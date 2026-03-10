@@ -15,19 +15,19 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class KeybindManager extends BaseFileManager {
-    private final Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
+    public final Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
 
     public KeybindManager(Supplier<File> file) {
         super(file);
     }
 
-    public List<Keybind> getKeybinds() {
+    public List<Keybind> getKeybindings() {
         return new ArrayList<>(this.keybinds.keySet());
     }
 
     public Keybind getKeybind(String keybindId) {
-        for (Keybind keybind : this.getKeybinds()) {
-            if (keybind.getId().equals(keybindId)) {
+        for (Keybind keybind : this.getKeybindings()) {
+            if (keybind.id().equals(keybindId)) {
                 return keybind;
             }
         }
@@ -38,9 +38,21 @@ public class KeybindManager extends BaseFileManager {
         this.keybinds.put(keybind, new ArrayList<>());
     }
 
-    public List<Trigger> getTriggers(String name) {
+    public void setKeybind(String id, Keybind keybind) {
         for (Map.Entry<Keybind, List<Trigger>> entry : this.keybinds.entrySet()) {
-            if (entry.getKey().getId().equals(name)) {
+            if (entry.getKey().id().equals(id)) {
+                this.keybinds.remove(entry.getKey());
+                this.keybinds.put(keybind, entry.getValue());
+                return;
+            }
+        }
+
+        this.addKeybind(keybind);
+    }
+
+    public List<Trigger> getTriggers(String id) {
+        for (Map.Entry<Keybind, List<Trigger>> entry : this.keybinds.entrySet()) {
+            if (entry.getKey().id().equals(id)) {
                 return entry.getValue();
             }
         }
@@ -51,10 +63,10 @@ public class KeybindManager extends BaseFileManager {
     public void toData(MapType mapType) {
         this.keybinds.forEach((keybind, triggers) -> {
             MapType keybindMapType = new MapType();
-            keybindMapType.putString("category", keybind.getCategory());
-            keybindMapType.putInt("keycode", keybind.getKeycode());
-            keybindMapType.putString("type", keybind.getType().name());
-            keybindMapType.putString("mod", keybind.getMod().name());
+            keybindMapType.putString("category", keybind.category());
+            keybindMapType.putInt("keycode", keybind.keycode());
+            keybindMapType.putString("type", keybind.type().name());
+            keybindMapType.putString("mod", keybind.mod().name());
 
             ListType triggerList = new ListType();
 
@@ -64,7 +76,7 @@ public class KeybindManager extends BaseFileManager {
 
             keybindMapType.put("triggers", triggerList);
 
-            mapType.put(keybind.getId(), keybindMapType);
+            mapType.put(keybind.id(), keybindMapType);
         });
     }
 

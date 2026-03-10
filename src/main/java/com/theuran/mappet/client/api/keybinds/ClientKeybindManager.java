@@ -12,7 +12,7 @@ import net.minecraft.client.util.InputUtil;
 import java.util.*;
 
 public class ClientKeybindManager {
-    Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
+    public Map<Keybind, List<Trigger>> keybinds = new HashMap<>();
 
     public ClientKeybindManager() {
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
@@ -21,19 +21,19 @@ public class ClientKeybindManager {
             for (Keybind keybinding : this.getKeybindings()) {
                 boolean keyPressed = false;
 
-                boolean isPressedModificator = keybinding.getMod().getKeycode() == -1;
+                boolean isPressedModificator = keybinding.mod().getKeycode() == -1;
 
                 if (!isPressedModificator) {
-                    isPressedModificator = InputUtil.isKeyPressed(client.getWindow().getHandle(), keybinding.getMod().getKeycode());
+                    isPressedModificator = InputUtil.isKeyPressed(client.getWindow().getHandle(), keybinding.mod().getKeycode());
                 }
 
                 if (isPressedModificator) {
-                    if (keybinding.getType() == Keybind.Type.PRESSED) {
-                        if (InputUtils.wasKeyJustPressed(keybinding.getKeycode())) {
+                    if (keybinding.type() == Keybind.Type.PRESSED) {
+                        if (InputUtils.wasKeyJustPressed(keybinding.keycode())) {
                             keyPressed = true;
                         }
-                    } else if (keybinding.getType() == Keybind.Type.RELEASED) {
-                        if (InputUtils.isKeyReleased(keybinding.getKeycode())) {
+                    } else if (keybinding.type() == Keybind.Type.RELEASED) {
+                        if (InputUtils.isKeyReleased(keybinding.keycode())) {
                             keyPressed = true;
                         }
                     }
@@ -41,7 +41,7 @@ public class ClientKeybindManager {
                 }
 
                 if (keyPressed) {
-                    keyId = keybinding.getId();
+                    keyId = keybinding.id();
                     break;
                 }
             }
@@ -67,12 +67,29 @@ public class ClientKeybindManager {
         return this.keybinds.keySet();
     }
 
+    public Keybind getKeybind(String keybindId) {
+        for (Keybind keybind : this.getKeybindings()) {
+            if (keybind.id().equals(keybindId)) {
+                return keybind;
+            }
+        }
+        return null;
+    }
+
     public List<Trigger> getTriggers(String id) {
         for (Map.Entry<Keybind, List<Trigger>> entry : this.keybinds.entrySet()) {
-            if (entry.getKey().getId().equals(id)) {
+            if (entry.getKey().id().equals(id)) {
                 return entry.getValue();
             }
         }
         return new ArrayList<>();
+    }
+
+    public List<Trigger> getTriggers(Keybind keybind) {
+        return this.getTriggers(keybind.id());
+    }
+
+    public void addKeybind(Keybind keybind) {
+        this.keybinds.put(keybind, new ArrayList<>());
     }
 }
