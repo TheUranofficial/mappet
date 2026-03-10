@@ -121,6 +121,8 @@ public class Mappet implements ModInitializer {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             Dispatcher.sendTo(new HandshakeS2CPacket(), handler.getPlayer());
             Dispatcher.sendTo(new KeybindsSyncPacket(Mappet.getKeybinds().keybinds), handler.getPlayer());
+
+
             Mappet.getScripts().sendClientScripts(handler.getPlayer());
         });
 
