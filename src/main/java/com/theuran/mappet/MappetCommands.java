@@ -11,13 +11,17 @@ import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.logger.LogType;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.api.states.States;
+import com.theuran.mappet.network.Dispatcher;
+import com.theuran.mappet.network.packets.huds.HUDsSetupPacket;
 import com.theuran.mappet.utils.BooleanUtils;
 import mchorse.bbs_mod.data.types.BaseType;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
 import java.util.Date;
@@ -30,45 +34,43 @@ public class MappetCommands {
 
         registerStatesCommands(mappet, environment, hasPermissions);
         registerScriptCommands(mappet, environment, hasPermissions);
+        registerHudCommands(mappet, environment, hasPermissions);
 
         dispatcher.register(mappet);
     }
 
-    private static void registerScriptCommands(LiteralArgumentBuilder<ServerCommandSource> mappet, CommandManager.RegistrationEnvironment environment, Predicate<ServerCommandSource> hasPermissions) {
-        mappet.then(CommandManager.literal("eval")
-                .requires(hasPermissions)
-                .then(CommandManager.argument("code", StringArgumentType.greedyString())
+    private static void registerHudCommands(LiteralArgumentBuilder<ServerCommandSource> mappet, CommandManager.RegistrationEnvironment environment, Predicate<ServerCommandSource> hasPermissions) {
+        mappet.then(CommandManager.literal("hud")
+            .requires(hasPermissions)
+            .then(CommandManager.literal("setup")
+                .then(CommandManager.argument("id", StringArgumentType.word())
+                    .then(CommandManager.argument("player", EntityArgumentType.player())
                         .executes(context -> {
-                            ServerCommandSource source = context.getSource();
-                            String code = StringArgumentType.getString(context, "code");
+                            String id = StringArgumentType.getString(context, "id");
+                            ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
 
-                            ScriptEvent properties = ScriptEvent.create("~", "", source.getEntity(), null, source.getWorld(), source.getServer());
-
-                            try {
-                                Mappet.getScripts().eval(code, properties);
-                            } catch (JavetException e) {
-                                String message = e.getLocalizedMessage();
-
-                                source.sendFeedback(() -> Text.of(message), false);
-                            }
+                            Dispatcher.sendTo(new HUDsSetupPacket(id), player);
 
                             return 1;
-                        }
+                        })
                     )
                 )
+            )
         );
+    }
 
-        mappet.then(CommandManager.literal("script")
-                .requires(hasPermissions)
-                .then(CommandManager.argument("name", StringArgumentType.greedyString())
-                    .executes(context -> {
+    private static void registerScriptCommands(LiteralArgumentBuilder<ServerCommandSource> mappet, CommandManager.RegistrationEnvironment environment, Predicate<ServerCommandSource> hasPermissions) {
+        mappet.then(CommandManager.literal("eval")
+            .requires(hasPermissions)
+            .then(CommandManager.argument("code", StringArgumentType.greedyString())
+                .executes(context -> {
                         ServerCommandSource source = context.getSource();
-                        String scriptName = StringArgumentType.getString(context, "name");
+                        String code = StringArgumentType.getString(context, "code");
 
-                        ScriptEvent properties = ScriptEvent.create(scriptName, "main", source.getEntity(), null, source.getWorld(), source.getServer());
+                        ScriptEvent properties = ScriptEvent.create("~", "", source.getEntity(), null, source.getWorld(), source.getServer());
 
                         try {
-                            Mappet.getScripts().execute(properties);
+                            Mappet.getScripts().eval(code, properties);
                         } catch (JavetException e) {
                             String message = e.getLocalizedMessage();
 
@@ -76,8 +78,31 @@ public class MappetCommands {
                         }
 
                         return 1;
-                    })
+                    }
                 )
+            )
+        );
+
+        mappet.then(CommandManager.literal("script")
+            .requires(hasPermissions)
+            .then(CommandManager.argument("name", StringArgumentType.greedyString())
+                .executes(context -> {
+                    ServerCommandSource source = context.getSource();
+                    String scriptName = StringArgumentType.getString(context, "name");
+
+                    ScriptEvent properties = ScriptEvent.create(scriptName, "main", source.getEntity(), null, source.getWorld(), source.getServer());
+
+                    try {
+                        Mappet.getScripts().execute(properties);
+                    } catch (JavetException e) {
+                        String message = e.getLocalizedMessage();
+
+                        source.sendFeedback(() -> Text.of(message), false);
+                    }
+
+                    return 1;
+                })
+            )
         );
     }
 
@@ -114,23 +139,23 @@ public class MappetCommands {
         });
 
         states.then(
-                player.then(
-                        set.then(
-                                setKey.then(
-                                        value.executes(MappetCommands::statesSetCommand)
-                                )
-                        )
-                ).then(
-                        get.then(
-                                getKey.executes(MappetCommands::statesGetCommand)
-                        )
+            player.then(
+                set.then(
+                    setKey.then(
+                        value.executes(MappetCommands::statesSetCommand)
+                    )
                 )
+            ).then(
+                get.then(
+                    getKey.executes(MappetCommands::statesGetCommand)
+                )
+            )
         ).then(
-                server.then(
-                        set
-                ).then(
-                        get
-                )
+            server.then(
+                set
+            ).then(
+                get
+            )
         );
 
         mappet.then(states.requires(hasPermissions));
@@ -155,7 +180,7 @@ public class MappetCommands {
         try {
             String value = StringArgumentType.getString(context, "value");
             States states = context.getInput().contains("~") ? Mappet.getStates().get() : ((IStatesProvider) EntityArgumentType.getPlayer(context, "player")).getStates();
-            String key =  StringArgumentType.getString(context, "key");
+            String key = StringArgumentType.getString(context, "key");
 
             try {
                 states.setNumber(key, Double.parseDouble(value));

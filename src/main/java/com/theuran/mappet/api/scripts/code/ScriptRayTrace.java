@@ -8,6 +8,7 @@ import net.minecraft.util.hit.HitResult;
 /**
  * Docs for rayTrace bruh.
  *
+ * <p>Test description yo.</p>
  * <pre>{@code
  *    const rayTrace = c.getPlayer().rayTraceBlock(5, false);
  *

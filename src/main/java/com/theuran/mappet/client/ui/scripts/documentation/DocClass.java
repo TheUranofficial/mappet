@@ -2,10 +2,13 @@ package com.theuran.mappet.client.ui.scripts.documentation;
 
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class DocClass extends DocEntry {
     public List<DocMethod> methods = new ArrayList<>();
 

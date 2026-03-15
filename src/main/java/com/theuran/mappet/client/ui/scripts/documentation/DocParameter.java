@@ -1,7 +1,10 @@
 package com.theuran.mappet.client.ui.scripts.documentation;
 
 import mchorse.bbs_mod.data.types.MapType;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class DocParameter extends DocEntry {
     private String type = "";
 

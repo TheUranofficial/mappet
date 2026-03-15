@@ -7,9 +7,12 @@ import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
 import mchorse.bbs_mod.ui.utils.UI;
 import mchorse.bbs_mod.utils.IOUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class UIDocumentationOverlayPanel extends UIOverlayPanel {
     private static Docs docs;
     private static DocEntry top;

@@ -4,6 +4,8 @@ import com.theuran.mappet.network.core.AbstractDispatcher;
 import com.theuran.mappet.network.packets.events.EventsExecuteTriggersPacket;
 import com.theuran.mappet.network.packets.events.EventsRequestPacket;
 import com.theuran.mappet.network.packets.events.EventsUpdatePacket;
+import com.theuran.mappet.network.packets.huds.HUDsSetupPacket;
+import com.theuran.mappet.network.packets.huds.HUDsSyncPacket;
 import com.theuran.mappet.network.packets.keybinds.*;
 import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
 import com.theuran.mappet.network.packets.scripts.ScriptsSavePacket;
@@ -58,5 +60,9 @@ public class Dispatcher extends AbstractDispatcher {
         this.register(KeybindsUpdatePacket.class);
         this.register(KeybindsSetPacket.class);
         this.register(KeybindsSyncPacket.class);
+
+        //Huds
+        this.register(HUDsSetupPacket.class);
+        this.register(HUDsSyncPacket.class);
     }
 }

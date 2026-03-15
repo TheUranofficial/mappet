@@ -4,12 +4,15 @@ import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
 import mchorse.bbs_mod.ui.framework.elements.utils.UIText;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public abstract class DocEntry {
     public DocEntry parent;
 
@@ -65,7 +68,7 @@ public abstract class DocEntry {
     public static void process(String doc, UIScrollView target) {
         String[] splits = doc.split("\n{2,}");
         boolean parsing = false;
-        StringBuilder code = new StringBuilder();
+        String code = "";
 
         for (String line : splits) {
             if (line.trim().startsWith("<pre>{@code")) {
@@ -74,7 +77,7 @@ public abstract class DocEntry {
             }
 
             if (parsing) {
-                code.append("\n\n").append(line);
+                code += "\n\n" + line;
             } else {
                 boolean p = line.trim().startsWith("<p>");
 
@@ -104,7 +107,7 @@ public abstract class DocEntry {
 
             if (line.trim().endsWith("}</pre>")) {
                 UIScriptEditor editor = new UIScriptEditor(null);
-                String text = processCode(code.toString()).replaceAll("§", "\\\\u00A7");
+                String text = processCode(code).replaceAll("§", "\\\\u00A7");
 
                 editor.setText(text);
                 editor.background().h(editor.getLines().size() * 12 + 20);
@@ -116,7 +119,7 @@ public abstract class DocEntry {
                 target.add(editor);
 
                 parsing = false;
-                code = new StringBuilder();
+                code = "";
             }
         }
     }
