@@ -2,17 +2,22 @@ package com.theuran.mappet.block.blocks;
 
 import com.mojang.serialization.MapCodec;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
+import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.client.ui.blocks.trigger.UITriggerBlock;
+import mchorse.bbs_mod.BBSMod;
 import mchorse.bbs_mod.ui.framework.UIScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -20,6 +25,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -27,6 +33,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class TriggerBlock extends BlockWithEntity implements Waterloggable {
     public static final BooleanProperty COLLISION = BooleanProperty.of("collision");
+
+    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> validateTicker(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+        return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
+    }
 
     public TriggerBlock() {
         super(Settings.create().nonOpaque().noCollision());
@@ -102,6 +112,10 @@ public class TriggerBlock extends BlockWithEntity implements Waterloggable {
         return this.getDefaultState()
                 .with(COLLISION, true)
                 .with(Properties.WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).isOf(Fluids.WATER));
+    }
+
+    public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return world.isClient() ? validateTicker(type, MappetBlockEntities.TRIGGER_BLOCK, (theWorld, blockPos, blockState, blockEntity) -> blockEntity.tick(theWorld, blockPos, blockState)) : null;
     }
 
     @Override

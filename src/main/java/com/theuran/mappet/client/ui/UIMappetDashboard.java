@@ -1,5 +1,6 @@
 package com.theuran.mappet.client.ui;
 
+import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.ui.events.UIEventsOverlayPanel;
 import com.theuran.mappet.client.ui.keybinds.UIKeybindsOverlayPanel;
 import com.theuran.mappet.client.ui.panels.*;
@@ -10,6 +11,7 @@ import com.theuran.mappet.network.packets.events.EventsRequestPacket;
 import com.theuran.mappet.network.packets.keybinds.KeybindsRequestPacket;
 import com.theuran.mappet.network.packets.states.StatesRequestPacket;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
+import mchorse.bbs_mod.ui.framework.UIScreen;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
@@ -59,5 +61,6 @@ public class UIMappetDashboard extends UIDashboard {
         this.getPanels().registerPanel(new UIScriptPanel(this), UIMappetKeys.SCRIPTS_TITLE, Icons.PROPERTIES);
         this.getPanels().registerPanel(new UIHUDScenePanel(this), UIMappetKeys.HUD_SCENE_TITLE, Icons.FULLSCREEN);
         this.getPanels().registerPanel(new UIBuilderPanel(this), UIMappetKeys.UI_BUILDER_TITLE, MappetIcons.UI_BUILDER);
+        this.getPanels().registerPanel(new UITriggerBlockPanel(this), UIMappetKeys.UI_BUILDER_TITLE, MappetIcons.API_BBS_TRANSFORM);
     }
 }

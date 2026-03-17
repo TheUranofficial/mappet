@@ -11,10 +11,12 @@ import com.theuran.mappet.api.localization.LocalizationManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
 import com.theuran.mappet.api.scripts.logger.LoggerManager;
 import com.theuran.mappet.api.states.StatesManager;
+import com.theuran.mappet.api.triggerBlocks.TriggerBlocksManager;
 import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.MappetBlocks;
+import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.client.ai.AiMain;
 import com.theuran.mappet.item.MappetItemGroups;
 import com.theuran.mappet.item.MappetItems;
@@ -29,9 +31,14 @@ import mchorse.bbs_mod.utils.factory.MapFactory;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.WorldSavePath;
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 
 import java.io.File;
@@ -58,6 +65,7 @@ public class Mappet implements ModInitializer {
     private static KeybindManager keybinds;
     private static LocalizationManager localizations;
     private static ExecutableManager executables;
+    private static TriggerBlocksManager triggerBlocks;
 
     private static MapFactory<Trigger, Integer> triggers;
 
@@ -88,6 +96,7 @@ public class Mappet implements ModInitializer {
         localizations = new LocalizationManager(() -> new File(mappetFolder, "localization.json"));
         logger = new LoggerManager();
         executables = new ExecutableManager();
+        triggerBlocks = new TriggerBlocksManager();
 
         triggers = new MapFactory<>();
         triggers
@@ -192,6 +201,10 @@ public class Mappet implements ModInitializer {
 
     public static LocalizationManager getLocalizations() {
         return localizations;
+    }
+
+    public static TriggerBlocksManager getTriggerBlocks() {
+        return triggerBlocks;
     }
 
     public static MapFactory<Trigger, Integer> getTriggers() {

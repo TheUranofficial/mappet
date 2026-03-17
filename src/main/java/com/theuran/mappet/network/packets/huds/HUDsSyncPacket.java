@@ -32,7 +32,7 @@ public class HUDsSyncPacket extends ClientPacket {
     @Override
     @Environment(EnvType.CLIENT)
     public void handleClient() {
-        MappetClient.getHuds().huds.clear();
-        MappetClient.getHuds().huds.putAll(this.hudScenes);
+        //MappetClient.getHuds().huds.clear();
+        //MappetClient.getHuds().huds.putAll(this.hudScenes);
     }
 }
