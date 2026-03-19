@@ -22,8 +22,8 @@ public class HUDsSetupPacket extends ClientPacket {
     @Override
     @Environment(EnvType.CLIENT)
     public void handleClient() {
-        HUDScene scene = MappetClient.getHuds().huds.get(this.id.get());
+        //HUDScene scene = MappetClient.getHuds().huds.get(this.id.get());
 
-        MappetClient.getHandler().stage.scenes.put(this.id.get(), scene);
+        //MappetClient.getHandler().stage.scenes.put(this.id.get(), scene);
     }
 }

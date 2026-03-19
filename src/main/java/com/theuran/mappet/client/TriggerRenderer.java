@@ -20,28 +20,11 @@ public class TriggerRenderer {
     public static void init() {
         WorldRenderEvents.END.register((context) -> {
             MinecraftClient client = MinecraftClient.getInstance();
-            UIBaseMenu currentMenu = UIScreen.getCurrentMenu();
 
             if (client.getDebugHud().shouldShowDebugHud() && client.interactionManager.getCurrentGameMode().isCreative()) {
                 renderDebugBoxes(context);
-            } else if (currentMenu instanceof UITriggerBlock) {
-                Camera camera = context.camera();
-                renderAllHitboxes(context.matrixStack(), camera, client.world);
             }
         });
-    }
-
-    private static void renderAllHitboxes(MatrixStack matrices, Camera camera, World world) {
-        BlockPos playerPos = camera.getBlockPos();
-        int radius = 10;
-
-        BlockPos.stream(playerPos.add(-radius, -radius, -radius),
-                        playerPos.add(radius, radius, radius))
-                .forEach(pos -> {
-                    if (world.getBlockState(pos).isOf(MappetBlocks.TRIGGER_BLOCK)) {
-                        renderHitboxAtPos(matrices, pos, camera, world);
-                    }
-                });
     }
 
     private static void renderDebugBoxes(WorldRenderContext context) {
@@ -54,7 +37,7 @@ public class TriggerRenderer {
                         playerPos.add(radius, radius, radius))
                 .forEach(pos -> {
                     if (shouldRenderDebugBox(client.world, pos)) {
-                        renderBoxAtPos(context.matrixStack(), pos, camera);
+                        renderBoxAtPos(context.matrixStack(), pos, camera, client.world);
                     }
                 });
     }
@@ -63,21 +46,10 @@ public class TriggerRenderer {
         return world.getBlockState(pos).isOf(MappetBlocks.TRIGGER_BLOCK);
     }
 
-    private static void renderBoxAtPos(MatrixStack matrices, BlockPos pos, Camera camera) {
-        matrices.push();
-
-        matrices.translate(pos.getX() - camera.getPos().x,
-                pos.getY() - camera.getPos().y,
-                pos.getZ() - camera.getPos().z);
-
-        Draw.renderBox(matrices, 0, 0, 0, 1, 1, 1, 0.8F, 0.8F, 0F, 0.3F);
-
-        matrices.pop();
-    }
-
-    private static void renderHitboxAtPos(MatrixStack matrices, BlockPos pos, Camera camera, World world) {
+    private static void renderBoxAtPos(MatrixStack matrices, BlockPos pos, Camera camera, World world) {
         BlockState state = world.getBlockState(pos);
         VoxelShape hitbox = state.getOutlineShape(world, pos);
+        matrices.push();
 
         for (Box box : hitbox.getBoundingBoxes()) {
             matrices.push();
@@ -97,5 +69,7 @@ public class TriggerRenderer {
 
             matrices.pop();
         }
+
+        matrices.pop();
     }
 }

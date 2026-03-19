@@ -83,9 +83,9 @@ public class UITriggerBlock extends UIBaseMenu {
 
     @Override
     public void onClose(UIBaseMenu nextMenu) {
-        Dispatcher.sendToServer(new TriggerBlockUpdatePacket(this.blockPos,
-                new ScriptVector((int) this.transform.sx.getValue(), (int) this.transform.sy.getValue(), (int) this.transform.sz.getValue()),
-                new ScriptVector((int) this.transform.s2x.getValue(), (int) this.transform.s2y.getValue(), (int) this.transform.s2z.getValue()))
-        );
+//        Dispatcher.sendToServer(new TriggerBlockUpdatePacket(this.blockPos,
+//                new ScriptVector((int) this.transform.sx.getValue(), (int) this.transform.sy.getValue(), (int) this.transform.sz.getValue()),
+//                new ScriptVector((int) this.transform.s2x.getValue(), (int) this.transform.s2y.getValue(), (int) this.transform.s2z.getValue()))
+//        );
     }
 }

@@ -84,6 +84,10 @@ public class ScriptVector {
                 this.z / length);
     }
 
+    public boolean equals(ScriptVector scriptVector) {
+        return this.x == scriptVector.x && this.y == scriptVector.y && this.z == scriptVector.z;
+    }
+
     public BlockPos toBlockPos() {
         return new BlockPos((int) this.x, (int) this.y, (int) this.z);
     }

@@ -212,13 +212,9 @@ public class UIMappetTransform extends UIElement {
 
     }
 
-    ;
-
     public void setS2(Axis axis, double x, double y, double z) {
 
     }
-
-    ;
 
     private void copyTransformations() {
         ListType list = new ListType();

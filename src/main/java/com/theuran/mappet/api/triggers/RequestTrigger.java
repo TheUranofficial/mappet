@@ -2,16 +2,22 @@ package com.theuran.mappet.api.triggers;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
+import com.theuran.mappet.api.triggerBlocks.TriggerBlocksManager;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.events.EventsRequestPacket;
 import com.theuran.mappet.network.packets.keybinds.KeybindsRequestPacket;
+import com.theuran.mappet.utils.BlockPosUtils;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum RequestTrigger {
     EVENTS,
+    TRIGGER_BLOCK_LMB,
+    TRIGGER_BLOCK_RMB,
     KEYBINDS;
 
     public List<Trigger> getTriggers(String value) {
@@ -31,6 +37,8 @@ public enum RequestTrigger {
         switch (this) {
             case EVENTS -> Mappet.getEvents().events.put(EventType.valueOf(value.toUpperCase()), triggers);
             case KEYBINDS -> Mappet.getKeybinds().keybinds.put(Mappet.getKeybinds().getKeybind(value), triggers);
+            case TRIGGER_BLOCK_RMB -> Mappet.getTriggerBlocks().addUpdater(new TriggerBlocksManager.TriggerBlockUpdater(BlockPosUtils.fromShortString(value), triggers, null));
+            case TRIGGER_BLOCK_LMB -> Mappet.getTriggerBlocks().addUpdater(new TriggerBlocksManager.TriggerBlockUpdater(BlockPosUtils.fromShortString(value), null, triggers));
         }
     }
 

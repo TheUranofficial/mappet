@@ -1,6 +1,7 @@
 package com.theuran.mappet.network;
 
 import com.theuran.mappet.network.core.AbstractDispatcher;
+import com.theuran.mappet.network.packets.blocks.trigger.TriggerBlockUpdatePacket;
 import com.theuran.mappet.network.packets.events.EventsExecuteTriggersPacket;
 import com.theuran.mappet.network.packets.events.EventsRequestPacket;
 import com.theuran.mappet.network.packets.events.EventsUpdatePacket;
@@ -35,6 +36,7 @@ public class Dispatcher extends AbstractDispatcher {
         //Utils
         this.register(HandshakeS2CPacket.class);
         this.register(ManagerDataPacket.class);
+        this.register(TriggerBlockUpdatePacket.class);
 
         //States
         this.register(StatesUpdatePacket.class);

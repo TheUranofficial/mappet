@@ -1,9 +1,9 @@
 package com.theuran.mappet.client;
 
 import com.theuran.mappet.Mappet;
-import com.theuran.mappet.client.api.huds.ClientHUDManager;
 import com.theuran.mappet.client.api.keybinds.ClientKeybindManager;
 import com.theuran.mappet.client.api.scripts.ClientScriptManager;
+import com.theuran.mappet.client.api.triggerBlocks.ClientTriggerBlocksManager;
 import com.theuran.mappet.client.keybinds.MappetKeybinds;
 import com.theuran.mappet.client.ui.UIMappetDashboard;
 import com.theuran.mappet.utils.InputUtils;
@@ -22,7 +22,8 @@ public class MappetClient implements ClientModInitializer {
 
     private static ClientScriptManager scripts;
     private static ClientKeybindManager keybinds;
-    private static ClientHUDManager huds;
+    private static ClientTriggerBlocksManager triggerBlocks;
+    //private static ClientHUDManager huds;
     private static RenderingHandler handler;
 
     @Override
@@ -35,7 +36,8 @@ public class MappetClient implements ClientModInitializer {
 
         scripts = new ClientScriptManager();
         keybinds = new ClientKeybindManager();
-        huds = new ClientHUDManager();
+        triggerBlocks = new ClientTriggerBlocksManager();
+        //huds = new ClientHUDManager();
         handler = new RenderingHandler();
 
         InputUtils.init();
@@ -69,9 +71,13 @@ public class MappetClient implements ClientModInitializer {
         return keybinds;
     }
 
-    public static ClientHUDManager getHuds() {
-        return huds;
+    public static ClientTriggerBlocksManager getTriggerBlocks() {
+        return triggerBlocks;
     }
+
+//    public static ClientHUDManager getHuds() {
+//        return huds;
+//    }
 
     public static RenderingHandler getHandler() {
         return handler;
