@@ -6,7 +6,7 @@ import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
 import com.theuran.mappet.client.ui.triggers.panels.UITriggerPanel;
 import com.theuran.mappet.client.ui.triggers.panels.UIStateTriggerPanel;
-import com.theuran.mappet.utils.ValueType;
+import com.theuran.mappet.utils.values.ValueType;
 import mchorse.bbs_mod.data.types.BaseType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

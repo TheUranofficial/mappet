@@ -1,4 +1,4 @@
-package com.theuran.mappet.utils;
+package com.theuran.mappet.utils.values;
 
 import com.theuran.mappet.api.triggers.RequestTrigger;
 import mchorse.bbs_mod.data.types.BaseType;

@@ -5,7 +5,7 @@ import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.core.CommonPacket;
 import com.theuran.mappet.utils.MappetByteBuffer;
-import com.theuran.mappet.utils.ValueRequestTrigger;
+import com.theuran.mappet.utils.values.ValueRequestTrigger;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

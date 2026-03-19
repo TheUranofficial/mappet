@@ -5,7 +5,6 @@ import com.theuran.mappet.api.events.EventHandler;
 import com.theuran.mappet.api.events.EventManager;
 import com.theuran.mappet.api.executables.ExecutableManager;
 import com.theuran.mappet.api.huds.HUDManager;
-import com.theuran.mappet.api.huds.HUDScene;
 import com.theuran.mappet.api.keybinds.KeybindManager;
 import com.theuran.mappet.api.localization.LocalizationManager;
 import com.theuran.mappet.api.scripts.ScriptManager;
@@ -16,12 +15,10 @@ import com.theuran.mappet.api.triggers.*;
 import com.theuran.mappet.api.ui.UIManager;
 import com.theuran.mappet.block.MappetBlockEntities;
 import com.theuran.mappet.block.MappetBlocks;
-import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.client.ai.AiMain;
 import com.theuran.mappet.item.MappetItemGroups;
 import com.theuran.mappet.item.MappetItems;
 import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.huds.HUDsSyncPacket;
 import com.theuran.mappet.network.packets.keybinds.KeybindsSyncPacket;
 import com.theuran.mappet.network.packets.utils.HandshakeS2CPacket;
 import mchorse.bbs_mod.BBSMod;
@@ -31,21 +28,12 @@ import mchorse.bbs_mod.utils.factory.MapFactory;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.WorldSavePath;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Mappet implements ModInitializer {
     public static final String MOD_ID = "mappet";
@@ -136,14 +124,6 @@ public class Mappet implements ModInitializer {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             Dispatcher.sendTo(new HandshakeS2CPacket(), handler.getPlayer());
             Dispatcher.sendTo(new KeybindsSyncPacket(Mappet.getKeybinds().keybinds), handler.getPlayer());
-
-            Map<String, HUDScene> scenes = new HashMap<>();
-
-            for (String key : huds.getKeys()) {
-                scenes.put(key, huds.load(key));
-            }
-
-            Dispatcher.sendTo(new HUDsSyncPacket(scenes), handler.getPlayer());
 
             Mappet.getScripts().sendClientScripts(handler.getPlayer());
         });

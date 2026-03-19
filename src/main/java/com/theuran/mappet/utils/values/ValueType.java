@@ -1,4 +1,4 @@
-package com.theuran.mappet.utils;
+package com.theuran.mappet.utils.values;
 
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.settings.values.base.BaseValueBasic;

@@ -1,30 +1,24 @@
 package com.theuran.mappet;
 
-import com.caoccao.javet.exceptions.JavetException;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.theuran.mappet.api.scripts.code.ScriptEvent;
-import com.theuran.mappet.api.scripts.logger.LogType;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.api.states.States;
-import com.theuran.mappet.network.Dispatcher;
-import com.theuran.mappet.network.packets.huds.HUDsSetupPacket;
 import com.theuran.mappet.utils.BooleanUtils;
+import com.theuran.mappet.utils.PlayerUtils;
 import mchorse.bbs_mod.data.types.BaseType;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
-import java.util.Date;
 import java.util.function.Predicate;
 
 public class MappetCommands {
@@ -49,7 +43,7 @@ public class MappetCommands {
                             String id = StringArgumentType.getString(context, "id");
                             ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
 
-                            Dispatcher.sendTo(new HUDsSetupPacket(id), player);
+                            PlayerUtils.setupHUD(player, id);
 
                             return 1;
                         })
@@ -67,14 +61,10 @@ public class MappetCommands {
                         ServerCommandSource source = context.getSource();
                         String code = StringArgumentType.getString(context, "code");
 
-                        ScriptEvent properties = ScriptEvent.create("~", "", source.getEntity(), null, source.getWorld(), source.getServer());
+                        String error = PlayerUtils.executeEval(code, source.getEntity(), source.getWorld(), source.getServer());
 
-                        try {
-                            Mappet.getScripts().eval(code, properties);
-                        } catch (JavetException e) {
-                            String message = e.getLocalizedMessage();
-
-                            source.sendFeedback(() -> Text.of(message), false);
+                        if (!error.equals("0")) {
+                            source.sendFeedback(() -> Text.of(error), false);
                         }
 
                         return 1;
@@ -90,14 +80,10 @@ public class MappetCommands {
                     ServerCommandSource source = context.getSource();
                     String scriptName = StringArgumentType.getString(context, "name");
 
-                    ScriptEvent properties = ScriptEvent.create(scriptName, "main", source.getEntity(), null, source.getWorld(), source.getServer());
+                    String error = PlayerUtils.executeScript(scriptName, source.getEntity(), source.getWorld(), source.getServer());
 
-                    try {
-                        Mappet.getScripts().execute(properties);
-                    } catch (JavetException e) {
-                        String message = e.getLocalizedMessage();
-
-                        source.sendFeedback(() -> Text.of(message), false);
+                    if (!error.equals("0")) {
+                        source.sendFeedback(() -> Text.of(error), false);
                     }
 
                     return 1;

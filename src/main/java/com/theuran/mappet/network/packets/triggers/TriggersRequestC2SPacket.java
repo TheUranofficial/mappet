@@ -3,7 +3,7 @@ package com.theuran.mappet.network.packets.triggers;
 import com.theuran.mappet.api.triggers.RequestTrigger;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.core.ServerPacket;
-import com.theuran.mappet.utils.ValueRequestTrigger;
+import com.theuran.mappet.utils.values.ValueRequestTrigger;
 import mchorse.bbs_mod.settings.values.core.ValueString;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;

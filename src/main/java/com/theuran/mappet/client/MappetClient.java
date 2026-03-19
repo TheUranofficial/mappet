@@ -23,7 +23,6 @@ public class MappetClient implements ClientModInitializer {
     private static ClientScriptManager scripts;
     private static ClientKeybindManager keybinds;
     private static ClientTriggerBlocksManager triggerBlocks;
-    //private static ClientHUDManager huds;
     private static RenderingHandler handler;
 
     @Override
@@ -37,7 +36,6 @@ public class MappetClient implements ClientModInitializer {
         scripts = new ClientScriptManager();
         keybinds = new ClientKeybindManager();
         triggerBlocks = new ClientTriggerBlocksManager();
-        //huds = new ClientHUDManager();
         handler = new RenderingHandler();
 
         InputUtils.init();
@@ -74,10 +72,6 @@ public class MappetClient implements ClientModInitializer {
     public static ClientTriggerBlocksManager getTriggerBlocks() {
         return triggerBlocks;
     }
-
-//    public static ClientHUDManager getHuds() {
-//        return huds;
-//    }
 
     public static RenderingHandler getHandler() {
         return handler;

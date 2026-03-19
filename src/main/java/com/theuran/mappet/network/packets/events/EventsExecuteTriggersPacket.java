@@ -7,7 +7,7 @@ import com.theuran.mappet.api.triggers.Trigger;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.network.core.CommonPacket;
 import com.theuran.mappet.utils.MappetByteBuffer;
-import com.theuran.mappet.utils.ValueEventType;
+import com.theuran.mappet.utils.values.ValueEventType;
 import mchorse.bbs_mod.data.DataStorageUtils;
 import mchorse.bbs_mod.data.types.MapType;
 import net.fabricmc.api.EnvType;
