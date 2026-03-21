@@ -41,60 +41,62 @@ public class HUDStage {
     public Factor distance = new Factor(0, 0, 100, (x) -> Math.pow(x, 2) / 100D);
 
     public void render(DrawContext context, float tickDelta) {
-        Window window = MinecraftClient.getInstance().getWindow();
+        if (!this.scenes.isEmpty()) {
+            Window window = MinecraftClient.getInstance().getWindow();
 
-        RenderSystem.depthFunc(GL11.GL_LEQUAL);
+            RenderSystem.depthFunc(GL11.GL_LEQUAL);
 
-        this.setDistance(15);
-        this.pos.set(0, 1, 0);
+            this.setDistance(15);
+            this.pos.set(0, 1, 0);
 
-        this.setupPosition();
-        this.setupViewport(0, 0, window.getWidth(), window.getHeight());
+            this.setupPosition();
+            this.setupViewport(0, 0, window.getWidth(), window.getHeight());
 
-        /* Cache the global stuff */
-        MatrixStackUtils.cacheMatrices();
+            /* Cache the global stuff */
+            MatrixStackUtils.cacheMatrices();
 
-        RenderSystem.setProjectionMatrix(this.camera.projection, VertexSorter.BY_Z);
-        RenderSystem.setInverseViewRotationMatrix(new Matrix3f(this.camera.view).invert());
+            RenderSystem.setProjectionMatrix(this.camera.projection, VertexSorter.BY_Z);
+            RenderSystem.setInverseViewRotationMatrix(new Matrix3f(this.camera.view).invert());
 
-        MatrixStack stack = context.getMatrices();
+            MatrixStack stack = context.getMatrices();
 
-        this.scenes.forEach((id, hudScene) -> {
-            /* Rendering begins... */
-            stack.push();
-            MatrixStackUtils.multiply(stack, this.camera.view);
-            stack.translate(-this.camera.position.x, -this.camera.position.y, -this.camera.position.z);
+            this.scenes.forEach((id, hudScene) -> {
+                /* Rendering begins... */
+                stack.push();
+                MatrixStackUtils.multiply(stack, this.camera.view);
+                stack.translate(-this.camera.position.x, -this.camera.position.y, -this.camera.position.z);
 
-            RenderSystem.setupLevelDiffuseLighting(
-                new Vector3f(0, 0.85F, -1).normalize(),
-                new Vector3f(0, 0.85F, 1).normalize(),
-                this.camera.view
-            );
+                RenderSystem.setupLevelDiffuseLighting(
+                    new Vector3f(0, 0.85F, -1).normalize(),
+                    new Vector3f(0, 0.85F, 1).normalize(),
+                    this.camera.view
+                );
 
-            this.formContext.set(FormRenderType.PREVIEW,
-                    new StubEntity(MinecraftClient.getInstance().world),
-                    stack,
-                    LightmapTextureManager.pack(15, 15),
-                    OverlayTexture.DEFAULT_UV,
-                    tickDelta)
-                .camera(this.camera).modelRenderer();
+                this.formContext.set(FormRenderType.PREVIEW,
+                        new StubEntity(MinecraftClient.getInstance().world),
+                        stack,
+                        LightmapTextureManager.pack(15, 15),
+                        OverlayTexture.DEFAULT_UV,
+                        tickDelta)
+                    .camera(this.camera).modelRenderer();
 
-            for (HUDForm form : hudScene.forms.getList()) {
-                form.render(this.formContext);
-            }
+                for (HUDForm form : hudScene.forms.getList()) {
+                    form.render(this.formContext);
+                }
 
-            DiffuseLighting.disableGuiDepthLighting();
+                DiffuseLighting.disableGuiDepthLighting();
 
-            stack.pop();
-        });
+                stack.pop();
+            });
 
-        /* Return back to orthographic projection */
-        MinecraftClient mc = MinecraftClient.getInstance();
+            /* Return back to orthographic projection */
+            MinecraftClient mc = MinecraftClient.getInstance();
 
-        RenderSystem.viewport(0, 0, mc.getWindow().getFramebufferWidth(), mc.getWindow().getFramebufferHeight());
-        MatrixStackUtils.restoreMatrices();
+            RenderSystem.viewport(0, 0, mc.getWindow().getFramebufferWidth(), mc.getWindow().getFramebufferHeight());
+            MatrixStackUtils.restoreMatrices();
 
-        RenderSystem.depthFunc(GL11.GL_ALWAYS);
+            RenderSystem.depthFunc(GL11.GL_ALWAYS);
+        }
     }
 
     public void setDistance(int distanceX) {

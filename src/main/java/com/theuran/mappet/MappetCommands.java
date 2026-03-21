@@ -1,6 +1,7 @@
 package com.theuran.mappet;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
@@ -9,8 +10,10 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.api.states.States;
 import com.theuran.mappet.utils.BooleanUtils;
+import com.theuran.mappet.utils.FormUtils;
 import com.theuran.mappet.utils.PlayerUtils;
 import mchorse.bbs_mod.data.types.BaseType;
+import mchorse.bbs_mod.forms.forms.Form;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
@@ -37,16 +40,57 @@ public class MappetCommands {
         mappet.then(CommandManager.literal("hud")
             .requires(hasPermissions)
             .then(CommandManager.literal("setup")
-                .then(CommandManager.argument("id", StringArgumentType.word())
-                    .then(CommandManager.argument("player", EntityArgumentType.player())
+                .then(CommandManager.argument("player", EntityArgumentType.player())
+                    .then(CommandManager.argument("id", StringArgumentType.word())
                         .executes(context -> {
-                            String id = StringArgumentType.getString(context, "id");
                             ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+                            String id = StringArgumentType.getString(context, "id");
 
                             PlayerUtils.setupHUD(player, id);
 
                             return 1;
                         })
+                    )
+                )
+            )
+            .then(CommandManager.literal("close")
+                .then(CommandManager.argument("player", EntityArgumentType.player())
+                    .executes(context -> {
+                        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+
+                        PlayerUtils.closeHUDs(player);
+
+                        return 1;
+                    })
+                    .then(CommandManager.argument("id", StringArgumentType.word())
+                        .executes(context -> {
+                            ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+                            String id = StringArgumentType.getString(context, "id");
+
+                            PlayerUtils.closeHUD(player, id);
+
+                            return 1;
+                        })
+                    )
+                )
+            )
+            .then(CommandManager.literal("form")
+                .then(CommandManager.argument("player", EntityArgumentType.player())
+                    .then(CommandManager.argument("id", StringArgumentType.word())
+                        .then(CommandManager.argument("index", IntegerArgumentType.integer(0))
+                            .then(CommandManager.argument("form", StringArgumentType.greedyString())
+                                .executes(context -> {
+                                    ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+                                    String id = StringArgumentType.getString(context, "id");
+                                    int index = IntegerArgumentType.getInteger(context, "index");
+                                    Form form = FormUtils.fromData(StringArgumentType.getString(context, "form"));
+
+                                    PlayerUtils.changeHUDForm(player, id, index, form);
+
+                                    return 1;
+                                })
+                            )
+                        )
                     )
                 )
             )
@@ -75,7 +119,7 @@ public class MappetCommands {
 
         mappet.then(CommandManager.literal("script")
             .requires(hasPermissions)
-            .then(CommandManager.argument("name", StringArgumentType.greedyString())
+            .then(CommandManager.argument("name", StringArgumentType.word())
                 .executes(context -> {
                     ServerCommandSource source = context.getSource();
                     String scriptName = StringArgumentType.getString(context, "name");
