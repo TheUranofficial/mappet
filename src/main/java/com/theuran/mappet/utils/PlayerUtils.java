@@ -27,7 +27,7 @@ public class PlayerUtils {
         Dispatcher.sendTo(new HUDsClosePacket(id, false), player);
     }
 
-    public static void closeHUDs(ServerPlayerEntity player) {
+    public static void closeAllHUDs(ServerPlayerEntity player) {
         Dispatcher.sendTo(new HUDsClosePacket("", true), player);
     }
 

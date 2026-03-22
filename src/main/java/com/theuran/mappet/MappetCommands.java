@@ -42,35 +42,15 @@ public class MappetCommands {
             .then(CommandManager.literal("setup")
                 .then(CommandManager.argument("player", EntityArgumentType.player())
                     .then(CommandManager.argument("id", StringArgumentType.word())
-                        .executes(context -> {
-                            ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-                            String id = StringArgumentType.getString(context, "id");
-
-                            PlayerUtils.setupHUD(player, id);
-
-                            return 1;
-                        })
+                        .executes(MappetCommands::hudSetupCommand)
                     )
                 )
             )
             .then(CommandManager.literal("close")
                 .then(CommandManager.argument("player", EntityArgumentType.player())
-                    .executes(context -> {
-                        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-
-                        PlayerUtils.closeHUDs(player);
-
-                        return 1;
-                    })
+                    .executes(MappetCommands::hudCloseAllCommand)
                     .then(CommandManager.argument("id", StringArgumentType.word())
-                        .executes(context -> {
-                            ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-                            String id = StringArgumentType.getString(context, "id");
-
-                            PlayerUtils.closeHUD(player, id);
-
-                            return 1;
-                        })
+                        .executes(MappetCommands::hudCloseCommand)
                     )
                 )
             )
@@ -79,22 +59,50 @@ public class MappetCommands {
                     .then(CommandManager.argument("id", StringArgumentType.word())
                         .then(CommandManager.argument("index", IntegerArgumentType.integer(0))
                             .then(CommandManager.argument("form", StringArgumentType.greedyString())
-                                .executes(context -> {
-                                    ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-                                    String id = StringArgumentType.getString(context, "id");
-                                    int index = IntegerArgumentType.getInteger(context, "index");
-                                    Form form = FormUtils.fromData(StringArgumentType.getString(context, "form"));
-
-                                    PlayerUtils.changeHUDForm(player, id, index, form);
-
-                                    return 1;
-                                })
+                                .executes(MappetCommands::hudFormCommand)
                             )
                         )
                     )
                 )
             )
         );
+    }
+
+    private static int hudSetupCommand(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+        String id = StringArgumentType.getString(context, "id");
+
+        PlayerUtils.setupHUD(player, id);
+
+        return 1;
+    }
+
+    private static int hudCloseAllCommand(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+
+        PlayerUtils.closeAllHUDs(player);
+
+        return 1;
+    }
+
+    private static int hudCloseCommand(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+        String id = StringArgumentType.getString(context, "id");
+
+        PlayerUtils.closeHUD(player, id);
+
+        return 1;
+    }
+
+    private static int hudFormCommand(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+        String id = StringArgumentType.getString(context, "id");
+        int index = IntegerArgumentType.getInteger(context, "index");
+        Form form = FormUtils.fromData(StringArgumentType.getString(context, "form"));
+
+        PlayerUtils.changeHUDForm(player, id, index, form);
+
+        return 1;
     }
 
     private static void registerScriptCommands(LiteralArgumentBuilder<ServerCommandSource> mappet, CommandManager.RegistrationEnvironment environment, Predicate<ServerCommandSource> hasPermissions) {

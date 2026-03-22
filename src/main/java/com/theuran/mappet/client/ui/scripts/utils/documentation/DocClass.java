@@ -1,4 +1,4 @@
-package com.theuran.mappet.client.ui.scripts.documentation;
+package com.theuran.mappet.client.ui.scripts.utils.documentation;
 
 import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;

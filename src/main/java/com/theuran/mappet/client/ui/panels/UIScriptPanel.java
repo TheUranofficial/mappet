@@ -7,18 +7,26 @@ import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.ai.UIAiOverlayPanel;
-import com.theuran.mappet.client.ui.scripts.UIDocumentationOverlayPanel;
+import com.theuran.mappet.client.ui.scripts.utils.UIDocumentationOverlayPanel;
 import com.theuran.mappet.client.ui.scripts.UIScriptEditor;
+import com.theuran.mappet.client.ui.scripts.utils.UIFormOverlayPanel;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
 import com.theuran.mappet.network.packets.scripts.ScriptsSavePacket;
+import mchorse.bbs_mod.data.DataToString;
+import mchorse.bbs_mod.data.types.MapType;
+import mchorse.bbs_mod.forms.FormUtils;
+import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.ContentType;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
 import mchorse.bbs_mod.ui.dashboard.panels.UIDataDashboardPanel;
+import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
+import mchorse.bbs_mod.ui.framework.elements.context.UIContextMenu;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
+import mchorse.bbs_mod.ui.utils.context.ContextMenuManager;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
 import net.minecraft.client.MinecraftClient;
@@ -32,6 +40,36 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public UIIcon docs;
     public UIScriptEditor content;
 
+    public static UIContextMenu createScriptContextMenu(UIContext context, UIScriptEditor editor) {
+        ContextMenuManager menu = new ContextMenuManager();
+
+        menu.action(Icons.POSE, UIMappetKeys.SCRIPTS_CONTEXT_PASTE_FORM, () -> openFormPicker(context, editor));
+
+        return menu.create();
+    }
+
+    private static void openFormPicker(UIContext context, UIScriptEditor editor) {
+        Form form = null;
+        MapType map = readFromSelected(editor);
+
+        if (editor.isSelected()) {
+            form = FormUtils.fromData(map);
+        }
+
+        UIOverlay.addOverlay(context, new UIFormOverlayPanel(UIMappetKeys.SCRIPTS_OVERLAY_TITLE_FORM, editor, form), 240, 54);
+    }
+
+    private static MapType readFromSelected(UIScriptEditor editor) {
+        if (editor.isSelected()) {
+            String map = DataToString.unescape(editor.getSelectedText());
+
+            map = map.trim().replaceAll("^\"|\"$", "");
+
+            return DataToString.mapFromString(map);
+        }
+
+        return null;
+    }
 
     public UIScriptPanel(UIDashboard dashboard) {
         super(dashboard);
@@ -39,7 +77,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.overlay.namesList.setFileIcon(Icons.PROPERTIES);
 
         this.content = new UIScriptEditor(null);
-        this.content.background().wh(1f, 1f);
+        this.content.background().context(() -> createScriptContextMenu(this.getContext(), this.content)).wh(1f, 1f);
         this.content.keys().ignoreFocus();
         this.content.relative(this.editor);
 

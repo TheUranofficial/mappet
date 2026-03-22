@@ -1,4 +1,4 @@
-package com.theuran.mappet.client.ui.scripts.documentation;
+package com.theuran.mappet.client.ui.scripts.utils.documentation;
 
 import mchorse.bbs_mod.data.types.MapType;
 import net.fabricmc.api.EnvType;

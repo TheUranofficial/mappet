@@ -1,7 +1,7 @@
-package com.theuran.mappet.client.ui.scripts;
+package com.theuran.mappet.client.ui.scripts.utils;
 
 import com.theuran.mappet.client.ui.UIMappetKeys;
-import com.theuran.mappet.client.ui.scripts.documentation.*;
+import com.theuran.mappet.client.ui.scripts.utils.documentation.*;
 import mchorse.bbs_mod.data.DataToString;
 import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;

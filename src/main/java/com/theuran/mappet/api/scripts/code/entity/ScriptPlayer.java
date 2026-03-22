@@ -5,6 +5,7 @@ import com.theuran.mappet.api.scripts.code.bbs.BBSForm;
 import com.theuran.mappet.api.states.IStatesProvider;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
+import com.theuran.mappet.utils.PlayerUtils;
 import mchorse.bbs_mod.forms.FormUtils;
 import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.morphing.Morph;
@@ -27,6 +28,7 @@ public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
 
     public void setForm(BBSForm scriptForm) {
         Form form = scriptForm.getForm();
+
         ServerNetwork.sendMorphToTracked(this.getMinecraftPlayer(), form);
         Morph.getMorph(this.getMinecraftPlayer()).setForm(FormUtils.copy(form));
     }
@@ -41,5 +43,21 @@ public class ScriptPlayer extends ScriptEntity<ServerPlayerEntity> {
 
     public void send(Object message) {
         this.entity.sendMessage(Text.of(message.toString()));
+    }
+
+    public void setupHUD(String id) {
+        PlayerUtils.setupHUD(this.entity, id);
+    }
+
+    public void closeHUD(String id) {
+        PlayerUtils.closeHUD(this.entity, id);
+    }
+
+    public void closeAllHUDs() {
+        PlayerUtils.closeAllHUDs(this.entity);
+    }
+
+    public void changeHUDForm(String id, int index, BBSForm form) {
+        PlayerUtils.changeHUDForm(this.entity, id, index, form.getForm());
     }
 }

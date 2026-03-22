@@ -25,7 +25,10 @@
   "mappet.scripts.title": "Скрипты",
   "mappet.scripts.run": "Запустить скрипт",
   "mappet.scripts.side": "Сменить сторону",
-
+  "mappet.scripts.overlay.pick.form": "Выберите форму...",
+  "mappet.scripts.overlay.insert": "Вставить",
+  "mappet.scripts.overlay.title.form": "Форма",
+  "mappet.scripts.context.paste.form": "Вставьте данные формы...",
   "mappet.scripts.documentation.title": "Документация",
 
   "mappet.logger.title": "Логгер",

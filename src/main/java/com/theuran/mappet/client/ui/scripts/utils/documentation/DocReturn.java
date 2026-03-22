@@ -1,4 +1,4 @@
-package com.theuran.mappet.client.ui.scripts.documentation;
+package com.theuran.mappet.client.ui.scripts.utils.documentation;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

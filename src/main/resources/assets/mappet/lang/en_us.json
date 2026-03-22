@@ -25,7 +25,10 @@
   "mappet.scripts.title": "Scripts",
   "mappet.scripts.run": "Run script",
   "mappet.scripts.side": "Change Side",
-
+  "mappet.scripts.overlay.pick.form": "Pick a form...",
+  "mappet.scripts.overlay.insert": "Insert",
+  "mappet.scripts.overlay.title.form": "Form",
+  "mappet.scripts.context.paste.form": "Paste form data...",
   "mappet.scripts.documentation.title": "Documentation",
 
   "mappet.logger.title": "Logger",

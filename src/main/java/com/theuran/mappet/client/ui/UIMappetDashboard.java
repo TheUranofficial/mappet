@@ -1,6 +1,5 @@
 package com.theuran.mappet.client.ui;
 
-import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.ui.events.UIEventsOverlayPanel;
 import com.theuran.mappet.client.ui.keybinds.UIKeybindsOverlayPanel;
 import com.theuran.mappet.client.ui.panels.*;
@@ -11,7 +10,6 @@ import com.theuran.mappet.network.packets.events.EventsRequestPacket;
 import com.theuran.mappet.network.packets.keybinds.KeybindsRequestPacket;
 import com.theuran.mappet.network.packets.states.StatesRequestPacket;
 import mchorse.bbs_mod.ui.dashboard.UIDashboard;
-import mchorse.bbs_mod.ui.framework.UIScreen;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.icons.Icons;

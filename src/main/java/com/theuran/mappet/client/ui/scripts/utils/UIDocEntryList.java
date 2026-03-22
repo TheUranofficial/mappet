@@ -1,6 +1,6 @@
-package com.theuran.mappet.client.ui.scripts;
+package com.theuran.mappet.client.ui.scripts.utils;
 
-import com.theuran.mappet.client.ui.scripts.documentation.DocEntry;
+import com.theuran.mappet.client.ui.scripts.utils.documentation.DocEntry;
 import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.input.list.UIList;
 import net.fabricmc.api.EnvType;

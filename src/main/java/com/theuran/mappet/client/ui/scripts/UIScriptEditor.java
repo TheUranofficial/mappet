@@ -1,5 +1,6 @@
 package com.theuran.mappet.client.ui.scripts;
 
+import com.theuran.mappet.client.ui.scripts.utils.Highlighter;
 import com.theuran.mappet.client.ui.utils.MappetIcons;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.UIContext;

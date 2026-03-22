@@ -14,14 +14,16 @@ public class UIMappetKeys {
 
     public static final IKey HUD_SCENE_TITLE = L10n.lang("mappet.hud.scene.title");
     public static final IKey HUD_SCENE_OVERLAY_TITLE = L10n.lang("mappet.hud.scene.overlay.title");
-    public static final IKey HUD_SCENE_ORTHO = L10n.lang("mappet.hud.scene.ortho");
     public static final IKey HUD_SCENE_EXPIRE = L10n.lang("mappet.hud.scene.expire");
     public static final IKey HUD_SCENE_FOV = L10n.lang("mappet.hud.scene.fov");
 
     public static final IKey SCRIPTS_TITLE = L10n.lang("mappet.scripts.title");
     public static final IKey SCRIPTS_RUN = L10n.lang("mappet.scripts.run");
     public static final IKey SCRIPTS_SIDE = L10n.lang("mappet.scripts.side");
-
+    public static final IKey SCRIPTS_OVERLAY_PICK_FORM = L10n.lang("mappet.scripts.overlay.pick.form");
+    public static final IKey SCRIPTS_OVERLAY_INSERT = L10n.lang("mappet.scripts.overlay.insert");
+    public static final IKey SCRIPTS_OVERLAY_TITLE_FORM = L10n.lang("mappet.scripts.overlay.title.form");
+    public static final IKey SCRIPTS_CONTEXT_PASTE_FORM = L10n.lang("mappet.scripts.context.paste.form");
     public static final IKey SCRIPTS_DOCUMENTATION_TITLE = L10n.lang("mappet.scripts.documentation.title");
 
     public static final IKey LOGGER_TITLE = L10n.lang("mappet.logger.title");
