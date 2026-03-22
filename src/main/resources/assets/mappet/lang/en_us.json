@@ -20,7 +20,6 @@
   "mappet.hud.scene.overlay.title": "HUD's forms",
   "mappet.hud.scene.ortho": "Orthographic",
   "mappet.hud.scene.expire": "Expire",
-  "mappet.hud.scene.fov": "Fov",
 
   "mappet.scripts.title": "Scripts",
   "mappet.scripts.run": "Run script",

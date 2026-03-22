@@ -15,7 +15,6 @@ public class UIMappetKeys {
     public static final IKey HUD_SCENE_TITLE = L10n.lang("mappet.hud.scene.title");
     public static final IKey HUD_SCENE_OVERLAY_TITLE = L10n.lang("mappet.hud.scene.overlay.title");
     public static final IKey HUD_SCENE_EXPIRE = L10n.lang("mappet.hud.scene.expire");
-    public static final IKey HUD_SCENE_FOV = L10n.lang("mappet.hud.scene.fov");
 
     public static final IKey SCRIPTS_TITLE = L10n.lang("mappet.scripts.title");
     public static final IKey SCRIPTS_RUN = L10n.lang("mappet.scripts.run");

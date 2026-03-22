@@ -20,7 +20,6 @@
   "mappet.hud.scene.overlay.title": "Формы HUD'а",
   "mappet.hud.scene.ortho": "Ортография",
   "mappet.hud.scene.expire": "Срок действия",
-  "mappet.hud.scene.fov": "Поле зрения",
 
   "mappet.scripts.title": "Скрипты",
   "mappet.scripts.run": "Запустить скрипт",

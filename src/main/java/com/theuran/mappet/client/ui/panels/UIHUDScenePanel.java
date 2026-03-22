@@ -8,6 +8,7 @@ import com.theuran.mappet.client.ui.MappetContentType;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.huds.UIHUDFormsOverlayPanel;
 import com.theuran.mappet.client.ui.utils.UIOptionsDataDashboardPanel;
+import mchorse.bbs_mod.forms.FormUtils;
 import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.ContentType;
@@ -17,6 +18,7 @@ import mchorse.bbs_mod.ui.forms.UINestedEdit;
 import mchorse.bbs_mod.ui.framework.elements.IUIElement;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
+import mchorse.bbs_mod.ui.framework.elements.input.UIPropTransform;
 import mchorse.bbs_mod.ui.framework.elements.input.UITrackpad;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.UI;
@@ -28,8 +30,8 @@ import net.fabricmc.api.Environment;
 public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
     public UIIcon forms;
     public UINestedEdit form;
-
     public UITrackpad expire;
+    public UIPropTransform transformations;
 
     private final HUDStage stage = new HUDStage();
     private HUDForm current;
@@ -44,12 +46,11 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
 
         this.expire = new UITrackpad(value -> this.current.expire.set(value.intValue()));
         this.expire.limit(0).integer();
+        this.transformations = new UIPropTransform();
 
         this.addOptions();
-        this.options.fields.add(
-                this.form,
-                UI.label(UIMappetKeys.HUD_SCENE_EXPIRE).marginTop(8), this.expire
-        );
+        this.options.fields.add(this.form, UI.label(UIMappetKeys.HUD_SCENE_EXPIRE).marginTop(8), this.expire);
+        this.options.fields.add(this.transformations.marginTop(8));
 
         this.iconBar.add(this.forms);
 
@@ -61,6 +62,8 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
     }
 
     private void setForm(Form form) {
+        form = FormUtils.fromData(form.toData());
+
         this.current.form.set(form);
         this.form.setForm(form);
     }
@@ -79,6 +82,7 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
     @Override
     protected void fillData(HUDScene data) {
         this.forms.setEnabled(data != null);
+        this.editor.setVisible(data != null);
 
         if (data != null) {
             this.stage.reset();
@@ -102,6 +106,7 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
         if (current != null) {
             this.form.setForm(current.form.get());
             this.expire.setValue(current.expire.get());
+            this.transformations.setTransform(current.transform.get());
         }
     }
 
