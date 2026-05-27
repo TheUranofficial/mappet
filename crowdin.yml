@@ -1,4 +1,4 @@
 preserve_hierarchy: 1
 files:
   - source: src/main/resources/assets/mappet/lang/en_us.json
-    translation: src/main/resources/assets/mappet/lang
+    translation: src/main/resources/assets/mappet/lang/%locale_with_underscore%.json
