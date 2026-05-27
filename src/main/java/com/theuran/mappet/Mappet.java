@@ -64,11 +64,11 @@ public class Mappet implements ModInitializer {
         dispatcher = new Dispatcher();
         dispatcher.register();
 
-        AiMain.init();
+        //AiMain.init();
 
-        Thread.startVirtualThread(() -> {
-            LOGGER.info(AiMain.getAIResponse("", true));
-        });
+        //Thread.startVirtualThread(() -> {
+        //    LOGGER.info(AiMain.getAIResponse("", true));
+        //});
 
         settingsFolder = BBSMod.getGamePath("config/mappet/settings");
         settingsFolder.mkdirs();
@@ -105,7 +105,6 @@ public class Mappet implements ModInitializer {
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             mappetFolder = new File(server.getSavePath(WorldSavePath.ROOT).toFile(), "mappet");
-
             mappetFolder.mkdirs();
 
             states.load();

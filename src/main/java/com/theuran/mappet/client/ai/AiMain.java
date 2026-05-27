@@ -1,8 +1,9 @@
 package com.theuran.mappet.client.ai;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/* Формат кода по типу: я твою мать ебал */
 public class AiMain {
 
     private static final String API_URL = "https://api.intelligence.io.solutions/api/v1/chat/completions";

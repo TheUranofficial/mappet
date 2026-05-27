@@ -36,7 +36,7 @@ import net.minecraft.text.Text;
 public class UIScriptPanel extends UIDataDashboardPanel<Script> {
     public UIIcon run;
     public UIIcon side;
-    public UIIcon ai;
+    //public UIIcon ai;
     public UIIcon docs;
     public UIScriptEditor content;
 
@@ -87,15 +87,15 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.side = new UIIcon(MappetIcons.SERVER, this::changeSide);
         this.side.tooltip(UIMappetKeys.SCRIPTS_SIDE, Direction.LEFT);
 
-        this.ai = new UIIcon(MappetIcons.API_BBS_FORM, this::aiPanel);
-        this.ai.tooltip(UIMappetKeys.AI_OPEN, Direction.LEFT);
+        //this.ai = new UIIcon(MappetIcons.API_BBS_FORM, this::aiPanel);
+        //this.ai.tooltip(UIMappetKeys.AI_OPEN, Direction.LEFT);
 
         this.docs = new UIIcon(Icons.HELP, this::openDocumentation);
         this.docs.tooltip(UIMappetKeys.SCRIPTS_DOCUMENTATION_TITLE, Direction.LEFT);
 
         this.editor.add(this.content);
 
-        this.iconBar.add(this.run, this.side, this.ai, this.docs);
+        this.iconBar.add(this.run, this.side, /*this.ai,*/ this.docs);
 
         this.fill(null);
     }
@@ -175,7 +175,7 @@ public class UIScriptPanel extends UIDataDashboardPanel<Script> {
         this.side.setEnabled(this.data != null);
         this.side.both(this.data != null && this.data.isServer() ? MappetIcons.SERVER : MappetIcons.CLIENT);
         this.run.setEnabled(this.data != null);
-        this.ai.setEnabled(this.data != null);
+        //this.ai.setEnabled(this.data != null);
     }
 
     @Override
