@@ -5,7 +5,10 @@ import com.theuran.mappet.client.api.scripts.code.ui.components.UIComponent;
 import com.theuran.mappet.client.api.scripts.code.ui.components.UIOverlayComponent;
 import mchorse.bbs_mod.ui.framework.UIBaseMenu;
 import mchorse.bbs_mod.ui.framework.UIRenderingContext;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIMappetBase extends UIBaseMenu {
     private final MappetUIBuilder builder;
 

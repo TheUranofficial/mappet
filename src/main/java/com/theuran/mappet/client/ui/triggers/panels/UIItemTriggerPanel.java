@@ -3,7 +3,10 @@ package com.theuran.mappet.client.ui.triggers.panels;
 import com.theuran.mappet.api.triggers.ItemTrigger;
 import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
 import mchorse.bbs_mod.ui.forms.editors.panels.widgets.UIItemStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIItemTriggerPanel extends UITriggerPanel<ItemTrigger> {
     public UIItemStack stack;
 

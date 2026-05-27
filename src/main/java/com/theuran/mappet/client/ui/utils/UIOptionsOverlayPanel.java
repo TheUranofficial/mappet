@@ -3,7 +3,10 @@ package com.theuran.mappet.client.ui.utils;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIOptionsOverlayPanel extends UIOverlayPanel {
     public UIScrollView fields;
 

@@ -1,9 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetScriptEditorElement;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UIScriptEditorComponent extends UIComponent<UIMappetScriptEditorElement>{
     public UIScriptEditorComponent(Consumer<String> consumer) {
         super(new UIMappetScriptEditorElement(consumer));

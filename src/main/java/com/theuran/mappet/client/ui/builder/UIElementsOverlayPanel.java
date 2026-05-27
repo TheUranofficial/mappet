@@ -4,7 +4,10 @@ import com.theuran.mappet.client.ui.UIMappetKeys;
 import com.theuran.mappet.client.ui.panels.UIBuilderPanel;
 import mchorse.bbs_mod.ui.framework.elements.input.list.UIStringList;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIElementsOverlayPanel extends UIOverlayPanel {
     private UIStringList list;
 

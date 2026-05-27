@@ -7,9 +7,12 @@ import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.Direction;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.HashMap;
 
+@Environment(EnvType.CLIENT)
 public class UIStatesOverlayPanel extends UIOverlayPanel {
     public UIStates states;
     public UIIcon searchIcon;

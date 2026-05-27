@@ -1,9 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextbox;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UITextboxComponent extends UIComponent<UITextbox>{
     public UITextboxComponent(int maxLength, Consumer<String> consumer) {
         super(new UITextbox(maxLength, consumer));

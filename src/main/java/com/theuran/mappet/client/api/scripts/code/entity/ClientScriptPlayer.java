@@ -10,6 +10,8 @@ import mchorse.bbs_mod.forms.FormUtils;
 import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.morphing.Morph;
 import mchorse.bbs_mod.ui.framework.UIScreen;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.Perspective;
@@ -17,6 +19,7 @@ import net.minecraft.text.Text;
 
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class ClientScriptPlayer extends ClientScriptEntity<ClientPlayerEntity> {
     public ClientScriptPlayer(ClientPlayerEntity entity) {
         super(entity);

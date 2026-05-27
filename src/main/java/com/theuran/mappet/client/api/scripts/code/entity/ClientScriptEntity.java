@@ -1,9 +1,12 @@
 package com.theuran.mappet.client.api.scripts.code.entity;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 
+@Environment(EnvType.CLIENT)
 public class ClientScriptEntity <T extends Entity> {
     protected T entity;
 

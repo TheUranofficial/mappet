@@ -6,9 +6,12 @@ import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
 import mchorse.bbs_mod.ui.framework.elements.utils.FontRenderer;
 import mchorse.bbs_mod.utils.colors.Colors;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UIMappetButtonElement extends UIButton {
     public float alpha = 1f;
     public float textAlpha = 1f;

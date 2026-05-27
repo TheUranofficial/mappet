@@ -5,7 +5,10 @@ import mchorse.bbs_mod.BBSModClient;
 import mchorse.bbs_mod.resources.Link;
 import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIGraphics extends UIElement {
     public Graphic graphic;
 

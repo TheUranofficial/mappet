@@ -1,6 +1,8 @@
 package com.theuran.mappet.client.api.scripts.code.ui.animation;
 
 import com.theuran.mappet.client.api.scripts.code.ui.components.UIComponent;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class AnimationManager {
     private final ConcurrentLinkedQueue<Animation> animations = new ConcurrentLinkedQueue<>();
     private final ConcurrentHashMap<String, List<Animation>> queuedAnimations = new ConcurrentHashMap<>();

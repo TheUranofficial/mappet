@@ -3,7 +3,10 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 import com.theuran.mappet.client.api.scripts.code.ui.elements.UIGraphics;
 import com.theuran.mappet.client.api.scripts.code.ui.elements.graphic.Graphic;
 import mchorse.bbs_mod.utils.colors.Colors;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIGraphicsComponent extends UIComponent<UIGraphics> {
     public UIGraphicsComponent() {
         super(new UIGraphics());

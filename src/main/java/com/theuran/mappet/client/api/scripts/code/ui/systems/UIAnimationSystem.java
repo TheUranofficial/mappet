@@ -2,11 +2,14 @@ package com.theuran.mappet.client.api.scripts.code.ui.systems;
 
 import com.theuran.mappet.client.api.scripts.code.ui.animation.AnimationManager;
 import com.theuran.mappet.client.api.scripts.code.ui.components.UIComponent;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UIAnimationSystem {
     private final String id;
     private final UIComponent<?> component;

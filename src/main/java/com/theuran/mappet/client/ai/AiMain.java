@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /* Формат кода по типу: я твою мать ебал */
+@Environment(EnvType.CLIENT)
 public class AiMain {
 
     private static final String API_URL = "https://api.intelligence.io.solutions/api/v1/chat/completions";

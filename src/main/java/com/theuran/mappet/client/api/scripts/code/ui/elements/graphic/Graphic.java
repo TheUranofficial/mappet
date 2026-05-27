@@ -1,5 +1,9 @@
 package com.theuran.mappet.client.api.scripts.code.ui.elements.graphic;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+@Environment(EnvType.CLIENT)
 public sealed interface Graphic {
     record Box(int color) implements Graphic { }
 

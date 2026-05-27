@@ -16,9 +16,12 @@ import mchorse.bbs_mod.ui.framework.elements.overlay.UIEditorOverlayPanel;
 import mchorse.bbs_mod.ui.utils.context.ContextMenuManager;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.colors.Colors;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 public class UIEditorTriggersOverlayPanel extends UIEditorOverlayPanel<Trigger> {
     public RequestTrigger trigger;
 

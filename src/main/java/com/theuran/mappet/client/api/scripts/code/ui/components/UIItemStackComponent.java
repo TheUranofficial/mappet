@@ -2,10 +2,13 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import com.theuran.mappet.api.scripts.code.item.ScriptItemStack;
 import mchorse.bbs_mod.ui.forms.editors.panels.widgets.UIItemStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
 
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UIItemStackComponent extends UIComponent<UIItemStack> {
     public UIItemStackComponent(Consumer<ScriptItemStack> consumer) {
         super(new UIItemStack(stack -> {

@@ -3,9 +3,12 @@ package com.theuran.mappet.client.api.scripts.code.ui.animation;
 import com.theuran.mappet.client.api.scripts.code.ui.components.UIComponent;
 import mchorse.bbs_mod.utils.interps.IInterp;
 import mchorse.bbs_mod.utils.interps.Interpolations;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.BiConsumer;
 
+@Environment(EnvType.CLIENT)
 public class Animation {
     String id;
     UIComponent<?> component;

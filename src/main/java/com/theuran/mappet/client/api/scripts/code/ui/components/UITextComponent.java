@@ -1,7 +1,10 @@
 package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import mchorse.bbs_mod.ui.framework.elements.utils.UIText;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UITextComponent extends UIComponent<UIText> {
     public UITextComponent(String text) {
         super(new UIText(text));

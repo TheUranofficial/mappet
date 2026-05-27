@@ -3,11 +3,14 @@ package com.theuran.mappet.client.api.scripts;
 import com.caoccao.javet.exceptions.JavetException;
 import com.theuran.mappet.api.scripts.Script;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class ClientScriptManager {
     public Map<String, Script> scripts = new HashMap<>();
 

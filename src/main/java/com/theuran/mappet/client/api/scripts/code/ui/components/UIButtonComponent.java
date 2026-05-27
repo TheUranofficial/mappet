@@ -2,8 +2,10 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetButtonElement;
 import mchorse.bbs_mod.l10n.keys.IKey;
-import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIButtonComponent extends UIComponent<UIMappetButtonElement> {
     public UIButtonComponent(String label, Runnable onClick) {
         super(new UIMappetButtonElement(IKey.raw(label), (b) -> {

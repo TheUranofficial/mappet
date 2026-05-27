@@ -3,9 +3,12 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.elements.input.UIKeybind;
 import mchorse.bbs_mod.ui.utils.keys.KeyCombo;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UIKeybindComponent extends UIComponent<UIKeybind> {
     public UIKeybindComponent(Consumer<String> consumer) {
         super(new UIKeybind(keyCombo -> {

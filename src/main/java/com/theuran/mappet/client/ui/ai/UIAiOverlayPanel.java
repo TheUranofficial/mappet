@@ -13,6 +13,8 @@ import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
 import mchorse.bbs_mod.ui.framework.elements.utils.UILabel;
 import mchorse.bbs_mod.ui.framework.elements.utils.UIText;
 import mchorse.bbs_mod.ui.utils.UI;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import java.util.regex.Pattern;
 
 import static com.theuran.mappet.client.ai.AiMain.getAIResponse;
 
+@Environment(EnvType.CLIENT)
 public class UIAiOverlayPanel extends UIOverlayPanel {
     private final UIText scriptName;
     private final UIText aiText;

@@ -2,9 +2,12 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.elements.input.UITrackpad;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UITrackpadComponent extends UIComponent<UITrackpad>{
     public UITrackpadComponent(Consumer<Double> consumer) {
         super(new UITrackpad(consumer));

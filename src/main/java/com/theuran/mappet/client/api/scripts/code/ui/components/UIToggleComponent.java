@@ -2,8 +2,10 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import com.theuran.mappet.client.api.scripts.code.ui.elements.UIMappetToggleElement;
 import mchorse.bbs_mod.l10n.keys.IKey;
-import mchorse.bbs_mod.ui.framework.elements.buttons.UIToggle;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIToggleComponent extends UIComponent<UIMappetToggleElement> {
     public UIToggleComponent(String label, boolean value, Runnable runnable) {
         super(new UIMappetToggleElement(IKey.raw(label), value, (toggle) -> {

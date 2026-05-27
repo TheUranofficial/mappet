@@ -5,6 +5,8 @@ import com.theuran.mappet.api.events.EventType;
 import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.event.player.*;
 import net.minecraft.client.world.ClientWorld;
@@ -13,6 +15,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 
+@Environment(EnvType.CLIENT)
 public class ClientEventHandler {
     public static void init() {
         player();

@@ -8,8 +8,11 @@ import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIStringOverlayPanel;
 import mchorse.bbs_mod.utils.repos.IRepository;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
-public abstract class UIStringTriggerPanel <T extends StringTrigger> extends UITriggerPanel<T> {
+@Environment(EnvType.CLIENT)
+public abstract class UIStringTriggerPanel<T extends StringTrigger> extends UITriggerPanel<T> {
     public UIButton picker;
 
     public UIStringTriggerPanel(UIEditorTriggersOverlayPanel overlay, T trigger) {

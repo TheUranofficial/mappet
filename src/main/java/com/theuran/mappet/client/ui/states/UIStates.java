@@ -3,9 +3,12 @@ package com.theuran.mappet.client.ui.states;
 import com.theuran.mappet.api.states.States;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class UIStates extends UIScrollView {
     private Map<String, States> states;
 

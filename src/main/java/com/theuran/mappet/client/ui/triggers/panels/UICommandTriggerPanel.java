@@ -5,7 +5,10 @@ import com.theuran.mappet.client.ui.triggers.UIEditorTriggersOverlayPanel;
 import com.theuran.mappet.client.ui.utils.UIMappetUtils;
 import mchorse.bbs_mod.l10n.L10n;
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextbox;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UICommandTriggerPanel extends UITriggerPanel<CommandTrigger> {
     public UITextbox command;
 

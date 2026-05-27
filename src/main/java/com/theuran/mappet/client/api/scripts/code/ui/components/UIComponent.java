@@ -4,7 +4,10 @@ import com.theuran.mappet.api.scripts.code.ScriptVector;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.utils.Direction;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIComponent<T extends UIElement> {
     protected T element;
 

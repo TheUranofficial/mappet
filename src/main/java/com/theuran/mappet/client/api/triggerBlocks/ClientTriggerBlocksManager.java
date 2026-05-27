@@ -2,12 +2,13 @@ package com.theuran.mappet.client.api.triggerBlocks;
 
 import com.theuran.mappet.block.blocks.entities.TriggerBlockEntity;
 import com.theuran.mappet.event.TriggerBlockEntityUpdateCallback;
-import mchorse.bbs_mod.blocks.entities.ModelBlockEntity;
-import mchorse.bbs_mod.events.ModelBlockEntityUpdateCallback;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Environment(EnvType.CLIENT)
 public class ClientTriggerBlocksManager {
     public static final Set<TriggerBlockEntity> capturedTriggerBlocks = new HashSet<>();
 

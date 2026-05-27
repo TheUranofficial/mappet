@@ -2,7 +2,10 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.utils.icons.Icon;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UIIconComponent extends UIComponent<UIIcon>{
     public UIIconComponent(Icon icon, Runnable onClick) {
         super(new UIIcon(icon, (uiIcon -> {

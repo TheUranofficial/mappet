@@ -1,5 +1,9 @@
 package com.theuran.mappet.client.ui.utils.treeSitter;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+@Environment(EnvType.CLIENT)
 public enum TSNodeType {
     PROGRAM(),
     FUNCTION_DECLARATION(),

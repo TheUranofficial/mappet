@@ -3,8 +3,8 @@ package com.theuran.mappet.client;
 import com.theuran.mappet.block.MappetBlocks;
 import com.theuran.mappet.client.ui.blocks.trigger.UITriggerBlock;
 import mchorse.bbs_mod.graphics.Draw;
-import mchorse.bbs_mod.ui.framework.UIBaseMenu;
-import mchorse.bbs_mod.ui.framework.UIScreen;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.block.BlockState;
@@ -16,6 +16,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 
+@Environment(EnvType.CLIENT)
 public class TriggerRenderer {
     public static void init() {
         WorldRenderEvents.END.register((context) -> {

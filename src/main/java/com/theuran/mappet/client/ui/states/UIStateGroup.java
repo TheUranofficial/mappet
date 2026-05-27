@@ -7,9 +7,12 @@ import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import mchorse.bbs_mod.utils.colors.Colors;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.Comparator;
 
+@Environment(EnvType.CLIENT)
 public class UIStateGroup extends UIElement {
     private States states;
     private boolean visible = true;

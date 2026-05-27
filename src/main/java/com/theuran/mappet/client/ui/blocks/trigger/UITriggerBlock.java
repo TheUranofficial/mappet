@@ -10,9 +10,12 @@ import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.ui.framework.UIBaseMenu;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.BlockPos;
 
+@Environment(EnvType.CLIENT)
 public class UITriggerBlock extends UIBaseMenu {
     public final BlockPos blockPos;
     public final TriggerBlockEntity triggerBlockEntity;

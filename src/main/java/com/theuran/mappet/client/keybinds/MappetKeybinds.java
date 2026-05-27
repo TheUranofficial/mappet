@@ -8,6 +8,8 @@ import com.theuran.mappet.client.ui.panels.UIScriptPanel;
 import com.theuran.mappet.network.Dispatcher;
 import com.theuran.mappet.network.packets.scripts.ScriptsRunPacket;
 import mchorse.bbs_mod.ui.framework.UIScreen;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
@@ -16,6 +18,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
+@Environment(EnvType.CLIENT)
 public class MappetKeybinds {
     private static final KeyBinding KEY_DASHBOARD = createKey("dashboard", GLFW.GLFW_KEY_EQUAL);
     private static final KeyBinding KEY_RUN_SCRIPT = createKey("runScript", GLFW.GLFW_KEY_F6);

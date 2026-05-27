@@ -9,8 +9,11 @@ import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.input.UITrackpad;
 import mchorse.bbs_mod.ui.framework.elements.utils.UILabel;
 import mchorse.bbs_mod.ui.utils.UI;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
-public class UITriggerPanel <T extends Trigger> extends UIElement {
+@Environment(EnvType.CLIENT)
+public class UITriggerPanel<T extends Trigger> extends UIElement {
     public UITrackpad frequency;
 
     protected UIEditorTriggersOverlayPanel overlay;

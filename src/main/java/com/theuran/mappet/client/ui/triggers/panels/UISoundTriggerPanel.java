@@ -8,7 +8,10 @@ import mchorse.bbs_mod.ui.UIKeys;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UISoundOverlayPanel;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIStringOverlayPanel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public class UISoundTriggerPanel extends UIStringTriggerPanel<SoundTrigger> {
     public UISoundTriggerPanel(UIEditorTriggersOverlayPanel overlay, SoundTrigger trigger) {
         super(overlay, trigger);

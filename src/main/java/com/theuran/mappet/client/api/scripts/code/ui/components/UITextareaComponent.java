@@ -2,9 +2,12 @@ package com.theuran.mappet.client.api.scripts.code.ui.components;
 
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextarea;
 import mchorse.bbs_mod.ui.framework.elements.input.text.highlighting.HighlightedTextLine;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UITextareaComponent extends UIComponent<UITextarea<HighlightedTextLine>>{
     public UITextareaComponent(Consumer<String> consumer) {
         super(new UITextarea<>(consumer));

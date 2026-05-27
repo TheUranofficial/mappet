@@ -6,7 +6,10 @@ import mchorse.bbs_mod.ui.dashboard.panels.UIDataDashboardPanel;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIIcon;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public abstract class UIOptionsDataDashboardPanel <T extends ValueGroup> extends UIDataDashboardPanel<T> {
     public UIIcon optionsIcon;
     public UIOptionsOverlayPanel options;
