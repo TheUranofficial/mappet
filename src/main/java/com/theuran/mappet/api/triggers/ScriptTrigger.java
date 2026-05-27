@@ -17,11 +17,13 @@ public class ScriptTrigger extends StringTrigger {
 
     public ScriptTrigger() {
         super();
+
         this.add(this.function);
     }
 
     public ScriptTrigger(String script, String function) {
         this();
+
         this.key.set(script);
         this.function.set(function);
     }
@@ -31,6 +33,7 @@ public class ScriptTrigger extends StringTrigger {
         try {
             scriptEvent.setScript(this.key.get());
             scriptEvent.setFunction(this.function.get());
+
             Mappet.getScripts().execute(scriptEvent);
         } catch (JavetException ignored) {
         }
@@ -41,6 +44,7 @@ public class ScriptTrigger extends StringTrigger {
         try {
             scriptEvent.setScript(this.key.get());
             scriptEvent.setFunction(this.function.get());
+
             MappetClient.getScripts().execute(scriptEvent);
         } catch (JavetException ignored) {
         }
@@ -51,6 +55,7 @@ public class ScriptTrigger extends StringTrigger {
         return "script";
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
         return new UIScriptTriggerPanel(overlayPanel, this);

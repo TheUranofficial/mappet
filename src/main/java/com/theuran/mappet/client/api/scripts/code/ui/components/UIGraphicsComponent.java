@@ -14,6 +14,7 @@ public class UIGraphicsComponent extends UIComponent<UIGraphics> {
 
     public UIGraphicsComponent box(int color, float alpha) {
         this.element.graphic = new Graphic.Box(Colors.setA(color, alpha));
+
         return this;
     }
 
@@ -31,6 +32,7 @@ public class UIGraphicsComponent extends UIComponent<UIGraphics> {
 
     public UIGraphicsComponent gradientH(int color1, int color2, float alpha1, float alpha2) {
         this.element.graphic = new Graphic.GradientH(Colors.setA(color1, alpha1), Colors.setA(color2, alpha2));
+
         return this;
     }
 
@@ -44,6 +46,7 @@ public class UIGraphicsComponent extends UIComponent<UIGraphics> {
 
     public UIGraphicsComponent gradientV(int color1, int color2, float alpha1, float alpha2) {
         this.element.graphic = new Graphic.GradientV(Colors.setA(color1, alpha1), Colors.setA(color2, alpha2));
+
         return this;
     }
 
@@ -57,6 +60,7 @@ public class UIGraphicsComponent extends UIComponent<UIGraphics> {
 
     public UIGraphicsComponent texture(String path, int color, float alpha) {
         this.element.graphic = new Graphic.FullTexturedBox(path, Colors.setA(color, alpha));
+
         return this;
     }
 
@@ -70,6 +74,7 @@ public class UIGraphicsComponent extends UIComponent<UIGraphics> {
 
     public UIGraphicsComponent outline(int color, int border, float alpha) {
         this.element.graphic = new Graphic.Outline(Colors.setA(color, alpha), border);
+
         return this;
     }
 }

@@ -11,6 +11,7 @@ public abstract class StringTrigger extends Trigger {
 
     public StringTrigger(String string) {
         this();
+
         this.key.set(string);
     }
 

@@ -41,31 +41,37 @@ public class UIToggleComponent extends UIComponent<UIMappetToggleElement> {
 
     public UIToggleComponent label(String label) {
         this.element.label(IKey.raw(label));
+
         return this;
     }
 
     public UIToggleComponent color(int color) {
         this.element.color(color);
+
         return this;
     }
 
     public UIToggleComponent alpha(float alpha) {
         this.element.alpha = alpha;
+
         return this;
     }
 
     public UIToggleComponent textAlpha(int alpha) {
         this.element.textAlpha = alpha;
+
         return this;
     }
 
     public UIToggleComponent textShadow(boolean shadow) {
         this.element.textShadow = shadow;
+
         return this;
     }
 
     public UIToggleComponent value(boolean value) {
         this.element.setValue(value);
+
         return this;
     }
 }

@@ -16,8 +16,8 @@ public class UICommandTriggerPanel extends UITriggerPanel<CommandTrigger> {
         super(overlay, trigger);
 
         this.command = UIMappetUtils.fullWindowContext(
-                new UITextbox(10000, text -> this.trigger.key.set(text)),
-                L10n.lang("mappet.triggers.types.command")
+            new UITextbox(10000, text -> this.trigger.key.set(text)),
+            L10n.lang("mappet.triggers.types.command")
         );
         this.command.setText(trigger.key.get());
 

@@ -44,21 +44,25 @@ public class UILabelComponent extends UIComponent<UILabel> {
 
     public UILabelComponent label(String label) {
         this.element.label = IKey.raw(label);
+
         return this;
     }
 
     public UILabelComponent color(int color) {
         this.element.color(color);
+
         return this;
     }
 
     public UILabelComponent textShadow(boolean textShadow) {
         this.element.textShadow = textShadow;
+
         return this;
     }
 
     public UILabelComponent background(int color) {
         this.element.background(color);
+
         return this;
     }
 }

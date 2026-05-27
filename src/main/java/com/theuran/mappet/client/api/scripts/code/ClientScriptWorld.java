@@ -6,7 +6,7 @@ import net.minecraft.client.world.ClientWorld;
 
 @Environment(EnvType.CLIENT)
 public class ClientScriptWorld {
-    ClientWorld world;
+    public ClientWorld world;
 
     public ClientScriptWorld(ClientWorld world) {
         this.world = world;

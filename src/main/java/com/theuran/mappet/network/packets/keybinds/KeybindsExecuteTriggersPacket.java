@@ -11,15 +11,15 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.List;
 
 public class KeybindsExecuteTriggersPacket extends ServerPacket {
-    private final ValueString keybindId = new ValueString("keybindId", "");
+    private ValueString keybindId = new ValueString("keybindId", "");
 
     public KeybindsExecuteTriggersPacket() {
-        super();
         this.add(this.keybindId);
     }
 
     public KeybindsExecuteTriggersPacket(String keybindId) {
         this();
+
         this.keybindId.set(keybindId);
     }
 

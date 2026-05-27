@@ -1,6 +1,5 @@
 package com.theuran.mappet.client.api.scripts.code;
 
-import com.theuran.mappet.api.scripts.code.entity.ScriptPlayer;
 import com.theuran.mappet.client.api.scripts.code.entity.ClientScriptEntity;
 import com.theuran.mappet.client.api.scripts.code.entity.ClientScriptPlayer;
 import net.fabricmc.api.EnvType;
@@ -8,7 +7,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
@@ -20,9 +18,9 @@ public class ClientScriptEvent {
     private String script;
     private String function;
 
-    public final ClientScriptEntity subject;
-    public final ClientScriptEntity object;
-    public final ClientScriptWorld world;
+    public ClientScriptEntity subject;
+    public ClientScriptEntity object;
+    public ClientScriptWorld world;
 
     private Map<String, Object> values = new HashMap<>();
 

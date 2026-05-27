@@ -17,7 +17,7 @@ public enum TSNodeType {
     ERROR(),
     DOT(".");
 
-    final String name;
+    public String name;
 
     TSNodeType(String name) {
         this.name = name;

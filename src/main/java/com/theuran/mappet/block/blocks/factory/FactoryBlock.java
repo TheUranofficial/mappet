@@ -8,12 +8,12 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.StringIdentifiable;
 
 public class FactoryBlock extends Block {
-    public static final EnumProperty<Settings> SETTINGS = EnumProperty.of("settings", Settings.class);
+    public static EnumProperty<Settings> SETTINGS = EnumProperty.of("settings", Settings.class);
 
     public FactoryBlock() {
         super(FabricBlockSettings.create());
         this.setDefaultState(this.getStateManager().getDefaultState()
-                .with(SETTINGS, Settings.COBBLESTONE));
+            .with(SETTINGS, Settings.COBBLESTONE));
     }
 
     @Override

@@ -40,9 +40,10 @@ public class TriggerBlock extends BlockWithEntity implements Waterloggable {
 
     public TriggerBlock() {
         super(Settings.create().nonOpaque().noCollision());
+
         this.setDefaultState(this.getStateManager().getDefaultState()
-                .with(COLLISION, true)
-                .with(Properties.WATERLOGGED, false));
+            .with(COLLISION, true)
+            .with(Properties.WATERLOGGED, false));
     }
 
     @Override
@@ -57,22 +58,28 @@ public class TriggerBlock extends BlockWithEntity implements Waterloggable {
         }
 
         BlockEntity be = world.getBlockEntity(pos);
+
         if (be instanceof TriggerBlockEntity trigger) {
             ScriptVector p1 = trigger.getPos1();
             ScriptVector p2 = trigger.getPos2();
+
             return VoxelShapes.cuboid(p1.x / 16.0, p1.y / 16.0, p1.z / 16.0, p2.x / 16.0, p2.y / 16.0, p2.z / 16.0);
         }
+
         return VoxelShapes.fullCube();
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         BlockEntity be = world.getBlockEntity(pos);
+
         if (be instanceof TriggerBlockEntity trigger) {
             ScriptVector p1 = trigger.getPos1();
             ScriptVector p2 = trigger.getPos2();
+
             return VoxelShapes.cuboid(p1.x / 16.0, p1.y / 16.0, p1.z / 16.0, p2.x / 16.0, p2.y / 16.0, p2.z / 16.0);
         }
+
         return VoxelShapes.fullCube();
     }
 
@@ -92,26 +99,27 @@ public class TriggerBlock extends BlockWithEntity implements Waterloggable {
     }
 
     @Override
-    public FluidState getFluidState(BlockState state)
-    {
+    public FluidState getFluidState(BlockState state) {
         return state.get(Properties.WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()) {
             UIScreen.open(new UITriggerBlock(pos));
+
             return ActionResult.SUCCESS;
         }
+
         return ActionResult.CONSUME;
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState()
-                .with(COLLISION, true)
-                .with(Properties.WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).isOf(Fluids.WATER));
+            .with(COLLISION, true)
+            .with(Properties.WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).isOf(Fluids.WATER));
     }
 
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {

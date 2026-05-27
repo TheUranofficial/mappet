@@ -8,8 +8,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 public class HUDsClosePacket extends ClientPacket {
-    private final ValueString id = new ValueString("id", "");
-    private final ValueBoolean removeAll = new ValueBoolean("removeAll", false);
+    private ValueString id = new ValueString("id", "");
+    private ValueBoolean removeAll = new ValueBoolean("removeAll", false);
 
     public HUDsClosePacket() {
         this.add(this.id);
@@ -18,6 +18,7 @@ public class HUDsClosePacket extends ClientPacket {
 
     public HUDsClosePacket(String id, boolean removeAll) {
         this();
+
         this.id.set(id);
         this.removeAll.set(removeAll);
     }

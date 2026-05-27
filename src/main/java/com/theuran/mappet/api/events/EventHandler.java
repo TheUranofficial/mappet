@@ -29,8 +29,9 @@ public class EventHandler {
 
     private static void entity() {
         ServerLivingEntityEvents.ALLOW_DAMAGE.register((livingEntity, damageSource, damage) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.ENTITY_DAMAGE))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.ENTITY_DAMAGE)) {
                 return true;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(damageSource.getAttacker(), damageSource.getSource(), (ServerWorld) livingEntity.getWorld(), livingEntity.getServer());
 
@@ -43,8 +44,9 @@ public class EventHandler {
         });
 
         ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.ENTITY_DEATH))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.ENTITY_DEATH)) {
                 return true;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(damageSource.getAttacker(), damageSource.getSource(), (ServerWorld) damageSource.getAttacker().getWorld(), damageSource.getAttacker().getServer());
 
@@ -59,8 +61,9 @@ public class EventHandler {
 
     private static void server() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.SERVER_TICK))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.SERVER_TICK)) {
                 return;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(null, null, server.getWorld(World.OVERWORLD), server);
 
@@ -68,16 +71,20 @@ public class EventHandler {
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.SERVER_STARTED))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.SERVER_STARTED)) {
                 return;
+            }
+
             ScriptEvent scriptEvent = ScriptEvent.create(null, null, server.getWorld(World.OVERWORLD), server);
 
             Mappet.getEvents().eventServer(EventType.SERVER_STARTED, scriptEvent);
         });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.SERVER_STOPPED))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.SERVER_STOPPED)) {
                 return;
+            }
+
             ScriptEvent scriptEvent = ScriptEvent.create(null, null, server.getWorld(World.OVERWORLD), server);
 
             Mappet.getEvents().eventServer(EventType.SERVER_STOPPED, scriptEvent);
@@ -86,8 +93,9 @@ public class EventHandler {
 
     private static void player() {
         ServerPlayConnectionEvents.JOIN.register((networkHandler, packetSender, server) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_JOIN))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_JOIN)) {
                 return;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(networkHandler.player, null, networkHandler.player.getServerWorld(), server);
 
@@ -95,8 +103,9 @@ public class EventHandler {
         });
 
         ServerPlayConnectionEvents.DISCONNECT.register((networkHandler, server) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_DISCONNECT))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_DISCONNECT)) {
                 return;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(networkHandler.player, null, networkHandler.player.getServerWorld(), server);
 
@@ -104,8 +113,9 @@ public class EventHandler {
         });
 
         ServerMessageEvents.CHAT_MESSAGE.register((signedMessage, player, parameters) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_CHAT_MESSAGE))
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_CHAT_MESSAGE)) {
                 return;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, player.getServerWorld(), player.getServer());
 
@@ -113,8 +123,9 @@ public class EventHandler {
         });
 
         AttackBlockCallback.EVENT.register((player, world, hand, blockPos, direction) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK) || world.isClient)
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_BLOCK) || world.isClient) {
                 return ActionResult.PASS;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
@@ -128,8 +139,9 @@ public class EventHandler {
         });
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_ENTITY) || world.isClient)
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_ATTACK_ENTITY) || world.isClient) {
                 return ActionResult.PASS;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, entity, (ServerWorld) world, player.getServer());
 
@@ -141,8 +153,9 @@ public class EventHandler {
         });
 
         UseBlockCallback.EVENT.register((player, world, hand, blockHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_BLOCK) || world.isClient)
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_BLOCK) || world.isClient) {
                 return ActionResult.PASS;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
@@ -156,8 +169,9 @@ public class EventHandler {
         });
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ENTITY) || world.isClient)
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ENTITY) || world.isClient) {
                 return ActionResult.PASS;
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 
@@ -171,8 +185,9 @@ public class EventHandler {
         UseItemCallback.EVENT.register((player, world, hand) -> {
             ItemStack stack = player.getStackInHand(hand);
 
-            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ITEM) || world.isClient)
+            if (Mappet.getEvents().noTriggersInEvent(EventType.PLAYER_USE_ITEM) || world.isClient) {
                 return new TypedActionResult<>(ActionResult.PASS, stack);
+            }
 
             ScriptEvent scriptEvent = ScriptEvent.create(player, null, (ServerWorld) world, player.getServer());
 

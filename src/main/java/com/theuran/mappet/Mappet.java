@@ -88,11 +88,11 @@ public class Mappet implements ModInitializer {
 
         triggers = new MapFactory<>();
         triggers
-                .register(link("command"), CommandTrigger.class, 0x942aff)
-                .register(link("item"), ItemTrigger.class, 0xff6600)
-                .register(link("script"), ScriptTrigger.class, 0x2d4163)
-                .register(link("sound"), SoundTrigger.class, 0x00a0ff)
-                .register(link("state"), StateTrigger.class, Colors.NEGATIVE);
+            .register(link("command"), CommandTrigger.class, 0x942aff)
+            .register(link("item"), ItemTrigger.class, 0xff6600)
+            .register(link("script"), ScriptTrigger.class, 0x2d4163)
+            .register(link("sound"), SoundTrigger.class, 0x00a0ff)
+            .register(link("state"), StateTrigger.class, Colors.NEGATIVE);
 
         EventHandler.init();
 

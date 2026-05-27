@@ -30,6 +30,7 @@ public class UIEventsOverlayPanel extends UIOverlayPanel {
                     Dispatcher.sendToServer(new TriggersRequestC2SPacket(RequestTrigger.EVENTS, string.value.toUpperCase()));
                     UIOverlay.addOverlay(this.getContext(), this.panel, 0.55f, 0.75f).noBackground();
                 }
+
                 this.latest = string.value;
             }
         });

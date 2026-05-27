@@ -46,27 +46,24 @@ public class UIMappetTransform extends UIElement {
         IKey raw = IKey.constant("%s (%s)");
 
         this.sx = new UITrackpad((value) ->
-        {
-            this.internalSetS(value, Axis.X);
-        }).disableCanceling();
+            this.internalSetS(value, Axis.X)
+        ).disableCanceling();
         this.sx.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_X));
         this.sx.textbox.setColor(Colors.RED);
         this.sx.limit(0, 16);
         this.sx.integer();
 
         this.sy = new UITrackpad((value) ->
-        {
-            this.internalSetS(value, Axis.Y);
-        }).disableCanceling();
+            this.internalSetS(value, Axis.Y)
+        ).disableCanceling();
         this.sy.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_Y));
         this.sy.textbox.setColor(Colors.GREEN);
         this.sy.limit(0, 16);
         this.sy.integer();
 
         this.sz = new UITrackpad((value) ->
-        {
-            this.internalSetS(value, Axis.Z);
-        }).disableCanceling();
+            this.internalSetS(value, Axis.Z)
+        ).disableCanceling();
         this.sz.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_Z));
         this.sz.textbox.setColor(Colors.BLUE);
         this.sz.limit(0, 16);
@@ -74,9 +71,9 @@ public class UIMappetTransform extends UIElement {
 
         /// ///////////////////////////
 
-        this.s2x = new UITrackpad((value) -> {
-            this.internalSetS2(value, Axis.X);
-        }).disableCanceling();
+        this.s2x = new UITrackpad((value) ->
+            this.internalSetS2(value, Axis.X)
+        ).disableCanceling();
         this.s2x.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_X));
         this.s2x.textbox.setColor(Colors.RED);
         this.s2x.limit(0, 16);
@@ -90,9 +87,9 @@ public class UIMappetTransform extends UIElement {
         this.s2y.limit(0, 16);
         this.s2y.integer();
 
-        this.s2z = new UITrackpad((value) -> {
-            this.internalSetS2(value, Axis.Z);
-        }).disableCanceling();
+        this.s2z = new UITrackpad((value) ->
+            this.internalSetS2(value, Axis.Z)
+        ).disableCanceling();
         this.s2z.onlyNumbers().tooltip(raw.format(UIKeys.TRANSFORMS_SCALE, UIKeys.GENERAL_Z));
         this.s2z.textbox.setColor(Colors.BLUE);
         this.s2z.limit(0, 16);
@@ -106,8 +103,7 @@ public class UIMappetTransform extends UIElement {
         this.add(this.scaleRow = UI.row(this.iconS, this.sx, this.sy, this.sz));
         this.add(this.scaleRow = UI.row(this.iconS2, this.s2x, this.s2y, this.s2z));
 
-        this.context((menu) ->
-        {
+        this.context((menu) -> {
             ListType transforms = Window.getClipboardList();
 
             if (transforms != null && transforms.size() < 9) {
@@ -117,7 +113,7 @@ public class UIMappetTransform extends UIElement {
             menu.autoKeys().action(Icons.COPY, UIKeys.TRANSFORMS_CONTEXT_COPY, this::copyTransformations);
 
             if (transforms != null) {
-                final ListType innerList = transforms;
+                ListType innerList = transforms;
 
                 menu.action(Icons.PASTE, UIKeys.TRANSFORMS_CONTEXT_PASTE, () -> this.pasteAll(innerList));
                 menu.action(Icons.MAXIMIZE, UIKeys.TRANSFORMS_CONTEXT_PASTE_SCALE, () -> this.pasteScale(this.getVector(innerList, 3)));
@@ -130,8 +126,7 @@ public class UIMappetTransform extends UIElement {
         this.wh(190, 70);
 
         this.keys().register(Keys.COPY, this::copyTransformations).inside().label(UIKeys.TRANSFORMS_CONTEXT_COPY);
-        this.keys().register(Keys.PASTE, () ->
-        {
+        this.keys().register(Keys.PASTE, () -> {
             ListType transforms = Window.getClipboardList();
 
             if (transforms != null && transforms.size() < 9) {
@@ -186,9 +181,9 @@ public class UIMappetTransform extends UIElement {
             }
 
             this.setS(axis,
-                    axis == Axis.X ? x : this.sx.getValue(),
-                    axis == Axis.Y ? x : this.sy.getValue(),
-                    axis == Axis.Z ? x : this.sz.getValue()
+                axis == Axis.X ? x : this.sx.getValue(),
+                axis == Axis.Y ? x : this.sy.getValue(),
+                axis == Axis.Z ? x : this.sz.getValue()
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -200,9 +195,9 @@ public class UIMappetTransform extends UIElement {
     protected void internalSetS2(double x, Axis axis) {
         try {
             this.setS2(axis,
-                    axis == Axis.X ? x : this.s2x.getValue(),
-                    axis == Axis.Y ? x : this.s2y.getValue(),
-                    axis == Axis.Z ? x : this.s2z.getValue()
+                axis == Axis.X ? x : this.s2x.getValue(),
+                axis == Axis.Y ? x : this.s2y.getValue(),
+                axis == Axis.Z ? x : this.s2z.getValue()
             );
         } catch (Exception e) {
             e.printStackTrace();

@@ -19,6 +19,7 @@ public class MappetBlocks {
 
         if (shouldRegisterItem) {
             BlockItem blockItem = new BlockItem(block, new Item.Settings());
+
             Registry.register(Registries.ITEM, id, blockItem);
         }
 

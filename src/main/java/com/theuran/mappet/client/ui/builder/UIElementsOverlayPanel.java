@@ -13,7 +13,8 @@ public class UIElementsOverlayPanel extends UIOverlayPanel {
 
     public UIElementsOverlayPanel() {
         super(UIMappetKeys.UI_BUILDER_ELEMENT_PANEL);
-        this.list = new UIStringList((l) -> {});
+        this.list = new UIStringList((l) -> {
+        });
 
         this.list.setList(UIBuilderPanel.names);
 

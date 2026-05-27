@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InputUtils {
-    private static final Map<Integer, Boolean> keyStates = new HashMap<>();
-    private static final Map<Integer, Boolean> previousKeyStates = new HashMap<>();
+    private static Map<Integer, Boolean> keyStates = new HashMap<>();
+    private static Map<Integer, Boolean> previousKeyStates = new HashMap<>();
 
-    private static final int MIN_KEY = GLFW.GLFW_KEY_SPACE;
-    private static final int MAX_KEY = GLFW.GLFW_KEY_LAST;
+    private static int MIN_KEY = GLFW.GLFW_KEY_SPACE;
+    private static int MAX_KEY = GLFW.GLFW_KEY_LAST;
 
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -28,7 +28,10 @@ public class InputUtils {
 
     private static void updateKeyStates() {
         long window = getWindow();
-        if (window == 0) return;
+
+        if (window == 0) {
+            return;
+        }
 
         for (int keyCode = MIN_KEY; keyCode <= MAX_KEY; keyCode++) {
             keyStates.put(keyCode, InputUtil.isKeyPressed(window, keyCode));
@@ -45,7 +48,10 @@ public class InputUtils {
 
     public static boolean isKeyPressed(int keyCode) {
         long window = getWindow();
-        if (window == 0) return false;
+
+        if (window == 0) {
+            return false;
+        }
 
         return InputUtil.isKeyPressed(window, keyCode);
     }

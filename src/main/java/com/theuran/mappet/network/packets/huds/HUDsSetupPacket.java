@@ -12,8 +12,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 public class HUDsSetupPacket extends ClientPacket {
-    private final ValueString id = new ValueString("id", "");
-    private final ValueType data = new ValueType("data", null);
+    private ValueString id = new ValueString("id", "");
+    private ValueType data = new ValueType("data", null);
 
     public HUDsSetupPacket() {
         this.add(this.id);
@@ -22,6 +22,7 @@ public class HUDsSetupPacket extends ClientPacket {
 
     public HUDsSetupPacket(String id, BaseType data) {
         this();
+
         this.id.set(id);
         this.data.set(data);
     }

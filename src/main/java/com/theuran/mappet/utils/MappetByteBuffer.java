@@ -29,11 +29,11 @@ public class MappetByteBuffer {
 
     public static Keybind readKeybind(PacketByteBuf buf) {
         return new Keybind(
-                buf.readString(),
-                buf.readString(),
-                buf.readInt(),
-                Keybind.Type.valueOf(buf.readString()),
-                Keybind.Modificator.valueOf(buf.readString())
+            buf.readString(),
+            buf.readString(),
+            buf.readInt(),
+            Keybind.Type.valueOf(buf.readString()),
+            Keybind.Modificator.valueOf(buf.readString())
         );
     }
 
@@ -90,12 +90,12 @@ public class MappetByteBuffer {
         values.put("__objectId", objectId);
 
         ScriptEvent scriptEvent = ScriptEvent.create(
-                script,
-                function,
-                null,
-                null,
-                null,
-                null
+            script,
+            function,
+            null,
+            null,
+            null,
+            null
         );
 
         scriptEvent.setValues(values);
@@ -133,11 +133,11 @@ public class MappetByteBuffer {
         Map<String, Object> values = buf.readMap(PacketByteBuf::readString, MappetByteBuffer::readValue);
 
         ClientScriptEvent clientScriptEvent = ClientScriptEvent.create(
-                script,
-                function,
-                MinecraftClient.getInstance().world.getEntityById(subjectId),
-                MinecraftClient.getInstance().world.getEntityById(objectId),
-                MinecraftClient.getInstance().world
+            script,
+            function,
+            MinecraftClient.getInstance().world.getEntityById(subjectId),
+            MinecraftClient.getInstance().world.getEntityById(objectId),
+            MinecraftClient.getInstance().world
         );
 
         clientScriptEvent.setValues(values);
@@ -189,36 +189,36 @@ public class MappetByteBuffer {
 
     private enum ValueType {
         STRING(String.class, "String",
-                (buf, obj) -> buf.writeString((String) obj),
-                PacketByteBuf::readString),
+            (buf, obj) -> buf.writeString((String) obj),
+            PacketByteBuf::readString),
 
         VECTOR(ScriptVector.class, "Vector",
-                (buf, obj) -> writeScriptVector(buf, (ScriptVector) obj),
-                MappetByteBuffer::readScriptVector),
+            (buf, obj) -> writeScriptVector(buf, (ScriptVector) obj),
+            MappetByteBuffer::readScriptVector),
 
         ITEM_STACK(ItemStack.class, "ItemStack",
-                (buf, obj) -> buf.writeItemStack((ItemStack) obj),
-                PacketByteBuf::readItemStack),
+            (buf, obj) -> buf.writeItemStack((ItemStack) obj),
+            PacketByteBuf::readItemStack),
 
         DOUBLE(Double.class, "Double",
-                (buf, obj) -> buf.writeDouble((Double) obj),
-                PacketByteBuf::readDouble),
+            (buf, obj) -> buf.writeDouble((Double) obj),
+            PacketByteBuf::readDouble),
 
         FLOAT(Float.class, "Float",
-                (buf, obj) -> buf.writeFloat((Float) obj),
-                PacketByteBuf::readFloat),
+            (buf, obj) -> buf.writeFloat((Float) obj),
+            PacketByteBuf::readFloat),
 
         INTEGER(Integer.class, "Integer",
-                (buf, obj) -> buf.writeInt((Integer) obj),
-                PacketByteBuf::readInt),
+            (buf, obj) -> buf.writeInt((Integer) obj),
+            PacketByteBuf::readInt),
 
         SHORT(Short.class, "Short",
-                (buf, obj) -> buf.writeShort((Short) obj),
-                PacketByteBuf::readShort),
+            (buf, obj) -> buf.writeShort((Short) obj),
+            PacketByteBuf::readShort),
 
         BYTE(Byte.class, "Byte",
-                (buf, obj) -> buf.writeByte((Byte) obj),
-                PacketByteBuf::readByte);
+            (buf, obj) -> buf.writeByte((Byte) obj),
+            PacketByteBuf::readByte);
 
         private final Class<?> typeClass;
         private final String typeName;

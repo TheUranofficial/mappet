@@ -10,17 +10,14 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
-public class UITriggerBlockEntityList extends UIList<TriggerBlockEntity>
-{
-    public UITriggerBlockEntityList(Consumer<List<TriggerBlockEntity>> callback)
-    {
+public class UITriggerBlockEntityList extends UIList<TriggerBlockEntity> {
+    public UITriggerBlockEntityList(Consumer<List<TriggerBlockEntity>> callback) {
         super(callback);
         this.scroll.scrollItemSize = 16;
     }
 
     @Override
-    protected String elementToString(UIContext context, int i, TriggerBlockEntity element)
-    {
+    protected String elementToString(UIContext context, int i, TriggerBlockEntity element) {
         return element.getPos().toString();
     }
 }

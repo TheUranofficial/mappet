@@ -25,8 +25,8 @@ public class TriggerBlockEntity extends BlockEntity {
     private ScriptVector pos1 = new ScriptVector(0, 0, 0);
     private ScriptVector pos2 = new ScriptVector(16, 16, 16);
 
-    private final List<Trigger> triggersRMB = new ArrayList<>();
-    private final List<Trigger> triggersLMB = new ArrayList<>();
+    private List<Trigger> triggersRMB = new ArrayList<>();
+    private List<Trigger> triggersLMB = new ArrayList<>();
 
     public TriggerBlockEntity(BlockPos pos, BlockState state) {
         super(MappetBlockEntities.TRIGGER_BLOCK, pos, state);
@@ -35,7 +35,8 @@ public class TriggerBlockEntity extends BlockEntity {
     public void setHitbox(ScriptVector pos1, ScriptVector pos2) {
         this.pos1 = pos1;
         this.pos2 = pos2;
-        markDirty();
+
+        this.markDirty();
     }
 
     public List<Trigger> getTriggersRMB() {
@@ -66,7 +67,7 @@ public class TriggerBlockEntity extends BlockEntity {
         nbt.putInt("x2", (int) this.pos2.x);
         nbt.putInt("y2", (int) this.pos2.y);
         nbt.putInt("z2", (int) this.pos2.z);
-        
+
         for (Trigger trigger : this.triggersRMB) {
             NbtList triggersTag = nbt.getList("triggersRMB", NbtList.COMPOUND_TYPE);
 
@@ -101,8 +102,8 @@ public class TriggerBlockEntity extends BlockEntity {
         super.readNbt(nbt);
     }
 
-    @Nullable
     @Override
+    @Nullable
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
     }

@@ -46,6 +46,7 @@ public abstract class AbstractDispatcher {
                 });
             } catch (Exception e) {
                 Mappet.LOGGER.error("Can't register packet", e);
+
                 throw new RuntimeException(e);
             }
         }
@@ -65,6 +66,7 @@ public abstract class AbstractDispatcher {
                 });
             } catch (Exception e) {
                 Mappet.LOGGER.error("Can't register packet", e);
+
                 throw new RuntimeException(e);
             }
         }

@@ -11,13 +11,13 @@ import net.minecraft.text.Text;
 
 public class MappetItemGroups {
     public static final ItemGroup MAPPET_GROUP = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(MappetItems.LOGO))
-            .displayName(Text.translatable("mappet.itemGroup.name"))
-            .entries((context, entries) -> {
-                entries.add(MappetItems.HAMMER);
-                entries.add(MappetBlocks.TRIGGER_BLOCK);
-            })
-            .build();
+        .icon(() -> new ItemStack(MappetItems.LOGO))
+        .displayName(Text.translatable("mappet.itemGroup.name"))
+        .entries((context, entries) -> {
+            entries.add(MappetItems.HAMMER);
+            entries.add(MappetBlocks.TRIGGER_BLOCK);
+        })
+        .build();
 
     public static void init() {
         Registry.register(Registries.ITEM_GROUP, Mappet.id("mappet"), MAPPET_GROUP);

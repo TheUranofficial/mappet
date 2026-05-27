@@ -15,12 +15,12 @@ public class StatesManager extends BaseFileManager {
 
     @Override
     public void toData(MapType mapType) {
-        mapType.combine(states.values);
+        mapType.combine(this.states.values);
     }
 
     @Override
     public void fromData(MapType mapType) {
-        states.values = mapType;
+        this.states.values = mapType;
     }
 
     public States get() {

@@ -11,6 +11,7 @@ import net.fabricmc.api.Environment;
 import java.util.List;
 import java.util.function.Consumer;
 
+@Environment(EnvType.CLIENT)
 public class UITriggerList extends UIList<Trigger> {
     public UITriggerList(Consumer<List<Trigger>> callback) {
         super(callback);

@@ -3,14 +3,12 @@ package com.theuran.mappet.client.ui.ai;
 import com.theuran.mappet.client.ai.AiMain;
 import com.theuran.mappet.client.ui.UIMappetKeys;
 import mchorse.bbs_mod.l10n.L10n;
-import mchorse.bbs_mod.ui.forms.editors.forms.UIForm;
 import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.UIElement;
 import mchorse.bbs_mod.ui.framework.elements.UIScrollView;
 import mchorse.bbs_mod.ui.framework.elements.buttons.UIButton;
 import mchorse.bbs_mod.ui.framework.elements.input.text.UITextbox;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
-import mchorse.bbs_mod.ui.framework.elements.utils.UILabel;
 import mchorse.bbs_mod.ui.framework.elements.utils.UIText;
 import mchorse.bbs_mod.ui.utils.UI;
 import net.fabricmc.api.EnvType;
@@ -47,7 +45,7 @@ public class UIAiOverlayPanel extends UIOverlayPanel {
 
         AiMain.HISTORY.clear();
 
-        String script = "```js\n"+content+"\n```";
+        String script = "```js\n" + content + "\n```";
 
         Thread.startVirtualThread(() -> {
             getAIResponse("Вот мой Js скрипт для мода майнкрафт 1 12 2 mappet на javet, пока пользователь не попросит не взаимодействуй с этим скриптом\n" + script, true);
@@ -145,6 +143,7 @@ public class UIAiOverlayPanel extends UIOverlayPanel {
 
         // Остаток текста после последнего блока
         String after = text.substring(lastEnd).trim();
+
         if (!after.isEmpty()) {
             result.add(after);
         }
@@ -160,7 +159,7 @@ public class UIAiOverlayPanel extends UIOverlayPanel {
     public void render(UIContext context) {
         super.render(context);
 
-        if (this.chars != null && !this.chars.isEmpty()) {
+        if (!this.chars.isEmpty()) {
             if (this.delay > 0) {
                 this.delay--;
             } else {
@@ -174,9 +173,11 @@ public class UIAiOverlayPanel extends UIOverlayPanel {
     public static String extractPart(String text) {
         int start = text.indexOf("```js");
         int end = text.indexOf("```");
+
         if (start != -1 && end != -1 && end > start) {
             return text.substring(start, end + 2);
         }
+
         return "";
     }
 }

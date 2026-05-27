@@ -9,7 +9,6 @@ public interface TriggerBlockEntityUpdateCallback {
         for(TriggerBlockEntityUpdateCallback listener : listeners) {
             listener.update(entity);
         }
-
     });
 
     void update(TriggerBlockEntity blockEntity);

@@ -2,7 +2,6 @@ package com.theuran.mappet.client.ui;
 
 import com.theuran.mappet.client.api.scripts.code.ui.MappetUIBuilder;
 import com.theuran.mappet.client.api.scripts.code.ui.components.UIComponent;
-import com.theuran.mappet.client.api.scripts.code.ui.components.UIOverlayComponent;
 import mchorse.bbs_mod.ui.framework.UIBaseMenu;
 import mchorse.bbs_mod.ui.framework.UIRenderingContext;
 import net.fabricmc.api.EnvType;

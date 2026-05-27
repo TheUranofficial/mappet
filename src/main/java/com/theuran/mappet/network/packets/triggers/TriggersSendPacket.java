@@ -16,18 +16,18 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.List;
 
 public class TriggersSendPacket extends CommonPacket {
-    private final ValueRequestTrigger type = new ValueRequestTrigger("requestTrigger", null);
-    private final ValueString id = new ValueString("id", "");
+    private ValueRequestTrigger type = new ValueRequestTrigger("requestTrigger", null);
+    private ValueString id = new ValueString("id", "");
     private List<Trigger> triggers;
 
     public TriggersSendPacket() {
-        super();
         this.add(this.type);
         this.add(this.id);
     }
 
     public TriggersSendPacket(RequestTrigger type, String id, List<Trigger> triggers) {
         this();
+
         this.type.set(type);
         this.id.set(id);
         this.triggers = triggers;
@@ -35,6 +35,7 @@ public class TriggersSendPacket extends CommonPacket {
 
     public TriggersSendPacket(RequestTrigger type, String id) {
         this();
+
         this.type.set(type);
         this.id.set(id);
         this.triggers = this.type.get().getTriggers(id);
@@ -54,8 +55,8 @@ public class TriggersSendPacket extends CommonPacket {
         this.triggers = MappetByteBuffer.readTriggerList(buf);
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public void handleClient() {
         this.type.get().clientSetTriggers(this.id.get(), this.triggers);
     }

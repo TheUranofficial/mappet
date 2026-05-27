@@ -18,11 +18,9 @@ public class StatesUpdatePacket extends CommonPacket {
     private Map<String, States> states;
 
     public StatesUpdatePacket() {
-        super();
     }
 
     public StatesUpdatePacket(Map<String, States> states) {
-        this();
         this.states = states;
     }
 

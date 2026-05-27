@@ -2,7 +2,6 @@ package com.theuran.mappet.client;
 
 import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.events.EventType;
-import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import com.theuran.mappet.api.scripts.code.ScriptVector;
 import com.theuran.mappet.client.api.scripts.code.ClientScriptEvent;
 import net.fabricmc.api.EnvType;
@@ -24,8 +23,7 @@ public class ClientEventHandler {
 
     private static void client() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_TICK))
-                return;
+            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_TICK)) return;
 
             ClientScriptEvent scriptEvent = ClientScriptEvent.create(client.player, null, client.world);
 
@@ -35,8 +33,7 @@ public class ClientEventHandler {
 
     private static void player() {
         AttackBlockCallback.EVENT.register((player, world, hand, blockPos, direction) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_ATTACK_BLOCK))
-                return ActionResult.PASS;
+            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_ATTACK_BLOCK)) return ActionResult.PASS;
 
             ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
 
@@ -50,8 +47,7 @@ public class ClientEventHandler {
         });
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_ATTACK_ENTITY))
-                return ActionResult.PASS;
+            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_ATTACK_ENTITY)) return ActionResult.PASS;
 
             ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, entity, (ClientWorld) world);
 
@@ -63,8 +59,7 @@ public class ClientEventHandler {
         });
 
         UseBlockCallback.EVENT.register((player, world, hand, blockHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_USE_BLOCK))
-                return ActionResult.PASS;
+            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_USE_BLOCK)) return ActionResult.PASS;
 
             ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
 
@@ -78,8 +73,7 @@ public class ClientEventHandler {
         });
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, entityHitResult) -> {
-            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_USE_ENTITY))
-                return ActionResult.PASS;
+            if (Mappet.getEvents().noTriggersInEvent(EventType.CLIENT_USE_ENTITY)) return ActionResult.PASS;
 
             ClientScriptEvent scriptEvent = ClientScriptEvent.create(player, null, (ClientWorld) world);
 

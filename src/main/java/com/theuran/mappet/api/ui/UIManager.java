@@ -15,8 +15,9 @@ public class UIManager extends BaseManager<UI> {
     protected UI createData(String id, MapType data) {
         UI ui = new UI();
 
-        if (data != null)
+        if (data != null) {
             ui.fromData(data);
+        }
 
         return ui;
     }

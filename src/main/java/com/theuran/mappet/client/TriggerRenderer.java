@@ -1,7 +1,6 @@
 package com.theuran.mappet.client;
 
 import com.theuran.mappet.block.MappetBlocks;
-import com.theuran.mappet.client.ui.blocks.trigger.UITriggerBlock;
 import mchorse.bbs_mod.graphics.Draw;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -34,13 +33,14 @@ public class TriggerRenderer {
         BlockPos playerPos = camera.getBlockPos();
 
         int radius = 15;
+
         BlockPos.stream(playerPos.add(-radius, -radius, -radius),
-                        playerPos.add(radius, radius, radius))
-                .forEach(pos -> {
-                    if (shouldRenderDebugBox(client.world, pos)) {
-                        renderBoxAtPos(context.matrixStack(), pos, camera, client.world);
-                    }
-                });
+                playerPos.add(radius, radius, radius))
+            .forEach(pos -> {
+                if (shouldRenderDebugBox(client.world, pos)) {
+                    renderBoxAtPos(context.matrixStack(), pos, camera, client.world);
+                }
+            });
     }
 
     private static boolean shouldRenderDebugBox(World world, BlockPos pos) {
@@ -56,17 +56,17 @@ public class TriggerRenderer {
             matrices.push();
 
             matrices.translate(
-                    pos.getX() - camera.getPos().x,
-                    pos.getY() - camera.getPos().y,
-                    pos.getZ() - camera.getPos().z
+                pos.getX() - camera.getPos().x,
+                pos.getY() - camera.getPos().y,
+                pos.getZ() - camera.getPos().z
             );
 
             Draw.renderBox(matrices,
-                    (float) box.minX, (float) box.minY, (float) box.minZ,
-                    (float) (box.maxX - box.minX),
-                    (float) (box.maxY - box.minY),
-                    (float) (box.maxZ - box.minZ),
-                    1.0F, 0.0F, 0.0F, 0.3F);
+                (float) box.minX, (float) box.minY, (float) box.minZ,
+                (float) (box.maxX - box.minX),
+                (float) (box.maxY - box.minY),
+                (float) (box.maxZ - box.minZ),
+                1.0F, 0.0F, 0.0F, 0.3F);
 
             matrices.pop();
         }

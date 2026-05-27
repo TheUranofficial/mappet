@@ -1,6 +1,5 @@
 package com.theuran.mappet.client.ui.keybinds;
 
-import com.theuran.mappet.Mappet;
 import com.theuran.mappet.api.keybinds.Keybind;
 import com.theuran.mappet.client.MappetClient;
 import com.theuran.mappet.client.ui.UIMappetKeys;

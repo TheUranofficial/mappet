@@ -4,7 +4,7 @@ import mchorse.bbs_mod.data.types.BaseType;
 import mchorse.bbs_mod.data.types.MapType;
 import mchorse.bbs_mod.settings.values.base.BaseValueBasic;
 
-public class ValueEnum <T extends Enum<T>> extends BaseValueBasic<T> {
+public class ValueEnum<T extends Enum<T>> extends BaseValueBasic<T> {
     public ValueEnum(String id, T value) {
         super(id, value);
     }

@@ -19,12 +19,14 @@ public class SoundTrigger extends StringTrigger {
 
     public SoundTrigger() {
         super();
+
         this.add(this.volume);
         this.add(this.pitch);
     }
 
     public SoundTrigger(String sound, float volume, float pitch) {
         this();
+
         this.key.set(sound);
         this.volume.set(volume);
         this.pitch.set(pitch);
@@ -32,8 +34,9 @@ public class SoundTrigger extends StringTrigger {
 
     @Override
     public void execute(ScriptEvent scriptEvent) {
-        if (this.key.get().isEmpty())
+        if (this.key.get().isEmpty()) {
             return;
+        }
 
         scriptEvent.getSubject().getMinecraftEntity().playSound(SoundEvent.of(new Identifier(this.key.get())), this.volume.get(), this.pitch.get());
     }
@@ -48,8 +51,8 @@ public class SoundTrigger extends StringTrigger {
         return "sound";
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
         return new UISoundTriggerPanel(overlayPanel, this);
     }

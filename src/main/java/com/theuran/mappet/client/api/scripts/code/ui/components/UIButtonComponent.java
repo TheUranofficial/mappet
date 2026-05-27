@@ -41,36 +41,43 @@ public class UIButtonComponent extends UIComponent<UIMappetButtonElement> {
 
     public UIButtonComponent label(String text) {
         this.element.label = IKey.raw(text);
+
         return this;
     }
 
     public UIButtonComponent color(int color) {
         this.element.color(color);
+
         return this;
     }
 
     public UIButtonComponent alpha(float alpha) {
         this.element.alpha(alpha);
+
         return this;
     }
 
     public UIButtonComponent textColor(int color) {
         this.element.textColor(color, this.element.textShadow);
+
         return this;
     }
 
     public UIButtonComponent textAlpha(float alpha) {
         this.element.textAlpha(alpha);
+
         return this;
     }
 
     public UIButtonComponent textShadow(boolean shadow) {
         this.element.textShadow = shadow;
+
         return this;
     }
 
     public UIButtonComponent background(boolean background) {
         this.element.background(background);
+
         return this;
     }
 }

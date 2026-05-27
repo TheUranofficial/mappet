@@ -33,7 +33,7 @@ public class UIHUDScenePanel extends UIOptionsDataDashboardPanel<HUDScene> {
     public UITrackpad expire;
     public UIPropTransform transformations;
 
-    private final HUDStage stage = new HUDStage();
+    private HUDStage stage = new HUDStage();
     private HUDForm current;
 
     public UIHUDScenePanel(UIDashboard dashboard) {

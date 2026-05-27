@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
 public class ScriptManager extends BaseManager<Script> {
-    private final Map<String, Script> scripts = new ConcurrentHashMap<>();
+    private Map<String, Script> scripts = new ConcurrentHashMap<>();
 
     public ScriptManager(Supplier<File> folder) {
         super(folder);
@@ -32,8 +32,9 @@ public class ScriptManager extends BaseManager<Script> {
 
     public void initialize() {
         for (String key : this.getKeys()) {
-            if (key.endsWith("/"))
+            if (key.endsWith("/")) {
                 continue;
+            }
 
             Script script = this.load(key);
 
@@ -51,12 +52,14 @@ public class ScriptManager extends BaseManager<Script> {
 
             V8Value value = runtime.getExecutor(content).execute();
 
-            if (value != null)
+            if (value != null) {
                 value.close();
+            }
 
             return value == null ? "null" : value.toString();
         } catch (JavetException e) {
             Mappet.getLogger().addLog(LogType.ERROR, "eval", e);
+
             throw e;
         }
     }
@@ -71,6 +74,7 @@ public class ScriptManager extends BaseManager<Script> {
         if (this.scripts.containsKey(id)) {
             return this.scripts.get(id);
         }
+
         return this.loadScript(id);
     }
 
@@ -80,6 +84,7 @@ public class ScriptManager extends BaseManager<Script> {
 
     public List<Script> getClientScripts() {
         List<Script> scripts = new ArrayList<>();
+
         this.scripts.forEach((name, script) -> {
             if (!script.isServer()) {
                 scripts.add(script);
@@ -91,8 +96,10 @@ public class ScriptManager extends BaseManager<Script> {
 
     public void updateLoadedScript(String id, String content, boolean isServer) {
         Script script = this.getScript(id);
+
         if (script != null) {
             script.setServer(isServer);
+
             if (!script.getContent().contains(content)) {
                 Script loadScript = this.load(id);
 
@@ -112,6 +119,7 @@ public class ScriptManager extends BaseManager<Script> {
 
     public void updateLoadedScript(Script script) {
         String id = script.getId();
+
         if (!this.getScript(id).getContent().contains(script.getContent())) {
             this.scripts.put(id, this.load(id));
         }

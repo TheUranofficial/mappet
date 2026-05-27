@@ -9,17 +9,17 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class TriggersRequestC2SPacket extends ServerPacket {
-    private final ValueRequestTrigger requestTrigger = new ValueRequestTrigger("requestTrigger", null);
-    private final ValueString id = new ValueString("id", "");
+    private ValueRequestTrigger requestTrigger = new ValueRequestTrigger("requestTrigger", null);
+    private ValueString id = new ValueString("id", "");
 
     public TriggersRequestC2SPacket() {
-        super();
         this.add(this.requestTrigger);
         this.add(this.id);
     }
 
     public TriggersRequestC2SPacket(RequestTrigger type, String id) {
         this();
+
         this.requestTrigger.set(type);
         this.id.set(id);
     }

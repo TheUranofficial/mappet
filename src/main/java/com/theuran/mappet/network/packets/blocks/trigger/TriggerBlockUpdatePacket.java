@@ -23,18 +23,16 @@ public class TriggerBlockUpdatePacket extends ServerPacket {
     private List<Trigger> triggersLMB;
 
     public TriggerBlockUpdatePacket() {
-        super();
+
     }
 
     public TriggerBlockUpdatePacket(BlockPos blockPos, ScriptVector pos1, ScriptVector pos2) {
-        this();
         this.blockPos = blockPos;
         this.pos1 = pos1;
         this.pos2 = pos2;
     }
 
     public TriggerBlockUpdatePacket(BlockPos blockPos, ScriptVector pos1, ScriptVector pos2, List<Trigger> triggersRMB, List<Trigger> triggersLMB) {
-        this();
         this.blockPos = blockPos;
         this.pos1 = pos1;
         this.pos2 = pos2;
@@ -46,6 +44,7 @@ public class TriggerBlockUpdatePacket extends ServerPacket {
     @Override
     public void toBytes(PacketByteBuf buf) {
         buf.writeBlockPos(this.blockPos);
+
         MappetByteBuffer.writeScriptVector(buf, this.pos1);
         MappetByteBuffer.writeScriptVector(buf, this.pos2);
 

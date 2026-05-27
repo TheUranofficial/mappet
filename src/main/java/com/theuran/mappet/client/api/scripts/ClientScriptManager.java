@@ -36,6 +36,7 @@ public class ClientScriptManager {
         if (this.scripts.containsKey(id)) {
             return this.scripts.get(id);
         }
+
         return null;
     }
 

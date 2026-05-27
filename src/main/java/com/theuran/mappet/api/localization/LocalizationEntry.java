@@ -13,17 +13,17 @@ public class LocalizationEntry implements IMapSerializable {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 
     @Override
     public void toData(MapType data) {
-        data.putString("id", id);
-        data.putString("text", text);
+        data.putString("id", this.id);
+        data.putString("text", this.text);
     }
 
     @Override

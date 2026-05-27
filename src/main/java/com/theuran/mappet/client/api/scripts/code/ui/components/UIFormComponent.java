@@ -13,6 +13,7 @@ public class UIFormComponent extends UIComponent<UIMappetFormElement> {
 
     public UIFormComponent form(BBSForm form) {
         this.element.form = form.getForm();
+
         return this;
     }
 }

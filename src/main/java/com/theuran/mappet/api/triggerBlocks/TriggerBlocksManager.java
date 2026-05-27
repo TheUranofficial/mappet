@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TriggerBlocksManager {
-    private final List<TriggerBlockUpdater> updaters = new ArrayList<>();
+    private List<TriggerBlockUpdater> listeners = new ArrayList<>();
 
     public TriggerBlocksManager() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
-            for (TriggerBlocksManager.TriggerBlockUpdater updater : Mappet.getTriggerBlocks().getUpdaters()) {
+            for (TriggerBlocksManager.TriggerBlockUpdater updater : Mappet.getTriggerBlocks().getListeners()) {
                 ServerWorld world = server.getWorld(World.OVERWORLD);
 
                 if (!world.isChunkLoaded(updater.pos)) {
@@ -52,16 +52,16 @@ public class TriggerBlocksManager {
                 }
             }
 
-            Mappet.getTriggerBlocks().getUpdaters().clear();
+            Mappet.getTriggerBlocks().getListeners().clear();
         });
     }
 
-    public void addUpdater(TriggerBlockUpdater updater) {
-        this.updaters.add(updater);
+    public void addListener(TriggerBlockUpdater updater) {
+        this.listeners.add(updater);
     }
 
-    public List<TriggerBlockUpdater> getUpdaters() {
-        return this.updaters;
+    public List<TriggerBlockUpdater> getListeners() {
+        return this.listeners;
     }
 
     public static class TriggerBlockUpdater {

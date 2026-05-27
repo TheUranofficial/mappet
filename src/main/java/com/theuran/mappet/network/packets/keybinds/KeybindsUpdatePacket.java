@@ -18,11 +18,10 @@ public class KeybindsUpdatePacket extends ClientPacket {
     private Map<Keybind, Integer> keybinds;
 
     public KeybindsUpdatePacket() {
-        super();
+
     }
 
     public KeybindsUpdatePacket(Map<Keybind, Integer> events) {
-        this();
         this.keybinds = events;
     }
 

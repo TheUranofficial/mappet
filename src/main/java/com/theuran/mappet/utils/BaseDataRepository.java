@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
-public abstract class BaseDataRepository <T extends ValueGroup> implements IRepository<T> {
+public abstract class BaseDataRepository<T extends ValueGroup> implements IRepository<T> {
     @Override
     public void load(String id, Consumer<T> consumer) {
         this.sendPacketLoad(id, data -> {

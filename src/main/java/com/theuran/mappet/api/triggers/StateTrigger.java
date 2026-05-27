@@ -18,11 +18,13 @@ public class StateTrigger extends StringTrigger {
 
     public StateTrigger() {
         super();
+
         this.add(this.value);
     }
 
     public StateTrigger(String key, BaseType value) {
         this();
+
         this.key.set(key);
         this.value.set(value);
     }
@@ -48,8 +50,8 @@ public class StateTrigger extends StringTrigger {
         return "state";
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
         return new UIStateTriggerPanel(overlayPanel, this);
     }

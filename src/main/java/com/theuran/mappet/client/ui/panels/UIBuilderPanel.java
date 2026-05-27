@@ -24,13 +24,13 @@ public class UIBuilderPanel extends UIDataDashboardPanel<UI> {
     public UIIcon modulesPicker;
 
     public static List<String> names = Arrays.asList(
-            "Button",
-            "Icon",
-            "Label",
-            "TextBox",
-            "Toggle",
-            "TrackPad",
-            "Morph"
+        "Button",
+        "Icon",
+        "Label",
+        "TextBox",
+        "Toggle",
+        "TrackPad",
+        "Morph"
     );
 
     public UIBuilderPanel(UIDashboard dashboard) {
@@ -44,7 +44,7 @@ public class UIBuilderPanel extends UIDataDashboardPanel<UI> {
         this.addIcon = new UIIcon(Icons.ADD, this::addElement);
         this.addIcon.tooltip(UIMappetKeys.UI_BUILDER_ELEMENT_ADD);
 
-        this.scriptIcon = new UIIcon(Icons.PROPERTIES, this :: openUIScript);
+        this.scriptIcon = new UIIcon(Icons.PROPERTIES, this::openUIScript);
         this.scriptIcon.tooltip(UIMappetKeys.UI_BUILDER_SCRIPT);
 
         this.addIcon.context((menu) -> {

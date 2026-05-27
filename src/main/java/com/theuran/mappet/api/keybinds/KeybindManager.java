@@ -31,6 +31,7 @@ public class KeybindManager extends BaseFileManager {
                 return keybind;
             }
         }
+
         return null;
     }
 
@@ -43,6 +44,7 @@ public class KeybindManager extends BaseFileManager {
             if (entry.getKey().id().equals(id)) {
                 this.keybinds.remove(entry.getKey());
                 this.keybinds.put(keybind, entry.getValue());
+
                 return;
             }
         }
@@ -56,6 +58,7 @@ public class KeybindManager extends BaseFileManager {
                 return entry.getValue();
             }
         }
+
         return new ArrayList<>();
     }
 
@@ -63,6 +66,7 @@ public class KeybindManager extends BaseFileManager {
     public void toData(MapType mapType) {
         this.keybinds.forEach((keybind, triggers) -> {
             MapType keybindMapType = new MapType();
+
             keybindMapType.putString("category", keybind.category());
             keybindMapType.putInt("keycode", keybind.keycode());
             keybindMapType.putString("type", keybind.type().name());
@@ -84,12 +88,13 @@ public class KeybindManager extends BaseFileManager {
     public void fromData(MapType data) {
         for (Map.Entry<String, BaseType> event : data) {
             MapType value = (MapType) event.getValue();
+
             Keybind keybind = new Keybind(
-                    event.getKey(),
-                    value.getString("category"),
-                    value.getInt("keycode"),
-                    Keybind.Type.valueOf(value.getString("type")),
-                    Keybind.Modificator.valueOf(value.getString("mod"))
+                event.getKey(),
+                value.getString("category"),
+                value.getInt("keycode"),
+                Keybind.Type.valueOf(value.getString("type")),
+                Keybind.Modificator.valueOf(value.getString("mod"))
             );
 
             List<Trigger> triggerList = new ArrayList<>();

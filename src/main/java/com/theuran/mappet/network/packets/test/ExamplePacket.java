@@ -7,22 +7,22 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
-//Example packet for my networking system
+/* Example packet for my networking system */
 public class ExamplePacket extends ClientPacket {
     public ValueString message = new ValueString("message", "");
 
     public ExamplePacket() {
-        super();
         this.add(this.message);
     }
 
     public ExamplePacket(String message) {
         this();
+
         this.message.set(message);
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public void handleClient() {
         MinecraftClient.getInstance().player.sendMessage(Text.of(this.message.get()));
     }

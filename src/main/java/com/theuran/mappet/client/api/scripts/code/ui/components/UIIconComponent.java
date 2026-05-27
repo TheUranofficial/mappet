@@ -17,16 +17,19 @@ public class UIIconComponent extends UIComponent<UIIcon>{
 
     public UIIconComponent color(int color) {
         this.element.iconColor(color);
+
         return this;
     }
 
     public UIIconComponent hoverColor(int color) {
         this.element.hoverColor(color);
+
         return this;
     }
 
     public UIIconComponent disabledColor(int color) {
         this.element.disabledColor(color);
+
         return this;
     }
 

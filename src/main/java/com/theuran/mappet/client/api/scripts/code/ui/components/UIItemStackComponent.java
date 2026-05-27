@@ -18,6 +18,7 @@ public class UIItemStackComponent extends UIComponent<UIItemStack> {
 
     public UIItemStackComponent stack(ItemStack stack) {
         this.element.setStack(stack);
+
         return this;
     }
 }

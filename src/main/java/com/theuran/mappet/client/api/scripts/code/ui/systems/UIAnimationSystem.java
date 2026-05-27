@@ -5,15 +5,14 @@ import com.theuran.mappet.client.api.scripts.code.ui.components.UIComponent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
 public class UIAnimationSystem {
-    private final String id;
-    private final UIComponent<?> component;
-    private final AnimationManager animationManager;
+    private String id;
+    private UIComponent<?> component;
+    private AnimationManager animationManager;
 
     public UIAnimationSystem(String id, UIComponent<?> component, AnimationManager animationManager) {
         this.id = id;
@@ -23,6 +22,7 @@ public class UIAnimationSystem {
 
     public UIAnimationSystem afterAnimation(String interpolation, float delay, BiConsumer<UIComponent<?>, Double> consumer) {
         this.animationManager.registerAfterAnimation(this.component, this.id, interpolation, delay, consumer);
+
         return this;
     }
 
@@ -32,6 +32,7 @@ public class UIAnimationSystem {
 
     public UIAnimationSystem onCompleted(Consumer<UIComponent<?>> consumer) {
         this.animationManager.onCompleted(this.id, consumer);
+
         return this;
     }
 

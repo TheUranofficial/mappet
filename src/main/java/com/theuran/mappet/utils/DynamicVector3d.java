@@ -6,8 +6,8 @@ import org.joml.Vector3d;
 import org.joml.Vector4d;
 
 public class DynamicVector3d {
-    private final Vector4d from = new Vector4d();
-    private final Vector4d to = new Vector4d();
+    private Vector4d from = new Vector4d();
+    private Vector4d to = new Vector4d();
     private IInterp interp = Interpolations.LINEAR;
 
     public void lerpTo(Vector4d from, Vector4d to, IInterp interp) {
@@ -22,7 +22,8 @@ public class DynamicVector3d {
     }
 
     public Vector3d get() {
-        double progress = Math.min(1, Math.max((System.currentTimeMillis() - this.from.w) / (this.to.w - this.from.w), 0));
+        double progress = Math.clamp((System.currentTimeMillis() - this.from.w) / (this.to.w - this.from.w), 0, 1);
+
         return new Vector3d(
             this.interp.interpolate(this.from.x, this.to.x, progress),
             this.interp.interpolate(this.from.y, this.to.y, progress),

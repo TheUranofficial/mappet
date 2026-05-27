@@ -13,8 +13,9 @@ public class ScriptRepository extends BaseDataRepository<Script> {
 
         script.setId(id);
 
-        if (mapType != null)
+        if (mapType != null) {
             script.fromData(mapType);
+        }
 
         return script;
     }

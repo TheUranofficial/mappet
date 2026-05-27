@@ -6,8 +6,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 public class HandshakeS2CPacket extends ClientPacket {
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public void handleClient() {
         MappetClient.isMappetModOnServer = true;
     }

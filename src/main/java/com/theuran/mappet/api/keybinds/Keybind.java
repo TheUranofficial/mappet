@@ -3,7 +3,6 @@ package com.theuran.mappet.api.keybinds;
 import org.lwjgl.glfw.GLFW;
 
 public record Keybind(String id, String category, int keycode, Type type, Modificator mod) {
-
     public enum Type {
         RELEASED, PRESSED
     }
@@ -14,7 +13,7 @@ public record Keybind(String id, String category, int keycode, Type type, Modifi
         ALT(GLFW.GLFW_KEY_LEFT_ALT),
         NONE(-1);
 
-        private final int keycode;
+        private int keycode;
 
         Modificator(int keycode) {
             this.keycode = keycode;

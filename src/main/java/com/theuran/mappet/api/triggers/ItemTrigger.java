@@ -17,6 +17,7 @@ public class ItemTrigger extends StringTrigger {
 
     public ItemTrigger() {
         super();
+
         this.add(this.stack);
     }
 
@@ -44,8 +45,8 @@ public class ItemTrigger extends StringTrigger {
         return "item";
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
         return new UIItemTriggerPanel(overlayPanel, this);
     }

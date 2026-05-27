@@ -20,8 +20,8 @@ import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class MappetKeybinds {
-    private static final KeyBinding KEY_DASHBOARD = createKey("dashboard", GLFW.GLFW_KEY_EQUAL);
-    private static final KeyBinding KEY_RUN_SCRIPT = createKey("runScript", GLFW.GLFW_KEY_F6);
+    private static KeyBinding KEY_DASHBOARD = createKey("dashboard", GLFW.GLFW_KEY_EQUAL);
+    private static KeyBinding KEY_RUN_SCRIPT = createKey("runScript", GLFW.GLFW_KEY_F6);
 
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {

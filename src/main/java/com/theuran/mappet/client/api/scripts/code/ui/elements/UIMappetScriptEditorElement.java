@@ -19,11 +19,13 @@ public class UIMappetScriptEditorElement extends UIScriptEditor {
 
     public UIMappetScriptEditorElement textAlpha(float alpha) {
         this.textAlpha = alpha;
+
         return this;
     }
 
     public UIMappetScriptEditorElement backgroundAlpha(float alpha) {
         this.backgroundAlpha = alpha;
+
         return this;
     }
 

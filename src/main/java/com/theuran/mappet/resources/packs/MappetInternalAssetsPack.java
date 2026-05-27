@@ -104,6 +104,7 @@ public class MappetInternalAssetsPack implements ISourcePack {
                 }
             }
         }
+
         return file;
     }
 

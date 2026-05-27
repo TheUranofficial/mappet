@@ -59,8 +59,8 @@ public class UIState extends UIElement {
         BaseType type = this.states.get(this.key);
 
         this.states.remove(this.key);
-
         this.states.set(key, type);
+
         this.key = key;
     }
 
@@ -70,10 +70,12 @@ public class UIState extends UIElement {
                 this.states.setString(this.key, "");
                 this.refresh();
             });
+
             menu.action(IKey.constant("Boolean"), () -> {
                 this.states.setBoolean(this.key, false);
                 this.refresh();
             });
+
             menu.action(IKey.constant("Number"), () -> {
                 this.states.setNumber(this.key, 0);
                 this.refresh();

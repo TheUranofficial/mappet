@@ -17,6 +17,7 @@ public class UIMappetFormElement extends UIElement {
 
     public UIMappetFormElement form(Form form) {
         this.form = form;
+
         return this;
     }
 

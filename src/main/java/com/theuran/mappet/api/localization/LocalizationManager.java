@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class LocalizationManager extends BaseFileManager {
-    Map<LocalizationType, LocalizationEntries> lang;
+    private Map<LocalizationType, LocalizationEntries> lang;
 
     public LocalizationManager(Supplier<File> file) {
         super(file);

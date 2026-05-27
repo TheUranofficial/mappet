@@ -1,14 +1,11 @@
 package com.theuran.mappet.api.executables;
 
-import com.caoccao.javet.exceptions.JavetException;
-import com.theuran.mappet.Mappet;
-import com.theuran.mappet.api.scripts.code.ScriptEvent;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ExecutableManager {
-    ConcurrentLinkedQueue<Executable> executables = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<Executable> executables = new ConcurrentLinkedQueue<>();
 
     public ExecutableManager() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {

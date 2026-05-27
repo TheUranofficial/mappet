@@ -23,7 +23,6 @@ public class ClientKeybindManager {
 
             for (Keybind keybinding : this.getKeybindings()) {
                 boolean keyPressed = false;
-
                 boolean isPressedModificator = keybinding.mod().getKeycode() == -1;
 
                 if (!isPressedModificator) {
@@ -45,12 +44,14 @@ public class ClientKeybindManager {
 
                 if (keyPressed) {
                     keyId = keybinding.id();
+
                     break;
                 }
             }
 
             if (!keyId.isEmpty()) {
                 boolean isServerPacket = false;
+
                 for (Trigger trigger : this.getTriggers(keyId)) {
                     if (trigger.isServer()) {
                         isServerPacket = true;
@@ -76,6 +77,7 @@ public class ClientKeybindManager {
                 return keybind;
             }
         }
+
         return null;
     }
 
@@ -85,6 +87,7 @@ public class ClientKeybindManager {
                 return entry.getValue();
             }
         }
+
         return new ArrayList<>();
     }
 

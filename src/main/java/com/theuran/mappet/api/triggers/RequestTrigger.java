@@ -37,8 +37,10 @@ public enum RequestTrigger {
         switch (this) {
             case EVENTS -> Mappet.getEvents().events.put(EventType.valueOf(value.toUpperCase()), triggers);
             case KEYBINDS -> Mappet.getKeybinds().keybinds.put(Mappet.getKeybinds().getKeybind(value), triggers);
-            case TRIGGER_BLOCK_RMB -> Mappet.getTriggerBlocks().addUpdater(new TriggerBlocksManager.TriggerBlockUpdater(BlockPosUtils.fromShortString(value), triggers, null));
-            case TRIGGER_BLOCK_LMB -> Mappet.getTriggerBlocks().addUpdater(new TriggerBlocksManager.TriggerBlockUpdater(BlockPosUtils.fromShortString(value), null, triggers));
+            case TRIGGER_BLOCK_RMB ->
+                Mappet.getTriggerBlocks().addListener(new TriggerBlocksManager.TriggerBlockUpdater(BlockPosUtils.fromShortString(value), triggers, null));
+            case TRIGGER_BLOCK_LMB ->
+                Mappet.getTriggerBlocks().addListener(new TriggerBlocksManager.TriggerBlockUpdater(BlockPosUtils.fromShortString(value), null, triggers));
         }
     }
 

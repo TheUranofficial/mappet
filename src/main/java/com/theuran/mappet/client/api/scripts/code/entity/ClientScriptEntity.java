@@ -25,6 +25,6 @@ public class ClientScriptEntity <T extends Entity> {
     }
 
     public T getMinecraftEntity() {
-        return entity;
+        return this.entity;
     }
 }

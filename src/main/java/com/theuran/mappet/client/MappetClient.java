@@ -78,8 +78,9 @@ public class MappetClient implements ClientModInitializer {
     }
 
     public static UIMappetDashboard getDashboard() {
-        if (dashboard == null)
+        if (dashboard == null) {
             dashboard = new UIMappetDashboard();
+        }
 
         return dashboard;
     }

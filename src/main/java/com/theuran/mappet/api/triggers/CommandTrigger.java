@@ -17,6 +17,7 @@ public class CommandTrigger extends StringTrigger {
 
     public CommandTrigger(String command) {
         this();
+
         this.key.set(command);
     }
 
@@ -37,8 +38,8 @@ public class CommandTrigger extends StringTrigger {
         return "command";
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public UITriggerPanel<?> getPanel(UIEditorTriggersOverlayPanel overlayPanel) {
         return new UICommandTriggerPanel(overlayPanel, this);
     }

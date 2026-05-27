@@ -73,7 +73,7 @@ public class UIHUDFormsOverlayPanel extends UIOverlayPanel {
     private void copyForm() {
         Window.setClipboard(this.forms.getCurrentFirst().toData().asMap(), "_CopyHUDForm");
     }
-    
+
     private void removeForm() {
         int index = this.forms.getIndex();
 

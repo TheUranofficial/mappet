@@ -16,8 +16,8 @@ public class MappetAddon implements BBSAddonMod {
         event.provider.register(new MappetInternalAssetsPack());
     }
 
-    @Environment(EnvType.CLIENT)
     @Subscribe
+    @Environment(EnvType.CLIENT)
     public void registerL10n(RegisterL10nEvent event) {
         event.l10n.register(lang -> Collections.singletonList(Mappet.link("lang/" + lang + ".json")));
         event.l10n.reload();

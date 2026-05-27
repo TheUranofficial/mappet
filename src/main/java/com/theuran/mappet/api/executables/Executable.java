@@ -2,7 +2,7 @@ package com.theuran.mappet.api.executables;
 
 public class Executable {
     private int ticks;
-    private final Runnable runnable;
+    private Runnable runnable;
 
     public Executable(int ticks, Runnable runnable) {
         this.ticks = ticks;

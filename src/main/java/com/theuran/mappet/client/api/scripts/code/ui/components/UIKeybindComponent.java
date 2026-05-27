@@ -18,21 +18,25 @@ public class UIKeybindComponent extends UIComponent<UIKeybind> {
 
     public UIKeybindComponent single() {
         this.element.single();
+
         return this;
     }
 
     public UIKeybindComponent mouse() {
         this.element.mouse();
+
         return this;
     }
 
     public UIKeybindComponent escape() {
         this.element.escape();
+
         return this;
     }
 
     public UIKeybindComponent keyCombo(String label, int... keys) {
         this.element.setKeyCombo(new KeyCombo(IKey.raw(label), keys));
+
         return this;
     }
 }

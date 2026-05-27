@@ -56,7 +56,7 @@ public class Dispatcher extends AbstractDispatcher {
         this.register(ScriptsSendPacket.class);
         this.register(ScriptsSavePacket.class);
         this.register(ScriptsRunPacket.class);
-        
+
         //Keybinds
         this.register(KeybindsExecuteTriggersPacket.class);
         this.register(KeybindsRequestPacket.class);

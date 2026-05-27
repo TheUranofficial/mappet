@@ -15,16 +15,13 @@ public class ScriptsSendPacket extends ClientPacket {
     private List<Script> scripts = new ArrayList<>();
 
     public ScriptsSendPacket() {
-        super();
     }
 
     public ScriptsSendPacket(List<Script> scripts) {
-        this();
         this.scripts.addAll(scripts);
     }
 
     public ScriptsSendPacket(Script... scripts) {
-        this();
         this.scripts.addAll(List.of(scripts));
     }
 
@@ -38,8 +35,8 @@ public class ScriptsSendPacket extends ClientPacket {
         this.scripts = buf.readList(MappetByteBuffer::readScript);
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public void handleClient() {
         MappetClient.getScripts().setScripts(this.scripts);
     }

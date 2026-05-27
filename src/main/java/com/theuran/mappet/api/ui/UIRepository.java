@@ -13,8 +13,9 @@ public class UIRepository extends BaseDataRepository<UI> {
 
         ui.setId(id);
 
-        if (data != null)
+        if (data != null) {
             ui.fromData(data);
+        }
 
         return ui;
     }

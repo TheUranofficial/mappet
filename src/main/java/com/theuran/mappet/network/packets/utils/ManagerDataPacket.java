@@ -23,26 +23,28 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.function.Consumer;
 
 public class ManagerDataPacket extends CommonPacket {
-    private final ValueInt callbackId = new ValueInt("callbackId", 0);
-    private final ValueString manager = new ValueString("manager", "");
-    private final ValueEnum<RepositoryOperation> operation = new ValueEnum<>("operation", null);
-    private final ValueType data = new ValueType("data", null);
+    private ValueInt callbackId = new ValueInt("callbackId", 0);
+    private ValueString manager = new ValueString("manager", "");
+    private ValueEnum<RepositoryOperation> operation = new ValueEnum<>("operation", null);
+    private ValueType data = new ValueType("data", null);
 
     public ManagerDataPacket() {
         super();
+
         this.add(this.callbackId, this.manager, this.operation, this.data);
     }
 
     public ManagerDataPacket(String manager, RepositoryOperation operation, BaseType data, int callbackId) {
         this();
+
         this.manager.set(manager);
         this.operation.set(operation);
         this.data.set(data);
         this.callbackId.set(callbackId);
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public void handleClient() {
         Consumer<BaseType> callback = Dispatcher.callbacks.remove(this.callbackId.get());
 
@@ -79,9 +81,12 @@ public class ManagerDataPacket extends CommonPacket {
 
                 Dispatcher.sendTo(new ManagerDataPacket(this.manager.get(), this.operation.get(), list, this.callbackId.get()), player);
             }
-            case RepositoryOperation.ADD_FOLDER -> Dispatcher.sendTo(new ManagerDataPacket(this.manager.get(), this.operation.get(), new ByteType(manager.addFolder(data.getString("folder"))), this.callbackId.get()), player);
-            case RepositoryOperation.RENAME_FOLDER -> Dispatcher.sendTo(new ManagerDataPacket(this.manager.get(), this.operation.get(), new ByteType(manager.renameFolder(data.getString("from"), data.getString("to"))), this.callbackId.get()), player);
-            case RepositoryOperation.DELETE_FOLDER -> Dispatcher.sendTo(new ManagerDataPacket(this.manager.get(), this.operation.get(), new ByteType(manager.deleteFolder(data.getString("folder"))), this.callbackId.get()), player);
+            case RepositoryOperation.ADD_FOLDER ->
+                Dispatcher.sendTo(new ManagerDataPacket(this.manager.get(), this.operation.get(), new ByteType(manager.addFolder(data.getString("folder"))), this.callbackId.get()), player);
+            case RepositoryOperation.RENAME_FOLDER ->
+                Dispatcher.sendTo(new ManagerDataPacket(this.manager.get(), this.operation.get(), new ByteType(manager.renameFolder(data.getString("from"), data.getString("to"))), this.callbackId.get()), player);
+            case RepositoryOperation.DELETE_FOLDER ->
+                Dispatcher.sendTo(new ManagerDataPacket(this.manager.get(), this.operation.get(), new ByteType(manager.deleteFolder(data.getString("folder"))), this.callbackId.get()), player);
         }
     }
 }

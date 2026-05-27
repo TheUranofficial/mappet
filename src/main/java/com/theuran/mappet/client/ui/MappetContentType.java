@@ -25,9 +25,9 @@ import java.io.File;
 
 @Environment(EnvType.CLIENT)
 public class MappetContentType {
-    public static final ContentType HUDS = new ContentType("huds", MappetContentType::getHudRepository, dashboard -> dashboard.getPanel(UIHUDScenePanel.class));
-    public static final ContentType SCRIPTS = new ContentType("scripts", MappetContentType::getScriptRepository, dashboard -> dashboard.getPanel(UIScriptPanel.class));
-    public static final ContentType UIS = new ContentType("uis", MappetContentType::getUIRepository, dashboard -> dashboard.getPanel(UIBuilderPanel.class));
+    public static ContentType HUDS = new ContentType("huds", MappetContentType::getHudRepository, dashboard -> dashboard.getPanel(UIHUDScenePanel.class));
+    public static ContentType SCRIPTS = new ContentType("scripts", MappetContentType::getScriptRepository, dashboard -> dashboard.getPanel(UIScriptPanel.class));
+    public static ContentType UIS = new ContentType("uis", MappetContentType::getUIRepository, dashboard -> dashboard.getPanel(UIBuilderPanel.class));
 
     private static IRepository<Script> getScriptRepository() {
         if (MinecraftClient.getInstance().isIntegratedServerRunning()) {

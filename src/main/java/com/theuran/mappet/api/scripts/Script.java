@@ -19,13 +19,14 @@ import mchorse.bbs_mod.settings.values.numeric.ValueBoolean;
 import java.util.Date;
 
 public class Script extends ValueGroup {
-    private final ValueString content = new ValueString("content", "");
-    private final ValueBoolean isServer = new ValueBoolean("isServer", true);
+    private ValueString content = new ValueString("content", "");
+    private ValueBoolean isServer = new ValueBoolean("isServer", true);
 
     private V8Runtime runtime;
 
     public Script() {
         super("");
+
         this.add(this.content);
         this.add(this.isServer);
         this.initialize();
@@ -33,6 +34,7 @@ public class Script extends ValueGroup {
 
     public Script(String id, String content, boolean isServer) {
         this();
+
         this.setId(id);
         this.setContent(content);
         this.setServer(isServer);
@@ -54,7 +56,7 @@ public class Script extends ValueGroup {
             globalObject = this.runtime.getGlobalObject();
             globalObject.set("event", properties);
 
-            compileAndExecuteScript();
+            this.compileAndExecuteScript();
 
             V8Value result = null;
             String functionName = properties.getFunction();
@@ -68,10 +70,11 @@ public class Script extends ValueGroup {
 
         } catch (JavetException e) {
             Mappet.getLogger().addLog(LogType.ERROR, this.getId(), e);
+
             throw e;
         } finally {
-            closeQuietly(function);
-            closeQuietly(globalObject);
+            this.closeQuietly(function);
+            this.closeQuietly(globalObject);
         }
     }
 
@@ -87,7 +90,7 @@ public class Script extends ValueGroup {
             globalObject = this.runtime.getGlobalObject();
             globalObject.set("event", properties);
 
-            compileAndExecuteScript();
+            this.compileAndExecuteScript();
 
             V8Value result = null;
             String functionName = properties.getFunction();
@@ -101,16 +104,18 @@ public class Script extends ValueGroup {
 
         } catch (JavetException e) {
             Mappet.getLogger().addLog(LogType.ERROR, this.getId(), e);
+
             throw e;
         } finally {
-            closeQuietly(function);
-            closeQuietly(globalObject);
+            this.closeQuietly(function);
+            this.closeQuietly(globalObject);
         }
     }
 
     private void compileAndExecuteScript() throws JavetException {
         IV8Executor executor = this.runtime.getExecutor(this.content.toString())
                 .setResourceName(this.getId());
+
         executor.compileV8Module();
         executor.compileV8Script().executeVoid();
     }

@@ -1,15 +1,9 @@
 package com.theuran.mappet.client.ui.ai;
 
-import com.theuran.mappet.client.ui.elements.UIModelElement;
 import mchorse.bbs_mod.BBSModClient;
 import mchorse.bbs_mod.forms.forms.Form;
 import mchorse.bbs_mod.l10n.L10n;
-import mchorse.bbs_mod.morphing.IMorphProvider;
-import mchorse.bbs_mod.morphing.Morph;
 import mchorse.bbs_mod.ui.forms.UIFormPalette;
-import mchorse.bbs_mod.ui.forms.editors.forms.UIForm;
-import mchorse.bbs_mod.ui.forms.editors.forms.UIMobForm;
-import mchorse.bbs_mod.ui.forms.editors.utils.UIFormRenderer;
 import mchorse.bbs_mod.ui.framework.UIContext;
 import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
 import net.fabricmc.api.EnvType;
@@ -34,7 +28,7 @@ public class UIMascotPanel extends UIOverlayPanel {
         this.add(morph);
     }
 
-    private void setForm(Form form){
+    private void setForm(Form form) {
 
     }
 

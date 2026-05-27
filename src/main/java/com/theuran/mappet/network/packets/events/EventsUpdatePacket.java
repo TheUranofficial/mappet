@@ -17,11 +17,10 @@ public class EventsUpdatePacket extends ClientPacket {
     private Map<EventType, Integer> events;
 
     public EventsUpdatePacket() {
-        super();
+
     }
 
     public EventsUpdatePacket(Map<EventType, Integer> events) {
-        this();
         this.events = events;
     }
 

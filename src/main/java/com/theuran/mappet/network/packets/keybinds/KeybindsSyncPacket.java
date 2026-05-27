@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class KeybindsSyncPacket extends ClientPacket {
-    Map<Keybind, List<Trigger>> keybinds;
+    private Map<Keybind, List<Trigger>> keybinds;
 
     public KeybindsSyncPacket() {
-        super();
+
     }
 
     public KeybindsSyncPacket(Map<Keybind, List<Trigger>> keybinds) {

@@ -143,9 +143,9 @@ public class UIScriptEditor extends UITextEditor {
         }
 
         return ((Highlighter) this.getHighlighter()).getAllKeywords().stream()
-                .filter(s -> s.startsWith(prefix) && !s.equals(prefix))
-                .sorted()
-                .toList();
+            .filter(s -> s.startsWith(prefix) && !s.equals(prefix))
+            .sorted()
+            .toList();
     }
 
     private String getPrefix() {
@@ -153,11 +153,14 @@ public class UIScriptEditor extends UITextEditor {
         int pos = this.cursor.offset;
 
         int start = pos;
+
         while (start > 0) {
             char ch = line.charAt(start - 1);
+
             if (!Character.isLetterOrDigit(ch) && ch != '_') {
                 break;
             }
+
             start--;
         }
 
@@ -186,10 +189,11 @@ public class UIScriptEditor extends UITextEditor {
             this.cursor.set(newLineIndex, Math.min(this.cursor.offset, currentLineText.length()));
 
             undo.post("\n" + currentLineText, this.cursor, new Cursor(-1, 0));
-
             undo.ready();
+
             return true;
         }
+
         if (ctrl && (context.isPressed(GLFW.GLFW_KEY_Z) || context.isRepeated(GLFW.GLFW_KEY_Z))) {
             boolean result = this.getUndo().undo(this);
 
@@ -213,9 +217,12 @@ public class UIScriptEditor extends UITextEditor {
 
     private UndoManager<UITextarea<?>> getUndo() {
         UndoManager<UITextarea<?>> undo = null;
+
         try {
             Field f = UITextarea.class.getDeclaredField("undo");
+
             f.setAccessible(true);
+
             undo = (UndoManager<UITextarea<?>>) f.get(this);
         } catch (Exception e) {
             e.printStackTrace();

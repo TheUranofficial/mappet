@@ -22,7 +22,7 @@ public class DocMethod extends DocEntry {
     public String getName() {
         String args = this.arguments.stream().map(DocParameter::getType).collect(Collectors.joining(", "));
 
-        return super.getName() + "(§2" + args +  "§r)";
+        return super.getName() + "(§2" + args + "§r)";
     }
 
     @Override

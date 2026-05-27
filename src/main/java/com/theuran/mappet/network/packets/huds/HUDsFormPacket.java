@@ -12,9 +12,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 public class HUDsFormPacket extends ClientPacket {
-    private final ValueString id = new ValueString("id", "");
-    private final ValueInt index = new ValueInt("index", 0);
-    private final ValueForm form = new ValueForm("form");
+    private ValueString id = new ValueString("id", "");
+    private ValueInt index = new ValueInt("index", 0);
+    private ValueForm form = new ValueForm("form");
 
     public HUDsFormPacket() {
         this.add(this.id);
@@ -24,6 +24,7 @@ public class HUDsFormPacket extends ClientPacket {
 
     public HUDsFormPacket(String id, int index, Form form) {
         this();
+
         this.id.set(id);
         this.index.set(index);
         this.form.set(form);

@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Environment(EnvType.CLIENT)
 public class ClientTriggerBlocksManager {
-    public static final Set<TriggerBlockEntity> capturedTriggerBlocks = new HashSet<>();
+    public static Set<TriggerBlockEntity> capturedTriggerBlocks = new HashSet<>();
 
     public ClientTriggerBlocksManager() {
         TriggerBlockEntityUpdateCallback.EVENT.register((entity) -> {

@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactoryBakedModel implements BakedModel {
-    private final List<BakedModel> models = new ArrayList<>();
+    private List<BakedModel> models = new ArrayList<>();
 
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction face, Random random) {
-        return models.get(0).getQuads(state, face, random);
+        return this.models.getFirst().getQuads(state, face, random);
     }
 
     @Override

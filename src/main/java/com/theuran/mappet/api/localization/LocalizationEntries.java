@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocalizationEntries implements IMapSerializable {
-    private final List<LocalizationEntry> entries = new ArrayList<>();
+    private List<LocalizationEntry> entries = new ArrayList<>();
 
     public void add(String key, String value) {
-        entries.add(new LocalizationEntry(key, value));
+        this.entries.add(new LocalizationEntry(key, value));
     }
 
     public List<LocalizationEntry> getAll() {
-        return entries;
+        return this.entries;
     }
 
     public String getValue(String key) {
-        return entries.stream()
-                .filter(e -> e.getId().equals(key))
-                .map(LocalizationEntry::getText)
-                .findFirst()
-                .orElse(null);
+        return this.entries.stream()
+            .filter(e -> e.getId().equals(key))
+            .map(LocalizationEntry::getText)
+            .findFirst()
+            .orElse(null);
     }
 
     @Override

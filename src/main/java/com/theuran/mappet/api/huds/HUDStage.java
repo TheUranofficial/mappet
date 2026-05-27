@@ -130,6 +130,7 @@ public class HUDStage {
         int vh = (int) height;
 
         RenderSystem.viewport(vx, vy, vw, vh);
+
         this.camera.updatePerspectiveProjection(vw, vh);
         this.camera.updateView();
     }

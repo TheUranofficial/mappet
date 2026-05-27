@@ -23,7 +23,7 @@ public class UIStateGroup extends UIElement {
         this.key = key;
 
         this.context(menu ->
-                menu.action(Icons.ADD, UIMappetKeys.STATES_ADD, this::addNew)
+            menu.action(Icons.ADD, UIMappetKeys.STATES_ADD, this::addNew)
         );
 
         this.set(states);
@@ -86,9 +86,11 @@ public class UIStateGroup extends UIElement {
         this.removeAll();
 
         //йоу че каво а я так умею питухон стайл рулит
-        if (states != null)
-            for (String key : states.keys())
+        if (states != null) {
+            for (String key : states.keys()) {
                 this.add(new UIState(key, states));
+            }
+        }
 
         this.getChildren().sort(Comparator.comparing(state -> ((UIState) state).getKey()));
         this.resize();

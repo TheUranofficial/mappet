@@ -87,11 +87,11 @@ public class UIKeybindOverlayPanel extends UIOverlayPanel {
         super.onClose();
 
         Dispatcher.sendToServer(new KeybindsSetPacket(this.keybind.id(), new Keybind(
-                this.id.getText(),
-                this.categoryId.getText(),
-                this.keybindElement.combo.getMainKey(),
-                this.keybind.type(),
-                this.keybind.mod()
+            this.id.getText(),
+            this.categoryId.getText(),
+            this.keybindElement.combo.getMainKey(),
+            this.keybind.type(),
+            this.keybind.mod()
         )));
     }
 }

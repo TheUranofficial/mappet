@@ -25,12 +25,12 @@ public class EventsExecuteTriggersPacket extends CommonPacket {
     public ClientScriptEvent clientScriptEvent;
 
     public EventsExecuteTriggersPacket() {
-        super();
         this.add(this.eventType);
     }
 
     public EventsExecuteTriggersPacket(EventType eventType, Trigger trigger, ScriptEvent scriptEvent) {
         this();
+
         this.eventType.set(eventType);
         this.trigger = trigger;
         this.scriptEvent = scriptEvent;
@@ -38,6 +38,7 @@ public class EventsExecuteTriggersPacket extends CommonPacket {
 
     public EventsExecuteTriggersPacket(EventType eventType, Trigger trigger, ClientScriptEvent clientScriptEvent) {
         this();
+
         this.eventType.set(eventType);
         this.trigger = trigger;
         this.clientScriptEvent = clientScriptEvent;
@@ -63,8 +64,8 @@ public class EventsExecuteTriggersPacket extends CommonPacket {
         super.fromBytes(buf);
 
         MapType data = DataStorageUtils.readFromPacket(buf).asMap();
-        this.trigger = Mappet.getTriggers().create(Mappet.link(data.getString("type")));
 
+        this.trigger = Mappet.getTriggers().create(Mappet.link(data.getString("type")));
         this.trigger.fromData(data);
 
         if (buf.readBoolean()) {
@@ -74,8 +75,8 @@ public class EventsExecuteTriggersPacket extends CommonPacket {
         }
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
+    @Environment(EnvType.CLIENT)
     public void handleClient() {
         Mappet.getEvents().eventClient(this.eventType.get(), this.clientScriptEvent);
     }
@@ -83,12 +84,12 @@ public class EventsExecuteTriggersPacket extends CommonPacket {
     @Override
     public void handle(MinecraftServer server, ServerPlayerEntity player) {
         ScriptEvent scriptEvent = ScriptEvent.create(
-                this.scriptEvent.getScript(),
-                this.scriptEvent.getFunction(),
-                player.getWorld().getEntityById((Integer) this.scriptEvent.getValue("__subjectId")),
-                player.getWorld().getEntityById((Integer) this.scriptEvent.getValue("__objectId")),
-                (ServerWorld) player.getWorld(),
-                server
+            this.scriptEvent.getScript(),
+            this.scriptEvent.getFunction(),
+            player.getWorld().getEntityById((Integer) this.scriptEvent.getValue("__subjectId")),
+            player.getWorld().getEntityById((Integer) this.scriptEvent.getValue("__objectId")),
+            (ServerWorld) player.getWorld(),
+            server
         );
 
         scriptEvent.setValues(this.scriptEvent.getValues());

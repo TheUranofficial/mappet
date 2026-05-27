@@ -4,9 +4,6 @@ import com.theuran.mappet.api.scripts.code.item.ScriptItemStack;
 import com.theuran.mappet.client.api.scripts.code.ui.animation.AnimationManager;
 import com.theuran.mappet.client.api.scripts.code.ui.components.*;
 import com.theuran.mappet.client.api.scripts.code.ui.systems.UIAnimationSystem;
-import mchorse.bbs_mod.l10n.keys.IKey;
-import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlay;
-import mchorse.bbs_mod.ui.framework.elements.overlay.UIOverlayPanel;
 import mchorse.bbs_mod.ui.utils.icons.Icon;
 import mchorse.bbs_mod.ui.utils.icons.Icons;
 import net.fabricmc.api.EnvType;
@@ -25,7 +22,6 @@ public class MappetUIBuilder {
 
     public UIAnimationSystem animation(String componentId, String id, String interpolation, float delay, BiConsumer<UIComponent<?>, Double> consumer) {
         UIComponent<?> component = this.getComponent(componentId);
-
         UIAnimationSystem animationSystem = new UIAnimationSystem(id, component, this.animationManager);
 
         this.animationManager.registerAnimation(component, id, interpolation, delay, consumer);
@@ -65,13 +61,17 @@ public class MappetUIBuilder {
 
     public UIButtonComponent button(String label, Runnable onClick) {
         UIButtonComponent button = new UIButtonComponent(label, onClick);
+
         this.components.add(button);
+
         return button;
     }
 
     public UILabelComponent label(String text, int color) {
         UILabelComponent label = new UILabelComponent(text, color);
+
         this.components.add(label);
+
         return label;
     }
 
@@ -81,7 +81,9 @@ public class MappetUIBuilder {
 
     public UIToggleComponent toggle(String label, boolean value, Runnable runnable) {
         UIToggleComponent toggle = new UIToggleComponent(label, value, runnable);
+
         this.components.add(toggle);
+
         return toggle;
     }
 
@@ -119,8 +121,10 @@ public class MappetUIBuilder {
 
     public UITextboxComponent textbox(String text, int maxLength, Consumer<String> consumer) {
         UITextboxComponent textbox = new UITextboxComponent(maxLength, consumer);
+
         textbox.text(text);
         this.components.add(textbox);
+
         return textbox;
     }
 
@@ -132,7 +136,9 @@ public class MappetUIBuilder {
         }
 
         UIIconComponent iconComponent = new UIIconComponent(icon, onClick);
+
         this.components.add(iconComponent);
+
         return iconComponent;
     }
 
@@ -142,15 +148,19 @@ public class MappetUIBuilder {
 
     public List<UIIconComponent> icons() {
         List<UIIconComponent> icons = new ArrayList<>();
+
         for (String iconId : Icons.ICONS.keySet()) {
             icons.add(icon(iconId));
         }
+
         return icons;
     }
 
     public UITrackpadComponent trackpad(Consumer<Double> consumer) {
         UITrackpadComponent trackpad = new UITrackpadComponent(consumer);
+
         this.components.add(trackpad);
+
         return trackpad;
     }
 
@@ -160,56 +170,74 @@ public class MappetUIBuilder {
 
     public UIOverlayComponent overlay(String title, Consumer<MappetUIBuilder> consumer) {
         UIOverlayComponent overlay = new UIOverlayComponent(title, consumer);
+
         this.components.add(overlay);
+
         return overlay;
     }
 
     public UILayoutComponent layout(BiConsumer<UILayoutComponent, MappetUIBuilder> consumer) {
         UILayoutComponent layout = new UILayoutComponent(consumer);
+
         this.components.add(layout);
+
         return layout;
     }
 
     public UITextareaComponent textarea(Consumer<String> consumer) {
         UITextareaComponent textarea = new UITextareaComponent(consumer);
+
         this.components.add(textarea);
+
         return textarea;
     }
 
     public UITextareaComponent textarea(String text) {
         UITextareaComponent textarea = new UITextareaComponent(null);
+
         textarea.text(text);
         this.components.add(textarea);
+
         return textarea;
     }
 
     public UIFormComponent form() {
         UIFormComponent form = new UIFormComponent();
+
         this.components.add(form);
+
         return form;
     }
 
     public UIGraphicsComponent graphics() {
         UIGraphicsComponent graphics = new UIGraphicsComponent();
+
         this.components.add(graphics);
+
         return graphics;
     }
 
     public UITextComponent text(String text) {
         UITextComponent textComponent = new UITextComponent(text);
+
         this.components.add(textComponent);
+
         return textComponent;
     }
 
     public UIItemStackComponent itemStack(Consumer<ScriptItemStack> consumer) {
         UIItemStackComponent itemStack = new UIItemStackComponent(consumer);
+
         this.components.add(itemStack);
+
         return itemStack;
     }
 
     public UIKeybindComponent keybind(Consumer<String> consumer) {
         UIKeybindComponent keybind = new UIKeybindComponent(consumer);
+
         this.components.add(keybind);
+
         return keybind;
     }
 }

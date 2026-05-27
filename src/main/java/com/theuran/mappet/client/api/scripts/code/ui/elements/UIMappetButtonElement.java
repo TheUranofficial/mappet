@@ -22,17 +22,20 @@ public class UIMappetButtonElement extends UIButton {
 
     public UIMappetButtonElement alpha(float alpha) {
         this.alpha = alpha;
+
         return this;
     }
 
     public UIMappetButtonElement textAlpha(float textAlpha) {
         this.textAlpha = textAlpha;
+
         return this;
     }
 
     @Override
     public void renderSkin(UIContext context) {
         int color = Colors.setA(this.custom ? this.customColor : BBSSettings.primaryColor.get(), this.alpha);
+
         if (this.hover) {
             color = Colors.mulRGB(color, 0.85F);
         }
@@ -45,6 +48,7 @@ public class UIMappetButtonElement extends UIButton {
         String label = font.limitToWidth(this.label.get(), this.area.w - 4);
         int x = this.area.mx(font.getWidth(label));
         int y = this.area.my(font.getHeight());
+
         context.batcher.text(label, (float)x, (float)y, Colors.setA(Colors.mulRGB(this.textColor, this.hover ? 0.9F : 1.0F), (float) Math.max(0.1, this.textAlpha)), this.textShadow);
         this.renderLockedArea(context);
     }
