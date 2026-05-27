@@ -11,6 +11,7 @@ repositories {
                 url = "https://api.modrinth.com/maven"
             }
         }
+
         filter {
             includeGroup "maven.modrinth"
         }
