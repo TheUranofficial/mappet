@@ -1,3 +1,5 @@
+preserve_hierarchy: true
+
 files:
   - source: src/main/resources/assets/mappet/lang/en_us.json
     translation: src/main/resources/assets/mappet/lang
